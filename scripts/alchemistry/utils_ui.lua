@@ -187,6 +187,9 @@ local function setItemListDataSource(self, dataSource)
   local columnsCount = 0
   local curColumn = nil
   local curColumnLen = arg.height
+  local onClick = async:callback(function(e, senderIcon)
+    arg.fnItemClicked(senderIcon)
+  end) 
 
   -- TODO: limit the total amount <= width*height
   for i, itemData in ipairs(arg.dataSource) do
@@ -206,9 +209,7 @@ local function setItemListDataSource(self, dataSource)
     local itemIcon = module.newItemIcon(itemData.icon, itemData.count)
     itemIcon.idx = i
     itemIcon.itemData = itemData
-    itemIcon.events.mouseClick = async:callback(function(e, senderIcon)
-      arg.fnItemClicked(senderIcon)
-    end)
+    itemIcon.events.mouseClick = onClick
     curColumn.content:add(itemIcon)
   end
 end
