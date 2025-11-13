@@ -79,9 +79,9 @@ mainWindowLayout = {
         props = {horizontal = false},
         content = ui.content {
           tabHeaders,
-          utilsUi.spacerRow,
+          utilsUi.spacerRow20,
           {}, -- place for a tab content
-          utilsUi.spacerRow,
+          utilsUi.spacerRow20,
           utilsUi.newButton(1, 'alchemyBtnClose', 'Close', function(e, d)
             I.UI.removeMode(I.UI.getMode())
           end)

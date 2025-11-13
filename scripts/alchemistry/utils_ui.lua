@@ -5,19 +5,39 @@ local util = require('openmw.util')
 
 local v2 = util.vector2
 
+local stdTextColor = util.color.rgb(0.769, 0.69, 0.545)
 local itemIconSize = 40
+
 
 local module = {}
 
 
-module.spacerRow = {
+local function newSpacer(size, isHorizontal)
+  if isHorizontal then
+    size = v2(size, 1)
+  else
+    size = v2(1, size)
+  end
+
+  return {
+    type = ui.TYPE.Widget,
+    template = I.MWUI.templates.interval,
+    props = { size = size }
+  }
+end
+
+module.spacerRow10 = newSpacer(10, false)
+module.spacerRow20 = newSpacer(20, false)
+module.spacerColumn10 = newSpacer(10, true)
+
+
+module.spacerRow10 = {
   type = ui.TYPE.Widget,
   template = I.MWUI.templates.interval,
   props = {
-    size = v2(1, 20)
+    size = v2(1, 10)
   }
 }
-
 
 local function setPadding(tPadding, w, h) 
   tPadding.content[1].props.size = v2(w, h)
@@ -65,7 +85,7 @@ module.buttonStyles = {
 module.newButton = function(style, id, title, onClick)
   local tmpl = module.buttonStyles[style]
   local pad = (2 - style) * 2
-  
+
   return {
     name = id,
     type = ui.TYPE.Container,
@@ -153,7 +173,7 @@ module.newItemIcon = function(iconPath, count)
           textSize = textSize,
           text = strCount,
           autoSize = false,
-          textColor = util.color.rgb(0.769, 0.69, 0.545),
+          textColor = stdTextColor,
           textAlignH = ui.ALIGNMENT.End,
         }
       }
@@ -178,78 +198,173 @@ local newItemColumn = function()
 end
 
 
+local function getItemListColumns(itemList)
+  return itemList.content[1].content[2].content
+end
+
+
+local function setItemListColumns(itemList, columns)
+  itemList.content[1].content[2].content = columns
+end
+
+
+local function newItemListItemIcon(itemData, idx, onClick)
+  local itemIcon = module.newItemIcon(itemData.icon, itemData.count)
+  itemIcon.idx = idx
+  itemIcon.itemData = itemData
+  itemIcon.events.mouseClick = onClick
+  return itemIcon
+end
+
+
+local function setItemListPager(itemList, currentPage, pagesTotal)
+  local pager = itemList.content[3]
+  if pagesTotal < 2 then
+    pager.props.visible = false
+  else
+    pager.props.visible = true
+    pager.content[3].props.text = string.format("%i / %i", currentPage, pagesTotal)
+  end
+end
+
+
+local setItemListDataSource
+
+
+local function setItemListPage(itemList, page)
+  setItemListDataSource(itemList, itemList.creationArgs.dataSource, page)
+end
+
+
+
 -- dataSource: { icon = ..., count = ..., anythingElse = ... }
-local function setItemListDataSource(self, dataSource)
+setItemListDataSource = function(self, dataSource, page)
+  if page ~= nil then
+    self.currentPage = page
+  elseif self.currentPage == nil then
+    self.currentPage = 1
+  end
+
   local arg = self.creationArgs
   arg.dataSource = dataSource
-  self.content[2].content = ui.content {}
-  
+
+  newColumns = ui.content {}
+
   local columnsCount = 0
   local curColumn = nil
   local curColumnLen = arg.height
   local onClick = async:callback(function(e, senderIcon)
     arg.fnItemClicked(senderIcon)
-  end) 
+  end)
 
-  -- TODO: limit the total amount <= width*height
-  for i, itemData in ipairs(arg.dataSource) do
+  local pageCapacity = arg.height * arg.width
+  local dataSourceLen = #dataSource
+  local pagesCount = math.ceil(dataSourceLen / pageCapacity)
+
+  if pagesCount < self.currentPage then
+    self.currentPage = pagesCount
+  end
+
+  local viewStart = (self.currentPage - 1) * pageCapacity + 1
+  local viewEnd = viewStart + math.min(pageCapacity - 1, dataSourceLen - viewStart)
+
+  -- print(string.format("items: %i, pages: %i", dataSourceLen, pagesCount))
+  -- print(string.format("viewStart: %i, viewEnd: %i", viewStart, viewEnd))
+
+  for i = viewStart, viewEnd do
+    local itemData = dataSource[i]
+
     if curColumnLen % arg.height == 0 then
       columnsCount = columnsCount + 1
       if columnsCount > arg.width then
         return
       end
-      
+
       curColumnLen = 0
       curColumn = newItemColumn()
-      self.content[2].content:add(curColumn)
+      newColumns:add(curColumn)
     end
 
     curColumnLen = curColumnLen + 1
 
-    local itemIcon = module.newItemIcon(itemData.icon, itemData.count)
-    itemIcon.idx = i
-    itemIcon.itemData = itemData
-    itemIcon.events.mouseClick = onClick
+    local itemIcon = newItemListItemIcon(itemData, i, onClick)
     curColumn.content:add(itemIcon)
   end
+
+  setItemListColumns(self, newColumns)
+  setItemListPager(self, self.currentPage, pagesCount)
+
 end
 
 
 local function removeFromItemList(self, itemIcon)
   local arg = self.creationArgs
 
-  local columnStart = math.floor((itemIcon.idx - 1) / arg.height) + 1
-  local rowStart = ((itemIcon.idx - 1) % arg.height) + 1
+  local pageCapacity = arg.width * arg.height
+  local viewIdx = (itemIcon.idx - 1) % pageCapacity + 1
+  -- print("viewIdx: " .. tostring(viewIdx))
+  local dataSourceLen = #arg.dataSource
+
+  if self.currentPage > 1 and itemIcon.idx == dataSourceLen and viewIdx == 1 then
+    -- last page, first and only item
+    arg.dataSource[dataSourceLen] = nil
+    setItemListPage(self, self.currentPage - 1)
+    return
+  end
+
+  local pagesCount = math.ceil(dataSourceLen / pageCapacity)
+
+  local nextPageFirstIcon = nil
+  if self.currentPage < pagesCount then
+    -- pull the first item from the next page, make a new icon
+    local idx = pageCapacity * self.currentPage
+    local itemData = arg.dataSource[idx + 1]
+    nextPageFirstIcon = newItemListItemIcon(itemData, idx, itemIcon.events.mouseClick)
+  end
+
+  -- Remove the cliked one from the datasource
+  for i = itemIcon.idx, dataSourceLen do
+    arg.dataSource[i] = arg.dataSource[i + 1]
+  end
+  dataSourceLen = dataSourceLen - 1
+
+  pagesCount = math.max(1, math.ceil(dataSourceLen / pageCapacity))
+  setItemListPager(self, self.currentPage, pagesCount)
+
+  -- print(string.format("items: %i, pager: %i/%i", dataSourceLen, self.currentPage, pagesCount))
+
+  local columnStart = math.floor((viewIdx - 1) / arg.height) + 1
+  local rowStart = ((viewIdx - 1) % arg.height) + 1
   -- print(string.format("Removing %i(%i %i) %s from the list", itemIcon.idx, columnStart, rowStart, itemIcon.itemData.record.name))
 
-  local columnsCount = #self.content[2].content
-  
+  local columns = getItemListColumns(self)
+  local columnsCount = #columns
+
   for i = columnStart, columnsCount do
-    local column = self.content[2].content[i].content
-    for j = rowStart, #column do
+    local columnItems = columns[i].content
+    for j = rowStart, #columnItems do
       -- local s1 = string.format("moving %i, %i (%s)", i, j, column[j].idx)
-      if j < #column then
+      if j < #columnItems then
         -- print(s1 .. ": normal")
-        column[j] = column[j + 1]
-        column[j].idx = column[j].idx - 1
+        columnItems[j] = columnItems[j + 1]
+        columnItems[j].idx = columnItems[j].idx - 1
       elseif i < columnsCount then -- last item in non-final column
         -- print(s1 .. ": last non-final")
-        column[j] = self.content[2].content[i + 1].content[1]
-        column[j].idx = column[j].idx - 1
+        columnItems[j] = columns[i + 1].content[1]
+        columnItems[j].idx = columnItems[j].idx - 1
       else -- last item in final column
         -- print(s1 .. ": last final")
-        column[j] = nil
+        columnItems[j] = nextPageFirstIcon
       end
     end
     rowStart = 1
   end
 
-  local lastColumn =  self.content[2].content[columnsCount]
+  local lastColumn =  columns[columnsCount]
   if #lastColumn.content == 0 then
     -- print("trimming empty column")
-    self.content[2].content[columnsCount] = nil
+    columns[columnsCount] = nil
   end
-
 end
 
 
@@ -259,9 +374,10 @@ end
 -- * width
 -- * dataSource: { icon = ..., count = ..., anythingElse = ... }
 -- * fnItemClicked(clickedItemIcon)
+-- * redraw() -- used on paging to reflect the page changes
 ---------------------------------------
 module.newItemList = function(arg)
-  local itemList = {
+  local itemListInner = {
     type = ui.TYPE.Container,
     template = I.MWUI.templates.boxTransparent,
     content = ui.content {
@@ -269,7 +385,7 @@ module.newItemList = function(arg)
         type = ui.TYPE.Widget,
         props = {
           autoSize = false,
-          size = v2(arg.width * itemIconSize, arg.height * itemIconSize),
+          size = v2(arg.width * itemIconSize + 5, arg.height * itemIconSize + 5),
         },
       },
       {
@@ -280,14 +396,66 @@ module.newItemList = function(arg)
         },
       },
     },
+  }
+
+  local itemList = {
+    type = ui.TYPE.Flex,
+    props = { horizontal = false },
+    content = ui.content {
+      itemListInner,
+      module.spacerRow10,
+    },
     creationArgs = arg,
     setDataSource = setItemListDataSource,
     removeItem = removeFromItemList,
   }
 
+  local nextPage = function()
+    local args = itemList.creationArgs
+    local pagesCount = math.ceil(#args.dataSource / (args.width * args.height))
+    if itemList.currentPage < pagesCount then
+      setItemListPage(itemList, itemList.currentPage + 1)
+      -- manual paging is done internally, so we call the redraw() ourselves here
+      arg.redraw()
+    end
+  end
+
+  local prevPage = function()
+    if itemList.currentPage > 1 then
+      setItemListPage(itemList, itemList.currentPage - 1)
+      -- manual paging is done internally, so we call the redraw() ourselves here
+      arg.redraw()
+    end
+  end
+
+
+  local pager = {
+    type = ui.TYPE.Flex,
+    props = { horizontal = true },
+    content = ui.content {
+      module.newButton(1, "btnPageBack", "<", prevPage),
+      module.spacerColumn10,
+      {
+        type = ui.TYPE.Text,
+        props = {
+          autoSize = false,
+          size = v2(40, 24),
+          textColor = stdTextColor,
+          textAlignH = ui.ALIGNMENT.Center,
+          textAlignV = ui.ALIGNMENT.Center,
+          textSize = 18,
+        },
+      },
+      module.spacerColumn10,
+      module.newButton(1, "btnPageForward", ">", nextPage),
+    },
+  }
+
+  itemList.content:add(pager)
   itemList:setDataSource(arg.dataSource)
 
   return itemList
 end
+
 
 return module

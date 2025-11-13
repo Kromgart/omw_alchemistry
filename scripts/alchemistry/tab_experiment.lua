@@ -12,6 +12,7 @@ local ctx = nil
 
 
 local function redraw()
+  print("-- REDRAW --")
   ctx.tabElement:update()
 end
 
@@ -81,7 +82,7 @@ local function newTabLayout()
     props = { horizontal = false },
     content = ui.content {
       utilsUI.newItemSlot('tab2_slot', slotClicked),
-      utilsUI.spacerRow,
+      utilsUI.spacerRow20,
     }
   }
 end
@@ -119,10 +120,11 @@ module.create = function()
   end
 
   ctx.ingredientList = utilsUI.newItemList {
-    width = 12,
-    height = 8,
+    width = 10,
+    height = 10,
     dataSource = newDataSource(),
     fnItemClicked = ingredientIconClicked,
+    redraw = redraw, -- the list uses this when paging
   }
 
   ctx.tabElement.layout.content:add(ctx.ingredientList)
