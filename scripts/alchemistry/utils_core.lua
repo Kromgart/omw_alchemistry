@@ -2,6 +2,7 @@ local types = require('openmw.types')
 
 local function initIngredients()
   local result = {}
+  local added = 0
 
   for i, v in ipairs(types.Ingredient.records) do
     idata = {
@@ -28,7 +29,10 @@ local function initIngredients()
     end
 
     result[v.id] = idata
+    added = added + 1
   end
+
+  result.tableLength = added
 
   return result
 end
@@ -37,6 +41,8 @@ end
 local module = {}
 
 module.ingredientsData = initIngredients()
+
+module.experimentsTable = {}
 
 module.getAvailableItems = function(player)
   local result = {
@@ -50,7 +56,6 @@ module.getAvailableItems = function(player)
   }
 
   for i, v in ipairs(types.Actor.inventory(player):getAll(types.Ingredient)) do
-    -- result.ingredients[v.recordId] = v.count
     table.insert(result.ingredients, {
       id = v.recordId,
       count = v.count

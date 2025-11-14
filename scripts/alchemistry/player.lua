@@ -7,7 +7,7 @@ end
 
 local function fnHide()
   mainWindow.hide()
-end  
+end
 
 I.UI.registerWindow('Alchemy', fnShow, fnHide)
 

@@ -12,7 +12,7 @@ local ctx = nil
 
 
 local function redraw()
-  print("-- REDRAW --")
+  -- print("-- REDRAW --")
   ctx.tabElement:update()
 end
 
@@ -32,6 +32,18 @@ local function slotClicked(e, sender)
 end
 
 
+local function addExperiment(rec1, rec2, result)
+  local exp = ctx.experiments[rec1]
+  if exp == nil then
+    exp = { tableLength = 0 }
+    ctx.experiments[rec1] = exp
+  end
+
+  exp[rec2] = result
+  exp.tableLength = exp.tableLength + 1
+end
+
+
 local function ingredientIconClicked(sender)
   ctx.ingredientList:removeItem(sender)
   local clickedIngredient = sender.itemData
@@ -41,15 +53,19 @@ local function ingredientIconClicked(sender)
   if ctx.mainIngredient == nil then
     slot:setItemIcon(sender)
     ctx.mainIngredient = clickedIngredient
+    print("++++ Main ingredient is " .. clickedIngredient.record.name)
+    ctx:filterListDataSource(ctx.mainIngredient.record)
   else
     -- print(string.format("Trying %s with %s", ctx.mainIngredient.name, clickedIngredient.name))
     local common = utilsCore.getCommonEffects(ctx.mainIngredient.record, clickedIngredient.record)
+    local result = 0
     if common ~= nil then
       ambient.playSound('potion success')
+      result = 1
 
     -- TODO display result
       for key, eff in pairs(common) do
-        print(string.format("%s", key))
+        print(string.format("Common '%s'", key))
       end
     else
       ambient.playSound('potion fail')
@@ -57,7 +73,9 @@ local function ingredientIconClicked(sender)
     -- TODO display result
     end
 
-    -- TODO store the attempt in 'known' table
+    addExperiment(ctx.mainIngredient.record, clickedIngredient.record, result)
+    addExperiment(clickedIngredient.record, ctx.mainIngredient.record, result)
+
     -- TODO remove one piece of each ingredient from inventory
 
     clickedIngredient.count = clickedIngredient.count - 1
@@ -87,6 +105,54 @@ local function newTabLayout()
   }
 end
 
+
+local function removeWellTestedIngredients(ingredients)
+  -- Filter out ingredients that are useless for experiments
+  local ingredientsLength = #ingredients
+  local removed = 0
+
+  local maxPossibleExperiments = utilsCore.ingredientsData.tableLength - 1 -- all the others minus self
+
+  for i = 1, ingredientsLength do
+    local record = ingredients[i].record
+    local exp = ctx.experiments[record]
+    local keep = false
+    if exp == nil or exp.tableLength < ingredientsLength - 1 then
+      -- keep it, because it has less overall test data than the amount of ingredients
+      -- (there are some untested combinations)
+      keep = true
+    elseif exp.tableLength < maxPossibleExperiments then
+      for j = 1, ingredientsLength do
+        if i ~= j then
+          local recordTest = ingredients[j].record
+          if exp[recordTest] == nil then
+            -- this combination is untested
+            keep = true
+            break
+          end
+        end
+      end
+    end
+
+    ingredients[i - removed] = ingredients[i]
+
+    if not keep then
+      removed = removed + 1
+    end
+  end
+
+  -- vacuum the potential hole at the end of the array
+  for i = (ingredientsLength - removed + 1), ingredientsLength do
+    ingredients[i] = nil
+  end
+
+  if removed > 0 then
+    print(string.format("removeWellTested: %i - %i = %i", ingredientsLength, removed, #ingredients))
+  end
+
+  assert(#ingredients + removed == ingredientsLength)
+end
+
 --------------------------------------------------------------
 
 local module = {}
@@ -96,6 +162,7 @@ module.create = function()
 
   ctx = {
     alchemyItems = utilsCore.getAvailableItems(self),
+    experiments = utilsCore.experimentsTable,
     tabElement = ui.create(newTabLayout()),
     mainIngredient = nil,
   }
@@ -105,13 +172,20 @@ module.create = function()
     v.icon = v.record.icon
   end
 
+  removeWellTestedIngredients(ctx.alchemyItems.ingredients)
+  table.sort(ctx.alchemyItems.ingredients, function(x, y) return x.record.name < y.record.name end)
+
   local newDataSource = function()
+    assert(ctx.mainIngredient == nil) -- otherwise should just filter the existing
+
     local result = {}
     for i, v in ipairs(ctx.alchemyItems.ingredients) do
       if v.count > 0 then
         table.insert(result, v)
       end
     end
+
+    -- print("New datasource: " .. tostring(#result))
     return result
   end
 
@@ -119,9 +193,20 @@ module.create = function()
     self.ingredientList:setDataSource(newDataSource())
   end
 
+  ctx.filterListDataSource = function(self, record)
+    self.ingredientList:filterDataSource(function(x)
+      if x.record == record then
+        return false
+      else
+        local exp = ctx.experiments[record]
+        return exp == nil or exp[x.record] == nil
+      end
+    end)
+  end
+
   ctx.ingredientList = utilsUI.newItemList {
     width = 10,
-    height = 10,
+    height = 8,
     dataSource = newDataSource(),
     fnItemClicked = ingredientIconClicked,
     redraw = redraw, -- the list uses this when paging

@@ -24,7 +24,7 @@ local function setActiveTab(newTabIdx)
   if activeTabIdx ~= nil then
     tabModules[activeTabIdx].destroy()
 
-    tabHeaders.content[activeTabIdx].template = nil  
+    tabHeaders.content[activeTabIdx].template = nil
     tabHeaders.content[activeTabIdx].content[1].template:setPadding(10, 4)
   end
 
@@ -33,7 +33,7 @@ local function setActiveTab(newTabIdx)
   if newTabIdx ~= nil then
     newTab = tabModules[newTabIdx].create()
 
-    tabHeaders.content[newTabIdx].template = utilsUi.buttonStyles[1]  
+    tabHeaders.content[newTabIdx].template = utilsUi.buttonStyles[1]
     tabHeaders.content[newTabIdx].content[1].template:setPadding(8, 2)
   else
     newTab = {}

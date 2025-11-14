@@ -39,7 +39,7 @@ module.spacerRow10 = {
   }
 }
 
-local function setPadding(tPadding, w, h) 
+local function setPadding(tPadding, w, h)
   tPadding.content[1].props.size = v2(w, h)
   tPadding.content[2].props.position = v2(w, h)
   tPadding.content[3].props.size = v2(w, h)
@@ -297,6 +297,30 @@ setItemListDataSource = function(self, dataSource, page)
 end
 
 
+local function filterItemListDataSource(self, filter)
+  local removed = 0
+  local dataSource = self.creationArgs.dataSource
+  local last = #dataSource
+
+  for i = 1, last do
+    local x = dataSource[i]
+    dataSource[i - removed] = dataSource[i]
+    if not (filter(x)) then
+      print(string.format("filter out %s", x.record.name))
+      removed = removed + 1
+    end
+  end
+
+  if removed > 0 then
+    for i = last - removed + 1, last do
+      dataSource[i] = nil
+    end
+
+    setItemListDataSource(self, dataSource)
+  end
+end
+
+
 local function removeFromItemList(self, itemIcon)
   local arg = self.creationArgs
 
@@ -407,6 +431,7 @@ module.newItemList = function(arg)
     },
     creationArgs = arg,
     setDataSource = setItemListDataSource,
+    filterDataSource = filterItemListDataSource,
     removeItem = removeFromItemList,
   }
 
