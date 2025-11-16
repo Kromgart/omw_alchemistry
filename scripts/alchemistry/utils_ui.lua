@@ -39,40 +39,49 @@ module.spacerRow10 = {
   }
 }
 
-local function setPadding(tPadding, w, h)
-  tPadding.content[1].props.size = v2(w, h)
-  tPadding.content[2].props.position = v2(w, h)
-  tPadding.content[3].props.size = v2(w, h)
-  tPadding.content[3].props.position = v2(w, h)
+local function setPaddingTRBL(padding, t, r, b, l)
+  padding.content[1].props.size = v2(l, t)
+  padding.content[2].props.position = v2(l, t)
+  padding.content[3].props.size = v2(r, b)
+  padding.content[3].props.position = v2(l, t)
 end
 
+local function setPaddingBottom(padding, newValue)
+  local old = padding.content[3].props.size
+  padding.content[3].props.size = v2(old.x, newValue)
+end
 
-module.newPadding = function(w, h)
+module.newPaddingTRBL = function(t, r, b, l)
   return {
     type = ui.TYPE.Container,
     content = ui.content {
       {
         props = {
-          size = v2(w, h),
+          size = v2(l, t),
         },
       },
       {
         external = { slot = true },
         props = {
-          position = v2(w, h),
+          position = v2(l, t),
           relativeSize = v2(1, 1),
         },
       },
       {
         props = {
-          position = v2(w, h),
+          position = v2(l, t),
           relativePosition = v2(1, 1),
-          size = v2(w, h),
+          size = v2(r, b),
         },
       },
     },
-    setPadding = setPadding,
+    setPaddingTRBL = setPaddingTRBL,
+    setPaddingBottom = setPaddingBottom,
   }
+end
+
+module.newPaddingVH = function(vertical, horizontal)
+  return module.newPaddingTRBL(vertical, horizontal, vertical, horizontal)
 end
 
 
@@ -95,7 +104,7 @@ module.newButton = function(style, id, title, onClick)
     },
     content = ui.content {{
       type = ui.TYPE.Container,
-      template = module.newPadding(8 + pad, 2 + pad),
+      template = module.newPaddingVH(2 + pad, 8 + pad),
       content = ui.content {{
         type = ui.TYPE.Text,
         template = I.MWUI.templates.textNormal,
@@ -482,5 +491,340 @@ module.newItemList = function(arg)
   return itemList
 end
 
+
+
+
+------------------------------- Bordered Containers ---------------------------------
+
+
+local borderTexturesThin = {
+  ui.texture { size = v2(512, 2), path = "textures/menu_thin_border_top.dds" },
+  ui.texture { size = v2(2, 2),   path = "textures/menu_thin_border_top_right_corner.dds" },
+  ui.texture { size = v2(2, 512), path = "textures/menu_thin_border_right.dds" },
+  ui.texture { size = v2(2, 2),   path = "textures/menu_thin_border_bottom_right_corner.dds" },
+  ui.texture { size = v2(512, 2), path = "textures/menu_thin_border_bottom.dds" },
+  ui.texture { size = v2(2, 2),   path = "textures/menu_thin_border_bottom_left_corner.dds" },
+  ui.texture { size = v2(2, 512), path = "textures/menu_thin_border_left.dds" },
+  ui.texture { size = v2(2, 2),   path = "textures/menu_thin_border_top_left_corner.dds" },
+}
+
+
+local borderTexturesThick = {
+  ui.texture { size = v2(512, 4), path = "textures/menu_thick_border_top.dds" },
+  ui.texture { size = v2(4, 4),   path = "textures/menu_thick_border_top_right_corner.dds" },
+  ui.texture { size = v2(4, 512), path = "textures/menu_thick_border_right.dds" },
+  ui.texture { size = v2(4, 4),   path = "textures/menu_thick_border_bottom_right_corner.dds" },
+  ui.texture { size = v2(512, 4), path = "textures/menu_thick_border_bottom.dds" },
+  ui.texture { size = v2(4, 4),   path = "textures/menu_thick_border_bottom_left_corner.dds" },
+  ui.texture { size = v2(4, 512), path = "textures/menu_thick_border_left.dds" },
+  ui.texture { size = v2(4, 4),   path = "textures/menu_thick_border_top_left_corner.dds" },
+}
+
+
+local setBorderedTemplateColorMult = function(template, color)
+  for i = 2, #template.content do
+    template.content[i].props.color = color
+  end
+end
+
+
+local function newBorderedTemplate(widgetType, isThick, hasTop, hasRight, hasBottom, hasLeft)
+  local borderTx, lineWidth
+  if isThick then
+    borderTx = borderTexturesThick
+    lineWidth = 4
+  else
+    borderTx = borderTexturesThin
+    lineWidth = 2
+  end
+
+  local content = ui.content {{
+    external = { slot = true },
+    props = { relativeSize = v2(1, 1) },
+  }}
+
+  local added = 1
+
+  if hasLeft then
+    content:add({
+      type = ui.TYPE.Image,
+      props = {
+        resource = borderTx[7],
+        size = v2(lineWidth, 0),
+        relativeSize = v2(0, 1),
+        tileV = true,
+      }
+    })
+    added = added + 1
+  end
+
+  if hasRight then
+    content:add({
+      type = ui.TYPE.Image,
+      props = {
+        resource = borderTx[7],
+        size = v2(lineWidth, 0),
+        relativeSize = v2(0, 1),
+        position = v2(-lineWidth, 0),
+        relativePosition = v2(1, 0),
+        tileV = true,
+      }
+    })
+    added = added + 1
+  end
+
+  if hasTop then
+    content:add({
+      type = ui.TYPE.Image,
+      props = {
+        resource = borderTx[1],
+        size = v2(0, lineWidth),
+        relativeSize = v2(1, 0),
+        tileH = true,
+      }
+    })
+    added = added + 1
+
+    if hasLeft then
+      content:add({
+        type = ui.TYPE.Image,
+        props = {
+          resource = borderTx[8],
+          size = v2(lineWidth, lineWidth),
+        }
+      })
+      added = added + 1
+    end
+
+    if hasRight then
+      content:add({
+        type = ui.TYPE.Image,
+        props = {
+          resource = borderTx[2],
+          size = v2(lineWidth, lineWidth),
+          position = v2(-lineWidth, 0),
+          relativePosition = v2(1, 0),
+        }
+      })
+      added = added + 1
+    end
+  end
+
+  if hasBottom then
+    content:add({
+      type = ui.TYPE.Image,
+      props = {
+        resource = borderTx[5],
+        size = v2(0, lineWidth),
+        relativeSize = v2(1, 0),
+        position = v2(0, -lineWidth),
+        relativePosition = v2(0, 1),
+        tileH = true,
+      }
+    })
+    added = added + 1
+
+    if hasLeft then
+      content:add({
+        type = ui.TYPE.Image,
+        props = {
+          resource = borderTx[6],
+          size = v2(lineWidth, lineWidth),
+          position = v2(0, -lineWidth),
+          relativePosition = v2(0, 1),
+        }
+      })
+      added = added + 1
+    end
+
+    if hasRight then
+      content:add({
+        type = ui.TYPE.Image,
+        props = {
+          resource = borderTx[4],
+          size = v2(lineWidth, lineWidth),
+          position = v2(-lineWidth, -lineWidth),
+          relativePosition = v2(1, 1),
+        }
+      })
+      added = added + 1
+    end
+  end
+
+
+  return {
+    type = widgetType,
+    content = content,
+    setBorderColorMult = setBorderedTemplateColorMult
+  }
+end
+
+
+
+
+------------------------------- Tab headers ---------------------------------
+
+
+local tabHeaderSpacerInactive = {
+  type = ui.TYPE.Widget,
+  props = {
+    size = v2(1, 2)
+  }
+}
+
+local tabHeaderSpacerActive = {
+  type = ui.TYPE.Widget,
+  props = {
+    size = v2(0, 2),
+    relativeSize = v2(1, 0),
+  },
+  content = ui.content {
+    {
+      type = ui.TYPE.Image,
+      props = {
+          resource = ui.texture { path = 'white' },
+          color = util.color.rgb(0, 0, 0),
+          relativeSize = v2(1, 1),
+      }
+    },
+    {
+      type = ui.TYPE.Image,
+      props = {
+        size = v2(2, 2),
+        resource = borderTexturesThin[4],
+      }
+    },
+    {
+      type = ui.TYPE.Image,
+      props = {
+        size = v2(2, 2),
+        relativePosition = v2(1, 0),
+        position = v2(-2, 0),
+        resource = borderTexturesThin[6],
+      }
+    },
+  }
+}
+
+local tabHeaderBorderColorInactive = util.color.rgb(0.8, 0.8, 0.8)
+local tabHeaderTextColorInactive
+do
+  local c = I.MWUI.templates.textNormal.props.textColor
+  tabHeaderTextColorInactive = util.color.rgb(c.r * 0.85, c.g * 0.85, c.b * 0.85) 
+end 
+
+local function setTabHeaderActive(self, isActive)
+  if isActive then
+    self.content[1].template:setBorderColorMult(nil)
+    self.content[1].content[1].content[1].props.textColor = nil
+    self.content[1].content[1].template:setPaddingBottom(6)
+    self.content[2] = tabHeaderSpacerActive
+  else
+    self.content[1].template:setBorderColorMult(tabHeaderBorderColorInactive)
+    self.content[1].content[1].content[1].props.textColor = tabHeaderTextColorInactive
+    self.content[1].content[1].template:setPaddingBottom(3)
+    self.content[2] = tabHeaderSpacerInactive
+  end
+end
+
+
+local newTabHeader = function(title, onClickCallback)
+  local result = {
+    type = ui.TYPE.Flex,
+    props = {
+      horizontal = false,
+      align = ui.ALIGNMENT.End,
+    },
+    events = { mouseClick = onClickCallback },
+    setActive = setTabHeaderActive,
+    content = ui.content {
+      {
+        type = ui.TYPE.Container,
+        template = newBorderedTemplate(ui.TYPE.Container, false, true, true, false, true),
+        content = ui.content{{
+          type = ui.TYPE.Container,
+          template = module.newPaddingTRBL(6, 10, 3, 10),
+          content = ui.content {{
+            type = ui.TYPE.Text,
+            template = I.MWUI.templates.textNormal,
+            props = { text = title }
+          }}
+        }}
+      },
+      tabHeaderSpacerInactive
+    }
+  }
+
+  setTabHeaderActive(result, false)
+  return result
+end
+
+
+module.newTabHeaders = function(titles, onTabChanged)
+  local result = {
+    type = ui.TYPE.Widget,
+    props = {
+      size = v2(0, 50),
+      relativeSize = v2(1, 0),
+    },
+  }
+
+  local function setActiveTab(tab)
+    if result.activeTab == tab then
+      return
+    end
+
+    -- print("Activating tab " .. tab.title)
+
+    if result.activeTab ~= nil then
+      result.activeTab:setActive(false)
+    end
+    result.activeTab = tab
+    tab:setActive(true)
+    onTabChanged(tab.tabIdx)
+  end
+
+  local tabHeaderClicked = async:callback(function (e, sender)
+    setActiveTab(sender)
+  end)
+
+  local tbsContent = ui.content {
+    module.spacerColumn10,
+  }
+
+  for i, v in ipairs(titles) do
+    local newTab = newTabHeader(v, tabHeaderClicked)
+    newTab.title = v
+    newTab.tabIdx = i
+    tbsContent:add(newTab)
+  end
+
+  result.setActiveTab = function(idx) setActiveTab(tbsContent[1 + idx]) end
+  result.setActiveTab(1)
+
+  result.content = ui.content {
+    {
+      type = ui.TYPE.Image,
+      template = I.MWUI.templates.horizontalLine,
+      props = {
+        relativePosition = v2(0, 1),
+        position = v2(0, -2),
+        size = v2(0, 2),
+        relativeSize = v2(1, 0),
+      }
+    },
+    {
+      type = ui.TYPE.Flex,
+      props = {
+        horizontal = true,
+        position = v2(0, 20),
+        arrange = ui.ALIGNMENT.End,
+      },
+      content = tbsContent,
+    }
+  }
+
+  return result
+end
 
 return module
