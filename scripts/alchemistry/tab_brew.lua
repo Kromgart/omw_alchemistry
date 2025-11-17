@@ -7,9 +7,10 @@ local tabLayout = {
   type = ui.TYPE.Flex,
   props = {horizontal = false},
   content = ui.content {
-    utilsUi.newButton(1, 'alchemyBtnBrew', 'Brew', function(e, d)
+    utilsUi.newButton('Brew', function(e, d)
       ambient.playSound('potion success')
-    end)
+    end,
+    true)
   }
 }
 

@@ -24,6 +24,7 @@ end
 
 local function slotClicked(e, sender)
   if ctx.mainIngredient ~= nil then
+    ambient.playSound('Item Ingredient Down')
     ctx.mainIngredient = nil
     getSlot():setItemIcon(nil)
     ctx:resetListDataSource()
@@ -44,13 +45,18 @@ local function addExperiment(rec1, rec2, result)
 end
 
 
-local function ingredientIconClicked(sender)
+
+local function ingredientIconClicked(mouseEvent, sender)
   ctx.ingredientList:removeItem(sender)
+  ctx.lastRemoved = sender
+  ctx.tooltip.layout:update(nil)
+
   local clickedIngredient = sender.itemData
 
   local slot = getSlot()
 
   if ctx.mainIngredient == nil then
+    ambient.playSound('Item Ingredient Down')
     slot:setItemIcon(sender)
     ctx.mainIngredient = clickedIngredient
     print("++++ Main ingredient is " .. clickedIngredient.record.name)
@@ -157,8 +163,8 @@ end
 
 local module = {}
 
-module.create = function()
-  assert(ctx == nil, "Attempting to create a tab when its data still exists")
+module.create = function(tooltip)
+  assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")
 
   ctx = {
     alchemyItems = utilsCore.getAvailableItems(self),
@@ -204,15 +210,37 @@ module.create = function()
     end)
   end
 
+  ctx.tooltipContent = {
+    type = ui.TYPE.Text,
+    template = I.MWUI.templates.textNormal,
+    props = { text = "..." },
+  }
+
+  ctx.setTooltipText = function(self, txt)
+    self.tooltipContent.props.text = txt
+  end
+
+  local function ingredientIconMouseMoved(mouseEvent, sender)
+    -- when clicking there are 2 events sent: mouseClick and then mouseMove
+    if ctx.lastRemoved ~= sender then
+      ctx:setTooltipText(sender.itemData.record.name)
+      tooltip.layout:update(ctx.tooltipContent, mouseEvent.position + v2(0, 25))
+    end
+  end
+
+
   ctx.ingredientList = utilsUI.newItemList {
     width = 10,
     height = 8,
     dataSource = newDataSource(),
     fnItemClicked = ingredientIconClicked,
+    fnItemMouseMoved = ingredientIconMouseMoved,
     redraw = redraw, -- the list uses this when paging
   }
 
   ctx.tabElement.layout.content:add(ctx.ingredientList)
+  ctx.tooltip = tooltip
+
   return ctx.tabElement
 end
 

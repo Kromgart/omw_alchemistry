@@ -1,3 +1,4 @@
+local async = require('openmw.async')
 local core = require('openmw.core')
 local self = require('openmw.self')
 local I = require('openmw.interfaces')
@@ -6,7 +7,7 @@ local v2 = require('openmw.util').vector2
 local utilsCore = require('scripts.alchemistry.utils_core')
 local utilsUI = require('scripts.alchemistry.utils_ui')
 
-local mainWindow, mainWindowLayout
+local mainWindow, mainWindowLayout, tooltip
 local activeTabIdx, lastOpenTabIdx
 
 -- Each must have create() and destroy() functions
@@ -20,10 +21,6 @@ local tabModules = {
 }
 
 local function setActiveTabContent(newTabIdx)
-  if mainWindowLayout == nil then
-    return
-  end
-
   print("setActiveTabContent " .. tostring(newTabIdx))
 
   if activeTabIdx ~= nil then
@@ -33,65 +30,76 @@ local function setActiveTabContent(newTabIdx)
   local newTab
 
   if newTabIdx ~= nil then
-    newTab = tabModules[newTabIdx].create()
+    newTab = tabModules[newTabIdx].create(tooltip)
   else
     newTab = {}
   end
 
-  mainWindowLayout.content[1].content[1].content[2].content[1] = newTab
   activeTabIdx = newTabIdx
 
   if mainWindow ~= nil then
-     mainWindow:update()
+    mainWindow.layout.content[1].content[1].content[2].content[1] = newTab
+    mainWindow:update()
   end
 end
 
 
 local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment", "Known ingredients" }, setActiveTabContent)
 
-mainWindowLayout = {
-  layer = 'Windows',
-  name = 'alchemyRoot',
-  type = ui.TYPE.Container,
-  template = I.MWUI.templates.boxSolidThick,
-  props = {
-    anchor = v2(0.5, 0.5),
-    relativePosition = v2(0.5, 0.5),
-  },
-  content = ui.content {{
-    type = ui.TYPE.Widget,
-    props = {
-      size = v2(600, 550),
-    },
-    content = ui.content {
-      {
-        type = ui.TYPE.Flex,
-        props = {
-          horizontal = false,
-          autoSize = false,
-          relativeSize = v2(1, 1),
-        },
-        content = ui.content {
-          tabHeaders,
-          {
-            type = ui.TYPE.Container,
-            template = utilsUI.newPaddingVH(20, 20),
-            content = ui.content {{}}, -- place for a tab content
-          },
-        }
-      },
-      -- utilsUI.newButton(1, 'alchemyBtnClose', 'Close', function(e, d)
-      --   I.UI.removeMode(I.UI.getMode())
-      -- end)
-    }
-  }}
-}
+local function newMainWindowLayout()
+  local btnClose = utilsUI.newButton('Close', function(e, d) I.UI.removeMode(I.UI.getMode()) end)
+  btnClose.props.position = v2(20, 500)
 
+  local result = {
+    layer = 'Windows',
+    name = 'alchemyRoot',
+    type = ui.TYPE.Container,
+    template = I.MWUI.templates.boxSolidThick,
+    events = {
+      mouseMove = async:callback(function(e, sender)
+        tooltip.layout:update(nil)
+      end)
+    },
+    props = {
+      anchor = v2(0.5, 0.5),
+      relativePosition = v2(0.5, 0.5),
+    },
+    content = ui.content {{
+      type = ui.TYPE.Widget,
+      props = {
+        size = v2(600, 550),
+      },
+      content = ui.content {
+        {
+          type = ui.TYPE.Flex,
+          props = {
+            horizontal = false,
+            autoSize = false,
+            relativeSize = v2(1, 1),
+          },
+          content = ui.content {
+            tabHeaders,
+            {
+              type = ui.TYPE.Container,
+              template = utilsUI.newPaddingVH(20, 20),
+              content = ui.content {{}}, -- place for a tab content
+            },
+          }
+        },
+        btnClose,
+      }
+    }}
+  }
+
+  return result
+end
 
 local function hideMainWindow()
   -- ui.showMessage("Alchemy end")
   lastOpenTabIdx = activeTabIdx
   setActiveTabContent(nil)
+  tooltip:destroy()
+  tooltip = nil
   mainWindow:destroy()
   mainWindow = nil
 end
@@ -99,7 +107,9 @@ end
 
 local function createMainWindow()
   -- ui.showMessage("Alchemy start")
-  mainWindow = ui.create(mainWindowLayout)
+  tooltip = utilsUI.createTooltipElement()
+  mainWindow = ui.create(newMainWindowLayout())
+
   if lastOpenTabIdx == nil then
     setActiveTabContent(1)
   else
