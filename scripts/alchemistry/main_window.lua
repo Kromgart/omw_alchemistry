@@ -7,12 +7,10 @@ local v2 = require('openmw.util').vector2
 local utilsCore = require('scripts.alchemistry.utils_core')
 local utilsUI = require('scripts.alchemistry.utils_ui')
 
-local mainWindow, mainWindowLayout, tooltip
-local activeTabIdx, lastOpenTabIdx
 
--- Each must have create() and destroy() functions
 local tabModules = {
-  require('scripts.alchemistry.tab_brew'),
+  -- Each must have create() and destroy() functions
+  require('scripts.alchemistry.tab_brew_vanilla'),
   require('scripts.alchemistry.tab_experiment'),
   {
     create = function() return {} end,
@@ -20,33 +18,54 @@ local tabModules = {
   }
 }
 
-local function setActiveTabContent(newTabIdx)
-  print("setActiveTabContent " .. tostring(newTabIdx))
 
-  if activeTabIdx ~= nil then
-    tabModules[activeTabIdx].destroy()
+local ctx = nil
+local lastOpenTabIdx
+
+
+local function setActiveTabContent(newTabIdx)
+  -- print("setActiveTabContent " .. tostring(newTabIdx))
+
+  if ctx.activeTabIdx ~= nil then
+    tabModules[ctx.activeTabIdx].destroy()
   end
 
   local newTab
 
   if newTabIdx ~= nil then
-    newTab = tabModules[newTabIdx].create(tooltip)
+    local ingredientsShallowClone = {}
+    for i, v in ipairs(ctx.alchemyItems.ingredients) do
+      if v.count > 0 then
+        table.insert(ingredientsShallowClone, v)
+      end
+    end
+
+    local tabAlchemyItems = {
+      apparatus = ctx.alchemyItems.apparatus,
+      ingredients = ingredientsShallowClone,
+    }
+
+    newTab = tabModules[newTabIdx].create(ctx.tooltip, tabAlchemyItems)
   else
     newTab = {}
   end
 
-  activeTabIdx = newTabIdx
+  ctx.activeTabIdx = newTabIdx
 
-  if mainWindow ~= nil then
-    mainWindow.layout.content[1].content[1].content[2].content[1] = newTab
-    mainWindow:update()
+  if ctx.mainWindow ~= nil then
+    ctx.mainWindow.layout.content[1].content[1].content[2].content[1] = newTab
+    ctx.mainWindow:update()
   end
 end
 
 
-local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment", "Known ingredients" }, setActiveTabContent)
+local function onMouseMove(mouseEvent, sender)
+  assert(ctx.tooltip ~= nil)
+  ctx.tooltip.layout:update(nil)
+end
 
-local function newMainWindowLayout()
+
+local function newMainWindowLayout(tabHeaders)
   local btnClose = utilsUI.newButton('Close', function(e, d) I.UI.removeMode(I.UI.getMode()) end)
   btnClose.props.position = v2(20, 500)
 
@@ -55,11 +74,7 @@ local function newMainWindowLayout()
     name = 'alchemyRoot',
     type = ui.TYPE.Container,
     template = I.MWUI.templates.boxSolidThick,
-    events = {
-      mouseMove = async:callback(function(e, sender)
-        tooltip.layout:update(nil)
-      end)
-    },
+    events = { mouseMove = async:callback(onMouseMove) },
     props = {
       anchor = v2(0.5, 0.5),
       relativePosition = v2(0.5, 0.5),
@@ -96,26 +111,31 @@ end
 
 local function hideMainWindow()
   -- ui.showMessage("Alchemy end")
-  lastOpenTabIdx = activeTabIdx
+  lastOpenTabIdx = ctx.activeTabIdx
   setActiveTabContent(nil)
-  tooltip:destroy()
-  tooltip = nil
-  mainWindow:destroy()
-  mainWindow = nil
+  ctx.mainWindow:destroy()
+  ctx.tooltip:destroy()
+  ctx = nil
 end
 
 
 local function createMainWindow()
   -- ui.showMessage("Alchemy start")
-  tooltip = utilsUI.createTooltipElement()
-  mainWindow = ui.create(newMainWindowLayout())
+  local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment", "Known ingredients" }, setActiveTabContent)
+
+  ctx = {
+    tooltip = utilsUI.createTooltipElement(),
+    mainWindow = ui.create(newMainWindowLayout(tabHeaders)),
+    alchemyItems = utilsCore.getAvailableItems(self),
+  }
 
   if lastOpenTabIdx == nil then
-    setActiveTabContent(1)
+    tabHeaders.setActiveTab(1)
   else
-    setActiveTabContent(lastOpenTabIdx)
+    tabHeaders.setActiveTab(lastOpenTabIdx)
   end
 end
+
 
 return {
   show = createMainWindow,

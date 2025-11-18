@@ -82,10 +82,8 @@ local function ingredientIconClicked(mouseEvent, sender)
     addExperiment(ctx.mainIngredient.record, clickedIngredient.record, result)
     addExperiment(clickedIngredient.record, ctx.mainIngredient.record, result)
 
-    -- TODO remove one piece of each ingredient from inventory
-
-    clickedIngredient.count = clickedIngredient.count - 1
-    ctx.mainIngredient.count = ctx.mainIngredient.count - 1
+    clickedIngredient:spend(1)
+    ctx.mainIngredient:spend(1)
 
     if ctx.mainIngredient.count == 0 then
       slot:setItemIcon(nil)
@@ -163,20 +161,15 @@ end
 
 local module = {}
 
-module.create = function(tooltip)
+module.create = function(tooltip, alchemyItems)
   assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")
 
   ctx = {
-    alchemyItems = utilsCore.getAvailableItems(self),
+    alchemyItems = alchemyItems,
     experiments = utilsCore.experimentsTable,
     tabElement = ui.create(newTabLayout()),
     mainIngredient = nil,
   }
-
-  for i, v in ipairs(ctx.alchemyItems.ingredients) do
-    v.record = utilsCore.ingredientsData[v.id]
-    v.icon = v.record.icon
-  end
 
   removeWellTestedIngredients(ctx.alchemyItems.ingredients)
   table.sort(ctx.alchemyItems.ingredients, function(x, y) return x.record.name < y.record.name end)

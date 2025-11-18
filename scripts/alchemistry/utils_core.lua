@@ -1,4 +1,5 @@
 local types = require('openmw.types')
+local core = require('openmw.core')
 
 local function initIngredients()
   local result = {}
@@ -44,6 +45,18 @@ module.ingredientsData = initIngredients()
 
 module.experimentsTable = {}
 
+local function reduceIngredientStack(ingredientItem, removeCount)
+  local newCount = ingredientItem.count - removeCount
+  assert(newCount >= 0, "Tried to remove more ingredients than there are in the stack")
+
+  ingredientItem.count = newCount
+
+  core.sendGlobalEvent("alchemistryRemoveItem", {
+    gameObject = ingredientItem.gameObject,
+    count = removeCount,
+  })
+end
+
 module.getAvailableItems = function(player)
   local result = {
     apparatus = {
@@ -52,14 +65,22 @@ module.getAvailableItems = function(player)
       alembic = 1.0,
       retort = 1.0
     },
-    ingredients = {}
+    ingredients = {},
   }
 
   for i, v in ipairs(types.Actor.inventory(player):getAll(types.Ingredient)) do
-    table.insert(result.ingredients, {
+    local ingredientItem = {
       id = v.recordId,
-      count = v.count
-    })
+      count = v.count,
+      record = module.ingredientsData[v.recordId],
+      gameObject = v,
+      spend = reduceIngredientStack,
+    }
+
+    -- for itemLists:
+    ingredientItem.icon = ingredientItem.record.icon
+
+    table.insert(result.ingredients, ingredientItem)
   end
 
   return result

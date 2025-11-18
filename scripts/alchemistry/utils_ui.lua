@@ -856,7 +856,6 @@ module.newTabHeaders = function(titles, onTabChanged)
   end
 
   result.setActiveTab = function(idx) setActiveTab(tbsContent[idx * 2]) end
-  result.setActiveTab(1)
 
   result.content = ui.content {
     {
