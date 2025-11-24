@@ -1,7 +1,8 @@
 return {
   eventHandlers = {
     alchemistryRemoveItem = function(data)
-      data.gameObject:remove(data.count)
+      -- HACK: commented out for easier testing
+      -- data.gameObject:remove(data.count)
     end
   }
 }

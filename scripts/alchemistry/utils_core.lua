@@ -15,18 +15,23 @@ local function initIngredients()
     }
 
     for j, effect in ipairs(v.effects) do
-      local effect_key = nil
-      if effect.affectedAttribute ~= nil then
-        effect_key = effect.id .. '_' .. effect.affectedAttribute
-      elseif effect.affectedSkill ~= nil then
-        effect_key = effect.id .. '_' .. effect.affectedSkill
-      else
-        effect_key = effect.id
-      end
+      -- local effect_key = nil
+      -- if effect.affectedAttribute ~= nil then
+      --   effect_key = effect.id .. '_' .. effect.affectedAttribute
+      -- elseif effect.affectedSkill ~= nil then
+      --   effect_key = effect.id .. '_' .. effect.affectedSkill
+      -- else
+      --   effect_key = effect.id
+      -- end
 
-      idata.effects[effect_key] = {
-        id = effect.id, intensity = 2, duration = 2, known = true
-      }
+      table.insert(idata.effects, {
+        id = effect.id,
+        name = effect.effect.name,
+        icon = effect.effect.icon,
+        intensity = 2,
+        duration = 2,
+        known = true
+      })
     end
 
     result[v.id] = idata

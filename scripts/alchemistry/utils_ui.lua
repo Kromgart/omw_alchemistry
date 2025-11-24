@@ -31,6 +31,7 @@ local function newSpacer(size, isHorizontal)
   }
 end
 
+module.spacerRow5 = newSpacer(5, false)
 module.spacerRow10 = newSpacer(10, false)
 module.spacerRow20 = newSpacer(20, false)
 module.spacerColumn3 = newSpacer(3, true)
@@ -341,18 +342,23 @@ local itemIconSize = 40
 local function setItemSlotItemIcon(slot, itemIcon)
   slot.content[2] = itemIcon
   if itemIcon ~= nil then
-    itemIcon.events.mouseClick = nil
+    itemIcon.events = nil
   end
 end
 
 
-module.newItemSlot = function(id, onClick)
+module.newItemSlot = function(id, onClick, onMouseMove)
+  local function itemSlotMouseMoved(mouseEvents, slot)
+    onMouseMove(mouseEvents, slot, slot.content[2])
+  end
+
   return {
     name = id,
     type = ui.TYPE.Container,
     template = I.MWUI.templates.boxSolid,
     events = {
-      mouseClick = async:callback(onClick)
+      mouseClick = async:callback(onClick),
+      mouseMove = async:callback(itemSlotMouseMoved),
     },
     content = ui.content {{
       type = ui.TYPE.Widget,
@@ -881,6 +887,88 @@ module.newTabHeaders = function(titles, onTabChanged)
 
   return result
 end
+
+
+
+
+-------------------------------- MagicEffectWidget-----------------------------------
+
+local magicEffectIcons = {}
+
+module.newMagicEffectWidget = function(magicEffect, magnitude, duration)
+  local label = nil
+
+  if magnitude == nil then
+    if duration == nil then
+      label = magicEffect.name
+    else
+      label = string.format('%s for %i secs', magicEffect.name, duration)
+    end
+  else
+    -- TODO: could be 'ft' or smth (telekinesis)
+    local magnitudeSuffix = 'pts'
+
+    if duration == nil then
+      label = string.format('%s %i %s', magicEffect.name, magnitude, magnitudeSuffix)
+    else
+      label = string.format('%s %i %s for %i secs', magicEffect.name, magnitude, magnitudeSuffix, duration)
+    end
+  end
+
+  local iconResource = magicEffectIcons[magicEffect.icon]
+  if iconResource == nil then
+    iconResource = ui.texture { path = magicEffect.icon }
+    magicEffectIcons[magicEffect.icon] = iconResource
+  end
+
+  return {
+    type = ui.TYPE.Flex,
+    props = { horizontal = true },
+    content = ui.content {
+      {
+        type = ui.TYPE.Image,
+        props = {
+          size = v2(16, 16),
+          resource = iconResource,
+        },
+      },
+      module.spacerColumn3,
+      {
+        type = ui.TYPE.Text,
+        template = I.MWUI.templates.textNormal,
+        props = { text = label }
+      }
+    }
+  }
+end
+
+-------------------------------- LogBox -----------------------------------
+
+-- module.newLogBox = function(props)
+--   if props == nil then
+--     props = {}
+--   end
+
+--   props.multiline = true
+--   props.readOnly = true
+--   props.wordWrap = true
+--   props.textSize = 18
+--   props.textColor = stdTextColor
+
+--   return {
+--     type = ui.TYPE.Container,
+--     template = newBorderedTemplate(ui.TYPE.Container, borderTexturesThin, true, true, true, true),
+--     content = ui.content {{
+--       type = ui.TYPE.TextEdit,
+--       props = props,
+--     }}
+--   }
+-- end
+
+
+
+
+-------------------------------- END  -----------------------------------
 
 
 

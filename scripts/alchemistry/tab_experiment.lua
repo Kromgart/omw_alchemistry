@@ -10,25 +10,74 @@ local utilsCore = require('scripts.alchemistry.utils_core')
 
 local ctx = nil
 
+-- local redrawCount = 0
 
 local function redraw()
-  -- print("-- REDRAW --")
+  -- print(string.format("-- REDRAW -- %i", redrawCount))
+  -- redrawCount = redrawCount + 1
   ctx.tabElement:update()
 end
 
 
+local newTooltipContent = function(ingredientRecord)
+  local result = {
+    type = ui.TYPE.Flex,
+    props = {
+      horizontal = false,
+      arrange = ui.ALIGNMENT.Center,
+    },
+    content = ui.content {
+      {
+        type = ui.TYPE.Text,
+        template = I.MWUI.templates.textHeader,
+        props = { text = ingredientRecord.name },
+      }
+    }
+  }
+
+  for i, effect in ipairs(ingredientRecord.effects) do
+    result.content:add(utilsUI.spacerRow5)
+    -- print(string.format("%s, %s", effect.name, effect.icon))
+    local effectWidget = utilsUI.newMagicEffectWidget(effect)
+    result.content:add(effectWidget)
+  end
+
+  return result
+end
+
+
 local function getSlot()
-  return ctx.tabElement.layout.content[1]
+  return ctx.tabElement.layout.content[1].content[1]
 end
 
 
 local function slotClicked(e, sender)
+  ctx.lastClickedIngredient = sender
   if ctx.mainIngredient ~= nil then
     ambient.playSound('Item Ingredient Down')
     ctx.mainIngredient = nil
     getSlot():setItemIcon(nil)
     ctx:resetListDataSource()
+    ctx.tooltip.layout:update(nil)
     redraw()
+  end
+end
+
+
+local function ingredientIconMouseMoved(mouseEvent, sender)
+  if ctx.lastTooltipActivator ~= sender then
+    if sender ~= nil then
+      ctx.tooltipContent = newTooltipContent(sender.itemData.record)
+    end
+    ctx.lastTooltipActivator = sender
+  end
+  ctx.tooltip.layout:update(ctx.tooltipContent, mouseEvent.position + v2(0, 25))
+end
+
+
+local function slotMouseMoved(mouseEvent, slot, itemIcon)
+  if itemIcon ~= nil then
+    ingredientIconMouseMoved(mouseEvent, itemIcon)
   end
 end
 
@@ -48,7 +97,7 @@ end
 
 local function ingredientIconClicked(mouseEvent, sender)
   ctx.ingredientList:removeItem(sender)
-  ctx.lastRemoved = sender
+  ctx.lastClickedIngredient = sender
   ctx.tooltip.layout:update(nil)
 
   local clickedIngredient = sender.itemData
@@ -59,7 +108,7 @@ local function ingredientIconClicked(mouseEvent, sender)
     ambient.playSound('Item Ingredient Down')
     slot:setItemIcon(sender)
     ctx.mainIngredient = clickedIngredient
-    print("++++ Main ingredient is " .. clickedIngredient.record.name)
+    print("Main ingredient is " .. clickedIngredient.record.name)
     ctx:filterListDataSource(ctx.mainIngredient.record)
   else
     -- print(string.format("Trying %s with %s", ctx.mainIngredient.name, clickedIngredient.name))
@@ -103,7 +152,13 @@ local function newTabLayout()
     type = ui.TYPE.Flex,
     props = { horizontal = false },
     content = ui.content {
-      utilsUI.newItemSlot('tab2_slot', slotClicked),
+      {
+        type = ui.TYPE.Flex,
+        props = { horizontal = true },
+        content = ui.content {
+          utilsUI.newItemSlot('tab2_slot', slotClicked, slotMouseMoved),
+        }
+      },
       utilsUI.spacerRow20,
     }
   }
@@ -157,7 +212,13 @@ local function removeWellTestedIngredients(ingredients)
   assert(#ingredients + removed == ingredientsLength)
 end
 
---------------------------------------------------------------
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+
 
 local module = {}
 
@@ -203,31 +264,17 @@ module.create = function(tooltip, alchemyItems)
     end)
   end
 
-  ctx.tooltipContent = {
-    type = ui.TYPE.Text,
-    template = I.MWUI.templates.textNormal,
-    props = { text = "..." },
-  }
-
-  ctx.setTooltipText = function(self, txt)
-    self.tooltipContent.props.text = txt
-  end
-
-  local function ingredientIconMouseMoved(mouseEvent, sender)
-    -- when clicking there are 2 events sent: mouseClick and then mouseMove
-    if ctx.lastRemoved ~= sender then
-      ctx:setTooltipText(sender.itemData.record.name)
-      tooltip.layout:update(ctx.tooltipContent, mouseEvent.position + v2(0, 25))
-    end
-  end
-
-
   ctx.ingredientList = utilsUI.newItemList {
-    width = 10,
+    width = 8,
     height = 8,
     dataSource = newDataSource(),
     fnItemClicked = ingredientIconClicked,
-    fnItemMouseMoved = ingredientIconMouseMoved,
+    fnItemMouseMoved = function(mouseEvent, sender)
+      -- when clicking there are 2 events sent: mouseClick and then mouseMove
+      if ctx.lastClickedIngredient ~= sender then
+        ingredientIconMouseMoved(mouseEvent, sender)
+      end
+    end,
     redraw = redraw, -- the list uses this when paging
   }
 
