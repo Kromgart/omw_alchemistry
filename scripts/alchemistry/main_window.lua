@@ -7,15 +7,17 @@ local v2 = require('openmw.util').vector2
 local utilsCore = require('scripts.alchemistry.utils_core')
 local utilsUI = require('scripts.alchemistry.utils_ui')
 
+-- local emptyTab = {
+--   create = function() return {} end,
+--   destroy = function() end,
+-- }
 
 local tabModules = {
   -- Each must have create() and destroy() functions
   require('scripts.alchemistry.tab_brew_vanilla'),
   require('scripts.alchemistry.tab_experiment'),
-  {
-    create = function() return {} end,
-    destroy = function() end,
-  }
+  -- emptyTab,
+  -- emptyTab,
 }
 
 
@@ -60,8 +62,10 @@ end
 
 
 local function onMouseMove(mouseEvent, sender)
-  assert(ctx.tooltip ~= nil)
-  ctx.tooltip.layout:update(nil)
+  if ctx ~= nil then
+    assert(ctx.tooltip ~= nil)
+    ctx.tooltip.layout:update(nil)
+  end
 end
 
 
@@ -84,7 +88,7 @@ local function newMainWindowLayout(tabHeaders)
     content = ui.content {{
       type = ui.TYPE.Widget,
       props = {
-        size = v2(600, 550),
+        size = v2(530, 550),
       },
       content = ui.content {
         {
@@ -123,7 +127,8 @@ end
 
 local function createMainWindow()
   -- ui.showMessage("Alchemy start")
-  local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment", "Known ingredients" }, setActiveTabContent)
+  -- local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment", "Ingredients", "Favourites" }, setActiveTabContent)
+  local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment" }, setActiveTabContent)
 
   ctx = {
     tooltip = utilsUI.createTooltipElement(),

@@ -35,11 +35,18 @@ local newTooltipContent = function(ingredientRecord)
     }
   }
 
+  local separated = false
+
   for i, effect in ipairs(ingredientRecord.effects) do
-    result.content:add(utilsUI.spacerRow5)
-    -- print(string.format("%s, %s", effect.name, effect.icon))
-    local effectWidget = utilsUI.newMagicEffectWidget(effect)
-    result.content:add(effectWidget)
+    if effect.known == true then
+      -- print(string.format("%s, %s", effect.name, effect.icon))
+      if not separated then
+        result.content:add(utilsUI.spacerRow5)
+        separated = true
+      end
+      local effectWidget = utilsUI.newMagicEffectWidget(effect)
+      result.content:add(effectWidget)
+    end
   end
 
   return result
@@ -50,6 +57,22 @@ local function getSlot()
   return ctx.tabElement.layout.content[1].content[1]
 end
 
+local function setResultHeader(txt)
+  ctx.tabElement.layout.content[1].content[3].props.text = txt
+end
+
+
+local function setResultEffects(effects)
+  local content = ui.content {}
+  if effects ~= nil then
+    for name, eff in pairs(effects) do
+      local wx = utilsUI.newMagicEffectWidget(eff[1])
+      content:add(wx)
+    end
+  end
+  ctx.tabElement.layout.content[1].content[5].content = content
+end
+
 
 local function slotClicked(e, sender)
   ctx.lastClickedIngredient = sender
@@ -58,6 +81,8 @@ local function slotClicked(e, sender)
     ctx.mainIngredient = nil
     getSlot():setItemIcon(nil)
     ctx:resetListDataSource()
+    setResultHeader(nil)
+    setResultEffects(nil)
     ctx.tooltip.layout:update(nil)
     redraw()
   end
@@ -83,13 +108,13 @@ end
 
 
 local function addExperiment(rec1, rec2, result)
-  local exp = ctx.experiments[rec1]
+  local exp = ctx.experiments[rec1.id]
   if exp == nil then
     exp = { tableLength = 0 }
-    ctx.experiments[rec1] = exp
+    ctx.experiments[rec1.id] = exp
   end
 
-  exp[rec2] = result
+  exp[rec2.id] = result
   exp.tableLength = exp.tableLength + 1
 end
 
@@ -107,25 +132,31 @@ local function ingredientIconClicked(mouseEvent, sender)
   if ctx.mainIngredient == nil then
     ambient.playSound('Item Ingredient Down')
     slot:setItemIcon(sender)
+    setResultHeader(nil)
+    setResultEffects(nil)
     ctx.mainIngredient = clickedIngredient
-    print("Main ingredient is " .. clickedIngredient.record.name)
+    -- print("Main ingredient is " .. clickedIngredient.record.name)
     ctx:filterListDataSource(ctx.mainIngredient.record)
   else
     -- print(string.format("Trying %s with %s", ctx.mainIngredient.name, clickedIngredient.name))
     local common = utilsCore.getCommonEffects(ctx.mainIngredient.record, clickedIngredient.record)
-    local result = 0
+    local result = nil
     if common ~= nil then
-      ambient.playSound('potion success')
       result = 1
-
-    -- TODO display result
-      for key, eff in pairs(common) do
-        print(string.format("Common '%s'", key))
+      ambient.playSound('potion success')
+      for k, v in pairs(common) do
+        for i, e in ipairs(v) do
+          e.known = true
+        end
       end
+      setResultHeader(string.format("%s + %s:", ctx.mainIngredient.record.name, clickedIngredient.record.name))
+      setResultEffects(common)
     else
+      result = 0
       ambient.playSound('potion fail')
+      setResultHeader(nil)
+      setResultEffects(nil)
       ui.showMessage("No reaction")
-    -- TODO display result
     end
 
     addExperiment(ctx.mainIngredient.record, clickedIngredient.record, result)
@@ -134,7 +165,18 @@ local function ingredientIconClicked(mouseEvent, sender)
     clickedIngredient:spend(1)
     ctx.mainIngredient:spend(1)
 
-    if ctx.mainIngredient.count == 0 then
+    if ctx.mainIngredient.count == 0 or ctx.ingredientList:getItemsCount() == 0 then
+      -- print(string.format("Purging datasource from %s", ctx.mainIngredient.name))
+
+      local shift = 0
+      -- kick it from this tab's data source
+      for i = 1, #ctx.alchemyItems.ingredients do
+        if ctx.alchemyItems.ingredients[i] == ctx.mainIngredient then
+          shift = 1
+        end
+        ctx.alchemyItems.ingredients[i] = ctx.alchemyItems.ingredients[i + shift]
+      end
+
       slot:setItemIcon(nil)
       ctx.mainIngredient = nil
       ctx:resetListDataSource()
@@ -154,9 +196,23 @@ local function newTabLayout()
     content = ui.content {
       {
         type = ui.TYPE.Flex,
-        props = { horizontal = true },
+        props = {
+          horizontal = true,
+          arrange = ui.ALIGNMENT.Center,
+        },
         content = ui.content {
           utilsUI.newItemSlot('tab2_slot', slotClicked, slotMouseMoved),
+          utilsUI.spacerColumn10,
+          {
+            type = ui.TYPE.Text,
+            template = I.MWUI.templates.textNormal,
+            props = {}
+          },
+          utilsUI.spacerColumn10,
+          {
+            type = ui.TYPE.Flex,
+            props = { horizontal = false }
+          }
         }
       },
       utilsUI.spacerRow20,
@@ -174,7 +230,7 @@ local function removeWellTestedIngredients(ingredients)
 
   for i = 1, ingredientsLength do
     local record = ingredients[i].record
-    local exp = ctx.experiments[record]
+    local exp = ctx.experiments[record.id]
     local keep = false
     if exp == nil or exp.tableLength < ingredientsLength - 1 then
       -- keep it, because it has less overall test data than the amount of ingredients
@@ -184,7 +240,7 @@ local function removeWellTestedIngredients(ingredients)
       for j = 1, ingredientsLength do
         if i ~= j then
           local recordTest = ingredients[j].record
-          if exp[recordTest] == nil then
+          if exp[recordTest.id] == nil then
             -- this combination is untested
             keep = true
             break
@@ -197,6 +253,7 @@ local function removeWellTestedIngredients(ingredients)
 
     if not keep then
       removed = removed + 1
+      -- print(string.format("Filtered out %s (no useful experiments are possible)", record.name))
     end
   end
 
@@ -205,9 +262,9 @@ local function removeWellTestedIngredients(ingredients)
     ingredients[i] = nil
   end
 
-  if removed > 0 then
-    print(string.format("removeWellTested: %i - %i = %i", ingredientsLength, removed, #ingredients))
-  end
+  -- if removed > 0 then
+  --   print(string.format("removeWellTested: %i - %i = %i", ingredientsLength, removed, #ingredients))
+  -- end
 
   assert(#ingredients + removed == ingredientsLength)
 end
@@ -258,15 +315,15 @@ module.create = function(tooltip, alchemyItems)
       if x.record == record then
         return false
       else
-        local exp = ctx.experiments[record]
-        return exp == nil or exp[x.record] == nil
+        local exp = ctx.experiments[record.id]
+        return exp == nil or exp[x.record.id] == nil
       end
     end)
   end
 
   ctx.ingredientList = utilsUI.newItemList {
-    width = 8,
-    height = 8,
+    width = 12,
+    height = 7,
     dataSource = newDataSource(),
     fnItemClicked = ingredientIconClicked,
     fnItemMouseMoved = function(mouseEvent, sender)

@@ -3,6 +3,7 @@ local ambient = require('openmw.ambient')
 local async = require('openmw.async')
 local ui = require('openmw.ui')
 local util = require('openmw.util')
+local core = require('openmw.core')
 
 local v2 = util.vector2
 
@@ -497,34 +498,36 @@ setItemListDataSource = function(self, dataSource, page)
   local dataSourceLen = #dataSource
   local pagesCount = math.ceil(dataSourceLen / pageCapacity)
 
-  if pagesCount < self.currentPage then
-    self.currentPage = pagesCount
-  end
-
-  local viewStart = (self.currentPage - 1) * pageCapacity + 1
-  local viewEnd = viewStart + math.min(pageCapacity - 1, dataSourceLen - viewStart)
-
-  -- print(string.format("items: %i, pages: %i", dataSourceLen, pagesCount))
-  -- print(string.format("viewStart: %i, viewEnd: %i", viewStart, viewEnd))
-
-  for i = viewStart, viewEnd do
-    local itemData = dataSource[i]
-
-    if curColumnLen % arg.height == 0 then
-      columnsCount = columnsCount + 1
-      if columnsCount > arg.width then
-        return
-      end
-
-      curColumnLen = 0
-      curColumn = newItemColumn()
-      newColumns:add(curColumn)
+  if pagesCount > 0 then
+    if pagesCount < self.currentPage then
+      self.currentPage = pagesCount
     end
 
-    curColumnLen = curColumnLen + 1
+    local viewStart = (self.currentPage - 1) * pageCapacity + 1
+    local viewEnd = viewStart + math.min(pageCapacity - 1, dataSourceLen - viewStart)
 
-    local itemIcon = newItemListItemIcon(itemData, i, onClick, onMouseMove)
-    curColumn.content:add(itemIcon)
+    -- print(string.format("items: %i, pages: %i", dataSourceLen, pagesCount))
+    -- print(string.format("viewStart: %i, viewEnd: %i", viewStart, viewEnd))
+
+    for i = viewStart, viewEnd do
+      local itemData = dataSource[i]
+
+      if curColumnLen % arg.height == 0 then
+        columnsCount = columnsCount + 1
+        if columnsCount > arg.width then
+          return
+        end
+
+        curColumnLen = 0
+        curColumn = newItemColumn()
+        newColumns:add(curColumn)
+      end
+
+      curColumnLen = curColumnLen + 1
+
+      local itemIcon = newItemListItemIcon(itemData, i, onClick, onMouseMove)
+      curColumn.content:add(itemIcon)
+    end
   end
 
   setItemListColumns(self, newColumns)
@@ -542,7 +545,7 @@ local function filterItemListDataSource(self, filter)
     local x = dataSource[i]
     dataSource[i - removed] = dataSource[i]
     if not (filter(x)) then
-      print(string.format("filter out %s", x.record.name))
+      -- print(string.format("filter out %s", x.record.name))
       removed = removed + 1
     end
   end
@@ -628,6 +631,11 @@ local function removeFromItemList(self, itemIcon)
 end
 
 
+local function getItemListLength(itemList)
+  return #itemList.creationArgs.dataSource
+end
+
+
 ---------------------------------------
 -- arg must contain:
 -- * height
@@ -670,6 +678,7 @@ module.newItemList = function(arg)
     setDataSource = setItemListDataSource,
     filterDataSource = filterItemListDataSource,
     removeItem = removeFromItemList,
+    getItemsCount = getItemListLength,
   }
 
   local nextPage = function()
@@ -902,16 +911,16 @@ module.newMagicEffectWidget = function(magicEffect, magnitude, duration)
     if duration == nil then
       label = magicEffect.name
     else
-      label = string.format('%s for %i secs', magicEffect.name, duration)
+      label = string.format('%s %s %i %s', magicEffect.name, core.getGMST('sfor'), duration, core.getGMST('sseconds'))
     end
   else
-    -- TODO: could be 'ft' or smth (telekinesis)
-    local magnitudeSuffix = 'pts'
+    -- TODO: could also be 'ft', '%' or smth
+    local magnitudeSuffix = core.getGMST('spoints')
 
     if duration == nil then
       label = string.format('%s %i %s', magicEffect.name, magnitude, magnitudeSuffix)
     else
-      label = string.format('%s %i %s for %i secs', magicEffect.name, magnitude, magnitudeSuffix, duration)
+      label = string.format('%s %i %s %s %i %s', magicEffect.name, magnitude, magnitudeSuffix, core.getGMST('sfor'), duration, core.getGMST('sseconds'))
     end
   end
 
@@ -922,23 +931,27 @@ module.newMagicEffectWidget = function(magicEffect, magnitude, duration)
   end
 
   return {
-    type = ui.TYPE.Flex,
-    props = { horizontal = true },
-    content = ui.content {
-      {
-        type = ui.TYPE.Image,
-        props = {
-          size = v2(16, 16),
-          resource = iconResource,
+    type = ui.TYPE.Container,
+    template = module.newPaddingVH(3, 5),
+    content = ui.content {{
+      type = ui.TYPE.Flex,
+      props = { horizontal = true },
+      content = ui.content {
+        {
+          type = ui.TYPE.Image,
+          props = {
+            size = v2(16, 16),
+            resource = iconResource,
+          },
         },
-      },
-      module.spacerColumn3,
-      {
-        type = ui.TYPE.Text,
-        template = I.MWUI.templates.textNormal,
-        props = { text = label }
+        module.spacerColumn3,
+        {
+          type = ui.TYPE.Text,
+          template = I.MWUI.templates.textNormal,
+          props = { text = label }
+        }
       }
-    }
+    }}
   }
 end
 
