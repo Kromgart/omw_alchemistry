@@ -102,7 +102,7 @@ local function newMainWindowLayout(tabHeaders)
             tabHeaders,
             {
               type = ui.TYPE.Container,
-              template = utilsUI.newPaddingVH(20, 20),
+              template = utilsUI.newPaddingVH(10, 20),
               content = ui.content {{}}, -- place for a tab content
             },
           }

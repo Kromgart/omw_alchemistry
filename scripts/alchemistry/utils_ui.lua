@@ -38,6 +38,7 @@ module.spacerRow20 = newSpacer(20, false)
 module.spacerColumn3 = newSpacer(3, true)
 module.spacerColumn10 = newSpacer(10, true)
 module.spacerColumn20 = newSpacer(20, true)
+module.spacerColumn40 = newSpacer(40, true)
 
 
 
@@ -263,6 +264,7 @@ local function newBorderedTemplate(widgetType, borderTx, hasTop, hasRight, hasBo
     setBorderColorMult = setBorderedTemplateColorMult
   }
 end
+
 
 
 ----------------------- Tooltip ----------------------------
@@ -648,6 +650,7 @@ end
 module.newItemList = function(arg)
   local itemListInner = {
     type = ui.TYPE.Container,
+    -- TODO: why transparent?
     template = I.MWUI.templates.boxTransparent,
     content = ui.content {
       {
