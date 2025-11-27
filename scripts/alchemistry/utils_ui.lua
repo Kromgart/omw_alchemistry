@@ -342,17 +342,24 @@ local itemIconSize = 40
 
 -------------------- itemSlot --------------------
 
+local function getItemSlotItemIcon(slot)
+  return slot.content[2]
+end
+
 local function setItemSlotItemIcon(slot, itemIcon)
-  slot.content[2] = itemIcon
   if itemIcon ~= nil then
     itemIcon.events = nil
+  elseif slot.content[2] == nil then
+    return
   end
+  
+  slot.content[2] = itemIcon
 end
 
 
 module.newItemSlot = function(id, onClick, onMouseMove)
   local function itemSlotMouseMoved(mouseEvents, slot)
-    onMouseMove(mouseEvents, slot, slot.content[2])
+    onMouseMove(mouseEvents, slot, slot:getItemIcon())
   end
 
   return {
@@ -371,7 +378,8 @@ module.newItemSlot = function(id, onClick, onMouseMove)
       }
     }},
     setItemIcon = setItemSlotItemIcon,
-    setCount = function(self, count) self.content[2]:setCount(count) end
+    getItemIcon = getItemSlotItemIcon,
+    setCount = function(self, count) self:getItemIcon():setCount(count) end
   }
 end
 
@@ -956,6 +964,43 @@ module.newMagicEffectWidget = function(magicEffect, magnitude, duration)
       }
     }}
   }
+end
+
+
+----------------------------- Ingredient Tooltip ---------------------------------
+
+
+module.newIngredientTooltipContent = function(ingredientRecord)
+  local result = {
+    type = ui.TYPE.Flex,
+    props = {
+      horizontal = false,
+      arrange = ui.ALIGNMENT.Center,
+    },
+    content = ui.content {
+      {
+        type = ui.TYPE.Text,
+        template = I.MWUI.templates.textHeader,
+        props = { text = ingredientRecord.name },
+      }
+    }
+  }
+
+  local separated = false
+
+  for i, effect in ipairs(ingredientRecord.effects) do
+    if effect.known == true then
+      -- print(string.format("%s, %s", effect.name, effect.icon))
+      if not separated then
+        result.content:add(module.spacerRow5)
+        separated = true
+      end
+      local effectWidget = module.newMagicEffectWidget(effect)
+      result.content:add(effectWidget)
+    end
+  end
+
+  return result
 end
 
 -------------------------------- LogBox -----------------------------------

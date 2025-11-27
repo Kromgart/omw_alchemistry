@@ -19,43 +19,10 @@ local function redraw()
 end
 
 
-local newTooltipContent = function(ingredientRecord)
-  local result = {
-    type = ui.TYPE.Flex,
-    props = {
-      horizontal = false,
-      arrange = ui.ALIGNMENT.Center,
-    },
-    content = ui.content {
-      {
-        type = ui.TYPE.Text,
-        template = I.MWUI.templates.textHeader,
-        props = { text = ingredientRecord.name },
-      }
-    }
-  }
-
-  local separated = false
-
-  for i, effect in ipairs(ingredientRecord.effects) do
-    if effect.known == true then
-      -- print(string.format("%s, %s", effect.name, effect.icon))
-      if not separated then
-        result.content:add(utilsUI.spacerRow5)
-        separated = true
-      end
-      local effectWidget = utilsUI.newMagicEffectWidget(effect)
-      result.content:add(effectWidget)
-    end
-  end
-
-  return result
-end
-
-
 local function getSlot()
   return ctx.tabElement.layout.content[1].content[1]
 end
+
 
 local function setResultHeader(txt)
   ctx.tabElement.layout.content[1].content[3].props.text = txt
@@ -83,7 +50,7 @@ local function slotClicked(e, sender)
     ctx:resetListDataSource()
     setResultHeader(nil)
     setResultEffects(nil)
-    ctx.tooltip.layout:update(nil)
+    ctx.updateTooltip(nil)
     redraw()
   end
 end
@@ -92,11 +59,11 @@ end
 local function ingredientIconMouseMoved(mouseEvent, sender)
   if ctx.lastTooltipActivator ~= sender then
     if sender ~= nil then
-      ctx.tooltipContent = newTooltipContent(sender.itemData.record)
+      ctx.tooltipContent = utilsUI.newIngredientTooltipContent(sender.itemData.record)
     end
     ctx.lastTooltipActivator = sender
   end
-  ctx.tooltip.layout:update(ctx.tooltipContent, mouseEvent.position + v2(0, 25))
+  ctx.updateTooltip(ctx.tooltipContent, mouseEvent.position)
 end
 
 
@@ -123,7 +90,7 @@ end
 local function ingredientIconClicked(mouseEvent, sender)
   ctx.ingredientList:removeItem(sender)
   ctx.lastClickedIngredient = sender
-  ctx.tooltip.layout:update(nil)
+  ctx.updateTooltip(nil)
 
   local clickedIngredient = sender.itemData
 
@@ -279,10 +246,11 @@ end
 
 local module = {}
 
-module.create = function(tooltip, alchemyItems)
+module.create = function(fnUpdateTooltip, alchemyItems)
   assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")
 
   ctx = {
+    updateTooltip = fnUpdateTooltip,
     alchemyItems = alchemyItems,
     experiments = utilsCore.experimentsTable,
     tabElement = ui.create(newTabLayout()),
@@ -327,7 +295,7 @@ module.create = function(tooltip, alchemyItems)
     dataSource = newDataSource(),
     fnItemClicked = ingredientIconClicked,
     fnItemMouseMoved = function(mouseEvent, sender)
-      -- when clicking there are 2 events sent: mouseClick and then mouseMove
+      -- HACK: when clicking there are 2 events sent: mouseClick and then mouseMove (which should be ignored)
       if ctx.lastClickedIngredient ~= sender then
         ingredientIconMouseMoved(mouseEvent, sender)
       end
@@ -336,7 +304,7 @@ module.create = function(tooltip, alchemyItems)
   }
 
   ctx.tabElement.layout.content:add(ctx.ingredientList)
-  ctx.tooltip = tooltip
+  -- ctx.tooltip = tooltip
 
   return ctx.tabElement
 end

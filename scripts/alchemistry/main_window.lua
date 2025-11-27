@@ -25,6 +25,16 @@ local ctx = nil
 local lastOpenTabIdx
 
 
+local function updateTooltip(newContent, mousePosition)
+  if newContent == nil then
+    mousePosition = v2(0, 0)
+  else
+    mousePosition = mousePosition + v2(0, 25)
+  end
+  ctx.tooltip.layout:update(newContent, mousePosition)
+end
+
+
 local function setActiveTabContent(newTabIdx)
   -- print("setActiveTabContent " .. tostring(newTabIdx))
 
@@ -47,7 +57,7 @@ local function setActiveTabContent(newTabIdx)
       ingredients = ingredientsShallowClone,
     }
 
-    newTab = tabModules[newTabIdx].create(ctx.tooltip, tabAlchemyItems)
+    newTab = tabModules[newTabIdx].create(updateTooltip, tabAlchemyItems)
   else
     newTab = {}
   end
