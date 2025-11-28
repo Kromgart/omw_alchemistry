@@ -21,12 +21,86 @@ local function brewPotionsClick()
 end
 
 
+local newDataSource = function(mutActiveIngredients, matchEffects)
+  local result = {}
+
+  for i, ingredient in ipairs(ctx.alchemyItems.ingredients) do
+    if ingredient.count < 1 then
+      goto nextIngredient -- continue
+    end
+
+    for j, active in ipairs(mutActiveIngredients) do
+      if ingredient.record == active then
+        for m = j, #mutActiveIngredients do
+          -- shorten the list for less checks in the future
+          mutActiveIngredients[m] = mutActiveIngredients[m + 1]
+        end
+        goto nextIngredient -- continue
+      end
+    end
+
+    local keep = false
+    for j, effect in ipairs(ingredient.record.effects) do
+      if effect.known then
+        if matchEffects == nil or matchEffects[effect.key] then
+          keep = true
+          break
+        end
+      end
+    end
+     
+    if keep then
+      table.insert(result, ingredient)
+    end
+
+    ::nextIngredient::
+  end
+
+  return result
+end
+
+
+local function filterIngredientsList()
+  local actives = {}
+  for i, islot in ipairs(ctx.ingredientSlots) do
+    local itemIcon = islot:getItemIcon()
+    if itemIcon == nil then
+      break
+    end
+    table.insert(actives, itemIcon.itemData.record)
+  end
+
+  local activesCount = #actives
+  print(string.format("Filtering for %i ingredients", activesCount))
+  assert(activesCount >= 0 and activesCount <= 4)
+
+  local datasource = nil
+  if activesCount == 4 then
+    datasource = {}
+  elseif activesCount == 0 or activesCount == 2 then
+    datasource = newDataSource(actives)
+  else -- 1 or 3
+    local matchEffects = {}
+    for i, active in ipairs(actives) do
+      for j, effect in ipairs(active.effects) do
+        matchEffects[effect.key] = true
+        -- print(string.format("Add match effect %s", effect.key))
+      end
+    end
+    datasource = newDataSource(actives, matchEffects)
+  end
+
+  ctx.ingredientsList:setDataSource(datasource)
+end
+
+
 local function ingredientSlotClicked(mouseEvent, slot)
   local itemIcon = slot:getItemIcon()
   if itemIcon == nil then
     return
   end
 
+  ambient.playSound('Item Ingredient Down')
   local shifting = false
   for i, islot in ipairs(ctx.ingredientSlots) do
     if shifting then
@@ -37,10 +111,9 @@ local function ingredientSlotClicked(mouseEvent, slot)
   end
 
   ctx.ingredientSlots[#ctx.ingredientSlots]:setItemIcon(nil)
-  
+  filterIngredientsList()
+  ctx.updateTooltip(nil)
   -- TODO
-  -- 
-  -- * re-filter ingrediens list
   -- * update potion effects
   redrawTab()
 end
@@ -62,8 +135,8 @@ local function ingredientClicked(mouseEvent, sender)
 
   ambient.playSound('Item Ingredient Down')
   freeSlot:setItemIcon(sender)
+  filterIngredientsList()
   -- TODO:
-  -- * re-filter ingrediens list
   -- * update potion effects
 
   redrawTab()
@@ -220,25 +293,6 @@ local function newTabLayout()
   }
 end
 
-local newDataSource = function()
-  -- TODO
-  -- assert( all ingredient slots are empty ) -- otherwise should just filter the existing datasource
-
-  local result = {}
-  for i, ingredient in ipairs(ctx.alchemyItems.ingredients) do
-    if ingredient.count > 0 then
-      for j, effect in ipairs(ingredient.record.effects) do
-        if effect.known then
-          table.insert(result, ingredient)
-          break
-        end
-      end
-    end
-  end
-
-  -- print("New datasource: " .. tostring(#result))
-  return result
-end
 
 local function createTab(fnUpdateTooltip, alchemyItems)
   assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")
@@ -250,7 +304,7 @@ local function createTab(fnUpdateTooltip, alchemyItems)
   }
 
   ctx.tabElement = ui.create(newTabLayout()),
-  ctx.ingredientsList:setDataSource(newDataSource())
+  ctx.ingredientsList:setDataSource(newDataSource({}))
 
   return ctx.tabElement
 end

@@ -164,6 +164,7 @@ module.getCommonEffects = function(...)
 
       for k1, e1 in ipairs(arg[i].effects) do
         for k2, e2 in ipairs(arg[j].effects) do
+          -- todo: comparing names is probably wrong ('drain attribute' instead of 'drain strength')
           if e1.name == e2.name then
             if result[e1.name] == nil then
               result[e1.name] = { e1, e2 }
