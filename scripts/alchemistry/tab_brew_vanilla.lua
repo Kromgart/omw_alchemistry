@@ -3,7 +3,12 @@ local ambient = require('openmw.ambient')
 local ui = require('openmw.ui')
 local v2 = require('openmw.util').vector2
 local utilsUI = require('scripts.alchemistry.utils_ui')
+local types = require('openmw.types')
+local core = require('openmw.core')
 
+local fPotionStrengthMult = core.getGMST('fPotionStrengthMult')
+local fPotionT1MagMult = core.getGMST('fPotionT1MagMult')
+local fPotionT1DurMult = core.getGMST('fPotionT1DurMult')
 
 local ctx = nil
 
@@ -18,6 +23,167 @@ end
 
 local function brewPotionsClick()
   ambient.playSound('potion success')
+end
+
+
+local function getBaseModifier()
+  local playerInt = types.Actor.stats.attributes.intelligence(ctx.player).modified
+  local playerLuck = types.Actor.stats.attributes.luck(ctx.player).modified
+  local playerAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
+
+  -- print(string.format("Int: %i, Luck: %i, Alchemy: %i", playerInt, playerLuck, playerAlchemy))
+
+  return playerAlchemy + 0.1 * playerInt + 0.1 * playerLuck
+end
+
+
+-- 
+-- NOTE
+-- This is an accurate implementation of vanilla formulas.
+-- I did not invent this shit. See here:
+-- https://wiki.openmw.org/index.php?title=Research:Player_Craft_Skills#Potions
+-- https://en.uesp.net/wiki/Morrowind:Alchemy#Alchemy_Formulas
+-- 
+local function calculateVanillaPotionEffect(effect, mortarMult, alembic, retort, calcinator)
+  local baseCost = effect.baseCost
+  local isHarmful = effect.harmful
+
+  local magnitude = 1
+  local duration = 1
+
+  if effect.hasMagnitude then
+    magnitude = mortarMult / fPotionT1MagMult / baseCost
+
+    if effect.hasDuration then -- duration + magnitude
+      duration = mortarMult / fPotionT1DurMult / baseCost
+
+      if not isHarmful then
+        if retort > 0 and calcinator > 0 then
+          local k = 2 * retort + calcinator
+          duration = duration + k
+          magnitude = magnitude + k
+        elseif retort > 0 then
+          duration = duration + retort
+          magnitude = magnitude + retort
+        elseif calcinator > 0 then
+          duration = duration + calcinator
+          magnitude = magnitude + calcinator
+        end
+      else -- harmful
+        if alembic > 0 and calcinator > 0 then
+          local k = (2 * alembic + 3 * calcinator)
+          duration = duration / k
+          magnitude = magnitude / k
+        elseif alembic > 0 then
+          local k = 1 + alembic
+          duration = duration / k
+          magnitude = magnitude / k
+        elseif calcinator > 0 then
+          duration = duration + calcinator
+          magnitude = magnitude + calcinator
+        end
+      end
+    else -- only magnitude
+      if not isHarmful then
+        if retort > 0 and calcinator > 0 then
+          magnitude = magnitude + 2 / 3 * (retort + calcinator) + 0.5 
+        elseif retort > 0 then
+          magnitude = magnitude * (retort + 0.5)
+        elseif calcinator > 0 then
+          magnitude = magnitude * (calcinator + 0.5)
+        end
+      else -- harmful
+        if alembic > 0 and calcinator > 0 then
+          magnitude = magnitude / (2 * alembic + 3 * calcinator)
+        elseif alembic > 0 then
+          magnitude = magnitude / (1 + alembic)
+        elseif calcinator > 0 then
+          magnitude = magnitude * (calcinator + 0.5)
+        end
+      end
+    end
+  elseif effect.hasDuration then -- only duration
+    duration = mortarMult / fPotionT1DurMult / baseCost
+
+    if not isHarmful then
+      if retort > 0 and calcinator > 0 then
+        duration = duration + 2 / 3 * (retort + calcinator) + 0.5 
+      elseif retort > 0 then
+        duration = duration * (retort + 0.5)
+      elseif calcinator > 0 then
+        duration = duration * (calcinator + 0.5)
+      end
+    else -- harmful
+      if alembic > 0 and calcinator > 0 then
+        duration = duration / (2 * alembic + 3 * calcinator)
+      elseif alembic > 0 then
+        duration = duration / (1 + alembic)
+      elseif calcinator > 0 then
+        duration = duration * (calcinator + 0.5)
+      end
+    end
+  end
+
+  magnitude = math.floor(magnitude + 0.5)
+  duration = math.floor(duration + 0.5)
+
+  return magnitude, duration
+end
+
+local function calculatePotionEffects()
+  local allEffects = {}
+
+  for i, islot in ipairs(ctx.ingredientSlots) do
+    local itemIcon = islot:getItemIcon()
+    if itemIcon == nil then
+      break
+    end
+    for j, effect in ipairs(itemIcon.itemData.record.effects) do
+      local added = allEffects[effect.key] 
+      if added == nil then
+        allEffects[effect.key] = { effect }
+      else
+        table.insert(allEffects[effect.key], effect) 
+      end
+    end
+  end
+
+  -- TODO: get apparatus values
+  local mortar = 1
+  local alembic = 1
+  local retort = 1
+  local calcinator = 1
+
+  local mortarMult = getBaseModifier() * mortar * fPotionStrengthMult
+
+  local potionEffects = {}
+  for key, effects in pairs(allEffects) do
+    if #effects > 1 then
+
+      local magnitude, duration = calculateVanillaPotionEffect(effects[1], mortarMult, alembic, retort, calcinator)
+
+      local visible = true
+      for i, e in ipairs(effects) do
+        visible = e.known
+        if not visible then
+          break 
+        end
+      end
+
+      print(string.format("Calculated effect %s(%i pts, %i sec, visible: %s)", key, magnitude, duration, visible))
+
+      if magnitude > 0 and duration > 0 then
+      -- TODO: add something to potionEffects
+      -- table.insert(potionEffects, k)
+      end
+
+    end
+  end
+
+  ctx.potionEffects = potionEffects
+  
+  -- TODO
+  -- * display potion effects
 end
 
 
@@ -113,10 +279,10 @@ local function ingredientSlotClicked(mouseEvent, slot)
   ctx.ingredientSlots[#ctx.ingredientSlots]:setItemIcon(nil)
   filterIngredientsList()
   ctx.updateTooltip(nil)
-  -- TODO
-  -- * update potion effects
+  calculatePotionEffects()
   redrawTab()
 end
+
 
 local function ingredientClicked(mouseEvent, sender)
   ctx.lastClickedIngredient = sender
@@ -136,9 +302,7 @@ local function ingredientClicked(mouseEvent, sender)
   ambient.playSound('Item Ingredient Down')
   freeSlot:setItemIcon(sender)
   filterIngredientsList()
-  -- TODO:
-  -- * update potion effects
-
+  calculatePotionEffects()
   redrawTab()
   -- print("Added ingredient " .. clickedIngredient.record.name)
 end
@@ -294,16 +458,17 @@ local function newTabLayout()
 end
 
 
-local function createTab(fnUpdateTooltip, alchemyItems)
+local function createTab(fnUpdateTooltip, alchemyItems, player)
   assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")
 
   ctx = {
     alchemyItems = alchemyItems,
+    player = player,
     updateTooltip = fnUpdateTooltip,
     ingredientSlots = {},
   }
 
-  ctx.tabElement = ui.create(newTabLayout()),
+  ctx.tabElement = ui.create(newTabLayout())
   ctx.ingredientsList:setDataSource(newDataSource({}))
 
   return ctx.tabElement

@@ -57,7 +57,7 @@ local function setActiveTabContent(newTabIdx)
       ingredients = ingredientsShallowClone,
     }
 
-    newTab = tabModules[newTabIdx].create(updateTooltip, tabAlchemyItems)
+    newTab = tabModules[newTabIdx].create(updateTooltip, tabAlchemyItems, ctx.player)
   else
     newTab = {}
   end
@@ -144,6 +144,7 @@ local function createMainWindow()
     tooltip = utilsUI.createTooltipElement(),
     mainWindow = ui.create(newMainWindowLayout(tabHeaders)),
     alchemyItems = utilsCore.getAvailableItems(self),
+    player = self,
   }
 
   if lastOpenTabIdx == nil then

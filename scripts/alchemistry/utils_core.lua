@@ -96,6 +96,10 @@ module.initIngredients = function(knownEffects, knownExperiments)
         key = effectKey,
         name = effectName,
         icon = effect.effect.icon,
+        hasDuration = effect.effect.hasDuration,
+        hasMagnitude = effect.effect.hasMagnitude,
+        baseCost = effect.effect.baseCost,
+        harmful = effect.effect.harmful,
         known = isKnown,
       })
     end

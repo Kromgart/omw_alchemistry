@@ -47,16 +47,20 @@ end
 
 local function loadData(data)
   if data == nil then
+    print("loadData: nil")
     data = {
       knownEffects = {},
       madeExperiments = {},
     }
+  else
+    print("loadData")
   end
 
   utilsCore.initIngredients(data.knownEffects, data.madeExperiments)
 end
 
 local function initData()
+  print("initData")
   loadData(nil)
 end
 
