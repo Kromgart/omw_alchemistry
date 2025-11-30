@@ -73,7 +73,7 @@ module.initIngredients = function(knownEffects, knownExperiments)
       else
         effectKey = effect.id
       end
-      
+
       local effectName = namesCache[effectKey]
       if effectName == nil then
         if effect.affectedAttribute ~= nil then
@@ -82,7 +82,7 @@ module.initIngredients = function(knownEffects, knownExperiments)
           effectName = makeCompositeEffectName(effect.id, effect.affectedSkill)
         else
           effectName = effect.effect.name
-        end 
+        end
         namesCache[effectKey] = effectName
       end
 
@@ -130,15 +130,25 @@ end
 
 
 module.getAvailableItems = function(player)
-  local result = {
-    apparatus = {
-      mortar = 1.0,
-      calcinator = 1.0,
-      alembic = 1.0,
-      retort = 1.0
-    },
-    ingredients = {},
-  }
+  local bestApparatus = {}
+
+  for i, apparatusItem in ipairs(types.Actor.inventory(player):getAll(types.Apparatus)) do
+    local apparatusRecord = types.Apparatus.record(apparatusItem.recordId)
+    local currentBest = bestApparatus[apparatusRecord.type]
+    if currentBest == nil then
+      bestApparatus[apparatusRecord.type] = {
+        name = apparatusRecord.name,
+        icon = apparatusRecord.icon,
+        quality = apparatusRecord.quality,
+      }
+    elseif currentBest.quality < apparatusRecord.quality then
+      currentBest.name = apparatusRecord.name
+      currentBest.icon = apparatusRecord.icon
+      currentBest.quality = apparatusRecord.quality
+    end
+  end
+
+  local availableIngredients = {}
 
   for i, v in ipairs(types.Actor.inventory(player):getAll(types.Ingredient)) do
     local ingredientItem = {
@@ -149,13 +159,16 @@ module.getAvailableItems = function(player)
       spend = reduceIngredientStack,
     }
 
-    -- for itemLists:
+    -- HACK: for utilsUI.itemList
     ingredientItem.icon = ingredientItem.record.icon
 
-    table.insert(result.ingredients, ingredientItem)
+    table.insert(availableIngredients, ingredientItem)
   end
 
-  return result
+  return {
+    apparatus = bestApparatus,
+    ingredients = availableIngredients,
+  }
 end
 
 module.getCommonEffects = function(...)

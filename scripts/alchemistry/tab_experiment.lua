@@ -24,8 +24,18 @@ local function getSlot()
 end
 
 
-local function setResultHeader(txt)
-  ctx.tabElement.layout.content[1].content[3].props.text = txt
+local function setResultHeader(txt1, txt2)
+  local container = ctx.tabElement.layout.content[1].content[3]
+  local equals = ctx.tabElement.layout.content[1].content[5]
+  if txt1 == nil then
+    container.props.visible = false
+    equals.props.visible = false
+  else
+    container.props.visible = true
+    equals.props.visible = true
+    container.content[1].props.text = txt1
+    container.content[3].props.text = txt2
+  end
 end
 
 
@@ -37,7 +47,7 @@ local function setResultEffects(effects)
       content:add(wx)
     end
   end
-  ctx.tabElement.layout.content[1].content[5].content = content
+  ctx.tabElement.layout.content[1].content[7].content = content
 end
 
 
@@ -116,7 +126,7 @@ local function ingredientIconClicked(mouseEvent, sender)
           e.known = true
         end
       end
-      setResultHeader(string.format("%s + %s:", ctx.mainIngredient.record.name, clickedIngredient.record.name))
+      setResultHeader(ctx.mainIngredient.record.name, clickedIngredient.record.name)
       setResultEffects(common)
     else
       result = 0
@@ -171,9 +181,35 @@ local function newTabLayout()
           utilsUI.newItemSlot('tab2_slot', slotClicked, slotMouseMoved),
           utilsUI.spacerColumn10,
           {
+            type = ui.TYPE.Flex,
+            props = {
+              horizontal = false,
+              arrange = ui.ALIGNMENT.Center,
+              visible = false,
+            },
+            content = ui.content {
+              {
+                type = ui.TYPE.Text,
+                template = I.MWUI.templates.textNormal,
+                props = {}
+              },
+              {
+                type = ui.TYPE.Text,
+                template = I.MWUI.templates.textNormal,
+                props = { text = "+" }
+              },
+              {
+                type = ui.TYPE.Text,
+                template = I.MWUI.templates.textNormal,
+                props = {}
+              },
+            },
+          },
+          utilsUI.spacerColumn10,
+          {
             type = ui.TYPE.Text,
             template = I.MWUI.templates.textNormal,
-            props = {}
+            props = { text = "=", visible = false }
           },
           utilsUI.spacerColumn10,
           {

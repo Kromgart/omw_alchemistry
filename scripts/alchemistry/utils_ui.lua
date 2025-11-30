@@ -352,7 +352,7 @@ local function setItemSlotItemIcon(slot, itemIcon)
   elseif slot.content[2] == nil then
     return
   end
-  
+
   slot.content[2] = itemIcon
 end
 
@@ -790,8 +790,8 @@ local tabHeaderBorderColorInactive = util.color.rgb(0.8, 0.8, 0.8)
 local tabHeaderTextColorInactive
 do
   local c = I.MWUI.templates.textNormal.props.textColor
-  tabHeaderTextColorInactive = util.color.rgb(c.r * 0.85, c.g * 0.85, c.b * 0.85) 
-end 
+  tabHeaderTextColorInactive = util.color.rgb(c.r * 0.85, c.g * 0.85, c.b * 0.85)
+end
 
 local function setTabHeaderActive(self, isActive)
   if isActive then

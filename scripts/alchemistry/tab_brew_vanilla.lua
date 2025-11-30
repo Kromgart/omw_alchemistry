@@ -37,13 +37,13 @@ local function getBaseModifier()
 end
 
 
--- 
+--
 -- NOTE
 -- This is an accurate implementation of vanilla formulas.
 -- I did not invent this shit. See here:
 -- https://wiki.openmw.org/index.php?title=Research:Player_Craft_Skills#Potions
 -- https://en.uesp.net/wiki/Morrowind:Alchemy#Alchemy_Formulas
--- 
+--
 local function calculateVanillaPotionEffect(effect, mortarMult, alembic, retort, calcinator)
   local baseCost = effect.baseCost
   local isHarmful = effect.harmful
@@ -86,7 +86,7 @@ local function calculateVanillaPotionEffect(effect, mortarMult, alembic, retort,
     else -- only magnitude
       if not isHarmful then
         if retort > 0 and calcinator > 0 then
-          magnitude = magnitude + 2 / 3 * (retort + calcinator) + 0.5 
+          magnitude = magnitude + 2 / 3 * (retort + calcinator) + 0.5
         elseif retort > 0 then
           magnitude = magnitude * (retort + 0.5)
         elseif calcinator > 0 then
@@ -107,7 +107,7 @@ local function calculateVanillaPotionEffect(effect, mortarMult, alembic, retort,
 
     if not isHarmful then
       if retort > 0 and calcinator > 0 then
-        duration = duration + 2 / 3 * (retort + calcinator) + 0.5 
+        duration = duration + 2 / 3 * (retort + calcinator) + 0.5
       elseif retort > 0 then
         duration = duration * (retort + 0.5)
       elseif calcinator > 0 then
@@ -130,6 +130,7 @@ local function calculateVanillaPotionEffect(effect, mortarMult, alembic, retort,
   return magnitude, duration
 end
 
+
 local function calculatePotionEffects()
   local allEffects = {}
 
@@ -139,20 +140,19 @@ local function calculatePotionEffects()
       break
     end
     for j, effect in ipairs(itemIcon.itemData.record.effects) do
-      local added = allEffects[effect.key] 
+      local added = allEffects[effect.key]
       if added == nil then
         allEffects[effect.key] = { effect }
       else
-        table.insert(allEffects[effect.key], effect) 
+        table.insert(allEffects[effect.key], effect)
       end
     end
   end
 
-  -- TODO: get apparatus values
-  local mortar = 1
-  local alembic = 1
-  local retort = 1
-  local calcinator = 1
+  local mortar = ctx.slotMortar:getCurrentQuality()
+  local alembic = ctx.slotAlembic:getCurrentQuality()
+  local retort = ctx.slotRetort:getCurrentQuality()
+  local calcinator = ctx.slotCalcinator:getCurrentQuality()
 
   local mortarMult = getBaseModifier() * mortar * fPotionStrengthMult
 
@@ -166,7 +166,7 @@ local function calculatePotionEffects()
       for i, e in ipairs(effects) do
         visible = e.known
         if not visible then
-          break 
+          break
         end
       end
 
@@ -181,7 +181,7 @@ local function calculatePotionEffects()
   end
 
   ctx.potionEffects = potionEffects
-  
+
   -- TODO
   -- * display potion effects
 end
@@ -214,7 +214,7 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
         end
       end
     end
-     
+
     if keep then
       table.insert(result, ingredient)
     end
@@ -320,7 +320,7 @@ local function ingredientIconMouseMoved(mouseEvent, sender)
 end
 
 
-local function slotMouseMoved(mouseEvent, slot, itemIcon)
+local function ingredientSlotMouseMoved(mouseEvent, slot, itemIcon)
   if itemIcon ~= nil then
     ingredientIconMouseMoved(mouseEvent, itemIcon)
   end
@@ -342,12 +342,89 @@ local function makeHeader(text)
 end
 
 
+local function apparatusSlotMouseMoved(mouseEvent, slot, itemIcon)
+  if slot ~= nil and itemIcon ~= nil then
+    if ctx.lastTooltipActivator ~= slot then
+
+      if slot.tooltipContent == nil then
+        slot.tooltipContent = {
+          type = ui.TYPE.Flex,
+          props = {
+            horizontal = false,
+            arrange = ui.ALIGNMENT.Center,
+          },
+          content = ui.content {
+            {
+              type = ui.TYPE.Text,
+              template = I.MWUI.templates.textHeader,
+              props = { text = slot.apparatusData.name },
+            },
+            utilsUI.spacerRow5,
+            {
+              type = ui.TYPE.Text,
+              template = I.MWUI.templates.textNormal,
+              props = { text = string.format("%s: %.1f", core.getGMST('sQuality'), slot.apparatusData.quality) },
+            }
+          }
+        }
+      end
+      ctx.tooltipContent = slot.tooltipContent
+      ctx.lastTooltipActivator = slot
+    end
+    ctx.updateTooltip(ctx.tooltipContent, mouseEvent.position)
+  end
+end
+
+
+local function apparatusSlotClicked(mouseEvent, slot)
+  ambient.playSound('Item Ingredient Down')
+  if slot.enabled then
+    slot.enabled = false
+    slot:setItemIcon(nil)
+  else
+    slot.enabled = true
+    slot:setItemIcon(slot.apparatusIcon)
+  end
+
+  calculatePotionEffects()
+  redrawTab()
+end
+
+
+local function makeApparatusSlot(id, type)
+  local slot = nil
+
+  local apparatusItem = ctx.alchemyItems.apparatus[type]
+  if apparatusItem ~= nil then
+    -- TODO
+    -- tooltip
+    slot = utilsUI.newItemSlot(id, apparatusSlotClicked, apparatusSlotMouseMoved)
+
+    slot.apparatusData = apparatusItem
+    slot.apparatusIcon = utilsUI.newItemIcon(apparatusItem.icon, 1)
+    slot.enabled = true
+    slot:setItemIcon(slot.apparatusIcon)
+  else
+    slot = utilsUI.newItemSlot(id, noop, noop)
+  end
+
+  slot.getCurrentQuality = function(self)
+    if self.enabled then
+      return self.apparatusData.quality
+    else
+      return 0
+    end
+  end
+
+  return slot
+end
+
+
 local function newTabLayout()
-  -- TODO: mouseMoves
-  ctx.ingredientSlots[1] = utilsUI.newItemSlot('slot_ingredient_1', ingredientSlotClicked, slotMouseMoved)
-  ctx.ingredientSlots[2] = utilsUI.newItemSlot('slot_ingredient_2', ingredientSlotClicked, slotMouseMoved)
-  ctx.ingredientSlots[3] = utilsUI.newItemSlot('slot_ingredient_3', ingredientSlotClicked, slotMouseMoved)
-  ctx.ingredientSlots[4] = utilsUI.newItemSlot('slot_ingredient_4', ingredientSlotClicked, slotMouseMoved)
+  ctx.ingredientSlots[1] = utilsUI.newItemSlot('slot_ingredient_1', ingredientSlotClicked, ingredientSlotMouseMoved)
+  ctx.ingredientSlots[2] = utilsUI.newItemSlot('slot_ingredient_2', ingredientSlotClicked, ingredientSlotMouseMoved)
+  ctx.ingredientSlots[3] = utilsUI.newItemSlot('slot_ingredient_3', ingredientSlotClicked, ingredientSlotMouseMoved)
+  ctx.ingredientSlots[4] = utilsUI.newItemSlot('slot_ingredient_4', ingredientSlotClicked, ingredientSlotMouseMoved)
 
   local ingredientSlotsRow = {
     type = ui.TYPE.Flex,
@@ -363,17 +440,22 @@ local function newTabLayout()
     }
   }
 
+  ctx.slotMortar     = makeApparatusSlot('slot_mortar',     types.Apparatus.TYPE.MortarPestle)
+  ctx.slotAlembic    = makeApparatusSlot('slot_alembic',    types.Apparatus.TYPE.Alembic)
+  ctx.slotRetort     = makeApparatusSlot('slot_retort',     types.Apparatus.TYPE.Retort)
+  ctx.slotCalcinator = makeApparatusSlot('slot_calcinator', types.Apparatus.TYPE.Calcinator)
+
   local apparatusSlotsRow = {
     type = ui.TYPE.Flex,
     props = { horizontal = true },
     content = ui.content {
-      utilsUI.newItemSlot('slot_apparatus_1', noop, noop),
+      ctx.slotMortar,
       utilsUI.spacerColumn20,
-      utilsUI.newItemSlot('slot_apparatus_2', noop, noop),
+      ctx.slotAlembic,
       utilsUI.spacerColumn20,
-      utilsUI.newItemSlot('slot_apparatus_3', noop, noop),
+      ctx.slotRetort,
       utilsUI.spacerColumn20,
-      utilsUI.newItemSlot('slot_apparatus_4', noop, noop),
+      ctx.slotCalcinator,
     }
   }
 
@@ -401,7 +483,7 @@ local function newTabLayout()
     },
     content = ui.content {} --put textEdit here
   }
-  
+
 
   return {
     type = ui.TYPE.Flex,
