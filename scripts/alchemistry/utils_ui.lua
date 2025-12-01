@@ -36,6 +36,7 @@ module.spacerRow5 = newSpacer(5, false)
 module.spacerRow10 = newSpacer(10, false)
 module.spacerRow20 = newSpacer(20, false)
 module.spacerColumn3 = newSpacer(3, true)
+module.spacerColumn5 = newSpacer(5, true)
 module.spacerColumn10 = newSpacer(10, true)
 module.spacerColumn20 = newSpacer(20, true)
 module.spacerColumn40 = newSpacer(40, true)
@@ -913,33 +914,39 @@ end
 
 -------------------------------- MagicEffectWidget-----------------------------------
 
-local magicEffectIcons = {}
-
-module.newMagicEffectWidget = function(magicEffect, magnitude, duration)
-  local label = nil
-
+local function getMagicEffectLabel(name, magnitude, duration)
   if magnitude == nil then
     if duration == nil then
-      label = magicEffect.name
+      return name
     else
-      label = string.format('%s %s %i %s', magicEffect.name, core.getGMST('sfor'), duration, core.getGMST('sseconds'))
+      return string.format('%s %s %i %s', name, core.getGMST('sfor'), duration, core.getGMST('sseconds'))
     end
   else
     -- TODO: could also be 'ft', '%' or smth
     local magnitudeSuffix = core.getGMST('spoints')
 
     if duration == nil then
-      label = string.format('%s %i %s', magicEffect.name, magnitude, magnitudeSuffix)
+      return string.format('%s %i %s', name, magnitude, magnitudeSuffix)
     else
-      label = string.format('%s %i %s %s %i %s', magicEffect.name, magnitude, magnitudeSuffix, core.getGMST('sfor'), duration, core.getGMST('sseconds'))
+      return string.format('%s %i %s %s %i %s', name, magnitude, magnitudeSuffix, core.getGMST('sfor'), duration, core.getGMST('sseconds'))
     end
   end
+end
 
-  local iconResource = magicEffectIcons[magicEffect.icon]
+local cachedIcons = {}
+
+local function getIcon(iconPath)
+  local iconResource = cachedIcons[iconPath]
   if iconResource == nil then
-    iconResource = ui.texture { path = magicEffect.icon }
-    magicEffectIcons[magicEffect.icon] = iconResource
+    iconResource = ui.texture { path = iconPath }
+    cachedIcons[iconPath] = iconResource
   end
+  return iconResource
+end
+
+module.newMagicEffectWidget = function(magicEffect, magnitude, duration)
+  local label = getMagicEffectLabel(magicEffect.name, magnitude, duration)
+  local iconResource = getIcon(magicEffect.icon)
 
   return {
     type = ui.TYPE.Container,
@@ -966,6 +973,45 @@ module.newMagicEffectWidget = function(magicEffect, magnitude, duration)
   }
 end
 
+
+module.newMagicEffectWidgetWrapping = function(magicEffect, magnitude, duration, width, height)
+  local label = getMagicEffectLabel(magicEffect.name, magnitude, duration)
+  local iconResource = getIcon(magicEffect.icon)
+
+  return {
+    type = ui.TYPE.Container,
+    template = module.newPaddingVH(3, 5),
+    content = ui.content {{
+      type = ui.TYPE.Flex,
+      props = {
+        horizontal = true,
+        autoSize = false,
+        size = v2(width, height),
+        arrange = ui.ALIGNMENT.Center,
+      },
+      content = ui.content {
+        {
+          type = ui.TYPE.Image,
+          props = {
+            size = v2(16, 16),
+            resource = iconResource,
+          },
+        },
+        module.spacerColumn5,
+        {
+          type = ui.TYPE.Text,
+          template = I.MWUI.templates.textNormal,
+          props = {
+            autoSize = false,
+            size = v2(width - 21, height),
+            wordWrap = true,
+            text = label,
+          }
+        }
+      }
+    }}
+  }
+end
 
 ----------------------------- Ingredient Tooltip ---------------------------------
 
@@ -1002,30 +1048,6 @@ module.newIngredientTooltipContent = function(ingredientRecord)
 
   return result
 end
-
--------------------------------- LogBox -----------------------------------
-
--- module.newLogBox = function(props)
---   if props == nil then
---     props = {}
---   end
-
---   props.multiline = true
---   props.readOnly = true
---   props.wordWrap = true
---   props.textSize = 18
---   props.textColor = stdTextColor
-
---   return {
---     type = ui.TYPE.Container,
---     template = newBorderedTemplate(ui.TYPE.Container, borderTexturesThin, true, true, true, true),
---     content = ui.content {{
---       type = ui.TYPE.TextEdit,
---       props = props,
---     }}
---   }
--- end
-
 
 
 

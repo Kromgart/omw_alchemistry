@@ -132,58 +132,77 @@ end
 
 
 local function calculatePotionEffects()
-  local allEffects = {}
-
-  for i, islot in ipairs(ctx.ingredientSlots) do
-    local itemIcon = islot:getItemIcon()
-    if itemIcon == nil then
-      break
-    end
-    for j, effect in ipairs(itemIcon.itemData.record.effects) do
-      local added = allEffects[effect.key]
-      if added == nil then
-        allEffects[effect.key] = { effect }
-      else
-        table.insert(allEffects[effect.key], effect)
-      end
-    end
-  end
-
-  local mortar = ctx.slotMortar:getCurrentQuality()
-  local alembic = ctx.slotAlembic:getCurrentQuality()
-  local retort = ctx.slotRetort:getCurrentQuality()
-  local calcinator = ctx.slotCalcinator:getCurrentQuality()
-
-  local mortarMult = getBaseModifier() * mortar * fPotionStrengthMult
-
   local potionEffects = {}
-  for key, effects in pairs(allEffects) do
-    if #effects > 1 then
+  local visibleEffectsKeys = {}
 
-      local magnitude, duration = calculateVanillaPotionEffect(effects[1], mortarMult, alembic, retort, calcinator)
+  -- need at least 2 ingredients to even have an effect
+  if ctx.ingredientSlots[2]:getItemIcon() ~= nil then
+    local allEffects = {}
 
-      local visible = true
-      for i, e in ipairs(effects) do
-        visible = e.known
-        if not visible then
-          break
+    for i, islot in ipairs(ctx.ingredientSlots) do
+      local itemIcon = islot:getItemIcon()
+      if itemIcon == nil then
+        break
+      end
+      for j, effect in ipairs(itemIcon.itemData.record.effects) do
+        local added = allEffects[effect.key]
+        if added == nil then
+          allEffects[effect.key] = { effect }
+        else
+          table.insert(allEffects[effect.key], effect)
         end
       end
+    end
 
-      print(string.format("Calculated effect %s(%i pts, %i sec, visible: %s)", key, magnitude, duration, visible))
+    local mortar = ctx.slotMortar:getCurrentQuality()
+    local alembic = ctx.slotAlembic:getCurrentQuality()
+    local retort = ctx.slotRetort:getCurrentQuality()
+    local calcinator = ctx.slotCalcinator:getCurrentQuality()
 
-      if magnitude > 0 and duration > 0 then
-      -- TODO: add something to potionEffects
-      -- table.insert(potionEffects, k)
+    local mortarMult = getBaseModifier() * mortar * fPotionStrengthMult
+    
+    for key, effects in pairs(allEffects) do
+      if #effects > 1 then
+        local known_count = 0
+        for i, e in ipairs(effects) do
+          if e.known then
+            known_count = known_count + 1
+          end
+        end
+        local visible = known_count > 1
+        table.insert(visibleEffectsKeys, key)
+
+        local effect = effects[1]
+        local magnitude, duration = calculateVanillaPotionEffect(effect, mortarMult, alembic, retort, calcinator)
+
+        -- print(string.format("Calculated effect %s(%i pts, %i sec, visible: %s)", key, magnitude, duration, visible))
+
+        if magnitude > 0 and duration > 0 then
+          table.insert(potionEffects, {
+            effect = effect,
+            magnitude = magnitude,
+            duration = duration,
+            visible = visible,
+          })
+        end
       end
-
     end
   end
 
   ctx.potionEffects = potionEffects
 
-  -- TODO
-  -- * display potion effects
+  visibleEffectsKeys = table.concat(visibleEffectsKeys, '+')
+  if ctx.lastVisibleEffectsKey ~= visibleEffectsKeys then
+    ctx.lastVisibleEffectsKey = visibleEffectsKeys
+    local newContent = ui.content {}
+    for i, e in ipairs(potionEffects) do
+      if e.visible then
+        local effectWidget = utilsUI.newMagicEffectWidgetWrapping(e.effect, e.magnitude, e.duration, 190, 30)
+        newContent:add(effectWidget)
+      end
+    end
+    ctx.flexPotionEffects.content = newContent
+  end
 end
 
 
@@ -484,6 +503,17 @@ local function newTabLayout()
     content = ui.content {} --put textEdit here
   }
 
+  ctx.flexPotionEffects = {
+    type = ui.TYPE.Flex,
+    props = {
+      horizontal = false,
+      autoSize = false,
+      relativeSize = v2(1, 1),
+    },
+    content = ui.content {
+      -- list of potion effects
+    }
+  }
 
   return {
     type = ui.TYPE.Flex,
@@ -517,13 +547,7 @@ local function newTabLayout()
                 props = {
                   size = v2(204, 187),
                 },
-                content = ui.content {{
-                  type = ui.TYPE.Flex,
-                  props = { horizontal = false },
-                  content = ui.content {
-                    -- list of potion effects
-                  }
-                }}
+                content = ui.content { ctx.flexPotionEffects }
               },
             }
           }
