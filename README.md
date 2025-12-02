@@ -18,8 +18,3 @@ The magic effects have been stripped from the ingredient items on the plugin lev
   * controlling effects from Lua allows greater flexibility in mod development: we are not limited by "4 effects per ingredient" rule, can have custom effects, and randomize effects in-game.
 When OpenMW allows to override item tooltips it should be possible to display known effects there. For now the effects are visible only in the new alchemy window, and are not displayed in other UIs (like it is in Daggerfall).
 
-## "Experiment" tab
-![Experiment tab](https://github.com/Kromgart/omw_alchemistry/blob/master/docs/experiment_tab.png)
-
-## "Make potions" tab
-![Make potions tab](https://github.com/Kromgart/omw_alchemistry/blob/master/docs/detailed_effects.png)
