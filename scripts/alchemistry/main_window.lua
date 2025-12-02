@@ -80,8 +80,10 @@ end
 
 
 local function newMainWindowLayout(tabHeaders)
-  local btnClose = utilsUI.newButton('Close', function(e, d) I.UI.removeMode(I.UI.getMode()) end)
-  btnClose.props.position = v2(20, 500)
+  local btnClose = utilsUI.newButton(core.getGMST('sClose'), function(e, d) I.UI.removeMode(I.UI.getMode()) end)
+  btnClose.props.relativePosition = v2(1, 1)
+  btnClose.props.position = v2(-20, -10)
+  btnClose.props.anchor = v2(1, 1)
 
   local result = {
     layer = 'Windows',

@@ -4,6 +4,8 @@ local async = require('openmw.async')
 local I = require('openmw.interfaces')
 local v2 = require('openmw.util').vector2
 local self = require('openmw.self')
+local types = require('openmw.types')
+local core = require('openmw.core')
 local utilsUI = require('scripts.alchemistry.utils_ui')
 local utilsCore = require('scripts.alchemistry.utils_core')
 
@@ -98,6 +100,12 @@ end
 
 
 local function ingredientIconClicked(mouseEvent, sender)
+  if ctx.alchemyItems.apparatus[types.Apparatus.TYPE.MortarPestle] == nil then
+    -- can't do alchemy without mortar-and-pestle
+    ui.showMessage(string.format('%s %s', core.getGMST('sNotifyMessage45'), core.getGMST('sSkillAlchemy')))
+    return
+  end
+
   ctx.ingredientList:removeItem(sender)
   ctx.lastClickedIngredient = sender
   ctx.updateTooltip(nil)

@@ -160,7 +160,12 @@ local function calculatePotionEffects()
     local calcinator = ctx.slotCalcinator:getCurrentQuality()
 
     local mortarMult = getBaseModifier() * mortar * fPotionStrengthMult
-    
+
+    table.insert(visibleEffectsKeys, mortarMult)
+    table.insert(visibleEffectsKeys, alembic)
+    table.insert(visibleEffectsKeys, retort)
+    table.insert(visibleEffectsKeys, calcinator)
+
     for key, effects in pairs(allEffects) do
       if #effects > 1 then
         local known_count = 0
@@ -193,6 +198,7 @@ local function calculatePotionEffects()
 
   visibleEffectsKeys = table.concat(visibleEffectsKeys, '+')
   if ctx.lastVisibleEffectsKey ~= visibleEffectsKeys then
+    -- print("Update potions effect list: " .. visibleEffectsKeys)
     ctx.lastVisibleEffectsKey = visibleEffectsKeys
     local newContent = ui.content {}
     for i, e in ipairs(potionEffects) do
@@ -304,6 +310,12 @@ end
 
 
 local function ingredientClicked(mouseEvent, sender)
+  if not ctx.slotMortar.enabled then
+    -- can't do alchemy without mortar-and-pestle
+    ui.showMessage(string.format('%s %s', core.getGMST('sNotifyMessage45'), core.getGMST('sSkillAlchemy')))
+    return
+  end
+
   ctx.lastClickedIngredient = sender
   ctx.updateTooltip(nil)
   local clickedIngredient = sender.itemData
@@ -396,6 +408,11 @@ end
 
 
 local function apparatusSlotClicked(mouseEvent, slot)
+  if slot == ctx.slotMortar then
+    -- mortar-and-pestle is required and can't be toggled
+    return
+  end
+
   ambient.playSound('Item Ingredient Down')
   if slot.enabled then
     slot.enabled = false
@@ -515,6 +532,8 @@ local function newTabLayout()
     }
   }
 
+  local btnBrew = utilsUI.newButton('Brew', brewPotionsClick, true)
+
   return {
     type = ui.TYPE.Flex,
     props = { horizontal = false },
@@ -558,7 +577,7 @@ local function newTabLayout()
       -- TODO:
       -- * potion name
       -- * batch size
-      -- * utilsUI.newButton('Brew', brewPotionsClick, true),
+      btnBrew,
     }
   }
 end
