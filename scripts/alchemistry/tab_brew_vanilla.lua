@@ -21,11 +21,6 @@ local function redrawTab()
 end
 
 
-local function brewPotionsClick()
-  ambient.playSound('potion success')
-end
-
-
 local function getBaseModifier()
   local playerInt = types.Actor.stats.attributes.intelligence(ctx.player).modified
   local playerLuck = types.Actor.stats.attributes.luck(ctx.player).modified
@@ -35,6 +30,7 @@ local function getBaseModifier()
 
   return playerAlchemy + 0.1 * playerInt + 0.1 * playerLuck
 end
+
 
 
 --
@@ -137,23 +133,6 @@ local function calculatePotionEffects()
 
   -- need at least 2 ingredients to even have an effect
   if ctx.ingredientSlots[2]:getItemIcon() ~= nil then
-    local allEffects = {}
-
-    for i, islot in ipairs(ctx.ingredientSlots) do
-      local itemIcon = islot:getItemIcon()
-      if itemIcon == nil then
-        break
-      end
-      for j, effect in ipairs(itemIcon.itemData.record.effects) do
-        local added = allEffects[effect.key]
-        if added == nil then
-          allEffects[effect.key] = { effect }
-        else
-          table.insert(allEffects[effect.key], effect)
-        end
-      end
-    end
-
     local mortar = ctx.slotMortar:getCurrentQuality()
     local alembic = ctx.slotAlembic:getCurrentQuality()
     local retort = ctx.slotRetort:getCurrentQuality()
@@ -166,32 +145,56 @@ local function calculatePotionEffects()
     table.insert(visibleEffectsKeys, retort)
     table.insert(visibleEffectsKeys, calcinator)
 
-    for key, effects in pairs(allEffects) do
-      if #effects > 1 then
-        local known_count = 0
-        for i, e in ipairs(effects) do
-          if e.known then
-            known_count = known_count + 1
+    local allEffects = {}
+
+    for i, islot in ipairs(ctx.ingredientSlots) do
+      local itemIcon = islot:getItemIcon()
+      if itemIcon == nil then
+        break
+      end
+      for j, effect in ipairs(itemIcon.itemData.record.effects) do
+        local added = allEffects[effect.key]
+        if added == nil then
+          allEffects[effect.key] = { effect }
+        else
+          table.insert(added, effect)
+          if #added == 2 then
+            local magnitude, duration = calculateVanillaPotionEffect(effect, mortarMult, alembic, retort, calcinator)
+            -- print(string.format("Calculated effect %s(%i pts, %i sec)", key, magnitude, duration))
+            if magnitude > 0 and duration > 0 then
+              local visibleFast = added[1].known and added[2].known
+              table.insert(potionEffects, {
+                effect = effect,
+                magnitude = magnitude,
+                duration = duration,
+                visible = visibleFast,
+              })
+              if visibleFast then
+                table.insert(visibleEffectsKeys, effect.key)
+              end
+            end
           end
-        end
-        local visible = known_count > 1
-        table.insert(visibleEffectsKeys, key)
-
-        local effect = effects[1]
-        local magnitude, duration = calculateVanillaPotionEffect(effect, mortarMult, alembic, retort, calcinator)
-
-        -- print(string.format("Calculated effect %s(%i pts, %i sec, visible: %s)", key, magnitude, duration, visible))
-
-        if magnitude > 0 and duration > 0 then
-          table.insert(potionEffects, {
-            effect = effect,
-            magnitude = magnitude,
-            duration = duration,
-            visible = visible,
-          })
         end
       end
     end
+
+    for i, potionEffect in ipairs(potionEffects) do
+      -- should be rare
+      if not potionEffect.visible then
+        local known_count = 0
+        for j, e in ipairs(allEffects[potionEffect.key]) do
+          if e.known then
+            known_count = known_count + 1
+          end
+          if known_count == 2 then
+            potionEffect.visible = true
+            table.insert(visibleEffectsKeys, potionEffect.key)
+            break
+          end
+        end
+      end
+    end
+
   end
 
   ctx.potionEffects = potionEffects
@@ -208,6 +211,7 @@ local function calculatePotionEffects()
       end
     end
     ctx.flexPotionEffects.content = newContent
+    ctx.brewButtonsRow.props.visible = #newContent > 0
   end
 end
 
@@ -262,15 +266,15 @@ local function filterIngredientsList()
   end
 
   local activesCount = #actives
-  print(string.format("Filtering for %i ingredients", activesCount))
+  -- print(string.format("Filtering for %i ingredients", activesCount))
   assert(activesCount >= 0 and activesCount <= 4)
 
   local datasource = nil
-  if activesCount == 4 then
-    datasource = {}
-  elseif activesCount == 0 or activesCount == 2 then
+  if activesCount == 0 then
     datasource = newDataSource(actives)
-  else -- 1 or 3
+  elseif activesCount == 4 then
+    datasource = {}
+  else -- 1, 2, 3
     local matchEffects = {}
     for i, active in ipairs(actives) do
       for j, effect in ipairs(active.effects) do
@@ -282,6 +286,93 @@ local function filterIngredientsList()
   end
 
   ctx.ingredientsList:setDataSource(datasource)
+end
+
+
+local function brewPotionsClick(amount)
+  local function getSummedPower()
+    local res = 0
+    for i, effect in ipairs(ctx.potionEffects) do
+      res = res + effect.magnitude
+      res = res + effect.duration
+    end
+    return res
+  end
+
+  local refilter = false
+  local playerAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
+  local potionPower = getSummedPower()
+  local successChance = getBaseModifier()
+
+  for i, slot in ipairs(ctx.ingredientSlots) do
+    local ingredientIcon = slot:getItemIcon()
+    if ingredientIcon == nil then
+      break
+    end
+    amount = math.min(amount, ingredientIcon.itemData.count)
+  end
+
+  for i, slot in ipairs(ctx.ingredientSlots) do
+    local ingredientIcon = slot:getItemIcon()
+    if ingredientIcon ~= nil then
+      print(string.format("spend %i of %s", amount, ingredientIcon.itemData.record.name))
+      ingredientIcon.itemData:spend(amount)
+      local newCount = ingredientIcon.itemData.count
+      ingredientIcon:setCount(newCount)
+      if newCount == 0 then
+        slot:setItemIcon(nil)
+        refilter = true
+      end
+    end
+  end
+
+  local potionEntry = nil
+  local created = {}
+
+  -- for i = 1, amount do
+  --   -- TODO rollRandom
+  --   local roll = rollRandom(1, 100)
+  --   if roll <= successChance then
+  --     if potionEntry == nil then
+  --       potionEntry = {
+  --         -- TODO: utilsCore.getPotionRecord
+  --         record = utilsCore.getPotionRecord(effects, weight, price),
+  --         count = 1
+  --       }
+  --       table.insert(created, potionEntry)
+  --     else
+  --       potionEntry.count = potionEntry.count + 1
+  --     end
+
+  --     excersizeAlchemy()
+  --     local newAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
+  --     if newAlchemy ~= currentAlchemy then
+  --       successChance = getBaseModifier()
+  --       local newPower = getSummedPower()
+  --       if potionPower ~= newPower then
+  --         potionEntry = nil
+  --       end
+  --     end
+  --   end
+  -- end
+
+  if #created > 0 then
+  -- TODO
+  -- Send global event to create potions
+
+    ambient.playSound('potion success')
+    ui.showMessage("TODO: success")
+  else
+    ambient.playSound('potion fail')
+    ui.showMessage("TODO: fail")
+  end
+
+  if refilter then
+    filterIngredientsList()
+    calculatePotionEffects()
+  end
+
+  redrawTab()
 end
 
 
@@ -532,7 +623,20 @@ local function newTabLayout()
     }
   }
 
-  local btnBrew = utilsUI.newButton('Brew', brewPotionsClick, true)
+  ctx.brewButtonsRow = {
+    type = ui.TYPE.Flex,
+    props = {
+      horizontal = true,
+      visible = false,
+    },
+    content = ui.content {
+      utilsUI.newButton('Brew 1', function() brewPotionsClick(1) end, true),
+      utilsUI.spacerColumn3,
+      utilsUI.newButton('Brew 5', function() brewPotionsClick(5) end, true),
+      utilsUI.spacerColumn3,
+      utilsUI.newButton('Brew 20', function() brewPotionsClick(20) end, true),
+    }
+  }
 
   return {
     type = ui.TYPE.Flex,
@@ -574,10 +678,8 @@ local function newTabLayout()
       },
       utilsUI.spacerRow20,
       ingredientsList,
-      -- TODO:
-      -- * potion name
-      -- * batch size
-      btnBrew,
+      -- TODO potion name?
+      ctx.brewButtonsRow,
     }
   }
 end
