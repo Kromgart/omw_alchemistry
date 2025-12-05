@@ -3,43 +3,35 @@ local core = require('openmw.core')
 
 
 local function makeCompositeEffectName(effectId, suffixId)
-  local prefix = 'nil'
-  local suffix = 'nil'
+  assert(effectId ~= nil and suffixId ~= nil)
 
-  if effectId == 'drainattribute' then
-    prefix = core.getGMST('sDrain')
-    suffix = core.getGMST('sAttribute' .. suffixId)
-  elseif effectId == 'drainskill' then
-    prefix = core.getGMST('sDrain')
-    suffix = core.getGMST('sSkill' .. suffixId)
-  elseif effectId == 'damageattribute' then
-    prefix = core.getGMST('sDamage')
-    suffix = core.getGMST('sAttribute' .. suffixId)
-  elseif effectId == 'damageskill' then
-    prefix = core.getGMST('sDamage')
-    suffix = core.getGMST('sSkill' .. suffixId)
-  elseif effectId == 'absorbattribute' then
-    prefix = core.getGMST('sAbsorb')
-    suffix = core.getGMST('sAttribute' .. suffixId)
-  elseif effectId == 'absorbskill' then
-    prefix = core.getGMST('sAbsorb')
-    suffix = core.getGMST('sSkill' .. suffixId)
-  elseif effectId == 'restoreattribute' then
-    prefix = core.getGMST('sRestore')
-    suffix = core.getGMST('sAttribute' .. suffixId)
-  elseif effectId == 'restoreskill' then
-    prefix = core.getGMST('sRestore')
-    suffix = core.getGMST('sSkill' .. suffixId)
-  elseif effectId == 'fortifyattribute' then
-    prefix = core.getGMST('sFortify')
-    suffix = core.getGMST('sAttribute' .. suffixId)
-  elseif effectId == 'fortifyskill' then
-    prefix = core.getGMST('sFortify')
-    suffix = core.getGMST('sSkill' .. suffixId)
+  local t = "%s %s"
+  local gmst = core.getGMST
+  local effects = core.magic.EFFECT_TYPE
+
+  if effectId == effects.FortifyAttribute then
+    return string.format(t, gmst('sFortify'), gmst('sAttribute' .. suffixId))
+  elseif effectId == effects.RestoreAttribute then
+    return string.format(t, gmst('sRestore'), gmst('sAttribute' .. suffixId))
+  elseif effectId == effects.DrainAttribute then
+    return string.format(t, gmst('sDrain'), gmst('sAttribute' .. suffixId))
+  elseif effectId == effects.DamageAttribute then
+    return string.format(t, gmst('sDamage'), gmst('sAttribute' .. suffixId))
+  elseif effectId == effects.FortifySkill then
+    return string.format(t, gmst('sFortify'), gmst('sSkill' .. suffixId))
+
+  -- unlikely in potions
+  elseif effectId == effects.RestoreSkill then
+    return string.format(t, gmst('sRestore'), gmst('sSkill' .. suffixId))
+  elseif effectId == effects.DrainSkill then
+    return string.format(t, gmst('sDrain'), gmst('sSkill' .. suffixId))
+  elseif effectId == effects.DamageSkill then
+    return string.format(t, gmst('sDamage'), gmst('sSkill' .. suffixId))
+  elseif effectId == effects.AbsorbSkill then
+    return string.format(t, gmst('sAbsorb'), gmst('sSkill' .. suffixId))
+  elseif effectId == effects.AbsorbAttribute then
+    return string.format(t, gmst('sAbsorb'), gmst('sAttribute' .. suffixId))
   end
-
-  return prefix .. ' ' .. suffix
-
 end
 
 
@@ -101,6 +93,8 @@ module.initIngredients = function(knownEffects, knownExperiments)
         baseCost = effect.effect.baseCost,
         harmful = effect.effect.harmful,
         known = isKnown,
+        affectedAttribute = effect.affectedAttribute,
+        affectedSkill = effect.affectedSkill,
       })
     end
 
@@ -171,6 +165,7 @@ module.getAvailableItems = function(player)
   }
 end
 
+
 module.getCommonEffects = function(...)
   local arg = {...}
   local result = {}
@@ -201,6 +196,7 @@ module.getCommonEffects = function(...)
     return nil
   end
 end
+
 
 
 return module

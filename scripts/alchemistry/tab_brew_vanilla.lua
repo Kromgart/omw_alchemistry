@@ -2,13 +2,16 @@ local I = require('openmw.interfaces')
 local ambient = require('openmw.ambient')
 local ui = require('openmw.ui')
 local v2 = require('openmw.util').vector2
-local utilsUI = require('scripts.alchemistry.utils_ui')
 local types = require('openmw.types')
 local core = require('openmw.core')
+
+local utilsUI = require('scripts.alchemistry.utils_ui')
+local utilsCore = require('scripts.alchemistry.utils_core')
 
 local fPotionStrengthMult = core.getGMST('fPotionStrengthMult')
 local fPotionT1MagMult = core.getGMST('fPotionT1MagMult')
 local fPotionT1DurMult = core.getGMST('fPotionT1DurMult')
+local iAlchemyMod = core.getGMST('iAlchemyMod')
 
 local ctx = nil
 
@@ -29,6 +32,12 @@ local function getBaseModifier()
   -- print(string.format("Int: %i, Luck: %i, Alchemy: %i", playerInt, playerLuck, playerAlchemy))
 
   return playerAlchemy + 0.1 * playerInt + 0.1 * playerLuck
+end
+
+
+local function getMortarMult()
+    local mortar = ctx.slotMortar:getCurrentQuality()
+    return getBaseModifier() * mortar * fPotionStrengthMult
 end
 
 
@@ -133,12 +142,11 @@ local function calculatePotionEffects()
 
   -- need at least 2 ingredients to even have an effect
   if ctx.ingredientSlots[2]:getItemIcon() ~= nil then
-    local mortar = ctx.slotMortar:getCurrentQuality()
+    local mortarMult = getMortarMult()
     local alembic = ctx.slotAlembic:getCurrentQuality()
     local retort = ctx.slotRetort:getCurrentQuality()
     local calcinator = ctx.slotCalcinator:getCurrentQuality()
 
-    local mortarMult = getBaseModifier() * mortar * fPotionStrengthMult
 
     table.insert(visibleEffectsKeys, mortarMult)
     table.insert(visibleEffectsKeys, alembic)
@@ -206,7 +214,7 @@ local function calculatePotionEffects()
     local newContent = ui.content {}
     for i, e in ipairs(potionEffects) do
       if e.visible then
-        local effectWidget = utilsUI.newMagicEffectWidgetWrapping(e.effect, e.magnitude, e.duration, 190, 30)
+        local effectWidget = utilsUI.newMagicEffectWidgetWrapping(e.effect, e.magnitude, e.duration, 190, 35)
         newContent:add(effectWidget)
       end
     end
@@ -300,6 +308,7 @@ local function brewPotionsClick(amount)
   end
 
   local refilter = false
+  local recalculateEffects = false
   local playerAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
   local potionPower = getSummedPower()
   local successChance = getBaseModifier()
@@ -326,49 +335,68 @@ local function brewPotionsClick(amount)
     end
   end
 
+  local potionWeight = 0.5
   local potionEntry = nil
   local created = {}
+  local createdCount = 0
 
-  -- for i = 1, amount do
-  --   -- TODO rollRandom
-  --   local roll = rollRandom(1, 100)
-  --   if roll <= successChance then
-  --     if potionEntry == nil then
-  --       potionEntry = {
-  --         -- TODO: utilsCore.getPotionRecord
-  --         record = utilsCore.getPotionRecord(effects, weight, price),
-  --         count = 1
-  --       }
-  --       table.insert(created, potionEntry)
-  --     else
-  --       potionEntry.count = potionEntry.count + 1
-  --     end
+  for i = 1, amount do
+    local roll = math.random(1, 100)
+    if roll <= successChance then
+      createdCount = createdCount + 1
 
-  --     excersizeAlchemy()
-  --     local newAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
-  --     if newAlchemy ~= currentAlchemy then
-  --       successChance = getBaseModifier()
-  --       local newPower = getSummedPower()
-  --       if potionPower ~= newPower then
-  --         potionEntry = nil
-  --       end
-  --     end
-  --   end
-  -- end
+      if potionEntry == nil then
+        local potionPrice = getMortarMult() * iAlchemyMod
+        potionEntry = {
+          effects = ctx.potionEffects,
+          weight = potionWeight,
+          price = potionPrice,
+          count = 1
+        }
+        table.insert(created, potionEntry)
+      else
+        potionEntry.count = potionEntry.count + 1
+      end
 
-  if #created > 0 then
-  -- TODO
-  -- Send global event to create potions
+      -- TODO
+      -- excersizeAlchemy()
+      -- local newAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
+      -- if newAlchemy ~= currentAlchemy then
+      --   successChance = getBaseModifier()
+      --   local newPower = getSummedPower()
+      --   if potionPower ~= newPower then
+      --     recalculateEffects = true
+      --     potionEntry = nil
+      --   end
+      -- end
+    end
+  end
 
+  if createdCount > 0 then
     ambient.playSound('potion success')
-    ui.showMessage("TODO: success")
+
+    local msg = core.getGMST('sPotionSuccess')
+    if createdCount > 1 then
+      msg = string.format("%s (x%i)", msg, createdCount)
+    end
+    ui.showMessage(msg)
+
+    core.sendGlobalEvent("alchemistryCreatePotions", created)
   else
     ambient.playSound('potion fail')
-    ui.showMessage("TODO: fail")
+
+    local msg = core.getGMST('sNotifyMessage8')
+    if amount > 1 then
+      msg = string.format("%s (x%i)", msg, amount)
+    end
+
+    ui.showMessage(msg)
   end
 
   if refilter then
     filterIngredientsList()
+    calculatePotionEffects()
+  elseif recalculateEffects then
     calculatePotionEffects()
   end
 

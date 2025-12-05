@@ -899,7 +899,7 @@ module.newTabHeaders = function(titles, onTabChanged)
       type = ui.TYPE.Flex,
       props = {
         horizontal = true,
-        position = v2(0, 20),
+        position = v2(0, 18),
         arrange = ui.ALIGNMENT.End,
       },
       content = tbsContent,
