@@ -44,8 +44,8 @@ end
 local function setResultEffects(effects)
   local content = ui.content {}
   if effects ~= nil then
-    for name, eff in pairs(effects) do
-      local wx = utilsUI.newMagicEffectWidget(eff[1])
+    for i, eff in ipairs(effects) do
+      local wx = utilsUI.newMagicEffectWidget(eff)
       content:add(wx)
     end
   end
@@ -86,19 +86,6 @@ local function slotMouseMoved(mouseEvent, slot, itemIcon)
 end
 
 
-local function addExperiment(rec1, rec2, result)
-  local exp = ctx.experiments[rec1.id]
-  if exp == nil then
-    exp = { tableLength = 0 }
-    ctx.experiments[rec1.id] = exp
-  end
-
-  exp[rec2.id] = result
-  exp.tableLength = exp.tableLength + 1
-end
-
-
-
 local function ingredientIconClicked(mouseEvent, sender)
   if ctx.alchemyItems.apparatus[types.Apparatus.TYPE.MortarPestle] == nil then
     -- can't do alchemy without mortar-and-pestle
@@ -125,27 +112,21 @@ local function ingredientIconClicked(mouseEvent, sender)
   else
     -- print(string.format("Trying %s with %s", ctx.mainIngredient.name, clickedIngredient.name))
     local common = utilsCore.getCommonEffects(ctx.mainIngredient.record, clickedIngredient.record)
-    local result = nil
     if common ~= nil then
-      result = 1
       ambient.playSound('potion success')
-      for k, v in pairs(common) do
-        for i, e in ipairs(v) do
-          e.known = true
-        end
+      for i, e in ipairs(common) do
+        e.known = true
       end
       setResultHeader(ctx.mainIngredient.record.name, clickedIngredient.record.name)
       setResultEffects(common)
     else
-      result = 0
       ambient.playSound('potion fail')
       setResultHeader(nil)
       setResultEffects(nil)
       ui.showMessage("No reaction")
     end
 
-    addExperiment(ctx.mainIngredient.record, clickedIngredient.record, result)
-    addExperiment(clickedIngredient.record, ctx.mainIngredient.record, result)
+    utilsCore.markExperiment(ctx.mainIngredient.record.id, clickedIngredient.record.id)
 
     clickedIngredient:spend(1)
     ctx.mainIngredient:spend(1)

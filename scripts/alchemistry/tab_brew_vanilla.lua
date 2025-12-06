@@ -190,13 +190,13 @@ local function calculatePotionEffects()
       -- should be rare
       if not potionEffect.visible then
         local known_count = 0
-        for j, e in ipairs(allEffects[potionEffect.key]) do
+        for j, e in ipairs(allEffects[potionEffect.effect.key]) do
           if e.known then
             known_count = known_count + 1
           end
           if known_count == 2 then
             potionEffect.visible = true
-            table.insert(visibleEffectsKeys, potionEffect.key)
+            table.insert(visibleEffectsKeys, potionEffect.effect.key)
             break
           end
         end
@@ -312,6 +312,7 @@ local function brewPotionsClick(amount)
   local playerAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
   local potionPower = getSummedPower()
   local successChance = getBaseModifier()
+  local ingredientsCount = 0
 
   for i, slot in ipairs(ctx.ingredientSlots) do
     local ingredientIcon = slot:getItemIcon()
@@ -319,20 +320,7 @@ local function brewPotionsClick(amount)
       break
     end
     amount = math.min(amount, ingredientIcon.itemData.count)
-  end
-
-  for i, slot in ipairs(ctx.ingredientSlots) do
-    local ingredientIcon = slot:getItemIcon()
-    if ingredientIcon ~= nil then
-      print(string.format("spend %i of %s", amount, ingredientIcon.itemData.record.name))
-      ingredientIcon.itemData:spend(amount)
-      local newCount = ingredientIcon.itemData.count
-      ingredientIcon:setCount(newCount)
-      if newCount == 0 then
-        slot:setItemIcon(nil)
-        refilter = true
-      end
-    end
+    ingredientsCount = ingredientsCount + 1
   end
 
   local potionWeight = 0.5
@@ -381,6 +369,17 @@ local function brewPotionsClick(amount)
     end
     ui.showMessage(msg)
 
+    if ingredientsCount == 2 then
+      local rec1 = ctx.ingredientSlots[1]:getItemIcon().itemData.record
+      local rec2 = ctx.ingredientSlots[2]:getItemIcon().itemData.record
+
+      -- in case this combination was not tested (but was possible because of matching effects)
+      utilsCore.markExperiment(rec1.id, rec2.id)
+      for i, e in ipairs(utilsCore.getCommonEffects(rec1, rec2) or {}) do
+        e.known = true
+      end
+    end
+
     core.sendGlobalEvent("alchemistryCreatePotions", created)
   else
     ambient.playSound('potion fail')
@@ -391,6 +390,20 @@ local function brewPotionsClick(amount)
     end
 
     ui.showMessage(msg)
+  end
+
+  for i, slot in ipairs(ctx.ingredientSlots) do
+    local ingredientIcon = slot:getItemIcon()
+    if ingredientIcon ~= nil then
+      print(string.format("spend %i of %s", amount, ingredientIcon.itemData.record.name))
+      ingredientIcon.itemData:spend(amount)
+      local newCount = ingredientIcon.itemData.count
+      ingredientIcon:setCount(newCount)
+      if newCount == 0 then
+        slot:setItemIcon(nil)
+        refilter = true
+      end
+    end
   end
 
   if refilter then

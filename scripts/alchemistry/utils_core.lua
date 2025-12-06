@@ -35,7 +35,40 @@ local function makeCompositeEffectName(effectId, suffixId)
 end
 
 
+local function setOneExperiment(experimentsTable, mainRecordId, targetRecordId)
+  local exp = experimentsTable[mainRecordId]
+  if exp == nil then
+    exp = { tableLength = 0 }
+    experimentsTable[mainRecordId] = exp
+  end
+
+  if exp[targetRecordId] == nil then
+    exp.tableLength = exp.tableLength + 1
+  end
+
+  exp[targetRecordId] = true
+end
+
+
+local function reduceIngredientStack(ingredientItem, removeCount)
+  local newCount = ingredientItem.count - removeCount
+  assert(newCount >= 0, "Tried to remove more ingredients than there are in the stack")
+
+  ingredientItem.count = newCount
+
+  core.sendGlobalEvent("alchemistryRemoveItem", {
+    gameObject = ingredientItem.gameObject,
+    count = removeCount,
+  })
+end
+
+
+-------------------------------------------------------------------------------
+
+
+
 local module = {}
+
 
 
 module.initIngredients = function(knownEffects, knownExperiments)
@@ -110,17 +143,11 @@ end
 
 
 
-local function reduceIngredientStack(ingredientItem, removeCount)
-  local newCount = ingredientItem.count - removeCount
-  assert(newCount >= 0, "Tried to remove more ingredients than there are in the stack")
-
-  ingredientItem.count = newCount
-
-  core.sendGlobalEvent("alchemistryRemoveItem", {
-    gameObject = ingredientItem.gameObject,
-    count = removeCount,
-  })
+module.markExperiment = function(recordId1, recordId2)
+  setOneExperiment(module.experimentsTable, recordId1, recordId2)
+  setOneExperiment(module.experimentsTable, recordId2, recordId1)
 end
+
 
 
 module.getAvailableItems = function(player)
@@ -166,31 +193,21 @@ module.getAvailableItems = function(player)
 end
 
 
-module.getCommonEffects = function(...)
-  local arg = {...}
+module.getCommonEffects = function(record1, record2)
   local result = {}
-  local found = false
+  local added = 0
 
-  for i = 1, (#arg - 1) do
-    for j = (i + 1), #arg do
-
-      for k1, e1 in ipairs(arg[i].effects) do
-        for k2, e2 in ipairs(arg[j].effects) do
-          -- todo: comparing names is probably wrong ('drain attribute' instead of 'drain strength')
-          if e1.name == e2.name then
-            if result[e1.name] == nil then
-              result[e1.name] = { e1, e2 }
-            else
-              table.insert(result[e1.name], e2)
-            end
-            found = true
-          end
-        end
+  for i, e1 in ipairs(record1.effects) do
+    for j, e2 in ipairs(record2.effects) do
+      if e1.key == e2.key then
+        added = added + 1
+        result[added] = e1
+        break
       end
     end
   end
 
-  if found then
+  if added > 0 then
     return result
   else
     return nil
