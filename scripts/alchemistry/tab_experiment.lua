@@ -41,10 +41,16 @@ local function setResultHeader(txt1, txt2)
 end
 
 
-local function setResultEffects(effects)
+local function setResultEffects(effectPairs)
   local content = ui.content {}
-  if effects ~= nil then
-    for i, eff in ipairs(effects) do
+  if effectPairs ~= nil then
+    -- they are coming in pairs, taking just odd ones
+    for i = 1, 100, 2 do
+      local eff = effectPairs[i]
+      if eff == nil then
+        break
+      end
+
       local wx = utilsUI.newMagicEffectWidget(eff)
       content:add(wx)
     end
@@ -119,6 +125,7 @@ local function ingredientIconClicked(mouseEvent, sender)
       end
       setResultHeader(ctx.mainIngredient.record.name, clickedIngredient.record.name)
       setResultEffects(common)
+      I.SkillProgression.skillUsed('alchemy', { useType = I.SkillProgression.SKILL_USE_TYPES.Alchemy_CreatePotion })
     else
       ambient.playSound('potion fail')
       setResultHeader(nil)

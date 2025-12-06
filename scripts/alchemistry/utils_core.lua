@@ -202,6 +202,8 @@ module.getCommonEffects = function(record1, record2)
       if e1.key == e2.key then
         added = added + 1
         result[added] = e1
+        added = added + 1
+        result[added] = e2
         break
       end
     end

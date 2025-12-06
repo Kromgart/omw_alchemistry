@@ -23,11 +23,13 @@ local function redrawTab()
   ctx.tabElement:update()
 end
 
+local getAlchemy = types.NPC.stats.skills.alchemy
+
 
 local function getBaseModifier()
   local playerInt = types.Actor.stats.attributes.intelligence(ctx.player).modified
   local playerLuck = types.Actor.stats.attributes.luck(ctx.player).modified
-  local playerAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
+  local playerAlchemy = getAlchemy(ctx.player).modified
 
   -- print(string.format("Int: %i, Luck: %i, Alchemy: %i", playerInt, playerLuck, playerAlchemy))
 
@@ -36,8 +38,8 @@ end
 
 
 local function getMortarMult()
-    local mortar = ctx.slotMortar:getCurrentQuality()
-    return getBaseModifier() * mortar * fPotionStrengthMult
+  local mortar = ctx.slotMortar:getCurrentQuality()
+  return getBaseModifier() * mortar * fPotionStrengthMult
 end
 
 
@@ -141,17 +143,15 @@ local function calculatePotionEffects()
   local visibleEffectsKeys = {}
 
   -- need at least 2 ingredients to even have an effect
-  if ctx.ingredientSlots[2]:getItemIcon() ~= nil then
-    local mortarMult = getMortarMult()
+  if ctx.ingredientSlots[2]:getItemIcon() == nil then
+    visibleEffectsKeys = {}
+  else
+    local mortarMult = getMortarMult() -- includes player stats too
     local alembic = ctx.slotAlembic:getCurrentQuality()
     local retort = ctx.slotRetort:getCurrentQuality()
     local calcinator = ctx.slotCalcinator:getCurrentQuality()
 
-
-    table.insert(visibleEffectsKeys, mortarMult)
-    table.insert(visibleEffectsKeys, alembic)
-    table.insert(visibleEffectsKeys, retort)
-    table.insert(visibleEffectsKeys, calcinator)
+    visibleEffectsKeys = { mortarMult, alembic, retort, calcinator }
 
     local allEffects = {}
 
@@ -308,8 +308,7 @@ local function brewPotionsClick(amount)
   end
 
   local refilter = false
-  local recalculateEffects = false
-  local playerAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
+  local playerAlchemy = getAlchemy(ctx.player).modified
   local potionPower = getSummedPower()
   local successChance = getBaseModifier()
   local ingredientsCount = 0
@@ -327,6 +326,7 @@ local function brewPotionsClick(amount)
   local potionEntry = nil
   local created = {}
   local createdCount = 0
+  local skillUsedParam = { useType = I.SkillProgression.SKILL_USE_TYPES.Alchemy_CreatePotion }
 
   for i = 1, amount do
     local roll = math.random(1, 100)
@@ -346,17 +346,18 @@ local function brewPotionsClick(amount)
         potionEntry.count = potionEntry.count + 1
       end
 
-      -- TODO
-      -- excersizeAlchemy()
-      -- local newAlchemy = types.NPC.stats.skills.alchemy(ctx.player).modified
-      -- if newAlchemy ~= currentAlchemy then
-      --   successChance = getBaseModifier()
-      --   local newPower = getSummedPower()
-      --   if potionPower ~= newPower then
-      --     recalculateEffects = true
-      --     potionEntry = nil
-      --   end
-      -- end
+      I.SkillProgression.skillUsed('alchemy', skillUsedParam)
+      local newAlchemy = getAlchemy(ctx.player).modified
+      if newAlchemy ~= playerAlchemy then
+        playerAlchemy = newAlchemy
+        successChance = getBaseModifier()
+        calculatePotionEffects()
+        local newPower = getSummedPower()
+        if potionPower ~= newPower then
+          potionPower = newPower
+          potionEntry = nil
+        end
+      end
     end
   end
 
@@ -408,8 +409,6 @@ local function brewPotionsClick(amount)
 
   if refilter then
     filterIngredientsList()
-    calculatePotionEffects()
-  elseif recalculateEffects then
     calculatePotionEffects()
   end
 
@@ -564,10 +563,7 @@ local function makeApparatusSlot(id, type)
 
   local apparatusItem = ctx.alchemyItems.apparatus[type]
   if apparatusItem ~= nil then
-    -- TODO
-    -- tooltip
     slot = utilsUI.newItemSlot(id, apparatusSlotClicked, apparatusSlotMouseMoved)
-
     slot.apparatusData = apparatusItem
     slot.apparatusIcon = utilsUI.newItemIcon(apparatusItem.icon, 1)
     slot.enabled = true
@@ -719,7 +715,7 @@ local function newTabLayout()
       },
       utilsUI.spacerRow20,
       ingredientsList,
-      -- TODO potion name?
+      -- TODO custom potion name?
       ctx.brewButtonsRow,
     }
   }
