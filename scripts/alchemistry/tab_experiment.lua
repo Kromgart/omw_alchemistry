@@ -120,12 +120,19 @@ local function ingredientIconClicked(mouseEvent, sender)
     local common = utilsCore.getCommonEffects(ctx.mainIngredient.record, clickedIngredient.record)
     if common ~= nil then
       ambient.playSound('potion success')
+      local discovered = 0
       for i, e in ipairs(common) do
-        e.known = true
+        if not e.known then
+          discovered = discovered + 1
+          e.known = true
+        end
       end
       setResultHeader(ctx.mainIngredient.record.name, clickedIngredient.record.name)
       setResultEffects(common)
-      I.SkillProgression.skillUsed('alchemy', { useType = I.SkillProgression.SKILL_USE_TYPES.Alchemy_CreatePotion })
+      I.SkillProgression.skillUsed('alchemy', {
+        useType = I.SkillProgression.SKILL_USE_TYPES.Alchemy_CreatePotion,
+        scale = discovered,
+      })
     else
       ambient.playSound('potion fail')
       setResultHeader(nil)

@@ -326,7 +326,10 @@ local function brewPotionsClick(amount)
   local potionEntry = nil
   local created = {}
   local createdCount = 0
-  local skillUsedParam = { useType = I.SkillProgression.SKILL_USE_TYPES.Alchemy_CreatePotion }
+  local skillUsedParam = {
+    useType = I.SkillProgression.SKILL_USE_TYPES.Alchemy_CreatePotion,
+    scale = 0.5,
+  }
 
   for i = 1, amount do
     local roll = math.random(1, 100)
