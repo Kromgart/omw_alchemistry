@@ -7,7 +7,9 @@ local core = require('openmw.core')
 
 local v2 = util.vector2
 
-local stdTextColor = util.color.rgb(0.769, 0.69, 0.545)
+local stdTextColor = I.MWUI.templates.textNormal.props.textColor
+local stdTextSize = 18
+-- local stdTextColor = util.color.rgb(0.769, 0.69, 0.545)
 
 
 local module = {}
@@ -397,7 +399,6 @@ end
 
 
 module.newItemIcon = function(iconPath, count)
-  local textSize = 18
   local iconSize = 32
   local iconOffset = (itemIconSize - iconSize) / 2
 
@@ -416,9 +417,9 @@ module.newItemIcon = function(iconPath, count)
       {
         type = ui.TYPE.Text,
         props = {
-          size = v2(itemIconSize, textSize),
-          position = v2(0, itemIconSize - textSize),
-          textSize = textSize,
+          size = v2(itemIconSize, stdTextSize),
+          position = v2(0, itemIconSize - stdTextSize),
+          textSize = stdTextSize,
           text = strCount,
           autoSize = false,
           textColor = stdTextColor,
@@ -726,7 +727,7 @@ module.newItemList = function(arg)
           textColor = stdTextColor,
           textAlignH = ui.ALIGNMENT.Center,
           textAlignV = ui.ALIGNMENT.Center,
-          textSize = 18,
+          textSize = stdTextSize,
         },
       },
       module.spacerColumn10,
@@ -790,7 +791,7 @@ local tabHeaderSpacerActive = {
 local tabHeaderBorderColorInactive = util.color.rgb(0.8, 0.8, 0.8)
 local tabHeaderTextColorInactive
 do
-  local c = I.MWUI.templates.textNormal.props.textColor
+  local c = stdTextColor
   tabHeaderTextColorInactive = util.color.rgb(c.r * 0.85, c.g * 0.85, c.b * 0.85)
 end
 
@@ -1049,6 +1050,62 @@ module.newIngredientTooltipContent = function(ingredientRecord)
   return result
 end
 
+
+-------------------------------- Autocomplete textbox -----------------------------------
+
+
+module.newAutocomplete = function(width, onMatched, wordsMap)
+
+  local textEdit = {
+    type = ui.TYPE.TextEdit,
+    events = {},
+    props = {
+      size = v2(width, 22),
+      textColor = stdTextColor,
+      textSize = stdTextSize,
+    }
+  }
+
+  local layout = {
+    type = ui.TYPE.Container,
+    template = newBorderedTemplate(ui.TYPE.Container, borderTexturesThin, true, true, true, true),
+    -- events = { mouseClick = async:callback(mouseClick) },
+    -- props = {},
+    content = ui.content {{
+      type = ui.TYPE.Container,
+      template = module.newPaddingVH(3, 2),
+      content = ui.content { textEdit }
+    }}
+  }
+
+  local element = ui.create(layout)
+
+  -- for k, v in pairs(wordsMap) do
+  --   print(k, " -> ", v)
+  -- end
+
+  local lastTextLen = 0
+  
+  local function onTextChanged(newText, sender)
+    local newLen = string.len(newText)
+    if newLen > lastTextLen then
+      newText = string.lower(newText)
+      local match = wordsMap[newText]
+      if match ~= nil then
+        sender.props.text = match
+        element:update()
+        onMatched(match)
+      end
+    elseif newLen == 0 then
+      onMatched(nil)
+    end
+    lastTextLen = newLen
+  end
+
+  textEdit.events.textChanged = async:callback(onTextChanged)
+
+  return element
+end
 
 
 -------------------------------- END  -----------------------------------
