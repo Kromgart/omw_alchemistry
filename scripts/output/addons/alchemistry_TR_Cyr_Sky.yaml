@@ -1,0 +1,5871 @@
+---
+__esp_version__: 1.3
+__plugin_type__: 0
+transpiler_version: 0.24.1
+author: ""
+desc: ""
+masters:
+  - name: Tamriel_Data.esm
+    size: 14887395
+  - name: TR_Mainland.esm
+    size: 227745575
+  - name: Cyr_Main.esm
+    size: 48901370
+  - name: Sky_Main.esm
+    size: 31572765
+records:
+  "Ingredient::T_IngDye_WhiteLead_01":
+    type: Ingredient
+    name: White Lead Dye
+    model: "tr/n/tr_ing_whitelead.nif"
+    icon: "tr/n/tr_ing_whitelead.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::TR_m1_Q59_PR_disease_meat":
+    type: Ingredient
+    name: Diseased Rat Meat
+    model: "n/ingred_rat_meat_01.nif"
+    icon: "n/tx_rat_meat_01.tga"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_RockburstClaw_01":
+    type: Ingredient
+    name: Rockburst Claw
+    model: "tr/n/tr_ing_rockburst_01.nif"
+    icon: "tr/n/tr_f_rockburst_01.dds"
+    weight: 1.5
+    value: 10
+    effects: []
+  "Ingredient::T_IngCrea_SkyrenderVenom_01":
+    type: Ingredient
+    name: Skyrender Venom
+    model: "tr/n/tr_ing_dres_venom_01.nif"
+    icon: "tr/n/tr_ing_dres_venom_01.dds"
+    weight: 0.1
+    value: 35
+    effects: []
+  "Ingredient::T_IngFlor_FoxgloveNectar_01":
+    type: Ingredient
+    name: Foxglove Nectar
+    model: "pc/n/pc_ing_foxgloven.nif"
+    icon: "pc/n/pc_tx_ingred_foxglove.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_PeridotDae_01":
+    type: Ingredient
+    name: Peridot
+    model: "tr/n/tr_ing_peridot.nif"
+    icon: "tr/n/tr_ing_peridot.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFlor_CinnabarPolypore_02":
+    type: Ingredient
+    name: Cinnabar Polypore Yellow Cap
+    model: "pc/n/pc_ing_cinpoly2.nif"
+    icon: "pc/n/pc_tx_ingred_cinpoly2.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_TopazDae_01":
+    type: Ingredient
+    name: Topaz
+    model: "tr/n/tr_ing_topaz_mm.nif"
+    icon: "tr/n/tr_ing_topaz_mm.dds"
+    weight: 0.1
+    value: 150
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFlor_YuinRoot_01":
+    type: Ingredient
+    name: Yuin Root
+    model: "hr/n/hr_n_yuinroot.nif"
+    icon: "hr/n/hr_n_yuinroot.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_PyrousUracia":
+    type: Ingredient
+    name: Pyrous Uracia
+    model: "tr/n/tr_ing_p_uracia.nif"
+    icon: "tr/n/tr_ing_p_uracia.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_Ivory":
+    type: Ingredient
+    name: Ivory
+    model: "sky/n/sky_ingred_ivory.nif"
+    icon: "sky/n/tx_ingred_ivory.dds"
+    weight: 2.0
+    value: 60
+    effects: []
+  "Ingredient::T_IngFlor_BogBeacon_01":
+    type: Ingredient
+    name: Bog Beacon Cap
+    model: "pc/n/pc_ing_bogbeacon.nif"
+    icon: "pc/n/pc_tx_ingred_bogbeacon.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_Nirnroot_01":
+    type: Ingredient
+    name: Nirnroot
+    model: "pc/n/pc_ingred_nirnroot.nif"
+    icon: "pc/n/pc_tx_ingred_nirnroot.dds"
+    weight: 0.2
+    value: 25
+    effects: []
+  "Ingredient::T_IngFood_WasabiRoot_01":
+    type: Ingredient
+    name: Wasabi Root
+    model: "sky/n/sky_ingred_wasab_01.nif"
+    icon: "sky/n/tx_ingred_wasab_01.dds"
+    weight: 1.0
+    value: 130
+    effects: []
+  "Ingredient::T_IngFood_Vinegar_01":
+    type: Ingredient
+    name: Vinegar
+    model: "pc/n/pc_ing_vinegar.nif"
+    icon: "pc/n/pc_ing_vinegar.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_AmberDae_01":
+    type: Ingredient
+    name: Amber
+    model: "sky/n/sky_ingred_amber_02.nif"
+    icon: "sky/n/tx_ingred_amber_02.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFood_CustTartRedguard_01":
+    type: Ingredient
+    name: Custard Tart
+    model: "hf/n/hf_food_custtart01.nif"
+    icon: "hf/n/hf_food_cust_tart01.dds"
+    weight: 0.4
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_AquamarineDae_01":
+    type: Ingredient
+    name: Aquamarine
+    model: "tr/n/tr_ing_aquamarine_mm.nif"
+    icon: "tr/n/tr_ing_aquamarine_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngMine_Onyx_01":
+    type: Ingredient
+    name: Onyx
+    model: "tr/n/tr_ing_onyx.nif"
+    icon: "tr/n/tr_ing_onyx.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngCrea_Muskratfur_01":
+    type: Ingredient
+    name: Muskrat Fur
+    model: "pc/n/pc_ing_muskratfur.nif"
+    icon: "pc/n/pc_ing_muskratfur.dds"
+    weight: 0.4
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Moosebite_01":
+    type: Ingredient
+    name: Moosebite Polypore
+    model: "sky/n/sky_ingred_moosebit01.nif"
+    icon: "sky/n/tx_ingred_moosebite.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_PorousExidia_01":
+    type: Ingredient
+    name: Porous Exidia
+    model: "tr/n/tr_ing_porousexidia.nif"
+    icon: "tr/n/tr_ing_porousexidia.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::TR_m3_q_14_fish":
+    type: Ingredient
+    name: "Delamus' Stinky Fish Meat"
+    model: "tr/n/tr_ing_dryfish.nif"
+    icon: "tr/n/tr_ing_dryfish.dds"
+    weight: 1.5
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_RedSharkMeat_01": ~
+  "Potion::T_IngCrea_RedSharkMeat_01":
+    type: Potion
+    name: Red Shark Meat
+    model: "pi/n/pi_ing_redsharkmeat.nif"
+    icon: "pi/n/pi_ing_redsharkmeat.dds"
+    weight: 4.0
+    value: 4
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_CarlineTh_01":
+    type: Ingredient
+    name: Carline Thistle Seeds
+    model: "sky/n/sky_ingred_carlth_01.nif"
+    icon: "sky/n/tx_ingred_carlth_01.dds"
+    weight: 0.1
+    value: 4
+    effects: []
+  "Ingredient::T_IngFood_PorridgePalm_01": ~
+  "Potion::T_IngFood_PorridgePalm_01":
+    type: Potion
+    name: Palm Porridge
+    model: "pi/n/pi_ing_porridgepalm.nif"
+    icon: "pi/n/pi_ing_porridgepalm.dds"
+    weight: 0.2
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_LadysMantle_01":
+    type: Ingredient
+    name: "Lady's Mantle Leaves"
+    model: "pc/n/pc_ingred_ladym.nif"
+    icon: "pc/n/pc_tx_ingred_ladym.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_FireOpal_01":
+    type: Ingredient
+    name: Fire Opal
+    model: "tr/n/tr_ing_fire_opal.nif"
+    icon: "tr/n/tr_ing_fire_opal.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::T_IngFlor_PadomaicSage_01":
+    type: Ingredient
+    name: Padomaic Sage Leaf
+    model: "pi/n/pi_ing_sage.nif"
+    icon: "pi/n/pi_ing_sage.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Monkshood_01":
+    type: Ingredient
+    name: Monkshood
+    model: "pc/n/pc_ingred_monkshade.nif"
+    icon: "pc/n/pc_tx_ingred_monksha.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_BridethornBerry_01":
+    type: Ingredient
+    name: Bridethorn Berries
+    model: "sky/n/sky_ingred_brideth_01.nif"
+    icon: "sky/n/tx_ingred_brideth.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_PearlKardesh_01":
+    type: Ingredient
+    name: Kardesh Pearl
+    model: "pc/n/pc_ing_yokupearl_01.nif"
+    icon: "pc/n/pc_tx_ing_yokupearl.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::T_IngMine_Realgar_01":
+    type: Ingredient
+    name: Realgar
+    model: "tr/n/tr_ing_realgar.nif"
+    icon: "tr/n/tr_ing_realgar.dds"
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::T_IngFood_AppleSkyrim_01":
+    type: Ingredient
+    name: Apple
+    model: "sky/n/sky_ingred_apple_01.nif"
+    icon: "sky/n/tx_ingred_apple_01.dds"
+    weight: 0.2
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_CheeseRedguard_01":
+    type: Ingredient
+    name: Cheese
+    model: "hf/n/hf_food_cheese01.nif"
+    icon: "hf/n/hf_food_cheese01.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_MountainDamask":
+    type: Ingredient
+    name: Mountain Damask
+    model: "tr/n/tr_ing_mountaindamask.nif"
+    icon: "tr/n/tr_ing_mountaindamask.dds"
+    weight: 0.1
+    value: 8
+    effects: []
+  "Ingredient::T_IngCrea_Trollfat_01":
+    type: Ingredient
+    name: Troll Fat
+    model: "tr/n/tr_ing_troll_fat_01.nif"
+    icon: "tr/n/tr_ing_troll_fat_01.dds"
+    weight: 2.0
+    value: 25
+    effects: []
+  "Ingredient::TR_m1_ingred_ceph_shell_uni":
+    type: Ingredient
+    name: Ruined Cephalopod Shell
+    model: "tr/n/tr_ing_ceph_shell.nif"
+    icon: "tr/n/tr_ing_ceph_shell.dds"
+    weight: 1.0
+    value: 0
+    effects: []
+  "Ingredient::T_IngFlor_LichenYellow_01":
+    type: Ingredient
+    name: Yellow Lichen
+    model: "tr/n/tr_ing_ylichen_01.nif"
+    icon: "tr/n/tr_ing_yellowlichen.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_TinderPolypore_01":
+    type: Ingredient
+    name: Tinder Polypore Cap
+    model: "pc/n/pc_ing_tpoly.nif"
+    icon: "pc/n/pc_tx_ingred_tpoly.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_BlisterSpore_01":
+    type: Ingredient
+    name: Blister Spore
+    model: "tr/n/tr_ing_blisterspore.nif"
+    icon: "tr/n/tr_ing_blisterspore.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_Mustard_01":
+    type: Ingredient
+    name: Mustard Seeds
+    model: "sky/n/sky_ingred_mustard01.nif"
+    icon: "sky/n/sky_ingr_mustard01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_Maidenhair_01":
+    type: Ingredient
+    name: Goldenlock
+    model: "hr/n/hr_ing_maidenh_01.nif"
+    icon: "hr/n/hr_ing_maidenh01.tga"
+    weight: 0.1
+    value: 25
+    effects: []
+  "Ingredient::T_IngFood_Sfiha_01":
+    type: Ingredient
+    name: Sfiha
+    model: "hf/n/hf_food_sfiha01.nif"
+    icon: "hf/n/hf_food_sfiha01.dds"
+    weight: 0.7
+    value: 12
+    effects: []
+  "Ingredient::T_IngMine_Amber_01":
+    type: Ingredient
+    name: Amber
+    model: "sky/n/sky_ingred_amber_02.nif"
+    icon: "sky/n/tx_ingred_amber_02.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFood_FishSlaughterDried_02": ~
+  "Potion::T_IngFood_FishSlaughterDried_02":
+    type: Potion
+    name: Dried Slaughterfish
+    model: "tr/n/tr_ing_dryfish_02.nif"
+    icon: "tr/n/tr_ing_dryfish_02.dds"
+    weight: 2.5
+    value: 3
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_GremlinEarWax_01":
+    type: Ingredient
+    name: Gremlin Earwax
+    model: "tr/n/tr_gremlinearwax.nif"
+    icon: "tr/n/tr_tx_ing_gremearwax.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_Asteria_01":
+    type: Ingredient
+    name: Asteria
+    model: "hf/n/hf_ingred_asteria_01.nif"
+    icon: "hf/n/hf_ingred_asteria_01.dds"
+    weight: 0.1
+    value: 4
+    effects: []
+  "Ingredient::T_IngFood_MeatPork_01":
+    type: Ingredient
+    name: Pork
+    model: "pc/n/pc_ing_porkmeat.nif"
+    icon: "pc/n/pc_tx_ing_porkmeat.dds"
+    weight: 1.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Blknet_01":
+    type: Ingredient
+    name: Blacknettle
+    model: "sky/n/sky_ingred_blknet_01.nif"
+    icon: "sky/n/sky_ingr_blknettle01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_ShutagJelly_01":
+    type: Ingredient
+    name: Shutag Jelly
+    model: "tr/n/tr_ing_shutag_jelly.nif"
+    icon: "tr/n/tr_ing_shutag_jelly.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_MeatGoat_01":
+    type: Ingredient
+    name: Goat Meat
+    model: "sky/n/sky_ingred_goat_meat.nif"
+    icon: "sky/n/sky_ingred_goat_meat.tga"
+    weight: 1.0
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_Glowshroom":
+    type: Ingredient
+    name: Roridomyces Phyllostachydis
+    model: "tr/n/tr_ing_glowshroom_cap.nif"
+    icon: "tr/n/tr_ing_glowshroom_cap.dds"
+    weight: 0.5
+    value: 25
+    effects: []
+  "Ingredient::T_IngFood_TeaAltmer_01":
+    type: Ingredient
+    name: Ensis Tea Cake
+    model: "sum/n/sum_ingred_tea_01.nif"
+    icon: "sum/n/sum_ingred_tea_01.dds"
+    weight: 0.5
+    value: 4
+    effects: []
+  "Ingredient::T_IngMine_Chalk_01":
+    type: Ingredient
+    name: Chalk
+    model: "pc/n/pc_ing_chalk.nif"
+    icon: "pc/n/pc_ing_chalk.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_Jet_01":
+    type: Ingredient
+    name: Jet
+    model: "tr/n/tr_ing_jet_mm.nif"
+    icon: "tr/n/tr_ing_jet.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngMine_Flashgrit_01":
+    type: Ingredient
+    name: Flashgrit
+    model: "hf/n/hf_ing_flashgrit.nif"
+    icon: "hf/n/hf_ingred_flashgrit.dds"
+    weight: 1.0
+    value: 200
+    effects: []
+  "Ingredient::TR_i3-685_OutlawsBlood":
+    type: Ingredient
+    name: Blood Stone
+    model: "tr/n/tr_ing_bloodstone_mm.nif"
+    icon: "tr/n/tr_ing_bloodstone_mm.dds"
+    weight: 2.0
+    value: 200
+    effects: []
+  "Ingredient::T_IngFlor_VicarHerb_01":
+    type: Ingredient
+    name: Vicar Herb Leaves
+    model: "sky/n/sky_ingred_vicherb_01.nif"
+    icon: "sky/n/tx_ingred_vicherb_01.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_Flour_01":
+    type: Ingredient
+    name: Flour
+    model: "sky/n/sky_ingred_flour_01.nif"
+    icon: "sky/n/tx_ingred_flour_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_PearlBlueDae_01":
+    type: Ingredient
+    name: Blue Pearl
+    model: "pi/n/tr_ing_pearlblue.nif"
+    icon: "pi/n/pi_ing_pearlblue.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngMine_DiamondRed_01":
+    type: Ingredient
+    name: Red Diamond
+    model: "tr/n/tr_ing_red_diamd.nif"
+    icon: "tr/n/tr_ing_red_diamd.dds"
+    weight: 0.2
+    value: 500
+    effects: []
+  "Ingredient::T_IngFlor_Sugarcane_01":
+    type: Ingredient
+    name: Sweetgrass Stem
+    model: "epos/n/plt_sugarcane_01.nif"
+    icon: "epos/n/epos_sugarcane_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_CanisRoot_01":
+    type: Ingredient
+    name: Canis Root
+    model: "sky/n/t_ingflor_canisr01.nif"
+    icon: "sky/n/sky_ingr_canisroot.dds"
+    weight: 0.2
+    value: 4
+    effects: []
+  "Ingredient::T_IngCrea_FlyMusk_01":
+    type: Ingredient
+    name: Raw Musk
+    model: "tr/n/tr_ing_musk_01.nif"
+    icon: "tr/n/tr_ing_musk_01.dds"
+    weight: 0.2
+    value: 15
+    effects: []
+  "Ingredient::T_IngFood_CloudyCorn_01":
+    type: Ingredient
+    name: Cloudy Corn
+    model: "sky/n/sky_ingred_c_corn_01.nif"
+    icon: "sky/n/tx_ingred_c_corn_01.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_Bread_01": ~
+  "Potion::T_IngFood_Bread_01":
+    type: Potion
+    name: Bread
+    model: "tr/n/tr_ingred_bread_01a.nif"
+    icon: "tr/n/tr_ingred_bread_01a.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_Woadfl_01":
+    type: Ingredient
+    name: Woad Seeds
+    model: "sky/n/sky_ingred_woadfl_01.nif"
+    icon: "sky/n/tx_ingred_woadfl.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_KingThistle_01":
+    type: Ingredient
+    name: King Thistle Flower
+    model: "sky/n/sky_ingred_kingth.nif"
+    icon: "sky/n/tx_ingred_kingthistle.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Olives_01":
+    type: Ingredient
+    name: Olives
+    model: "pc/n/pc_ing_olives.nif"
+    icon: "pc/n/pc_tx_ingred_olives.dds"
+    weight: 0.2
+    value: 8
+    effects: []
+  "Ingredient::T_IngFood_CheeseBreton_02":
+    type: Ingredient
+    name: Cheese
+    model: "hr/n/hr_ing_cheese_02.nif"
+    icon: "hr/n/hr_ing_cheese_02.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_SucculentPulp_01":
+    type: Ingredient
+    name: Succulent Pulp
+    model: "tr/n/tr_ing_aloe.nif"
+    icon: "tr/n/tr_ing_aloe_pulp.dds"
+    weight: 0.2
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_SaltstrapPollen_01":
+    type: Ingredient
+    name: Saltstrap Pollen
+    model: "tr/n/tr_ing_saltpollen_01.nif"
+    icon: "tr/n/tr_ing_saltpollen_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::TR_m4_q_AG_gift":
+    type: Ingredient
+    name: Heirloom of the Lost Tribe
+    model: "tr/n/tr_ing_ice_crystal.nif"
+    icon: "tr/n/tr_ing_ice_crystal.dds"
+    weight: 0.2
+    value: 50
+    effects: []
+  "Ingredient::T_IngMine_OreOrichalcum_01":
+    type: Ingredient
+    name: Orichalcum Ore
+    model: "sky/n/sky_ingred_orich_01.nif"
+    icon: "sky/n/tx_ingred_orichalc.dds"
+    weight: 2.0
+    value: 200
+    effects: []
+  "Ingredient::T_IngFood_EggMolecrab_01":
+    type: Ingredient
+    name: Mole Crab Egg
+    model: "tr/n/tr_ing_eggmolecrab.nif"
+    icon: "tr/n/tr_ing_eggmolecrab.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_MeatHorse_01":
+    type: Ingredient
+    name: Horse Meat
+    model: "sky/n/sky_ingred_horsemeat.nif"
+    icon: "sky/n/tx_ingred_meat_h.dds"
+    weight: 1.3
+    value: 3
+    effects: []
+  "Ingredient::TR_m7_AHPicnicBread_01": ~
+  "Potion::TR_m7_AHPicnicBread_01":
+    type: Potion
+    name: Bread
+    model: "tr/n/tr_ingred_bread_01a.nif"
+    icon: "tr/n/tr_ingred_bread_01a.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+    script: TR_m7_AffairsHeartPicnic_sc
+  "Ingredient::TR_m7_q_Ns_IC8_gem2":
+    type: Ingredient
+    name: Ruby
+    model: "n/ingred_ruby_01.nif"
+    icon: "n/tx_ruby.tga"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::T_IngCrea_IronToadHide":
+    type: Ingredient
+    name: Iron Hide
+    model: "sky/n/sky_ingred_ironthide.nif"
+    icon: "sky/n/sky_ingred_ironthide.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngCrea_BeetleResin_01":
+    type: Ingredient
+    name: Beetle Resin
+    model: "tr/n/tr_ing_beetle_resin_01.nif"
+    icon: "tr/n/tr_ing_beetle_resin_01.dds"
+    weight: 0.1
+    value: 40
+    effects: []
+  "Ingredient::T_IngFood_PassionFruit_01":
+    type: Ingredient
+    name: Passion Fruit
+    model: "pc/n/pc_ing_passionfruit.nif"
+    icon: "pc/n/pc_ing_passionfruit.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_MeatGuar_01":
+    type: Ingredient
+    name: Guar Meat
+    model: "tr/n/tr_ing_meat_guar.nif"
+    icon: "tr/n/tr_ing_meat_guar.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_BjoulsaeRose_01":
+    type: Ingredient
+    name: Bjoulsae Rose
+    model: "sky/n/sky_ingred_bjourose.nif"
+    icon: "sky/n/tx_ingred_bjourose_01.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_PearlBlack_01":
+    type: Ingredient
+    name: Black Pearl
+    model: "tr/n/tr_ing_pearlblack_mm.nif"
+    icon: "tr/n/tr_ing_pearlblack_mm.dds"
+    weight: 0.2
+    value: 250
+    effects: []
+  "Ingredient::T_IngMine_EmeraldDeTomb_01":
+    type: Ingredient
+    name: Emerald
+    model: "n/ingred_emerald_01.nif"
+    icon: "n/tx_emerald.tga"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: T_ScObj_DeTombSpiritSummon
+  "Ingredient::T_IngFood_BreadKeptu_01":
+    type: Ingredient
+    name: Braided Bread
+    model: "pi/n/pi_ing_keptubread.nif"
+    icon: "pi/n/pi_ing_keptubread.dds"
+    weight: 0.4
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_Bread_03": ~
+  "Potion::T_IngFood_Bread_03":
+    type: Potion
+    name: Bread
+    model: "tr/n/tr_ingred_bread_02.nif"
+    icon: "tr/n/tr_ingred_bread_02.dds"
+    weight: 0.4
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::TR_m7_Dradivas_Stone":
+    type: Ingredient
+    name: Healing Stone
+    model: "n/ingred_emerald_01.nif"
+    icon: "n/tx_emerald.tga"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngFood_Gorapple_01":
+    type: Ingredient
+    name: Gorapple
+    model: "tr/n/tr_ing_gorapple_01.nif"
+    icon: "tr/n/tr_ing_gorapple.tga"
+    weight: 2.0
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea _GremlinEarWax_01":
+    type: Ingredient
+    name: Gremlin Earwax
+    model: "tr/n/tr_gremlinearwax.nif"
+    icon: "tr/n/tr_tx_ing_gremearwax.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_FishSpr_01":
+    type: Ingredient
+    name: Spearmouth
+    model: "pc/n/pc_ing_soldierfish.nif"
+    icon: "pc/n/pc_tx_ingred_sldrfish.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_OreSilver_01":
+    type: Ingredient
+    name: Silver Ore
+    model: "sky/n/sky_ingred_slv_ore_01.nif"
+    icon: "sky/n/tx_ingred_slv_ore_01.dds"
+    weight: 3.5
+    value: 150
+    effects: []
+  "Ingredient::TR_i3-280_ingred_cursed_diamond":
+    type: Ingredient
+    name: "Maniel's Diamond"
+    model: "n/ingred_diamond_01.nif"
+    icon: "n/tx_diamond.tga"
+    weight: 0.2
+    value: 250
+    effects: []
+    script: TR_i3-280_CursedDiamondSummon
+  "Ingredient::T_IngCrea_ButterflyWingCyr_02":
+    type: Ingredient
+    name: Blue Chalk Butterfly Wing
+    model: "pc/n/pc_ing_btrfly_wing_02.nif"
+    icon: "pc/n/pc_ing_btrfly_wing_02.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_SpinelDae_01":
+    type: Ingredient
+    name: Spinel
+    model: "tr/n/tr_ing_spinel_mm.nif"
+    icon: "tr/n/tr_ing_spinel_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngMine_Moonstone_01":
+    type: Ingredient
+    name: Moonstone
+    model: "tr/n/tr_ing_moonstone_mm.nif"
+    icon: "tr/n/tr_ing_moonstone.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::T_IngFlor_NoddingStreakwort":
+    type: Ingredient
+    name: Nodding Streakwort
+    model: "tr/n/tr_ing_nodstreakwort.nif"
+    icon: "tr/n/tr_ing_nodstreakwort.dds"
+    weight: 0.1
+    value: 7
+    effects: []
+  "Ingredient::T_IngCrea_MothWingMw_01":
+    type: Ingredient
+    name: Blight Moth Wing
+    model: "tr/n/tr_ing_moth_wing_01.nif"
+    icon: "tr/n/tr_ing_moth_wing_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_PrismaticDust_01":
+    type: Ingredient
+    name: Prismatic Dust
+    model: "pc/n/pc_ing_prismatic_dust.nif"
+    icon: "pc/n/pc_ingr_prismatic_dust.dds"
+    weight: 0.1
+    value: 200
+    effects: []
+  "Ingredient::T_IngFood_Garlic_01":
+    type: Ingredient
+    name: Garlic
+    model: "sky/n/sky_ingred_garlic_01.nif"
+    icon: "sky/n/tx_ingred_garlic_01.dds"
+    weight: 0.2
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_Starfish_01":
+    type: Ingredient
+    name: Starfish Leg
+    model: "pi/n/pi_ing_starfish_01.nif"
+    icon: "pi/n/pi_ing_starfish_01.dds"
+    weight: 0.3
+    value: 6
+    effects: []
+  "Ingredient::TR_m3_TT_JalorPowder":
+    type: Ingredient
+    name: Suspicious Powder
+    model: "tr/n/tr_ing_grey_tick.nif"
+    icon: "tr/n/tr_ing_greytick.dds"
+    weight: 0.0
+    value: 0
+    effects: []
+    script: TR_m3_TT_JalorIndoPowderScript
+  "Ingredient::T_IngMine_Charcoal_01":
+    type: Ingredient
+    name: Charcoal
+    model: "tr/n/tr_ing_charcoal.nif"
+    icon: "tr/n/tr_ing_charcoal.dds"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_CanahFeather":
+    type: Ingredient
+    name: Canah Feather
+    model: "hf/n/hf_ing_canah_feather.nif"
+    icon: "hf/n/hf_ing_canah_feather.tga"
+    weight: 0.1
+    value: 250
+    effects: []
+  "Ingredient::T_IngFlor_BlackrosePetalDae_01":
+    type: Ingredient
+    name: Black Rose
+    model: "tr/n/tr_ing_blackrose01.nif"
+    icon: "tr/n/tr_ing_blackrose01.dds"
+    weight: 0.2
+    value: 3
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::Sky_qRe_KWMG5_PadPersarine":
+    type: Ingredient
+    name: Persarine Blossom
+    model: "sky/n/sky_ingred_persa_01.nif"
+    icon: "sky/n/tx_ingred_persa_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+    script: Sky_qRe_KWMG5_PadMisc_sc
+  "Ingredient::T_IngCrea_DWyrmGland":
+    type: Ingredient
+    name: Danswyrm Venom Gland
+    model: "sky/n/sky_ingred_dwyrmgland.nif"
+    icon: "sky/n/sky_ingred_dwyrmgland.dds"
+    weight: 0.3
+    value: 15
+    effects: []
+  "Ingredient::T_IngMine_OreOrichalcum_02":
+    type: Ingredient
+    name: Orichalc Grains
+    model: "pc/n/pc_ing_origrain_01.nif"
+    icon: "pc/n/pc_tx_ing_origrain.dds"
+    weight: 0.5
+    value: 50
+    effects: []
+  "Ingredient::T_IngCrea_BarracudaSteak_01": ~
+  "Potion::T_IngCrea_BarracudaSteak_01":
+    type: Potion
+    name: Barracuda Steak
+    model: "pi/n/pi_ing_barracudasteak.nif"
+    icon: "pi/n/pi_ing_barracudasteak.dds"
+    weight: 1.5
+    value: 8
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_NightshadeDae_01":
+    type: Ingredient
+    name: Nightshade
+    model: "pc/n/pc_ing_dry_nshade.nif"
+    icon: "pc/n/pc_tx_ingred_nshade.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngCrea_DonkeyHide_01":
+    type: Ingredient
+    name: Donkey Hide
+    model: "pc/n/pc_ing_donkeyskin.nif"
+    icon: "pc/n/pc_tx_ingred_donkeys.dds"
+    weight: 1.0
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_BeetleShell_03":
+    type: Ingredient
+    name: Wood Beetle Shell
+    model: "tr/n/tr_ing_beetle_shell_03.nif"
+    icon: "tr/n/tr_ing_beetle_shell_03.dds"
+    weight: 0.5
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_MothWingMw_03":
+    type: Ingredient
+    name: Lute Moth Wing
+    model: "tr/n/tr_ing_moth_wing_03.nif"
+    icon: "tr/n/tr_ing_moth_wing_03.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Redpoppy_01":
+    type: Ingredient
+    name: Red Poppy
+    model: "sky/n/sky_ingred_redpoppy.nif"
+    icon: "sky/n/tx_ingred_rpoppy.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_FishStrid_01":
+    type: Ingredient
+    name: Stridfish
+    model: "pc/n/pc_ing_jewelfish.nif"
+    icon: "pc/n/pc_tx_ingred_jwlfish.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Alkanet_01":
+    type: Ingredient
+    name: Alkanet Flower
+    model: "pc/n/pc_ing_alkanetf.nif"
+    icon: "pc/n/pc_tx_ingred_alkanetf.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_TopazBlue_01":
+    type: Ingredient
+    name: Blue Topaz
+    model: "tr/n/tr_ing_topazb_mm.nif"
+    icon: "tr/n/tr_ing_topazb_mm.dds"
+    weight: 0.1
+    value: 150
+    effects: []
+  "Ingredient::T_IngCrea_HumanHeart":
+    type: Ingredient
+    name: Human Heart
+    model: "n/ingred_daedra_heart_01.nif"
+    icon: "n/tx_daedra_heart_01.tga"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngFlor_MorningGlory_01":
+    type: Ingredient
+    name: Morning Glory Flower
+    model: "pc/n/pc_ing_mglory_01.nif"
+    icon: "pc/n/pc_tx_ingred_mglory.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_HorkerPupPelt_01":
+    type: Ingredient
+    name: Horker Pup Pelt
+    model: "tr/n/tr_ing_horkpup_01.nif"
+    icon: "tr/n/tr_ing_horkerpup_01.dds"
+    weight: 1.0
+    value: 30
+    effects: []
+  "Ingredient::T_IngFlor_Bearclaw_01":
+    type: Ingredient
+    name: Bearclaw Flower
+    model: "sky/n/sky_ingred_bearclaw.nif"
+    icon: "sky/n/tx_ingred_bearclaw.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_BreadNordRye_03": ~
+  "Potion::T_IngFood_BreadNordRye_03":
+    type: Potion
+    name: Bread
+    model: "sky/n/sky_ing_ryebreadslice.nif"
+    icon: "sky/n/sky_ing_ryebreadslice.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_RocFeather":
+    type: Ingredient
+    name: Roc Feather
+    model: "pi/n/pi_ing_rocfeather.nif"
+    icon: "pi/n/pi_ing_rocfeather.dds"
+    weight: 0.25
+    value: 200
+    effects: []
+  "Ingredient::T_IngFood_LotteFruit_01":
+    type: Ingredient
+    name: Lotte Fruit
+    model: "sum/n/sum_n_lotte.nif"
+    icon: "sum/n/sum_n_lotte.dds"
+    weight: 0.2
+    value: 8
+    effects: []
+  "Ingredient::T_IngFlor_FennelSeed_01":
+    type: Ingredient
+    name: Fennel Seeds
+    model: "pc/n/pc_ing_fennels.nif"
+    icon: "pc/n/pc_tx_ingred_fennels.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_AmethystDae_01":
+    type: Ingredient
+    name: Amethyst
+    model: "tr/n/tr_ing_amethyst_mm.nif"
+    icon: "tr/n/tr_ing_amethyst_mm.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFlor_SaltstrapLeaf_01":
+    type: Ingredient
+    name: Saltstrap Leaf
+    model: "tr/n/tr_ing_saltleaf_01.nif"
+    icon: "tr/n/tr_ing_saltleaf_01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::TR_m2_q_29_4_silk":
+    type: Ingredient
+    name: Daedra Silk
+    model: "f/furn_web00.nif"
+    icon: "tr/n/tr_ing_dridrea_silk.dds"
+    weight: 1.0
+    value: 75
+    effects: []
+    script: TR_m2_q_29_4_Map_Script
+  "Ingredient::T_IngFood_BreadDeshaan_01": ~
+  "Potion::T_IngFood_BreadDeshaan_01":
+    type: Potion
+    name: Deshaan Bread
+    model: "tr/n/tr_ing_deshaanbread_02.nif"
+    icon: "tr/n/tr_ing_deshaanbread_02.dds"
+    weight: 0.5
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_Ginseng_01":
+    type: Ingredient
+    name: Ginseng
+    model: "pc/n/pc_ing_ginseng.nif"
+    icon: "pc/n/pc_tx_ingred_ginseng.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_SujPod_01":
+    type: Ingredient
+    name: Kuj Sprout Pulp
+    model: "tr/n/tr_ing_sujpod_01.nif"
+    icon: "tr/n/tr_ing_sujpod.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::T_IngFlor_Tacca_01":
+    type: Ingredient
+    name: Tacca Seeds
+    model: "pc/n/pc_ingred_tacca_01.nif"
+    icon: "pc/n/tx_ingred_tacca_01.dds"
+    weight: 0.2
+    value: 4
+    effects: []
+  "Ingredient::T_IngFood_Sfiha_02":
+    type: Ingredient
+    name: Sfiha
+    model: "hf/n/hf_food_sfiha02.nif"
+    icon: "hf/n/hf_food_sfiha02.dds"
+    weight: 0.7
+    value: 12
+    effects: []
+  "Ingredient::T_IngCrea_Trichobezoar_01":
+    type: Ingredient
+    name: Trichobezoar
+    model: "tr/n/tr_ing_catbezoar.nif"
+    icon: "tr/n/tr_ing_catbezoar.dds"
+    weight: 0.5
+    value: 40
+    effects: []
+  "Ingredient::T_IngFlor_Draketail_01":
+    type: Ingredient
+    name: Draketail Webbing
+    model: "hr/n/hr_ingr_draketail_01.nif"
+    icon: "hr/n/hr_ing_draketail.dds"
+    weight: 0.8
+    value: 15
+    effects: []
+  "Ingredient::T_IngFlor_Bleakbell_01":
+    type: Ingredient
+    name: Bleak Bell
+    model: "sky/n/sky_ingred_blkbell_01.nif"
+    icon: "sky/n/tx_ingred_blkbell_01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngSpice_Saffron_01":
+    type: Ingredient
+    name: Saffron Powder
+    model: "pc/n/pc_ing_saffron.nif"
+    icon: "pc/n/pc_ingred_saffron.dds"
+    weight: 0.1
+    value: 40
+    effects: []
+  "Ingredient::T_IngCrea_CephalopodShell_01":
+    type: Ingredient
+    name: Cephalopod Shell Fragment
+    model: "tr/n/tr_ing_ceph_shell.nif"
+    icon: "tr/n/tr_ing_ceph_shell.dds"
+    weight: 2.0
+    value: 20
+    effects: []
+  "Ingredient::T_IngMine_Jade_01":
+    type: Ingredient
+    name: Jade
+    model: "tr/n/tr_ing_jade.nif"
+    icon: "tr/n/tr_ing_jade.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFood_TartRedguard_01":
+    type: Ingredient
+    name: Tart
+    model: "hf/n/hf_food_tart01.nif"
+    icon: "hf/n/hf_food_tart01.dds"
+    weight: 1.0
+    value: 18
+    effects: []
+  "Ingredient::T_IngFood_BreadBretonLong_02": ~
+  "Potion::T_IngFood_BreadBretonLong_02":
+    type: Potion
+    name: Longbread
+    model: "hr/n/hr_ing_baguettehalf.nif"
+    icon: "hr/n/hr_ing_baguettehalf.dds"
+    weight: 0.25
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_SocrataNectar_01":
+    type: Ingredient
+    name: Socatra Nectar
+    model: "pc/n/pc_ingred_socatra.nif"
+    icon: "pc/n/pc_tx_ingred_socatra.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::Sky_qRe_DSW4_Bread": ~
+  "Potion::Sky_qRe_DSW4_Bread":
+    type: Potion
+    name: "Alek's Bread"
+    model: "pc/n/pc_ingred_c_bread_01.nif"
+    icon: "pc/n/pc_tx_ingred_cbread1.dds"
+    weight: 0.5
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_Bloatroot": ~
+  "Potion::T_IngFlor_Bloatroot":
+    type: Potion
+    name: White Bloatroot
+    model: "tr/n/tr_ing_bloatroot.nif"
+    icon: "tr/n/tr_ing_bloatroot.dds"
+    weight: 0.1
+    value: 30
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngMine_JetDae_01":
+    type: Ingredient
+    name: Jet
+    model: "tr/n/tr_ing_jet_mm.nif"
+    icon: "tr/n/tr_ing_jet.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFlor_Comatus_01":
+    type: Ingredient
+    name: Comatus Corpinus
+    model: "sky/n/sky_ingred_comatus01.nif"
+    icon: "sky/n/tx_ingred_comatus.dds"
+    weight: 0.3
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_DomicaRedwort_01":
+    type: Ingredient
+    name: Redwort Flower
+    model: "pc/n/pc_ing_dredwort.nif"
+    icon: "pc/n/pc_tx_ingred_dredwort.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_FlaxFlower_03":
+    type: Ingredient
+    name: Yellow Flax Flowers
+    model: "pc/n/pc_ingred_flax_y.nif"
+    icon: "pc/n/pc_tx_ingred_flaxyel.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_ClamMeat":
+    type: Ingredient
+    name: Clam Meat
+    model: "pi/n/tr_ing_clammeat.nif"
+    icon: "pi/n/pi_ing_clammeat.dds"
+    weight: 0.3
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_BlisteringFoment_01":
+    type: Ingredient
+    name: Blistering Fomentarius
+    model: "tr/n/tr_ing_fomentarius.nif"
+    icon: "tr/n/tr_ing_fomentarius.dds"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_VileMorchella_01":
+    type: Ingredient
+    name: Vile Morchella
+    model: "tr/n/tr_ing_grey_morel02.nif"
+    icon: "tr/n/tr_ing_greymorel_02.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_DaedricBatEye_01":
+    type: Ingredient
+    name: Daedra Eye
+    model: "tr/n/tr_ing_daebat_eye.nif"
+    icon: "tdg/tr_ing_daebat_eye.dds"
+    weight: 0.4
+    value: 25
+    effects: []
+  "Ingredient::T_IngMine_OreIron_01":
+    type: Ingredient
+    name: Iron Ore
+    model: "sky/n/sky_ingred_iron_01.nif"
+    icon: "sky/n/tx_ingred_iron_ore_01.dds"
+    weight: 3.0
+    value: 20
+    effects: []
+  "Ingredient::T_IngFood_Onion_01":
+    type: Ingredient
+    name: Onion
+    model: "sky/n/sky_ingred_onion_01.nif"
+    icon: "sky/n/tx_ingred_onion_01.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::TR_m7_AHPicnicCabbage":
+    type: Ingredient
+    name: Cabbage Leaf
+    model: "sky/n/sky_ingred_cab_02b.nif"
+    icon: "sky/n/tx_ingred_cab_02b.dds"
+    weight: 0.1
+    value: 0
+    effects: []
+    script: TR_m7_AffairsHeartPicnic_sc
+  "Ingredient::T_IngCrea_RakiTeeth_01":
+    type: Ingredient
+    name: Raki Teeth
+    model: "sky/n/sky_ingred_rakiteeth.nif"
+    icon: "sky/n/tx_ingred_rakiteeth.dds"
+    weight: 0.3
+    value: 15
+    effects: []
+  "Ingredient::T_IngFlor_MarshStalk_01":
+    type: Ingredient
+    name: Marsh Stalk Cap
+    model: "pc/n/pc_ing_marshstalk.nif"
+    icon: "pc/n/pc_tx_ingred_marshs.dds"
+    weight: 0.4
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_Cake_01": ~
+  "Potion::T_IngFood_Cake_01":
+    type: Potion
+    name: Cake
+    model: "hr/n/hr_cake_01.nif"
+    icon: "hr/n/hr_cake_01.dds"
+    weight: 1.0
+    value: 15
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_WtLillyYellow_01":
+    type: Ingredient
+    name: Water Lilly
+    model: "tr/n/tr_ing_lily_yellow.nif"
+    icon: "tr/n/tr_ing_lily_yellow.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Coconut_01": ~
+  "Potion::T_IngFlor_Coconut_01":
+    type: Potion
+    name: Coconut Meat
+    model: "pi/n/pi_ing_coconutmeat.nif"
+    icon: "pi/n/pi_ing_coconutmeat.dds"
+    weight: 2.0
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_RustblossomSeed_01":
+    type: Ingredient
+    name: Rustbloossom Seed
+    model: "hf/n/hf_ingred_rustseed_01.nif"
+    icon: "hf/n/hf_ingred_rustseed_01.dds"
+    weight: 0.08
+    value: 3
+    effects: []
+  "Ingredient::T_IngMine_OreGold_01":
+    type: Ingredient
+    name: Gold Ore
+    model: "tr/n/tr_ing_gold.nif"
+    icon: "tr/n/tr_ing_gold.dds"
+    weight: 5.0
+    value: 250
+    effects: []
+  "Ingredient::TR_m4_q_VM_BlueCarbuncle_UNI":
+    type: Ingredient
+    name: Blue Carbuncle
+    model: "tr/n/tr_ing_sapphire_mm.nif"
+    icon: "tr/n/tr_ing_sapphire_mm.dds"
+    weight: 0.2
+    value: 500
+    effects: []
+  "Ingredient::T_IngCrea_HirvHide_01":
+    type: Ingredient
+    name: Hirv Hide
+    model: "tr/n/tr_ing_hide_hirv.nif"
+    icon: "tr/n/tr_ing_hide_hirv.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_BreadKeptu_03":
+    type: Ingredient
+    name: Braided Bread
+    model: "pi/n/pi_ing_keptubreadloop.nif"
+    icon: "pi/n/pi_ing_keptubreadloop.dds"
+    weight: 0.8
+    value: 6
+    effects: []
+  "Ingredient::T_IngMine_Turquoise_01":
+    type: Ingredient
+    name: Turquoise
+    model: "tr/n/tr_ing_turquoise_mm.nif"
+    icon: "tr/n/tr_ing_turquoise_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFood_FishChrysophant_01":
+    type: Ingredient
+    name: Chrysophant
+    model: "pc/n/pc_ing_chrysophant.nif"
+    icon: "pc/n/pc_tx_ingred_chrysoph.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_MothWingCyr_03":
+    type: Ingredient
+    name: Yellow Moth Wing
+    model: "pc/n/pc_ing_moth_wing_03.nif"
+    icon: "pc/n/pc_ing_moth_wing_03.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::T_IngCrea_DurzogHide_01":
+    type: Ingredient
+    name: Durzog Hide
+    model: "hr/n/hr_ing_durzoghide_01.nif"
+    icon: "hr/n/hr_ing_durzoghide_01.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_ThorntailFlower_01":
+    type: Ingredient
+    name: Thorntail Flower
+    model: "epos/n/els_cactus_flower_01.nif"
+    icon: "epos/n/cactus_flower_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_LoversRaflesiaPistil":
+    type: Ingredient
+    name: Lovers Rafflesia Pistil
+    model: "tr/n/tr_ing_raflesiapistil.nif"
+    icon: "tr/n/tr_ing_raflesiapistil.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_MoonMothWing_01":
+    type: Ingredient
+    name: Moon Moth Wing
+    model: "pc/n/pc_ing_moth_wing_01.nif"
+    icon: "pc/n/pc_ing_moth_wing_01.dds"
+    weight: 0.1
+    value: 15
+    effects: []
+  "Ingredient::Sky_iRe_Barrow99_Heart":
+    type: Ingredient
+    name: Embalmed Heart
+    model: "tr/n/tr_ing_mummy_heart_01.nif"
+    icon: "tr/n/tr_ing_mummy_heart_01.dds"
+    weight: 0.5
+    value: 200
+    effects: []
+  "Ingredient::T_IngMine_FoolsGold_01":
+    type: Ingredient
+    name: "Fool's Gold"
+    model: "tr/n/tr_ing_fools_gold.nif"
+    icon: "tr/n/tr_ing_fools_gold.dds"
+    weight: 2.0
+    value: 100
+    effects: []
+  "Ingredient::T_IngMine_OreMercury_01":
+    type: Ingredient
+    name: Mercury
+    model: "tr/n/tr_ing_mercury.nif"
+    icon: "tr/n/tr_ing_mercury.dds"
+    weight: 2.0
+    value: 100
+    effects: []
+  "Ingredient::T_IngCrea_KwamaChitin_01":
+    type: Ingredient
+    name: Kwama Chitin
+    model: "tr/n/tr_ing_kwama_chitin.nif"
+    icon: "tr/n/tr_ing_kwama_chitin.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::TR_i4-507_ingred_hla_pearl":
+    type: Ingredient
+    name: "Edelmine's Pearl"
+    model: "n/ingred_pearl_01.nif"
+    icon: "n/tx_pearl.tga"
+    weight: 0.2
+    value: 350
+    effects: []
+  "Ingredient::TR_m3_OE_q_HorseMeat":
+    type: Ingredient
+    name: Horse Meat
+    model: "sky/n/sky_ingred_horsemeat.nif"
+    icon: "sky/n/tx_ingred_meat_h.dds"
+    weight: 1.3
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_BeetleShell_02":
+    type: Ingredient
+    name: Crag Beetle Shell
+    model: "tr/n/tr_ing_beetle_shell_02.nif"
+    icon: "tr/n/tr_ing_beetle_shell_02.dds"
+    weight: 0.5
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_BreadNordRye_01": ~
+  "Potion::T_IngFood_BreadNordRye_01":
+    type: Potion
+    name: Bread
+    model: "sky/n/sky_ing_ryebread.nif"
+    icon: "sky/n/sky_ing_ryebread.dds"
+    weight: 0.7
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_AlchemistsGlobe_01":
+    type: Ingredient
+    name: "Alchemist's Globe"
+    model: "tr/n/tr_ing_alchglobe_01.nif"
+    icon: "tr/n/tr_ing_alchemistsglobe.dds"
+    weight: 0.2
+    value: 20
+    effects: []
+  "Ingredient::T_IngMine_KhajiitEyeDae_01":
+    type: Ingredient
+    name: Khajiit-Eye
+    model: "tr/n/tr_ing_khajeye.nif"
+    icon: "tr/n/tr_ing_khaeye.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::TR_m7_Kalk_Evenfall_Sapphire":
+    type: Ingredient
+    name: Evenfall
+    model: "tr/n/tr_ing_sapphire_mm.nif"
+    icon: "tr/n/tr_ing_sapphire_mm.dds"
+    weight: 0.2
+    value: 1500
+    effects: []
+  "Ingredient::T_IngFood_PoppadGourd_01":
+    type: Ingredient
+    name: Poppad Gourd
+    model: "pc/n/pc_ing_poppad_01.nif"
+    icon: "pc/n/pc_tx_ingred_poppad.dds"
+    weight: 5.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_WormWh02":
+    type: Ingredient
+    name: Worm Wheat Incense
+    model: "hr/n/hr_ing_wormwh_02.nif"
+    icon: "hr/n/hr_ing_wormwh02.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_Agate_01":
+    type: Ingredient
+    name: Rainbow Agate
+    model: "tr/n/tr_ing_agate_01.nif"
+    icon: "tr/n/tr_ing_agate_01.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::TR_m2_q_22_Dust":
+    type: Ingredient
+    name: Ancient Dust
+    model: "n/ingred_ash_salts_01.nif"
+    icon: "n/tx_ashsalts_01.tga"
+    weight: 0.0
+    value: 0
+    effects: []
+  "Ingredient::T_IngFood_BreadFlat_01":
+    type: Ingredient
+    name: Flat Bread
+    model: "sky/n/sky_ingred_flbread_01.nif"
+    icon: "sky/n/tx_ingred_flbread_01.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_FlaxFlower_01":
+    type: Ingredient
+    name: Blue Flax Flowers
+    model: "pc/n/pc_ingred_flax_b.nif"
+    icon: "pc/n/pc_tx_ingred_flaxbl.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Cracker_01": ~
+  "Potion::T_IngFood_Cracker_01":
+    type: Potion
+    name: Cracker
+    model: "pc/n/pc_ing_cracker.nif"
+    icon: "pc/n/pc_ing_cracker.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFood_Scone_01": ~
+  "Potion::T_IngFood_Scone_01":
+    type: Potion
+    name: Scone
+    model: "pc/n/pc_ing_scone.nif"
+    icon: "pc/n/pc_ing_scone.dds"
+    weight: 0.2
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFood_EggSeagull_01":
+    type: Ingredient
+    name: Seagull Egg
+    model: "sky/n/sky_ingred_seagegg_01.nif"
+    icon: "sky/n/tx_ingred_segg_01.dds"
+    weight: 0.3
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_IronwoodNut_01":
+    type: Ingredient
+    name: Ironwood Nuts
+    model: "sky/n/sky_ingred_ironwood.nif"
+    icon: "sky/n/tx_ingred_ironwoodnut.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Cabbage_01":
+    type: Ingredient
+    name: Head of Cabbage
+    model: "sky/n/sky_ingred_cab_02a.nif"
+    icon: "sky/n/tx_ingred_cab_02a.dds"
+    weight: 1.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Hemlock_01":
+    type: Ingredient
+    name: Hemlock Seeds
+    model: "sky/n/sky_ingred_hemlock01.nif"
+    icon: "sky/n/tx_ingred_hemlock01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::TR_m1_Q_Ingred_Topaz":
+    type: Ingredient
+    name: Topaz Offering
+    model: "tr/n/tr_ing_topaz_mm.nif"
+    icon: "tr/n/tr_ing_topaz_mm.dds"
+    weight: 1.5
+    value: 75
+    effects: []
+  "Ingredient::T_IngFlor_AnemicTwinstipe_01":
+    type: Ingredient
+    name: Anemic Twinstipe
+    model: "tr/n/tr_ing_grey_twinstipe.nif"
+    icon: "tr/n/tr_ing_greytwinstipe.dds"
+    weight: 0.2
+    value: 13
+    effects: []
+  "Ingredient::TR_m7_NVA8_IngCrea_GoatPelt_01":
+    type: Ingredient
+    name: Goat Fur
+    model: "sky/m/sky_misc_orc_gfur_01.nif"
+    icon: "sky/m/tx_misc_orc_gfur_01.dds"
+    weight: 1.0
+    value: 3
+    effects: []
+    script: TR_m7_NVA_Stage8_Persist
+  "Ingredient::T_IngFlor_Cabbage_02":
+    type: Ingredient
+    name: Cabbage Leaf
+    model: "sky/n/sky_ingred_cab_02b.nif"
+    icon: "sky/n/tx_ingred_cab_02b.dds"
+    weight: 0.1
+    value: 0
+    effects: []
+  "Ingredient::T_IngFood_MeatBoar_02":
+    type: Ingredient
+    name: Boar Meat
+    model: "sky/n/sky_ingred_meat_03.nif"
+    icon: "sky/n/tx_ingred_meat_03.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_BloodlilyPod_01":
+    type: Ingredient
+    name: Blood Lily Pod
+    model: "pc/n/pc_ingred_bloodlily1.nif"
+    icon: "pc/n/pc_tx_ingred_blilly1.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::TR_m4_ing_rotten_guar_meat":
+    type: Ingredient
+    name: Rotten Guar Meat
+    model: "tr/n/tr_ing_meat_guar.nif"
+    icon: "tr/n/tr_ing_meat_guar.dds"
+    weight: 1.0
+    value: 0
+    effects: []
+  "Ingredient::T_IngFlor_Tanna_01":
+    type: Ingredient
+    name: Tanna
+    model: "tr/n/tr_ing_tanna.nif"
+    icon: "tr/n/tr_f_tanna.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_Cookie_02": ~
+  "Potion::T_IngFood_Cookie_02":
+    type: Potion
+    name: Biscuit
+    model: "tr/n/tr_ing_cookie_02.nif"
+    icon: "tr/n/tr_ing_cookie_02.dds"
+    weight: 0.2
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_SpongeLotusSeed_01":
+    type: Ingredient
+    name: Sponge Lotus Seed
+    model: "tr/n/tr_n_spongelotusseed.nif"
+    icon: "tr/n/tr_n_spongelotusseed.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_Fig_Dried_01":
+    type: Ingredient
+    name: Dried Fig
+    model: "pc/n/pc_ing_fig_dried.nif"
+    icon: "pc/n/pc_ingred_fig_dried.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_PilgrimGel_01":
+    type: Ingredient
+    name: "Pilgrim's Gel"
+    model: "tr/f/tr_flora_pilgring_02.nif"
+    icon: "tr/n/tr_ing_pilgrim_02.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_GoldenRod_01":
+    type: Ingredient
+    name: Goldenrod Seed Pod
+    model: "pc/n/pc_ingred_grod.nif"
+    icon: "pc/n/pc_tx_ingred_grod.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Arrowroot_01":
+    type: Ingredient
+    name: Arrowroot
+    model: "pc/n/pc_ingred_arrowr.nif"
+    icon: "pc/n/pc_tx_ingred_arrowr.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_RubyDeTomb_01":
+    type: Ingredient
+    name: Ruby
+    model: "n/ingred_ruby_01.nif"
+    icon: "n/tx_ruby.tga"
+    weight: 0.2
+    value: 200
+    effects: []
+    script: T_ScObj_DeTombSpiritSummon
+  "Ingredient::T_IngFlor_SomnaliusFrond_01":
+    type: Ingredient
+    name: Somnalius Frond
+    model: "pc/n/pc_ingred_somnalius.nif"
+    icon: "pc/n/pc_ingred_somnalius.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::TR_m3_OE_RatMeatPoison":
+    type: Ingredient
+    name: Poisoned Rat Meat
+    model: "n/ingred_rat_meat_01.nif"
+    icon: "n/tx_rat_meat_01.tga"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::TR_m7_Ns_MG_Hemlock_01":
+    type: Ingredient
+    name: Hemlock Seeds
+    model: "sky/n/sky_ingred_hemlock01.nif"
+    icon: "sky/n/tx_ingred_hemlock01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::TR_m4_AA_SehutuHeart":
+    type: Ingredient
+    name: "Bel-Betu's Heart"
+    model: "tr/n/tr_ing_mummy_heart_01.nif"
+    icon: "tr/n/tr_ing_mummy_heart_01.dds"
+    weight: 0.5
+    value: 0
+    effects: []
+  "Ingredient::T_IngFlor_Gloomtear_01":
+    type: Ingredient
+    name: Gloomtears
+    model: "hr/n/hr_n_gloomtear.nif"
+    icon: "hr/n/hr_n_gloomtear.dds"
+    weight: 0.1
+    value: 4
+    effects: []
+  "Ingredient::T_IngCrea_MothWingCyr_02":
+    type: Ingredient
+    name: Ancestor Moth Wing
+    model: "pc/n/pc_ing_moth_wing_02.nif"
+    icon: "pc/n/pc_ing_moth_wing_02.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_BreadRedguard_01":
+    type: Ingredient
+    name: Bread
+    model: "hf/n/hf_food_bread01.nif"
+    icon: "hf/n/hf_food_bread01.tga"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_SaberCatTooth_01":
+    type: Ingredient
+    name: Saber Cat Tooth
+    model: "sky/n/sky_ingred_sc_th_01.nif"
+    icon: "sky/n/tx_ingred_sc_th_01.dds"
+    weight: 0.5
+    value: 25
+    effects: []
+  "Ingredient::TR_m3_q_OE_MG_Dae_Gems":
+    type: Ingredient
+    name: "<Cursed Gem Spawn Point>"
+    model: "tr/n/tr_ing_turquoise_mm.nif"
+    icon: "tr/n/tr_ing_turquoise_mm.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+    script: TR_m3_q_OE_MG_GemScript1
+  "Ingredient::T_IngFlor_Chokeberry_01":
+    type: Ingredient
+    name: Chokeberry
+    model: "pc/n/pc_ing_cberry.nif"
+    icon: "pc/n/pc_tx_ingred_cberry.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_TempleDome_01":
+    type: Ingredient
+    name: Temple Dome
+    model: "tr/n/tr_ing_amanita.nif"
+    icon: "tr/n/tr_ing_amanita.dds"
+    weight: 0.4
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea _StridentBirdFeath_01":
+    type: Ingredient
+    name: Strident Runner Feathers
+    model: "pc/n/pc_ing_stridbirdfeath.nif"
+    icon: "pc/n/pc_ing_stridbirdfeath.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_Trefoil_01":
+    type: Ingredient
+    name: Trefoil Flower
+    model: "hr/n/hr_n_trefoil.nif"
+    icon: "hr/n/hr_n_trefoil.dds"
+    weight: 0.15
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_MothWingCyr_06":
+    type: Ingredient
+    name: Rosy Moth Wing
+    model: "pc/n/pc_ing_moth_wing_06.nif"
+    icon: "pc/n/pc_ing_moth_wing_06.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Stinkhorn_01":
+    type: Ingredient
+    name: Stinkhorn Cap
+    model: "pc/n/pc_ing_stinkhorn.nif"
+    icon: "pc/n/pc_tx_ingred_stinkhorn.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_LichDust_01":
+    type: Ingredient
+    name: Lich Dust
+    model: "hr/n/cr_lich_dust.nif"
+    icon: "hr/n/cr_lich_dust.dds"
+    weight: 0.1
+    value: 500
+    effects: []
+  "Ingredient::T_IngFood_BreadFlat_02":
+    type: Ingredient
+    name: Flat Bread
+    model: "sky/n/sky_ingred_flbread_02.nif"
+    icon: "sky/n/tx_ingred_flbread_02.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::TR_i3-591_ingred_RaathimAsh":
+    type: Ingredient
+    name: Raathim Gravedust
+    model: "n/ingred_gravedust_01.nif"
+    icon: "n/tx_gravedust_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_ShellMolecrab_01":
+    type: Ingredient
+    name: Big Mole Crab Shell
+    model: "tr/n/tr_ing_mcrabshell_01.nif"
+    icon: "tr/n/tr_ing_molecrab_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_Eyestar_01":
+    type: Ingredient
+    name: Eyestar
+    model: "tr/n/tr_ing_eyestar.nif"
+    icon: "tr/n/tr_ing_eyestar.dds"
+    weight: 0.5
+    value: 100
+    effects: []
+  "Ingredient::T_IngFood_ScribPie_01": ~
+  "Potion::T_IngFood_ScribPie_01":
+    type: Potion
+    name: Scrib Pie
+    model: "tr/n/tr_ing_scrib_pie.nif"
+    icon: "tr/n/tr_ing_scrib_pie.dds"
+    weight: 1.0
+    value: 10
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFood_MeatKagouti_01":
+    type: Ingredient
+    name: Kagouti Meat
+    model: "tr/n/tr_ing_meat_kagouti.nif"
+    icon: "tr/n/tr_ing_meat_kagouti.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_Grape_01":
+    type: Ingredient
+    name: Colovian Grapes
+    model: "pc/n/pc_ingred_grape_01.nif"
+    icon: "pc/n/pc_tx_ingred_grape_01.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_ButterflyWingCyr_04":
+    type: Ingredient
+    name: Fruitbearer Butterfly Wing
+    model: "pc/n/pc_ing_btrfly_wing_04.nif"
+    icon: "pc/n/pc_ing_btrfly_wing_04.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_RedrosePetal_01":
+    type: Ingredient
+    name: Rose
+    model: "tr/n/tr_ing_redrose01.nif"
+    icon: "tr/n/tr_ing_redrose01.dds"
+    weight: 0.2
+    value: 10
+    effects: []
+  "Ingredient::T_IngCrea_SkyrendSlumgum_01":
+    type: Ingredient
+    name: Skyrender Slumgum
+    model: "tr/n/tr_ing_slumgum_01.nif"
+    icon: "tr/n/tr_ing_slumgum.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_Sapphire_01":
+    type: Ingredient
+    name: Sapphire
+    model: "tr/n/tr_ing_sapphire_mm.nif"
+    icon: "tr/n/tr_ing_sapphire_mm.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::T_IngFlor_ArrowrootFlower_01":
+    type: Ingredient
+    name: Arrowroot Flower
+    model: "pc/n/pc_ingred_arrowf.nif"
+    icon: "pc/n/pc_tx_ingred_arrowf.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_HorkerPupPelt_02":
+    type: Ingredient
+    name: Horker Pup Pelt
+    model: "tr/n/tr_ing_horkpup_02.nif"
+    icon: "tr/n/tr_ing_horkerpup_02.dds"
+    weight: 1.0
+    value: 30
+    effects: []
+  "Ingredient::T_IngFlor_RustRussula_01":
+    type: Ingredient
+    name: Rust Russula
+    model: "sky/n/sky_ingred_rustr_01.nif"
+    icon: "sky/n/tx_ingred_rustr_01.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_BloodlilyFlower_01":
+    type: Ingredient
+    name: Blood Lily Flower
+    model: "pc/n/pc_ingred_bloodlily2.nif"
+    icon: "pc/n/pc_tx_ingred_blilly2.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_HopperMeat":
+    type: Ingredient
+    name: Sharai Hopper Meat
+    model: "tr/n/tr_ing_meat_hopper.nif"
+    icon: "tr/n/tr_ing_meat_hopper.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_CetaceanMelon":
+    type: Ingredient
+    name: Cetacean Melon
+    model: "pc/n/pc_ing_cetacean_melon.nif"
+    icon: "pc/n/pc_ing_cetacean_melon.tga"
+    weight: 2.0
+    value: 15
+    effects: []
+  "Ingredient::T_IngMine_PearlBlue_01":
+    type: Ingredient
+    name: Blue Pearl
+    model: "pi/n/tr_ing_pearlblue.nif"
+    icon: "pi/n/pi_ing_pearlblue.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngCrea_SturgeonRoe_01":
+    type: Ingredient
+    name: Sturgeon Roe
+    model: "tr/n/tr_ing_sturgeon_roe.nif"
+    icon: "tr/n/tr_ing_sturgeon_roe.dds"
+    weight: 0.3
+    value: 40
+    effects: []
+  "Ingredient::T_IngFood_FishPike_01":
+    type: Ingredient
+    name: Pike Meat
+    model: "sky/n/sky_ingred_meat_pk_01.nif"
+    icon: "sky/n/tx_ingred_meat_pk_01.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Wormwood_01":
+    type: Ingredient
+    name: Wormwood Leaves
+    model: "pc/n/pc_ing_wormw.nif"
+    icon: "pc/n/pc_tx_ingred_wormw.dds"
+    weight: 0.1
+    value: 4
+    effects: []
+  "Ingredient::T_IngFood_SilverPalmfruit_01":
+    type: Ingredient
+    name: Palm Fruit
+    model: "sky/n/sky_ingred_palm_01.nif"
+    icon: "sky/n/tx_ingred_palm_01.dds"
+    weight: 0.5
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_Lazarum_01":
+    type: Ingredient
+    name: Lazarum Lazandrum
+    model: "tr/n/tr_ing_lazarum_01.nif"
+    icon: "tr/n/tr_ing_lazarum_01.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_BloodstoneDae_01":
+    type: Ingredient
+    name: Bloodstone
+    model: "tr/n/tr_ing_bloodstone_mm.nif"
+    icon: "tr/n/tr_ing_bloodstone_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFlor_BlacksporeCap_01":
+    type: Ingredient
+    name: Black Spore Cap
+    model: "sky/n/sky_ingred_bscap_01.nif"
+    icon: "sky/n/tx_ingred_bscap_01.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::TR_m2_q_38_ashbonemeal":
+    type: Ingredient
+    name: Contaminated Bonemeal
+    model: "n/ingred_blonemeal_01.nif"
+    icon: "n/tx_bonemeal_01.tga"
+    weight: 0.2
+    value: 2
+    effects: []
+    script: TR_m2_q_38_s_ashbonemeal
+  "Ingredient::T_IngFlor_Milkthistle_01":
+    type: Ingredient
+    name: Milk Thistle Flower
+    model: "pc/n/pc_ingred_milk_thistle.nif"
+    icon: "pc/n/pc_tx_ingred_milkth.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_Newtscales_01":
+    type: Ingredient
+    name: Newt Scales
+    model: "pc/n/pc_ing_newtscales.nif"
+    icon: "pc/n/pc_tx_ingred_newts.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::TR_m4_TJ_MoonshadowRose":
+    type: Ingredient
+    name: Moonshadow Rose
+    model: "tr/n/tr_ing_blackrose01.nif"
+    icon: "tr/n/tr_ing_blackrose01.dds"
+    weight: 0.2
+    value: 500
+    effects: []
+  "Ingredient::T_IngFood_Potato_01":
+    type: Ingredient
+    name: Potato
+    model: "sky/n/sky_ingred_potato_01.nif"
+    icon: "sky/n/tx_ingred_potato_01.dds"
+    weight: 0.3
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_ArmunHide_01":
+    type: Ingredient
+    name: Armun Kagouti Hide
+    model: "tr/n/tr_ing_armunkag_hide.nif"
+    icon: "tr/n/tr_ing_armun_kagouti.dds"
+    weight: 1.0
+    value: 25
+    effects: []
+  "Ingredient::T_IngFlor_GreyTickPowder_01":
+    type: Ingredient
+    name: Grey Tick Powder
+    model: "tr/n/tr_ing_grey_tick.nif"
+    icon: "tr/n/tr_ing_greytick.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_HorkerPupPelt_03":
+    type: Ingredient
+    name: Horker Pup Pelt
+    model: "tr/n/tr_ing_horkpup_03.nif"
+    icon: "tr/n/tr_ing_horkerpup_03.dds"
+    weight: 1.0
+    value: 30
+    effects: []
+  "Ingredient::T_IngFlor_Hamumroot_01":
+    type: Ingredient
+    name: Hamum Root
+    model: "tr/n/tr_ing_hamumroot.nif"
+    icon: "tr/n/tr_ing_hamumroot.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::TR_m7_q_Ns_IC8_gem1":
+    type: Ingredient
+    name: Ametrine
+    model: "tr/n/tr_ing_ametrine.nif"
+    icon: "tr/n/tr_ing_ametrine.dds"
+    weight: 0.2
+    value: 120
+    effects: []
+  "Ingredient::TR_m2_aztear_i2-383-ind":
+    type: Ingredient
+    name: "Azura's Tear"
+    model: "tr/n/tr_ing_aquamarine_mm.nif"
+    icon: "tr/n/tr_ing_aquamarine_mm.dds"
+    weight: 1.0
+    value: 1500
+    effects: []
+  "Ingredient::T_IngFlor_CFungus_01":
+    type: Ingredient
+    name: Ramaria Formosa Paste
+    model: "tr/n/tr_ing_cfungus_01.nif"
+    icon: "tr/n/tr_ing_coralfungus_01.dds"
+    weight: 0.1
+    value: 15
+    effects: []
+  "Ingredient::T_IngFood_MeatCliffracer_01":
+    type: Ingredient
+    name: Racer Meat
+    model: "tr/n/tr_ing_meat_clfrc.nif"
+    icon: "tr/n/tr_ing_meat_clfrc.dds"
+    weight: 1.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Greenstain_01":
+    type: Ingredient
+    name: Green Stain Mushroom
+    model: "pc/n/pc_ingred_greenstain.nif"
+    icon: "pc/n/pc_tx_ingred_greens.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_Mokre_01":
+    type: Ingredient
+    name: Mokre
+    model: "pc/n/pc_mokre.nif"
+    icon: "pc/n/pc_mokre.tga"
+    weight: 1.0
+    value: 150
+    effects: []
+  "Ingredient::T_IngMine_Amethyst_01":
+    type: Ingredient
+    name: Amethyst
+    model: "tr/n/tr_ing_amethyst_mm.nif"
+    icon: "tr/n/tr_ing_amethyst_mm.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngFlor_MaceFruit_01":
+    type: Ingredient
+    name: Mace Fruit
+    model: "hf/n/hf_ingred_macefruit_01.nif"
+    icon: "hf/n/hf_ingred_macefrut_01.dds"
+    weight: 0.5
+    value: 10
+    effects: []
+  "Ingredient::T_IngFood_FishCod_01":
+    type: Ingredient
+    name: Cod
+    model: "sky/n/sky_ingred_meat_cd01.nif"
+    icon: "sky/n/sky_ingred_meat_cd01.dds"
+    weight: 1.0
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_SheggoShelf_01":
+    type: Ingredient
+    name: "Sheggo's Shelf"
+    model: "tr/n/tr_ing_sheggshelf_01.nif"
+    icon: "tr/n/tr_ing_shegg_shelf_01.dds"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::T_IngSpice_Muscat_01":
+    type: Ingredient
+    name: Muscat
+    model: "pc/n/pc_ing_muscat.nif"
+    icon: "pc/n/pc_ingred_muscat.dds"
+    weight: 0.1
+    value: 30
+    effects: []
+  "Ingredient::T_IngFlor_Shadowfly_02":
+    type: Ingredient
+    name: Shadowfly Stalks
+    model: "sky/n/sky_ingred_shfly_02.nif"
+    icon: "sky/n/tx_ingred_shfly_02.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_DryadSaddle_01":
+    type: Ingredient
+    name: "Dryad's Saddle Polypore Cap"
+    model: "pc/n/pc_ingred_dryad.nif"
+    icon: "pc/n/pc_tx_ingred_dryad.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::T_IngFood_BreadDeshaan_03": ~
+  "Potion::T_IngFood_BreadDeshaan_03":
+    type: Potion
+    name: Deshaan Bread
+    model: "tr/n/tr_ing_deshaanbread_01.nif"
+    icon: "tr/n/tr_ing_deshaanbread_01.dds"
+    weight: 0.5
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_RedCoral_01":
+    type: Ingredient
+    name: Red Coral
+    model: "tr/n/tr_ing_redcoral_01.nif"
+    icon: "tr/n/tr_ing_redcoral_01.dds"
+    weight: 1.0
+    value: 20
+    effects: []
+  "Ingredient::T_IngCrea_MothWingMw_02":
+    type: Ingredient
+    name: Ash Moth Wing
+    model: "tr/n/tr_ing_moth_wing_02.nif"
+    icon: "tr/n/tr_ing_moth_wing_02.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_WormWh01":
+    type: Ingredient
+    name: Worm Wheat Tufts
+    model: "hr/n/hr_ing_wormwh_01.nif"
+    icon: "hr/n/hr_ing_wormwh01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_SilverSpadeMeat_01": ~
+  "Potion::T_IngCrea_SilverSpadeMeat_01":
+    type: Potion
+    name: Silver Spade Meat
+    model: "pi/n/pi_ing_silverspademeat.nif"
+    icon: "pi/n/pi_ing_silverspademeat.dds"
+    weight: 2.0
+    value: 5
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_SnowraySting_01":
+    type: Ingredient
+    name: Snowray Sting
+    model: "sky/n/sky_ingred_snray_01.nif"
+    icon: "sky/n/sky_ingred_sraysting.dds"
+    weight: 0.2
+    value: 10
+    effects: []
+  "Ingredient::T_IngCrea_KwoomFronds":
+    type: Ingredient
+    name: Kwoom Fronds
+    model: "tr/n/tr_ing_kwoom_fronds.nif"
+    icon: "tr/n/tr_ing_kwoom_fronds.dds"
+    weight: 0.1
+    value: 25
+    effects: []
+  "Ingredient::T_IngMine_Topaz_01":
+    type: Ingredient
+    name: Topaz
+    model: "tr/n/tr_ing_topaz_mm.nif"
+    icon: "tr/n/tr_ing_topaz_mm.dds"
+    weight: 0.1
+    value: 150
+    effects: []
+  "Ingredient::T_IngCrea_MeatHoney_01":
+    type: Ingredient
+    name: Meat Honey
+    model: "tr/n/tr_ing_meat_honey.nif"
+    icon: "tr/n/tr_ing_meat_honey.tga"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_OreSulfur_01":
+    type: Ingredient
+    name: Sulphur
+    model: "tr/n/tr_ing_sulfur.nif"
+    icon: "tr/n/tr_ing_sulfur.dds"
+    weight: 0.2
+    value: 25
+    effects: []
+  "Ingredient::T_IngCrea_ThresherClaw_01":
+    type: Ingredient
+    name: Thresher Claw
+    model: "tr/n/tr_ing_threshclaw.nif"
+    icon: "tr/n/tr_ing_thresherclaw.dds"
+    weight: 5.0
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_WtLillyWhite_01":
+    type: Ingredient
+    name: Water Lilly
+    model: "tr/n/tr_ing_lily_white.nif"
+    icon: "tr/n/tr_ing_lily_white.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_TigerlilyNectar_01":
+    type: Ingredient
+    name: Tiger Lily Nectar
+    model: "pc/n/pc_ingred_tlily_nec.nif"
+    icon: "pc/n/pc_tx_ingred_tlilyn.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_Aquilegia_01":
+    type: Ingredient
+    name: Aquilegia Root Pulp
+    model: "pc/n/pc_ing_columbinerp.nif"
+    icon: "pc/n/pc_tx_ingred_columbine.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_RockCrystalDae_01":
+    type: Ingredient
+    name: Rock Crystal
+    model: "tr/n/tr_ing_rock_cryst_mm.nif"
+    icon: "tr/n/tr_ing_rock_crystal.dds"
+    weight: 2.0
+    value: 50
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::TR_m7_q_Ns_IC8_gem7":
+    type: Ingredient
+    name: Topaz
+    model: "tr/n/tr_ing_topaz_mm.nif"
+    icon: "tr/n/tr_ing_topaz_mm.dds"
+    weight: 0.1
+    value: 150
+    effects: []
+  "Ingredient::T_IngFlor_StJahnsWort_01":
+    type: Ingredient
+    name: "St. Jahn's Wort Flowers"
+    model: "pc/n/pc_ingred_sjw.nif"
+    icon: "pc/n/pc_tx_ingred_sjw.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_BreadBretonLong_01": ~
+  "Potion::T_IngFood_BreadBretonLong_01":
+    type: Potion
+    name: Longbread
+    model: "hr/n/hr_ing_baguette.nif"
+    icon: "hr/n/hr_ing_baguette.dds"
+    weight: 0.5
+    value: 3
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_SpiderSilk_01":
+    type: Ingredient
+    name: Spider Silk
+    model: "sky/n/sky_ingred_spidersilk.nif"
+    icon: "sky/n/tx_ingred_spdrslk_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_Agate_02":
+    type: Ingredient
+    name: Fire Agate
+    model: "tr/n/tr_ing_agate_02.nif"
+    icon: "tr/n/tr_ing_agate_02.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_Bluefoot_01":
+    type: Ingredient
+    name: Bluefoot
+    model: "tr/n/tr_ing_bluefoot.nif"
+    icon: "tr/n/tr_ing_bluefoot.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_SaltCrocusPetal_01":
+    type: Ingredient
+    name: Salt Crocus Petal
+    model: "tr/n/tr_f_saltcrocus_petal.nif"
+    icon: "tr/n/tr_ing_saltcrocus.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::T_IngSpice_Drumpear_01":
+    type: Ingredient
+    name: Ground Drumpear Seeds
+    model: "tr/n/tr_ing_drumpear_ground.nif"
+    icon: "tr/n/tr_ing_drump_grnd.dds"
+    weight: 0.1
+    value: 35
+    effects: []
+  "Ingredient::T_IngSpice_Cinnamon_01":
+    type: Ingredient
+    name: Cinnamon Bark
+    model: "sum/n/sum_n_cinnamon01.nif"
+    icon: "sum/n/sum_n_cinnamon01.dds"
+    weight: 0.2
+    value: 40
+    effects: []
+  "Ingredient::TR_m1_q67_Fa1_Seeds":
+    type: Ingredient
+    name: Desert Siren Seeds
+    model: "n/ingred_bm_belladonna_01.nif"
+    icon: "n/tx_ingred_belladonna_01.dds"
+    weight: 0.1
+    value: 65
+    effects: []
+  "Ingredient::T_IngMine_DiamondDeTomb_01":
+    type: Ingredient
+    name: Diamond
+    model: "n/ingred_diamond_01.nif"
+    icon: "n/tx_diamond.tga"
+    weight: 0.2
+    value: 250
+    effects: []
+    script: T_ScObj_DeTombSpiritSummon
+  "Ingredient::T_IngCrea_ButterflyWingSky_03":
+    type: Ingredient
+    name: Amberwing Butterfly Wing
+    model: "sky/n/sky_ing_btrflywing_03.nif"
+    icon: "sky/n/sky_ing_btrflywing_03.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_BarkHeart_01":
+    type: Ingredient
+    name: Bark Heart
+    model: "sky/n/sky_barkheart.nif"
+    icon: "sky/n/sky_tx_ing_barkheart.dds"
+    weight: 0.5
+    value: 40
+    effects: []
+  "Ingredient::T_IngFood_Hardtack_01": ~
+  "Potion::T_IngFood_Hardtack_01":
+    type: Potion
+    name: Hardtack
+    model: "pi/n/pi_ing_hardtack.nif"
+    icon: "pi/n/pi_ing_hardtack.dds"
+    weight: 0.2
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngMine_DiamondBlue_01":
+    type: Ingredient
+    name: Blue Diamond
+    model: "tr/n/tr_ing_blue_diamd.nif"
+    icon: "tr/n/tr_ing_blue_diamd.dds"
+    weight: 0.2
+    value: 500
+    effects: []
+  "Ingredient::TR_m7_q_Ns_IC8_gem9":
+    type: Ingredient
+    name: Raw Gold
+    model: "tr/n/tr_ing_gold.nif"
+    icon: "tr/n/tr_ing_gold.dds"
+    weight: 5.0
+    value: 250
+    effects: []
+  "Ingredient::T_IngFood_Pomegranate_01":
+    type: Ingredient
+    name: Pomegranate
+    model: "tr/n/tr_ing_pomegranate01.nif"
+    icon: "tr/n/tr_ing_pomegranate.tga"
+    weight: 0.25
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_WormmouthHide_01":
+    type: Ingredient
+    name: Wormmouth Hide
+    model: "sky/n/sky_ingred_wmh_01.nif"
+    icon: "sky/n/tx_ingred_wmh_01.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::TR_m7_Kalk_Orc_Flesh":
+    type: Ingredient
+    name: Orc Flesh
+    model: "n/ingred_rat_meat_01.nif"
+    icon: "n/tx_rat_meat_01.tga"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_RedGreenPepper_01":
+    type: Ingredient
+    name: Red-green Pepper
+    model: "pi/n/pi_ing_redgreenpepper.nif"
+    icon: "pi/n/pi_ing_redgreenpepper.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_BorealHydnum_01":
+    type: Ingredient
+    name: Boreal Hydnum
+    model: "tr/n/tr_ing_borealhydnm_01.nif"
+    icon: "tr/n/tr_f_js_borealhydnm_01.dds"
+    weight: 0.1
+    value: 8
+    effects: []
+  "Ingredient::T_IngMine_Spinel_01":
+    type: Ingredient
+    name: Spinel
+    model: "tr/n/tr_ing_spinel_mm.nif"
+    icon: "tr/n/tr_ing_spinel_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::TR_m3_q_A5_SmuggledEbony":
+    type: Ingredient
+    name: Raw Ebony
+    model: "n/ingred_rawebony_01.nif"
+    icon: "n/tx_rawebony.tga"
+    weight: 10.0
+    value: 200
+    effects: []
+  "Ingredient::T_IngFlor_SwmpChal_01":
+    type: Ingredient
+    name: Swamp Chalice
+    model: "sky/n/sky_ingred_swmpcha_01.nif"
+    icon: "sky/n/tx_ingred_swmpchal.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_Honey_01":
+    type: Ingredient
+    name: Honey
+    model: "sky/n/sky_ingred_honeycomb.nif"
+    icon: "sky/n/tx_ingred_honeycombs.dds"
+    weight: 0.2
+    value: 10
+    effects: []
+  "Ingredient::TR_m2_q_9_BGPetals":
+    type: Ingredient
+    name: Bittergreen Petals
+    model: "n/ingred_bittergreen_01.nif"
+    icon: "n/tx_bittergreen_petal_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+    script: TR_m2_q_9_PetalsScript
+  "Ingredient::T_IngFood_Bread_02": ~
+  "Potion::T_IngFood_Bread_02":
+    type: Potion
+    name: Bread
+    model: "tr/n/tr_ingred_bread_01b.nif"
+    icon: "tr/n/tr_ingred_bread_01b.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::TR_m7_q_guarliver":
+    type: Ingredient
+    name: Guar Liver
+    model: "tr/n/tr_ing_meat_guar.nif"
+    icon: "tr/n/tr_ing_meat_guar.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_DridreaSilk_01":
+    type: Ingredient
+    name: Daedra Silk
+    model: "tr/n/tr_ing_daedra_silk_01.nif"
+    icon: "tr/n/tr_ing_dridrea_silk.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::T_IngFlor_MarasBeads_01":
+    type: Ingredient
+    name: "Mara's Beads"
+    model: "pc/n/pc_ing_marasbeads.nif"
+    icon: "pc/n/pc_tx_ingred_marasb.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_AebisFeathers_01":
+    type: Ingredient
+    name: Aebis Feathers
+    model: "pc/n/pc_ing_aebis_feathers.nif"
+    icon: "pc/n/pc_ing_aebis_feathers.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::TR_m3_q_A9_rewardemerald":
+    type: Ingredient
+    name: Emerald
+    model: "n/ingred_emerald_01.nif"
+    icon: "n/tx_emerald.tga"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: TR_m3_q_A9_daedrothreward_em
+  "Ingredient::TR_m2_q_38_purebonemeal":
+    type: Ingredient
+    name: Bonemeal
+    model: "n/ingred_blonemeal_01.nif"
+    icon: "n/tx_bonemeal_01.tga"
+    weight: 0.2
+    value: 2
+    effects: []
+    script: TR_m2_q_38_s_purebonemeal
+  "Ingredient::T_IngFood_EggOrnada_01":
+    type: Ingredient
+    name: Ornada Egg
+    model: "tr/n/tr_ing_ornada_egg.nif"
+    icon: "tr/n/tr_ing_ornada_egg.dds"
+    weight: 0.25
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_OrcBlood_01":
+    type: Ingredient
+    name: "Orc's Blood"
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.1
+    value: 50
+    effects: []
+  "Ingredient::T_IngMine_OreCopper_01":
+    type: Ingredient
+    name: Copper Ore
+    model: "sky/n/sky_ingred_copper_01.nif"
+    icon: "sky/n/tx_ingred_copper_ore.dds"
+    weight: 3.0
+    value: 50
+    effects: []
+  "Ingredient::T_IngFood_GrapeWrothgarian_01":
+    type: Ingredient
+    name: Wrothgarian Grapes
+    model: "sky/n/sky_ingred_wr_grp_01.nif"
+    icon: "sky/n/tx_ingred_wr_grape.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_CinnabarPolypore_01":
+    type: Ingredient
+    name: Cinnabar Polypore Red Cap
+    model: "pc/n/pc_ing_cinpoly1.nif"
+    icon: "pc/n/pc_tx_ingred_cinpoly1.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_Silk_01":
+    type: Ingredient
+    name: Raw Silk
+    model: "pc/n/pc_ing_silk_01.nif"
+    icon: "pc/n/pc_tx_ingred_silk.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_ButterflyWingSky_04":
+    type: Ingredient
+    name: Cloud Flutterling Wing
+    model: "sky/n/sky_ing_btrflywing_04.nif"
+    icon: "sky/n/sky_ing_btrflywing_04.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Mindcap_01":
+    type: Ingredient
+    name: Mindcap
+    model: "hr/n/hr_ing_mindcap_01.nif"
+    icon: "hr/n/hr_ing_mindcap01.tga"
+    weight: 0.2
+    value: 3
+    effects: []
+  "Ingredient::T_IngMine_PearlPink_01":
+    type: Ingredient
+    name: Pink Pearl
+    model: "pi/n/tr_ing_pearlpink.nif"
+    icon: "pi/n/pi_ing_pearlpink.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngFood_Carrot_01":
+    type: Ingredient
+    name: Carrot
+    model: "pc/n/pc_ingred_carrot.nif"
+    icon: "pc/n/pc_tx_ingred_carrot.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_IceCrystal_01":
+    type: Ingredient
+    name: Ice Crystal
+    model: "tr/n/tr_ing_ice_crystal.nif"
+    icon: "tr/n/tr_ing_ice_crystal.dds"
+    weight: 25.0
+    value: 200
+    effects: []
+  "Ingredient::T_IngCrea_Ambergris_float":
+    type: Ingredient
+    name: Ambergris
+    model: "sky/n/sky_ingred_ambergris.nif"
+    icon: "sky/n/sky_ingred_ambergris.dds"
+    weight: 1.5
+    value: 400
+    effects: []
+    script: T_ScObj_AmbergrisFloat
+  "Ingredient::T_IngCrea_Starfish_02":
+    type: Ingredient
+    name: Starfish Leg
+    model: "pi/n/pi_ing_starfish_02.nif"
+    icon: "pi/n/pi_ing_starfish_02.dds"
+    weight: 0.3
+    value: 6
+    effects: []
+  "Ingredient::T_IngCrea_ButterflyWingCyr_06":
+    type: Ingredient
+    name: Drakewing Butterfly Wing
+    model: "pc/n/pc_ing_btrfly_wing_06.nif"
+    icon: "pc/n/pc_ing_btrfly_wing_06.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_Starfish_03":
+    type: Ingredient
+    name: Starfish Leg
+    model: "pi/n/pi_ing_starfish_03.nif"
+    icon: "pi/n/pi_ing_starfish_03.dds"
+    weight: 0.3
+    value: 6
+    effects: []
+  "Ingredient::T_IngFlor_SeaCup_01":
+    type: Ingredient
+    name: Spotted Gillsieve
+    model: "tr/n/tr_ing_seacup.nif"
+    icon: "tr/n/tr_ing_seacup.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_MarmongPaste_01":
+    type: Ingredient
+    name: Marmong Paste
+    model: "pi/n/pi_ing_marmongpaste.nif"
+    icon: "pi/n/pi_ing_marmongpaste.dds"
+    weight: 1.0
+    value: 4
+    effects: []
+  "Ingredient::T_IngCrea_GoatPelt_01":
+    type: Ingredient
+    name: Goat Fur
+    model: "sky/m/sky_misc_orc_gfur_01.nif"
+    icon: "sky/m/tx_misc_orc_gfur_01.dds"
+    weight: 1.0
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_Wool_01":
+    type: Ingredient
+    name: Raw Wool
+    model: "pc/n/pc_ing_wool_01.nif"
+    icon: "pc/n/pc_tx_ingred_wool_01.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::TR_m3_q_OE_MG_Dae_Sapphire":
+    type: Ingredient
+    name: "<Cursed Gem Spawn Point>"
+    model: "tr/n/tr_ing_sapphire_mm.nif"
+    icon: "tr/n/tr_ing_sapphire_mm.dds"
+    weight: 1.0
+    value: 200
+    effects: []
+    script: TR_m3_q_OE_MG_GemScript2
+  "Ingredient::T_IngFood_BreadDeshaan_05": ~
+  "Potion::T_IngFood_BreadDeshaan_05":
+    type: Potion
+    name: Deshaan Bread
+    model: "tr/n/tr_ing_deshaanbred_01c.nif"
+    icon: "tr/n/tr_ing_deshaanbred_01c.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::TR_m3_OE_TG_Vomit":
+    type: Ingredient
+    name: Vomit
+    model: "tr/n/tr_ing_dres_venom_01.nif"
+    icon: "tr/n/tr_ing_dres_venom_01.dds"
+    weight: 0.1
+    value: 0
+    effects: []
+    script: TR_m3_OE_TG_PoisonWineScript
+  "Ingredient::T_IngMine_OreQuicksilver_01":
+    type: Ingredient
+    name: Quicksilver Ore
+    model: "sky/n/sky_ingred_quicksilv.nif"
+    icon: "sky/n/tx_ingred_quicksilv.dds"
+    weight: 2.0
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_WispStalk_01":
+    type: Ingredient
+    name: Wisp Stalks
+    model: "pc/n/pc_ing_wispstalk.nif"
+    icon: "pc/n/pc_ing_wispstalks.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_BreadBretonLong_03": ~
+  "Potion::T_IngFood_BreadBretonLong_03":
+    type: Potion
+    name: Longbread
+    model: "hr/n/hr_ing_baguetteslice.nif"
+    icon: "hr/n/hr_ing_baguetteslice.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFood_NoodlesYnesaiRice_01": ~
+  "Potion::T_IngFood_NoodlesYnesaiRice_01":
+    type: Potion
+    name: Noodles
+    model: "pi/n/pi_ing_noodlesrice.nif"
+    icon: "pi/n/pi_ing_noodlesrice.dds"
+    weight: 0.1
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFood_FishLongfinFilet_01":
+    type: Ingredient
+    name: Longfin Filet
+    model: "pc/n/pc_ing_longfin.nif"
+    icon: "pc/n/pc_tx_ingred_longfin.dds"
+    weight: 0.5
+    value: 14
+    effects: []
+  "Ingredient::T_IngFlor_SmearSpores_01":
+    type: Ingredient
+    name: Smear Spores
+    model: "tr/n/tr_ing_smearspores.nif"
+    icon: "tr/n/tr_ing_smearspores.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_GarnetDae_01":
+    type: Ingredient
+    name: Garnet
+    model: "tr/n/tr_ing_garnet_mm.nif"
+    icon: "tr/n/tr_ing_garnet_mm.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFood_Gooseb01":
+    type: Ingredient
+    name: Gooseberries
+    model: "hr/n/t_hr_ingr_gooseb_01.nif"
+    icon: "hr/hr_ingr_gooseberry.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_MeatDark_01":
+    type: Ingredient
+    name: Warm Meat
+    model: "tdg/tr_ing_darkmeat.nif"
+    icon: "tdg/tr_ing_darkmeat.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_MeatHam_01":
+    type: Ingredient
+    name: Ham
+    model: "sky/n/sky_ingred_ham_01.nif"
+    icon: "sky/n/tx_ingred_ham_01.dds"
+    weight: 8.0
+    value: 50
+    effects: []
+  "Ingredient::T_IngFlor_Mistletoe_01":
+    type: Ingredient
+    name: Mistletoe Berries
+    model: "sky/n/sky_ingred_mistlet.nif"
+    icon: "sky/n/tx_ingred_mistletoe.dds"
+    weight: 0.1
+    value: 7
+    effects: []
+  "Ingredient::T_IngFood_Siyat_02":
+    type: Ingredient
+    name: Cured Siyat
+    model: "pc/n/pc_ing_siyat_cur.nif"
+    icon: "pc/n/pc_tx_ingred_siyatcur.dds"
+    weight: 0.5
+    value: 25
+    effects: []
+  "Ingredient::T_IngFlor_DrumpearSeeds_01":
+    type: Ingredient
+    name: Drumpear Seeds
+    model: "tr/n/tr_ing_drumpearseed.nif"
+    icon: "tr/n/tr_ing_drumpearseed.dds"
+    weight: 0.1
+    value: 15
+    effects: []
+  "Ingredient::T_IngFood_TeaAltmer_02":
+    type: Ingredient
+    name: Assa Tea Cake
+    model: "sum/n/sum_ingred_tea_02.nif"
+    icon: "sum/n/sum_ingred_tea_02.dds"
+    weight: 0.5
+    value: 4
+    effects: []
+  "Ingredient::T_IngMine_Garnet_01":
+    type: Ingredient
+    name: Garnet
+    model: "tr/n/tr_ing_garnet_mm.nif"
+    icon: "tr/n/tr_ing_garnet_mm.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngFood_BreadDeshaan_04": ~
+  "Potion::T_IngFood_BreadDeshaan_04":
+    type: Potion
+    name: Deshaan Bread
+    model: "tr/n/tr_ing_deshaanbred_01b.nif"
+    icon: "tr/n/tr_ing_deshaanbred_01b.dds"
+    weight: 0.25
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngMine_Arsenic_01":
+    type: Ingredient
+    name: Raw Arsenic
+    model: "tr/n/tr_ing_arsenic.nif"
+    icon: "tr/n/tr_ing_arsenic.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_OreZinc_01":
+    type: Ingredient
+    name: Raw Zinc
+    model: "tr/n/tr_ing_zinc.nif"
+    icon: "tr/n/tr_ing_zinc.dds"
+    weight: 2.5
+    value: 6
+    effects: []
+  "Ingredient::T_IngFood_RiceCake_01": ~
+  "Potion::T_IngFood_RiceCake_01":
+    type: Potion
+    name: Rice Cake
+    model: "pi/n/pi_ing_ricecake.nif"
+    icon: "pi/n/pi_ing_ricecake.dds"
+    weight: 0.2
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_HopperAntler_01":
+    type: Ingredient
+    name: Hopper Antler
+    model: "tr/n/tr_ing_hopperanthler.nif"
+    icon: "tr/n/tr_ing_hopperantler.dds"
+    weight: 0.2
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_Agate_04":
+    type: Ingredient
+    name: White Agate
+    model: "tr/n/tr_ing_agate_04.nif"
+    icon: "tr/n/tr_ing_agate_04.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngMine_OreGoldDae_01":
+    type: Ingredient
+    name: Gold Ore
+    model: "tr/n/tr_ing_gold.nif"
+    icon: "tr/n/tr_ing_gold.dds"
+    weight: 5.0
+    value: 250
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngMine_Aquamarine_01":
+    type: Ingredient
+    name: Aquamarine
+    model: "tr/n/tr_ing_aquamarine_mm.nif"
+    icon: "tr/n/tr_ing_aquamarine_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_Trollroot_01":
+    type: Ingredient
+    name: Trollroot Fiber
+    model: "sky/n/sky_ingred_trollroot.nif"
+    icon: "sky/n/tx_ingred_trollr.dds"
+    weight: 1.0
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_FishSalmon_01":
+    type: Ingredient
+    name: Salmon Meat
+    model: "sky/n/sky_ingred_meat_sl_01.nif"
+    icon: "sky/n/tx_ingred_meat_sl_01.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_RocEgg_01":
+    type: Ingredient
+    name: Roc Egg
+    model: "pi/n/pi_ing_rocegg.nif"
+    icon: "pi/n/pi_ing_rocegg.dds"
+    weight: 25.0
+    value: 800
+    effects: []
+  "Ingredient::T_IngFlor_Spiddal_01":
+    type: Ingredient
+    name: Spiddal
+    model: "pc/n/pc_ing_spiddal.nif"
+    icon: "pc/n/pc_ingred_spiddal.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::T_IngFlor_Cupling_01":
+    type: Ingredient
+    name: "Widow's Mortar"
+    model: "tr/n/tr_ing_cupling.nif"
+    icon: "tr/n/tr_ing_cupling.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngCrea_MothWingCyr_05":
+    type: Ingredient
+    name: Cusp Moth Wing
+    model: "pc/n/pc_ing_moth_wing_05.nif"
+    icon: "pc/n/pc_ing_moth_wing_05.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::TR_m4_AA_Tomb_2_Emerald":
+    type: Ingredient
+    name: Emerald
+    model: "n/ingred_emerald_01.nif"
+    icon: "n/tx_emerald.tga"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: TR_m4_AA_Tomb_2_Emerald_Sc
+  "Ingredient::T_IngFlor_DarkSage_01":
+    type: Ingredient
+    name: Dark Sage Petals
+    model: "sky/n/sky_ingred_darksage01.nif"
+    icon: "sky/n/sky_ingr_darksagepet.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_PilgrimPetals_01":
+    type: Ingredient
+    name: "Pilgrim's Petals"
+    model: "tr/f/tr_flora_pilgring_01.nif"
+    icon: "tr/n/tr_ing_pilgrim_01.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::T_IngCrea_MothWingCyr_04":
+    type: Ingredient
+    name: Arrow Moth Wing
+    model: "pc/n/pc_ing_moth_wing_04.nif"
+    icon: "pc/n/pc_ing_moth_wing_04.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_StridentBirdFeath_01":
+    type: Ingredient
+    name: Strident Runner Feathers
+    model: "pc/n/pc_ing_stridbirdfeath.nif"
+    icon: "pc/n/pc_ing_stridbirdfeath.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea _SnowraySting_01":
+    type: Ingredient
+    name: Snowray Sting
+    model: "sky/n/sky_ingred_snray_01.nif"
+    icon: "sky/n/sky_ingred_sraysting.dds"
+    weight: 0.2
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_Tektite_01":
+    type: Ingredient
+    name: Tektite
+    model: "tr/n/tr_ing_tektite_mm.nif"
+    icon: "tr/n/tr_ing_tektite_mm.dds"
+    weight: 0.2
+    value: 50
+    effects: []
+  "Ingredient::T_IngFlor_Harrada_01":
+    type: Ingredient
+    name: Harrada
+    model: "pc/n/pc_ing_harrada.nif"
+    icon: "pc/n/pc_ingred_harrada.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngSpice_Cardamon_01":
+    type: Ingredient
+    name: Cardamon Powder
+    model: "pc/n/pc_ing_cardamon.nif"
+    icon: "pc/n/pc_ingred_cardamon.dds"
+    weight: 0.1
+    value: 40
+    effects: []
+  "Ingredient::TR_m7_q_Ns_IC8_gem5":
+    type: Ingredient
+    name: Amethyst
+    model: "tr/n/tr_ing_amethyst_mm.nif"
+    icon: "tr/n/tr_ing_amethyst_mm.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngCrea_EyestarDae_01":
+    type: Ingredient
+    name: Eyestar
+    model: "tr/n/tr_ing_eyestar.nif"
+    icon: "tr/n/tr_ing_eyestar.dds"
+    weight: 0.5
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFood_MeatDolphin_01":
+    type: Ingredient
+    name: Dolphin Meat
+    model: "pc/n/pc_ing_dolphin_meat.nif"
+    icon: "pc/n/pc_ing_dolphin_meat.tga"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_LapisLazuli_01":
+    type: Ingredient
+    name: Lapis Lazuli
+    model: "pi/n/pi_ing_lapislazuli.nif"
+    icon: "pi/n/pi_ing_lapislazuli.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngDye_ImperialPurple_01":
+    type: Ingredient
+    name: Imperial Purple Dye
+    model: "tr/n/tr_ing_imppurple.nif"
+    icon: "tr/n/tr_ing_imppurple.dds"
+    weight: 0.1
+    value: 35
+    effects: []
+  "Ingredient::TR_m7_q_Ns_IC8_gem8":
+    type: Ingredient
+    name: Onyx
+    model: "tr/n/tr_ing_onyx.nif"
+    icon: "tr/n/tr_ing_onyx.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_LotusPoppyHead_01":
+    type: Ingredient
+    name: Lotus Poppy Head
+    model: "tr/n/tr_ing_lotuspoppyhead.nif"
+    icon: "tr/n/tr_ing_lotuspoppyhead.tga"
+    weight: 0.5
+    value: 8
+    effects: []
+  "Ingredient::T_IngFood_Apple_01":
+    type: Ingredient
+    name: Apple
+    model: "pc/n/pc_ingred_apple.nif"
+    icon: "pc/n/pc_tx_ingred_apple.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::TR_m3_nelyn_cursed_pearl":
+    type: Ingredient
+    name: Pearl
+    model: "n/ingred_pearl_01.nif"
+    icon: "n/tx_pearl.tga"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: TR_m3_Sa_BlindCurse
+  "Ingredient::T_IngFlor_OrangeMoss_01":
+    type: Ingredient
+    name: Orange Moss
+    model: "tr/n/tr_ing_mossclump.nif"
+    icon: "tr/n/tr_ing_mossclump.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_FlyAmanita_01":
+    type: Ingredient
+    name: Fly Amanita
+    model: "pc/n/pc_ingred_flya.nif"
+    icon: "pc/n/pc_tx_ingred_flya.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_Dragynia_01":
+    type: Ingredient
+    name: Dragynia Blossom
+    model: "sky/n/sky_ingred_drag_01.nif"
+    icon: "sky/n/tx_ingred_drag_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::TR_m2_q_38_ectoplasm":
+    type: Ingredient
+    name: Ectoplasm
+    model: "n/ingred_ectoplasm_01.nif"
+    icon: "n/tx_ectoplasm_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+    script: TR_m2_q_38_s_ectoplasm
+  "Ingredient::T_IngFlor_Taragetis_01":
+    type: Ingredient
+    name: Taragetis Blossom
+    model: "sky/n/sky_ingred_tara_01.nif"
+    icon: "sky/n/tx_ingred_tara_01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_EmbalmingPaste_01":
+    type: Ingredient
+    name: Embalming Paste
+    model: "sky/n/sky_ingred_embalm.nif"
+    icon: "sky/n/tx_ingred_embalm.dds"
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::T_IngFood_CheeseNord_01":
+    type: Ingredient
+    name: Cheese
+    model: "sky/n/sky_ingred_cpiece_01.nif"
+    icon: "sky/n/tx_ingred_cpiece_01.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_SeaUrchinMeat_01":
+    type: Ingredient
+    name: Sea Urchin Meat
+    model: "pi/n/tr_ing_seaurchin_meat.nif"
+    icon: "pi/n/pi_ing_seaurchin_meat.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::T_IngSpice_Nigella_01":
+    type: Ingredient
+    name: Nigella Seeds
+    model: "pc/n/pc_ing_nigella.nif"
+    icon: "pc/n/pc_ingred_nigella.dds"
+    weight: 0.1
+    value: 25
+    effects: []
+  "Ingredient::T_IngSpice_Pepper_01":
+    type: Ingredient
+    name: Rihad Pepper
+    model: "pc/n/pc_ing_pepper.nif"
+    icon: "pc/n/pc_ingred_pepper.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::T_IngCrea_MothWingSky_01":
+    type: Ingredient
+    name: Umber Moth Wing
+    model: "sky/n/sky_ing_mothwing_01.nif"
+    icon: "sky/n/sky_ing_mothwing_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_CaputMortuum_01":
+    type: Ingredient
+    name: Caput Mortuum
+    model: "tr/n/tr_ing_caputm.nif"
+    icon: "tr/n/tr_ing_caputmort.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_OreTin_01":
+    type: Ingredient
+    name: Raw Tin
+    model: "tr/n/tr_ing_tin.nif"
+    icon: "tr/n/tr_ing_tin.dds"
+    weight: 2.5
+    value: 7
+    effects: []
+  "Ingredient::TR_m1_Q_Ingred_BlackRose":
+    type: Ingredient
+    name: Black Rose Offering
+    model: "tr/n/tr_ing_blackrose01.nif"
+    icon: "tr/n/tr_ing_blackrose01.dds"
+    weight: 1.2
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_Ashdew_01":
+    type: Ingredient
+    name: Ashdew
+    model: "tr/n/tr_ing_ashdew.nif"
+    icon: "n/tx_gravedust_01.tga"
+    weight: 0.1
+    value: 50
+    effects: []
+  "Ingredient::TR_m7_Ns_JNS_3_TombAD":
+    type: Ingredient
+    name: Ashdew
+    model: "tr/n/tr_ing_ashdew.nif"
+    icon: "n/tx_gravedust_01.tga"
+    weight: 0.1
+    value: 50
+    effects: []
+    script: TR_m7_Ns_JNS_3_ScTombObjEnable
+  "Ingredient::TR_m7_NVA8_snowbear_pelt":
+    type: Ingredient
+    name: Snow Bear Pelt
+    model: "n/ingred_hide_whtbear.nif"
+    icon: "n/tx_ingred_hide_whtbear.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+    script: TR_m7_NVA_Stage8_Persist
+  "Ingredient::T_IngCrea_BearpeltBlack_01":
+    type: Ingredient
+    name: Black Bear Pelt
+    model: "sky/n/sky_ingred_bearhbl.nif"
+    icon: "sky/n/sky_ingred_bearbl.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_BarkScale_01":
+    type: Ingredient
+    name: Bark Scale
+    model: "sky/n/sky_barkscale.nif"
+    icon: "sky/n/sky_tx_ing_barkscale.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_Jadescales_01":
+    type: Ingredient
+    name: Jadescales
+    model: "pi/n/pi_ing_jadescales.nif"
+    icon: "pi/n/pi_ing_jadescales.dds"
+    weight: 0.2
+    value: 6
+    effects: []
+  "Ingredient::T_IngCrea_RedoranHoundChitin_01":
+    type: Ingredient
+    name: Hunting Hound Chitin
+    model: "tr/n/tr_ing_redhndchitin_01.nif"
+    icon: "tr/n/tr_ing_redhndchitin_01.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_PastryFrRedguard_01":
+    type: Ingredient
+    name: Fried Pastry
+    model: "hf/n/hf_food_fpastry01.nif"
+    icon: "hf/n/hf_food_fpastry01.dds"
+    weight: 0.6
+    value: 8
+    effects: []
+  "Ingredient::TR_m7_q_Ns_IC8_gem3":
+    type: Ingredient
+    name: Emerald
+    model: "n/ingred_emerald_01.nif"
+    icon: "n/tx_emerald.tga"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngMine_OreBitterstone_01":
+    type: Ingredient
+    name: Bitterstone Ore
+    model: "pi/n/pi_ing_bitter_01.nif"
+    icon: "pi/n/pi_ing_bitter.dds"
+    weight: 3.0
+    value: 75
+    effects: []
+  "Ingredient::T_IngFood_MeatArenthJerky_01":
+    type: Ingredient
+    name: Arenthian Jerky
+    model: "pc/n/pc_ing_arenthjerky.nif"
+    icon: "pc/n/pc_ing_arenthjerky.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_Spikeworm_01":
+    type: Ingredient
+    name: Spikeworm Carapace
+    model: "sky/n/sky_ingred_spkwrm_01.nif"
+    icon: "sky/n/tx_ingred_spkwrm_01.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_ButterflyWingSky_01":
+    type: Ingredient
+    name: Sweetroll Butterfly Wing
+    model: "sky/n/sky_ing_btrflywing_01.nif"
+    icon: "sky/n/sky_ing_btrflywing_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Elfcup_01":
+    type: Ingredient
+    name: Elf Cup Cap
+    model: "pc/n/pc_ing_ecup.nif"
+    icon: "pc/n/pc_tx_ingred_ecup.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_LotusSeed_01":
+    type: Ingredient
+    name: Sacred Lotus Seeds
+    model: "pc/n/pc_ing_lotuss.nif"
+    icon: "pc/n/pc_tx_ingred_lotuss.dds"
+    weight: 0.1
+    value: 8
+    effects: []
+  "Ingredient::T_IngFlor_BertpodSlice_01":
+    type: Ingredient
+    name: Bertpod Slice
+    model: "tr/n/tr_ingred_bertpod.nif"
+    icon: "n/tx_durzog_meat_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngDye_Ultramarine_01":
+    type: Ingredient
+    name: Ultramarine Dye
+    model: "tr/n/tr_ing_ultramarine.nif"
+    icon: "tr/n/tr_ing_ultramarin.dds"
+    weight: 0.1
+    value: 35
+    effects: []
+  "Ingredient::T_IngCrea_AspisGland":
+    type: Ingredient
+    name: Aspis Venom Gland
+    model: "pc/n/pc_ing_poisdmaspis.nif"
+    icon: "pc/n/pc_ing_poisdmaspis.dds"
+    weight: 0.2
+    value: 12
+    effects: []
+  "Ingredient::T_IngFood_FishSlaughterDried_01": ~
+  "Potion::T_IngFood_FishSlaughterDried_01":
+    type: Potion
+    name: Dried Slaughterfish
+    model: "tr/n/tr_ing_dryfish.nif"
+    icon: "tr/n/tr_ing_dryfish.dds"
+    weight: 1.5
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_Hamumroot_02":
+    type: Ingredient
+    name: Hamum Root
+    model: "tdg/tr_ing_hamumroot02.nif"
+    icon: "tdg/tr_ing_hamumroot02.dds"
+    weight: 1.3
+    value: 7
+    effects: []
+  "Ingredient::T_IngCrea_KoboldTongue_01":
+    type: Ingredient
+    name: Kobold Tongue
+    model: "tr/n/tr_ing_koboldtng.nif"
+    icon: "tr/n/tr_ing_koboldtongue.dds"
+    weight: 0.5
+    value: 8
+    effects: []
+  "Ingredient::T_IngCrea_AtavisticEye_01":
+    type: Ingredient
+    name: Atavistic Eye
+    model: "tr/n/tr_ing_blind_eye.nif"
+    icon: "tr/n/tr_ing_blindeye.dds"
+    weight: 0.2
+    value: 10
+    effects: []
+  "Ingredient::T_IngFood_FishBrowntrout_01":
+    type: Ingredient
+    name: Trout Meat
+    model: "sky/n/sky_ingred_meat_bt_01.nif"
+    icon: "sky/n/tx_ingred_meat_bt_01.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Clawdooie_01":
+    type: Ingredient
+    name: Clawdooie
+    model: "els/n/els_ing_clawdooie.nif"
+    icon: "els/n/els_ing_clawdooie.dds"
+    weight: 1.5
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_KwoomEgg_01":
+    type: Ingredient
+    name: Kwoom Egg
+    model: "tr/n/tr_ing_kwoom_egg.nif"
+    icon: "tr/n/tr_ing_kwoom_egg.dds"
+    weight: 5.0
+    value: 7
+    effects: []
+  "Ingredient::T_IngFlor_AloeVeraPulp_01":
+    type: Ingredient
+    name: Aloe Vera Pulp
+    model: "tr/n/tr_ing_aloe.nif"
+    icon: "tr/n/tr_ing_aloe_pulp.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_DesrosePetal_01":
+    type: Ingredient
+    name: Desert Rose Petals
+    model: "tr/n/tr_ing_desrose_petals.nif"
+    icon: "tr/n/tr_ing_desrose_petals.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_VeiledUrnula_01":
+    type: Ingredient
+    name: Veiled Urnula
+    model: "tr/n/tr_ing_urnula.nif"
+    icon: "tr/n/tr_ing_urnula.dds"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Snowberry_01":
+    type: Ingredient
+    name: Snow Berries
+    model: "sky/n/sky_ingred_snowb_01.nif"
+    icon: "sky/n/tx_ingred_snowb.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_FrogEye_01":
+    type: Ingredient
+    name: Frog Eyeball
+    model: "pc/n/pc_ing_frogeye.nif"
+    icon: "pc/n/pc_tx_ingred_frogeye.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::PC_m1_Gld_ClaudiusFlax":
+    type: Ingredient
+    name: Blue Flax Flowers
+    model: "pc/n/pc_ingred_flax_b.nif"
+    icon: "pc/n/pc_tx_ingred_flaxbl.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_Indulcet_01":
+    type: Ingredient
+    name: Raw Indulcet
+    model: "pc/n/pc_ingred_indulcet.nif"
+    icon: "pc/n/pc_ingred_indulcet.dds"
+    weight: 0.2
+    value: 20
+    effects: []
+  "Ingredient::T_IngCrea_SkyrendQStinger_01":
+    type: Ingredient
+    name: Skyrender Queen Stinger
+    model: "tr/n/tr_ing_skyrendq_sting.nif"
+    icon: "tr/n/tr_ing_skyrendq_sting.tga"
+    weight: 5.0
+    value: 200
+    effects: []
+  "Ingredient::TR_m7_AHPicnicCrabMeat":
+    type: Ingredient
+    name: Crab Meat
+    model: "n/ingred_crabmeat_01.nif"
+    icon: "n/tx_crabmeat_01.tga"
+    weight: 0.5
+    value: 1
+    effects: []
+    script: TR_m7_AffairsHeartPicnic_sc
+  "Ingredient::T_IngFlor_ZukomaBlossom_01":
+    type: Ingredient
+    name: Zukoma Blossom
+    model: "pi/n/pi_ing_zukomablossom.nif"
+    icon: "pi/n/pi_ing_zukomablossom.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_MonkshoodRootPulp_01":
+    type: Ingredient
+    name: Monkshood Root Pulp
+    model: "pc/n/pc_ing_monkshoodrp.nif"
+    icon: "pc/n/pc_tx_ingred_monkshood.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_YamOrb_01":
+    type: Ingredient
+    name: Yam Orb
+    model: "tr/n/tr_ing_yamorb.nif"
+    icon: "tr/n/tr_ing_yamorb.dds"
+    weight: 0.2
+    value: 15
+    effects: []
+  "Ingredient::T_IngMine_OreBrass_01":
+    type: Ingredient
+    name: Brass Ore
+    model: "tr/n/tr_ing_brass.nif"
+    icon: "tr/n/tr_ing_brass.dds"
+    weight: 2.0
+    value: 20
+    effects: []
+  "Ingredient::T_IngMine_PearlPinkDae_01":
+    type: Ingredient
+    name: Pink Pearl
+    model: "pi/n/tr_ing_pearlpink.nif"
+    icon: "pi/n/pi_ing_pearlpink.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFlor_Orcscrown":
+    type: Ingredient
+    name: Orcscrown
+    model: "tr/n/tr_ing_orcscrown.nif"
+    icon: "tr/n/tr_ing_orcscrown.dds"
+    weight: 0.1
+    value: 9
+    effects: []
+  "Ingredient::T_IngFlor_LichenBlue_01":
+    type: Ingredient
+    name: Blue Lichen
+    model: "tr/n/tr_ing_blichen_01.nif"
+    icon: "tr/n/tr_ing_bluelichen.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::TR_m7_NVA8_ingred_wolf_pelt":
+    type: Ingredient
+    name: Wolf Pelt
+    model: "n/ingred_hide_grywolf.nif"
+    icon: "n/tx_ingred_hide_grywolf.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+    script: TR_m7_NVA_Stage8_Persist
+  "Ingredient::T_IngFlor_Cornflower_01":
+    type: Ingredient
+    name: Cornflower Sprig
+    model: "hr/n/t_ingr_cornflower_01.nif"
+    icon: "hr/hr_ingr_cornflower.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_GhostLaurel":
+    type: Ingredient
+    name: Ghost Laurel
+    model: "tr/n/tr_ing_ghostlaurel.nif"
+    icon: "tr/n/tr_ing_ghostlaurel.dds"
+    weight: 0.1
+    value: 8
+    effects: []
+  "Ingredient::T_IngFlor_InkCone_01":
+    type: Ingredient
+    name: Ink Cone
+    model: "pc/n/pc_ingred_inkcone_01.nif"
+    icon: "pc/n/tx_pc_ingr_inkcone_01.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Bitterstar_01":
+    type: Ingredient
+    name: Bitterstar Seeds
+    model: "hr/n/hr_ing_bitters_01.nif"
+    icon: "hr/n/hr_ing_bitters01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_FrostTrollPelt_01":
+    type: Ingredient
+    name: Frost Troll Pelt
+    model: "tr/n/tr_ing_frostroll_hide.nif"
+    icon: "tr/n/tr_ing_frostroll_hide.dds"
+    weight: 0.75
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_Agate_03":
+    type: Ingredient
+    name: Midnight Agate
+    model: "tr/n/tr_ing_agate_03.nif"
+    icon: "tr/n/tr_ing_agate_03.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::TR_m3_TT_Dis_marshrootincense":
+    type: Ingredient
+    name: Marsh Root Incense
+    model: "sky/n/t_ingflor_grasspod01.nif"
+    icon: "sky/n/sky_ingr_grasspod.dds"
+    weight: 0.1
+    value: 50
+    effects: []
+  "Ingredient::TR_m1_Q_Ingred_NobleSedge":
+    type: Ingredient
+    name: Noble Sedge Flowers Offering
+    model: "n/ingred_noble_sedge_01.nif"
+    icon: "n/tx_noble_sedge_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_Minotaurhorn_01":
+    type: Ingredient
+    name: Minotaur Horn
+    model: "sky/n/sky_ingred_hornmin_01.nif"
+    icon: "sky/n/tx_ingred_hornmin_01.dds"
+    weight: 2.0
+    value: 100
+    effects: []
+  "Ingredient::T_IngMine_Opal_01":
+    type: Ingredient
+    name: Opal
+    model: "tr/n/tr_ing_opal_mm.nif"
+    icon: "tr/n/tr_ing_opal_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFood_Strawberry_01":
+    type: Ingredient
+    name: Strawberry
+    model: "pc/n/pc_ing_strawberry.nif"
+    icon: "pc/n/pc_tx_ingred_strawb.dds"
+    weight: 0.05
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_CheeseColovian_01":
+    type: Ingredient
+    name: Colovian Cheese
+    model: "pc/n/pc_ingred_ccheddar.nif"
+    icon: "pc/n/pc_tx_ingred_ccheddar.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_PearlDeTomb_01":
+    type: Ingredient
+    name: Pearl
+    model: "n/ingred_pearl_01.nif"
+    icon: "n/tx_pearl.tga"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: T_ScObj_DeTombSpiritSummon
+  "Ingredient::TR_m7_NVA8_boar_leather":
+    type: Ingredient
+    name: Bristleback Leather
+    model: "m/boarleather.nif"
+    icon: "m/tx_boarleather.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+    script: TR_m7_NVA_Stage8_Persist
+  "Ingredient::T_IngFood_Fig_01":
+    type: Ingredient
+    name: Fig
+    model: "pc/n/pc_ing_fig.nif"
+    icon: "pc/n/pc_ingred_fig.dds"
+    weight: 0.2
+    value: 3
+    effects: []
+  "Ingredient::TR_m1_Ingred_Opal_i62":
+    type: Ingredient
+    name: Opal Stone
+    model: "tr/n/tr_ing_opal_mm.nif"
+    icon: "tr/n/tr_ing_opal_mm.dds"
+    weight: 1.5
+    value: 10
+    effects: []
+    script: TR_m1_script_curse_i62_c
+  "Ingredient::T_IngSpice_Curcuma_01":
+    type: Ingredient
+    name: Turmeric Powder
+    model: "pc/n/pc_ing_curcuma.nif"
+    icon: "pc/n/pc_ingred_curcuma.dds"
+    weight: 0.1
+    value: 40
+    effects: []
+  "Ingredient::T_IngFood_MeatBeef_01":
+    type: Ingredient
+    name: Beef
+    model: "sky/n/sky_ingred_meat_02.nif"
+    icon: "sky/n/tx_ingred_meat_02.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_Rockcrystal_01":
+    type: Ingredient
+    name: Rock Crystal
+    model: "tr/n/tr_ing_rock_cryst_mm.nif"
+    icon: "tr/n/tr_ing_rock_crystal.dds"
+    weight: 2.0
+    value: 50
+    effects: []
+  "Ingredient::T_IngDye_Vermilion_01":
+    type: Ingredient
+    name: Vermilion Dye
+    model: "tr/n/tr_ing_vermilion.nif"
+    icon: "tr/n/tr_ing_vermilion.dds"
+    weight: 0.1
+    value: 30
+    effects: []
+  "Ingredient::T_IngFlor_PBloomBulb_01":
+    type: Ingredient
+    name: Poison Bloom Bulb
+    model: "tr/n/tr_ing_pbloom_01.nif"
+    icon: "tr/n/tr_ing_poisonbloom.dds"
+    weight: 1.0
+    value: 25
+    effects: []
+  "Ingredient::T_IngFlor_HoneyLily_01":
+    type: Ingredient
+    name: Honey Lily Blossom
+    model: "sky/n/sky_ingred_ly_h_01.nif"
+    icon: "sky/n/tx_ingred_ly_h_01.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_StridentBirdEgg_01":
+    type: Ingredient
+    name: Strident Runner Egg
+    model: "pc/n/pc_ing_stridbirdegg.nif"
+    icon: "pc/n/pc_ing_stridbirdegg.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_GingerRoot":
+    type: Ingredient
+    name: Ginger Root
+    model: "pi/n/pi_ing_gingerroot.nif"
+    icon: "pi/n/pi_ing_gingerroot.dds"
+    weight: 0.3
+    value: 3
+    effects: []
+  "Ingredient::T_IngCrea_CaveTrollEar_01":
+    type: Ingredient
+    name: Cave Troll Ear
+    model: "tr/n/tr_ing_cavetroll_ear.nif"
+    icon: "tr/n/tr_ing_cavetroll_ear.dds"
+    weight: 0.5
+    value: 10
+    effects: []
+  "Ingredient::TR_m3_i3_413_white clay":
+    type: Ingredient
+    name: White Clay
+    model: "n/ingred_blonemeal_01.nif"
+    icon: "n/tx_bonemeal_01.tga"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_WtLillyPurple_01":
+    type: Ingredient
+    name: Water Lilly
+    model: "tr/n/tr_ing_lily_purple.nif"
+    icon: "tr/n/tr_ing_lily_purple.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_FishSlaughterDried_04": ~
+  "Potion::T_IngFood_FishSlaughterDried_04":
+    type: Potion
+    name: Dried Slaughterfish
+    model: "pc/n/pc_ing_dryfish_04.nif"
+    icon: "pc/n/pc_tx_ingred_dryfish4.dds"
+    weight: 2.5
+    value: 3
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_HoneyLily_02":
+    type: Ingredient
+    name: Honey Lily Leaf
+    model: "sky/n/sky_ingred_ly_h_02.nif"
+    icon: "sky/n/tx_ingred_ly_h_02.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngSpice_Pricklespice_01":
+    type: Ingredient
+    name: Pricklespice
+    model: "hf/n/hf_ing_pricklespice.nif"
+    icon: "hf/n/hf_ing_pricklespice.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngFlor_Bloodgrass_01":
+    type: Ingredient
+    name: Bloodgrass
+    model: "pc/n/pc_ing_bloodgrass.nif"
+    icon: "pc/n/pc_ingred_bloodgrass.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_BarracudaTailfin_01":
+    type: Ingredient
+    name: Barracuda Tailfin
+    model: "pi/n/pi_ing_barracudatailfn.nif"
+    icon: "pi/n/pi_ing_barracudatailfn.dds"
+    weight: 5.0
+    value: 20
+    effects: []
+  "Ingredient::T_IngFlor_GingerFlower":
+    type: Ingredient
+    name: Ginger Flower
+    model: "pi/n/pi_ing_gingerflower.nif"
+    icon: "pi/n/pi_ing_gingerflower.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_WidowkissPowder_01":
+    type: Ingredient
+    name: Widow Kiss Powder
+    model: "sky/n/sky_ingred_widowk_01.nif"
+    icon: "sky/n/tx_ingred_widowk_01.dds"
+    weight: 0.01
+    value: 20
+    effects: []
+  "Ingredient::T_IngFood_MeatParastylus_01":
+    type: Ingredient
+    name: Parastylus Meat
+    model: "tr/n/tr_ing_parastylus_meat.nif"
+    icon: "tr/n/tr_ing_parastylus_meat.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::T_IngFlor_Oleander_01":
+    type: Ingredient
+    name: Nerium Rose Flower
+    model: "epos/n/els_ingr_oleander_01.nif"
+    icon: "epos/n/epos_ingr_oleander.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_RedrosePetalDae_01":
+    type: Ingredient
+    name: Rose
+    model: "tr/n/tr_ing_redrose01.nif"
+    icon: "tr/n/tr_ing_redrose01.dds"
+    weight: 0.2
+    value: 10
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngMine_RoseQuartz_01":
+    type: Ingredient
+    name: Rose Quartz
+    model: "tr/n/tr_ing_rose_quartz.nif"
+    icon: "tr/n/tr_ing_rose_quartz.dds"
+    weight: 5.0
+    value: 150
+    effects: []
+  "Ingredient::T_IngFlor_SummerBolete_01":
+    type: Ingredient
+    name: Summer Bolete Cap
+    model: "pc/n/pc_ing_summerb.nif"
+    icon: "pc/n/pc_tx_ingred_summerb.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_ButterflyWingSky_02":
+    type: Ingredient
+    name: Scrapling Butterfly Wing
+    model: "sky/n/sky_ing_btrflywing_02.nif"
+    icon: "sky/n/sky_ing_btrflywing_02.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_NoodlesEsriWheat_01":
+    type: Ingredient
+    name: Noodles
+    model: "pi/n/pi_ing_noodleswheat.nif"
+    icon: "pi/n/pi_ing_noodleswheat.dds"
+    weight: 0.3
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_Ironrye_01":
+    type: Ingredient
+    name: Ironrye
+    model: "pc/n/pc_ing_ironrye_01.nif"
+    icon: "pc/n/pc_tx_ingred_ironrye.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_Pearlessence_01":
+    type: Ingredient
+    name: Pearlessence
+    model: "hr/n/cr_pearlessence.nif"
+    icon: "hr/n/cr_pearlessence.dds"
+    weight: 0.25
+    value: 75
+    effects: []
+  "Ingredient::T_IngCrea_Angelfish_01": ~
+  "Potion::T_IngCrea_Angelfish_01":
+    type: Potion
+    name: Angelfish
+    model: "pi/n/pi_ing_angelfish.nif"
+    icon: "pi/n/pi_ing_angelfish.dds"
+    weight: 2.0
+    value: 5
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_Peony_01":
+    type: Ingredient
+    name: Peony Seeds
+    model: "pc/n/pc_ing_peonys.nif"
+    icon: "pc/n/pc_tx_ingred_peonys.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_EmeticRussula_01":
+    type: Ingredient
+    name: Emetic Russula Cap
+    model: "pc/n/pc_ingred_emerticr.nif"
+    icon: "pc/n/pc_tx_ingred_emertic.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_Thungleweed_01":
+    type: Ingredient
+    name: Thungleweed Flower
+    model: "pc/n/pc_ingred_tweed.nif"
+    icon: "pc/n/pc_tx_ingred_tweed.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_CloudedFunnel_01":
+    type: Ingredient
+    name: Clouded Funnel Cap
+    model: "pc/n/pc_ing_cfunnel.nif"
+    icon: "pc/n/pc_tx_ingred_cfunnel.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_MothWingSky_02":
+    type: Ingredient
+    name: Buck Moth Wing
+    model: "sky/n/sky_ing_mothwing_02.nif"
+    icon: "sky/n/sky_ing_mothwing_02.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Bleakstar_01":
+    type: Ingredient
+    name: Bleakstar Stalk
+    model: "hr/n/hr_ingr_bleakstar_01.nif"
+    icon: "hr/n/hr_ing_bleakstar.dds"
+    weight: 0.3
+    value: 15
+    effects: []
+  "Ingredient::T_IngFlor_GoldWatcSeed_01":
+    type: Ingredient
+    name: Golden Watcher Seed
+    model: "hf/n/hf_ingred_goldwatch_01.nif"
+    icon: "hf/n/hf_ingred_goldwatc_01.dds"
+    weight: 0.1
+    value: 35
+    effects: []
+  "Ingredient::T_IngMine_Spellstone_01":
+    type: Ingredient
+    name: Spellstone
+    model: "tr/n/tr_ing_spellstone.nif"
+    icon: "tr/n/tr_ing_spellstone.dds"
+    weight: 0.5
+    value: 200
+    effects: []
+  "Ingredient::T_IngFlor_Siyat_01":
+    type: Ingredient
+    name: Siyat Leaf
+    model: "pc/n/pc_ing_siyatleaf.nif"
+    icon: "pc/n/pc_tx_ingred_siyat.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::T_IngMine_OpalDae_01":
+    type: Ingredient
+    name: Opal
+    model: "tr/n/tr_ing_opal_mm.nif"
+    icon: "tr/n/tr_ing_opal_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::TR_m3_q_kwamasmuggle":
+    type: Ingredient
+    name: Large Kwama Egg
+    model: "f/food_kwama_egg_02.nif"
+    icon: "m/tx_food_kwama_egg_01.tga"
+    weight: 6.0
+    value: 2
+    effects: []
+    script: TR_m3_OE_q_kwamasmug_scr
+  "Ingredient::T_IngCrea_ShellMolecrab_02":
+    type: Ingredient
+    name: Small Mole Crab Shell
+    model: "tr/n/tr_ing_mcrabshell_02.nif"
+    icon: "tr/n/tr_ing_molecrab_02.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_Dragonscales_01":
+    type: Ingredient
+    name: Dragonscales
+    model: "pc/n/pc_ing_dragonscale.nif"
+    icon: "pc/n/pc_tx_ingred_dragons.dds"
+    weight: 1.0
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_PLotusLeaf_01":
+    type: Ingredient
+    name: "Perrif's Lotus Seeds"
+    model: "pc/n/pc_ing_lotuss.nif"
+    icon: "pc/n/pc_tx_ingred_lotuss.dds"
+    weight: 0.1
+    value: 8
+    effects: []
+  "Ingredient::T_IngFood_TrinityFruit_01":
+    type: Ingredient
+    name: Trinity Fruit
+    model: "pc/n/pc_ing_trinfruit.nif"
+    icon: "pc/n/pc_tx_ingred_trinfruit.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_TurquoiseDae_01":
+    type: Ingredient
+    name: Turquoise
+    model: "tr/n/tr_ing_turquoise_mm.nif"
+    icon: "tr/n/tr_ing_turquoise_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngCrea _StridentBirdEgg_01":
+    type: Ingredient
+    name: Strident Runner Egg
+    model: "pc/n/pc_ing_stridbirdegg.nif"
+    icon: "pc/n/pc_ing_stridbirdegg.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_FishCodDried_01": ~
+  "Potion::T_IngFood_FishCodDried_01":
+    type: Potion
+    name: Salted Cod
+    model: "sky/n/sky_ingred_meat_cdd01.nif"
+    icon: "sky/n/sky_ingred_meat_cdd01.dds"
+    weight: 1.0
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_LadysSmock_01":
+    type: Ingredient
+    name: "Lady's Smock Leaves"
+    model: "pc/n/pc_ing_ladysmock.nif"
+    icon: "pc/n/pc_tx_ingred_ladys.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_LichenWhite_01":
+    type: Ingredient
+    name: White Lichen
+    model: "tr/n/tr_ing_wlichen_01.nif"
+    icon: "tr/n/tr_ing_whitelichen.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::T_IngFlor_SweetbreadPolypore_01":
+    type: Ingredient
+    name: Sweetbread Polypore
+    model: "tr/n/tr_ing_ow_shelfshroom1.nif"
+    icon: "tr/n/tr_ing_ow_shelfshroom1.dds"
+    weight: 0.5
+    value: 4
+    effects: []
+  "Ingredient::T_IngCrea_ButterflyWingCyr_05":
+    type: Ingredient
+    name: Ephialtic Nightkiss Wing
+    model: "pc/n/pc_ing_btrfly_wing_05.nif"
+    icon: "pc/n/pc_ing_btrfly_wing_05.dds"
+    weight: 0.1
+    value: 8
+    effects: []
+  "Ingredient::TR_m1_Q_Topaz_Stationary":
+    type: Ingredient
+    name: Topaz Offering
+    model: "tr/n/tr_ing_topaz_mm.nif"
+    icon: "tr/n/tr_ing_topaz_mm.dds"
+    weight: 1.5
+    value: 75
+    effects: []
+    script: TR_m1_Q_RGirthOfferingScript_TP
+  "Ingredient::T_IngCrea_SturgeonMeat_01": ~
+  "Potion::T_IngCrea_SturgeonMeat_01":
+    type: Potion
+    name: Sturgeon Meat
+    model: "tr/n/tr_ing_sturgeon_meat.nif"
+    icon: "tr/n/tr_ing_sturgeon_meat.dds"
+    weight: 0.3
+    value: 3
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::TR_m7_NVA8_ingred_bear_pelt":
+    type: Ingredient
+    name: Bear Pelt
+    model: "n/ingred_hide_brnbear.nif"
+    icon: "n/tx_ingred_hide_brnbear.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+    script: TR_m7_NVA_Stage8_Persist
+  "Ingredient::T_IngFlor_Bottomweed_01":
+    type: Ingredient
+    name: Bottomweed
+    model: "sky/n/sky_ingred_bottomw.nif"
+    icon: "sky/n/tx_ingred_bottomw.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_UNI_ChocoMuffin": ~
+  "Potion::T_IngFood_UNI_ChocoMuffin":
+    type: Potion
+    name: Chocolate Muffin
+    model: "hr/n/hr_ing_chocomuffin.nif"
+    icon: "hr/n/hr_ing_chocomuffin.dds"
+    weight: 0.2
+    value: 5
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_BezoarStone_01":
+    type: Ingredient
+    name: Bezoar Stone
+    model: "tr/n/tr_ing_bezoarstn.nif"
+    icon: "tr/n/tr_ing_bezoarstn.dds"
+    weight: 0.5
+    value: 75
+    effects: []
+  "Ingredient::T_IngMine_Antimony_01":
+    type: Ingredient
+    name: Antimony Ore
+    model: "tr/n/tr_ing_antimony.nif"
+    icon: "tr/n/tr_ing_antimony.dds"
+    weight: 0.2
+    value: 25
+    effects: []
+  "Ingredient::T_IngCrea_YethResin_01":
+    type: Ingredient
+    name: Yeth Resin
+    model: "tr/n/tr_ing_yeth_resin_01.nif"
+    icon: "tr/n/tr_ing_yeth_resin_01.dds"
+    weight: 0.1
+    value: 25
+    effects: []
+  "Ingredient::T_IngFood_FishLeaperTail_01":
+    type: Ingredient
+    name: Leaper Tail
+    model: "pc/n/pc_ing_leaper.nif"
+    icon: "pc/n/pc_tx_ingred_leaper.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_Ametrine_01":
+    type: Ingredient
+    name: Ametrine
+    model: "tr/n/tr_ing_ametrine.nif"
+    icon: "tr/n/tr_ing_ametrine.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngFlor_FlaxFlower_02":
+    type: Ingredient
+    name: Red Flax Flowers
+    model: "pc/n/pc_ingred_flax_r.nif"
+    icon: "pc/n/pc_tx_ingred_flaxre.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngSpice_Anise_01":
+    type: Ingredient
+    name: Anise Seeds
+    model: "pc/n/pc_ing_anise.nif"
+    icon: "pc/n/pc_ingred_anise.dds"
+    weight: 0.1
+    value: 35
+    effects: []
+  "Ingredient::T_IngFood_FishPikeperch_01":
+    type: Ingredient
+    name: Pikeperch Meat
+    model: "sky/n/sky_ingred_meat_pp_01.nif"
+    icon: "sky/n/tx_ingred_meat_pp_01.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_HagravenFeathers_01":
+    type: Ingredient
+    name: Hagraven Feathers
+    model: "sky/n/sky_ingred_hagravenf.nif"
+    icon: "sky/n/tx_inged_hagravf.dds"
+    weight: 0.1
+    value: 50
+    effects: []
+  "Ingredient::T_IngFlor_Steelblue_01":
+    type: Ingredient
+    name: Steel Blue Entoloma Cap
+    model: "pc/n/pc_ing_steelblue.nif"
+    icon: "pc/n/pc_tx_ingred_steelblue.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Rice_01": ~
+  "Potion::T_IngFood_Rice_01":
+    type: Potion
+    name: Rice
+    model: "pc/n/pc_ingred_rice.nif"
+    icon: "pc/n/pc_tx_ingred_rice.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_ForsythiaTrRoots_01":
+    type: Ingredient
+    name: Forsythia Root
+    model: "sky/n/sky_ingred_forsyth_01.nif"
+    icon: "sky/n/tx_ingred_forsynth_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_CairnBolete_01":
+    type: Ingredient
+    name: Cairn Bolete Cap
+    model: "pc/n/pc_ing_cbolete.nif"
+    icon: "pc/n/pc_tx_ingred_cbolete.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_DuskyParrotfish_01": ~
+  "Potion::T_IngCrea_DuskyParrotfish_01":
+    type: Potion
+    name: Dusky Parrotfish
+    model: "pi/n/pi_ing_duskyparrotfish.nif"
+    icon: "pi/n/pi_ing_duskyparrotfish.dds"
+    weight: 3.0
+    value: 5
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngSpice_Hibiscus_01":
+    type: Ingredient
+    name: Dried Hibiscus
+    model: "pc/n/pc_ing_hibiscusdried.nif"
+    icon: "pc/n/pc_ingred_hibiscus.dds"
+    weight: 0.1
+    value: 25
+    effects: []
+  "Ingredient::T_IngFood_BreadRedguard_02": ~
+  "Potion::T_IngFood_BreadRedguard_02":
+    type: Potion
+    name: Bread
+    model: "hf/n/hf_food_bread02.nif"
+    icon: "hf/n/hf_food_bread02.dds"
+    weight: 0.25
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::TR_m1_Q_BlackRose_Stationary":
+    type: Ingredient
+    name: Black Rose Offering
+    model: "tr/n/tr_ing_blackrose01.nif"
+    icon: "tr/n/tr_ing_blackrose01.dds"
+    weight: 1.2
+    value: 3
+    effects: []
+    script: TR_m1_Q_RGirthOfferingScript_BR
+  "Ingredient::T_IngMine_Bloodstone_01":
+    type: Ingredient
+    name: Bloodstone
+    model: "tr/n/tr_ing_bloodstone_mm.nif"
+    icon: "tr/n/tr_ing_bloodstone_mm.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFood_Sweetroll_01": ~
+  "Potion::T_IngFood_Sweetroll_01":
+    type: Potion
+    name: Sweetroll
+    model: "pc/n/pc_ingred_sweetroll_01.nif"
+    icon: "pc/n/pc_tx_ingred_sweetr.dds"
+    weight: 0.2
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFood_MeatMutton_01":
+    type: Ingredient
+    name: Mutton
+    model: "tr/n/tr_ing_meat_mutton.nif"
+    icon: "tr/n/tr_ing_meat_mutton.dds"
+    weight: 2.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_ShellParastylus_01":
+    type: Ingredient
+    name: Parastylus Shell Fragment
+    model: "tr/n/tr_ing_parastylus_shel.nif"
+    icon: "tr/n/tr_ing_parastylus_shel.dds"
+    weight: 0.7
+    value: 10
+    effects: []
+  "Ingredient::T_IngFood_BreadColovian_02": ~
+  "Potion::T_IngFood_BreadColovian_02":
+    type: Potion
+    name: Colovian Bread
+    model: "pc/n/pc_ingred_c_bread_02.nif"
+    icon: "pc/n/pc_tx_ingred_cbread2.dds"
+    weight: 0.2
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFood_BreadFlat_03":
+    type: Ingredient
+    name: Flat Bread
+    model: "sky/n/sky_ingred_flbread_03.nif"
+    icon: "sky/n/tx_ingred_flbread_03.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Hamumroot_03":
+    type: Ingredient
+    name: Hamum Root
+    model: "tdg/tr_ing_hamumroot03.nif"
+    icon: "tdg/tr_ing_hamumroot03.dds"
+    weight: 1.3
+    value: 7
+    effects: []
+  "Ingredient::T_IngFlor_RougeCamillea_01":
+    type: Ingredient
+    name: Rouge Camillea
+    model: "tr/n/tr_ing_rougecamillea.nif"
+    icon: "tr/n/tr_ing_rougecamillea.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_UmberMorchella_01":
+    type: Ingredient
+    name: "Umber Morchella "
+    model: "tr/n/tr_ing_grey_morel01.nif"
+    icon: "tr/n/tr_ing_greymorel_01.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_SmokyQuartz_01":
+    type: Ingredient
+    name: Smoky Quartz
+    model: "tr/n/tr_ing_smoke_quartz.nif"
+    icon: "tr/n/tr_ing_smoke_quartz.dds"
+    weight: 5.0
+    value: 100
+    effects: []
+  "Ingredient::T_IngMine_OrePlatinum_01":
+    type: Ingredient
+    name: Platinum Ore
+    model: "tr/n/tr_ing_platinum.nif"
+    icon: "tr/n/tr_ing_platinum.dds"
+    weight: 7.5
+    value: 400
+    effects: []
+  "Ingredient::T_IngFlor_ThirrineLily_01":
+    type: Ingredient
+    name: Thirrine Water Lily
+    model: "tr/n/tr_ing_thirlily.nif"
+    icon: "tr/n/tr_ing_thirrlily.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_LamiaHair_01":
+    type: Ingredient
+    name: Lamia Hair
+    model: "pc/n/pc_ing_lamiahair.nif"
+    icon: "pc/n/pc_tx_ingred_lamiah.dds"
+    weight: 0.1
+    value: 40
+    effects: []
+  "Ingredient::T_IngFood_AltachiPear_01":
+    type: Ingredient
+    name: Altachi Pear
+    model: "sum/n/sum_n_altachi.nif"
+    icon: "sum/n/sum_n_altachi.dds"
+    weight: 0.2
+    value: 4
+    effects: []
+  "Ingredient::T_IngCrea_TwilightMembrane_01":
+    type: Ingredient
+    name: Winged Twilight Membrane
+    model: "tr/n/tr_ingred_wt_mem.nif"
+    icon: "tr/n/tr_ing_wt_mem.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::T_IngFood_BreadDeshaan_02": ~
+  "Potion::T_IngFood_BreadDeshaan_02":
+    type: Potion
+    name: Deshaan Bread
+    model: "tr/n/tr_ing_deshaanbread_03.nif"
+    icon: "tr/n/tr_ing_deshaanbread_03.dds"
+    weight: 0.5
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_MothWingSky_03":
+    type: Ingredient
+    name: Antler Moth Wing
+    model: "sky/n/sky_ing_mothwing_03.nif"
+    icon: "sky/n/sky_ing_mothwing_03.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_BreadKeptu_02":
+    type: Ingredient
+    name: Braided Bread
+    model: "pi/n/pi_ing_keptubreadhalf.nif"
+    icon: "pi/n/pi_ing_keptubreadhalf.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Leek_01":
+    type: Ingredient
+    name: Leek
+    model: "sky/n/sky_ingred_leek_01.nif"
+    icon: "sky/n/tx_ingred_leek_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_Mango_01":
+    type: Ingredient
+    name: Mango
+    model: "pc/n/pc_ing_mango.nif"
+    icon: "pc/n/pc_ing_mango.dds"
+    weight: 0.25
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_MeatSqrl_01":
+    type: Ingredient
+    name: Squirrel Meat
+    model: "sky/n/sky_ingred_meat_sq_01.nif"
+    icon: "sky/n/sky_ingred_meat_sq01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_GoldTanthaBeak_01":
+    type: Ingredient
+    name: Gold Tantha Beak
+    model: "pc/n/pc_ing_tanthabeak.nif"
+    icon: "pc/n/pc_ing_tanthabeak.dds"
+    weight: 0.5
+    value: 10
+    effects: []
+  "Ingredient::T_IngFlor_TigaraFruit_01":
+    type: Ingredient
+    name: Tigara Fruit
+    model: "hf/n/hf_ingred_tigarafrt_01.nif"
+    icon: "hf/n/hf_ingred_tigarafrt_01.dds"
+    weight: 0.15
+    value: 10
+    effects: []
+  "Ingredient::T_IngFlor_LizardFootExtract_01":
+    type: Ingredient
+    name: Lizardfoot Extract
+    model: "sky/n/sky_ingred_lizardf.nif"
+    icon: "sky/n/tx_ingred_lizardfoot.dds"
+    weight: 0.1
+    value: 8
+    effects: []
+  "Ingredient::T_IngFlor_KingBolete_01":
+    type: Ingredient
+    name: King Bolete
+    model: "sky/n/sky_ingred_kingbolete.nif"
+    icon: "sky/n/tx_ingred_kingbolete.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Primrose_01":
+    type: Ingredient
+    name: Primrose Leaves
+    model: "pc/n/pc_ing_primerose.nif"
+    icon: "pc/n/pc_tx_ingred_primerose.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_BreadColovian_01":
+    type: Ingredient
+    name: Colovian Bread
+    model: "pc/n/pc_ingred_c_bread_01.nif"
+    icon: "pc/n/pc_tx_ingred_cbread1.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Turnip_01":
+    type: Ingredient
+    name: Turnip
+    model: "sky/n/sky_ingred_turnip01.nif"
+    icon: "sky/n/sky_ingr_turnip01.dds"
+    weight: 5.0
+    value: 6
+    effects: []
+  "Ingredient::T_IngMine_Coal_01":
+    type: Ingredient
+    name: Coal
+    model: "tr/n/tr_ing_coal.nif"
+    icon: "tr/n/tr_ing_coal.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Tomato_01":
+    type: Ingredient
+    name: Tomato
+    model: "pc/n/pc_ing_tomato.nif"
+    icon: "pc/n/pc_tx_ingred_tomato.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::TR_m4_TT_SpawnHackleLo":
+    type: Ingredient
+    name: Hackle-Lo Leaf
+    model: "n/ingred_hackle-lo_01.nif"
+    icon: "n/tx_hackle-lo_01.tga"
+    weight: 0.1
+    value: 30
+    effects: []
+    script: TR_m4_TT_SpawnHackleLo_sc
+  "Ingredient::TR_m7_q_Ns_IC8_gem4":
+    type: Ingredient
+    name: Sapphire
+    model: "tr/n/tr_ing_sapphire_mm.nif"
+    icon: "tr/n/tr_ing_sapphire_mm.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::TR_m1_Q_NobleSedge_Stationary":
+    type: Ingredient
+    name: Noble Sedge Flowers Offering
+    model: "n/ingred_noble_sedge_01.nif"
+    icon: "n/tx_noble_sedge_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+    script: TR_m1_Q_RGirthOfferingScript_NS
+  "Ingredient::T_IngFood_Radish_01":
+    type: Ingredient
+    name: Radish
+    model: "sky/n/sky_ingred_radish_01.nif"
+    icon: "sky/n/tx_ingred_radish_01.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_FungalPod_01":
+    type: Ingredient
+    name: Fungal Pod
+    model: "sky/n/sky_ingred_swmpfun_01.nif"
+    icon: "sky/n/tx_ingred_swmfung.dds"
+    weight: 0.6
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_Hellebore_01":
+    type: Ingredient
+    name: Hellebore Pollen
+    model: "sky/n/sky_ingred_helleb_01.nif"
+    icon: "sky/n/tx_ingred_helleb.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_SapphireDae_01":
+    type: Ingredient
+    name: Sapphire
+    model: "tr/n/tr_ing_sapphire_mm.nif"
+    icon: "tr/n/tr_ing_sapphire_mm.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngFlor_IcyShell01":
+    type: Ingredient
+    name: Icy Shell Fungus
+    model: "sky/n/t_ingflor_icyshell01.nif"
+    icon: "sky/n/sky_ingr_icyshell.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_MeatHorker_01":
+    type: Ingredient
+    name: Horker Meat
+    model: "sky/n/sky_ingred_meat_04.nif"
+    icon: "sky/n/tx_ingred_meat_04.dds"
+    weight: 2.0
+    value: 20
+    effects: []
+  "Ingredient::T_IngFlor_Nightshade_01":
+    type: Ingredient
+    name: Nightshade
+    model: "pc/n/pc_ing_dry_nshade.nif"
+    icon: "pc/n/pc_tx_ingred_nshade.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::T_IngFood_MeatChicken_01":
+    type: Ingredient
+    name: Chicken Leg
+    model: "sky/n/sky_ingred_chleg_01.nif"
+    icon: "sky/n/tx_ingred_chleg_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_BeetleShell_01":
+    type: Ingredient
+    name: Dust Beetle Shell
+    model: "tr/n/tr_ing_beetle_shell_01.nif"
+    icon: "tr/n/tr_ing_beetle_shell_01.dds"
+    weight: 0.5
+    value: 3
+    effects: []
+  "Ingredient::T_IngFlor_MonardaSeed_01":
+    type: Ingredient
+    name: Monarda Seeds
+    model: "pc/n/pc_ing_bergamots.nif"
+    icon: "pc/n/pc_tx_ingred_bergamots.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_BreadRedguard_03": ~
+  "Potion::T_IngFood_BreadRedguard_03":
+    type: Potion
+    name: Bread
+    model: "hf/n/hf_food_bread03.nif"
+    icon: "hf/n/hf_food_bread03.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_OysterMeat_01": ~
+  "Potion::T_IngCrea_OysterMeat_01":
+    type: Potion
+    name: Oyster Meat
+    model: "pi/n/tr_ing_oystermeat_01.nif"
+    icon: "pi/n/pi_ing_oystermeat_01.dds"
+    weight: 0.2
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_ThorntailBerry_01":
+    type: Ingredient
+    name: Thorntail Berry
+    model: "epos/n/els_cactus_fruit_01.nif"
+    icon: "epos/n/cactus_fruit_01.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::T_IngFlor_BlueKanet_01":
+    type: Ingredient
+    name: Blue Kanet
+    model: "tr/n/tr_ing_bluekanet01.nif"
+    icon: "tr/n/tr_ing_bluekanet01.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::TR_m4_TT_SpawnBittergreen":
+    type: Ingredient
+    name: Bittergreen Petals
+    model: "n/ingred_bittergreen_01.nif"
+    icon: "n/tx_bittergreen_petal_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+    script: TR_m4_TT_SpawnBittergreen_sc
+  "Ingredient::T_IngFlor_Shadowfly_01":
+    type: Ingredient
+    name: Shadowfly Blossom
+    model: "sky/n/sky_ingred_shfly_01.nif"
+    icon: "sky/n/tx_ingred_shfly_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Hibiscus_01":
+    type: Ingredient
+    name: Hibiscus Flower
+    model: "epos/n/pt_els_ingr_hibiscus.nif"
+    icon: "epos/n/hibiscus_flower.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_AlphynClaw_01":
+    type: Ingredient
+    name: Alphyn Claw
+    model: "pc/n/pc_ing_alphynclaw.nif"
+    icon: "pc/n/pc_ing_alphynclaw.dds"
+    weight: 0.5
+    value: 15
+    effects: []
+  "Ingredient::T_IngMine_Malouchite_01":
+    type: Ingredient
+    name: Malachite
+    model: "hr/n/mn_malouchite.nif"
+    icon: "hr/n/mn_malouchite.dds"
+    weight: 3.0
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_PricklyPear_01":
+    type: Ingredient
+    name: Prickly pear
+    model: "hf/n/hf_ingred_prickpear_01.nif"
+    icon: "hf/n/hf_ingred_prickpear_01.dds"
+    weight: 0.2
+    value: 3
+    effects: []
+  "Ingredient::TR_m4_menaan_int_8_biscuit":
+    type: Ingredient
+    name: Complimentary Biscuit
+    model: "tr/n/tr_ing_cookie_01.nif"
+    icon: "tr/n/tr_ing_cookie_01.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Wheat_01":
+    type: Ingredient
+    name: Wheat
+    model: "sky/n/sky_ingred_wheat_01.nif"
+    icon: "sky/n/tx_ingred_wheat_01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_RockburstPod_01":
+    type: Ingredient
+    name: Rockburst Pod
+    model: "tdg/tr_ing_rockburst.nif"
+    icon: "tdg/tr_ing_rockburst.dds"
+    weight: 1.5
+    value: 10
+    effects: []
+  "Ingredient::T_IngDye_YellowOchre_01":
+    type: Ingredient
+    name: Yellow Ochre Dye
+    model: "tr/n/tr_ing_ochre.nif"
+    icon: "tr/n/tr_ing_yellowoch.dds"
+    weight: 0.1
+    value: 30
+    effects: []
+  "Ingredient::T_IngFood_TGuarHide":
+    type: Ingredient
+    name: Tiger Guar Hide
+    model: "tr/n/tr_n_tguar_hide.nif"
+    icon: "tr/n/tr_n_tguar_hide.dds"
+    weight: 1.0
+    value: 30
+    effects: []
+  "Ingredient::T_IngFlor_WhitePoppyPod_01":
+    type: Ingredient
+    name: Dried Whitepoppy Pod
+    model: "tr/n/tr_ing_whitepoppypod.nif"
+    icon: "tr/n/tr_ing_poppypod.dds"
+    weight: 0.1
+    value: 15
+    effects: []
+  "Ingredient::T_IngMine_TektiteDae_01":
+    type: Ingredient
+    name: Tektite
+    model: "tr/n/tr_ing_tektite_mm.nif"
+    icon: "tr/n/tr_ing_tektite_mm.dds"
+    weight: 0.2
+    value: 50
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngCrea_PrawnTail":
+    type: Ingredient
+    name: Prawn Tail
+    model: "pc/n/pc_ing_prawntail.nif"
+    icon: "pc/n/pc_tx_ingred_prawntail.dds"
+    weight: 1.0
+    value: 12
+    effects: []
+  "Ingredient::T_IngCrea_ButterflyWingCyr_01":
+    type: Ingredient
+    name: Red Fan Butterfly Wing
+    model: "pc/n/pc_ing_btrfly_wing_01.nif"
+    icon: "pc/n/pc_ing_btrfly_wing_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Motherwort_01":
+    type: Ingredient
+    name: Motherwort
+    model: "pc/n/pc_ingred_motherwort.nif"
+    icon: "pc/n/pc_tx_ingred_motherwo.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Indureta_01": ~
+  "Potion::T_IngFood_Indureta_01":
+    type: Potion
+    name: Durata
+    model: "pc/n/pc_ing_indureta_01.nif"
+    icon: "pc/n/pc_tx_ingred_induret.dds"
+    weight: 0.3
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngCrea_Ambergris":
+    type: Ingredient
+    name: Ambergris
+    model: "sky/n/sky_ingred_ambergris.nif"
+    icon: "sky/n/sky_ingred_ambergris.dds"
+    weight: 1.5
+    value: 400
+    effects: []
+  "Ingredient::TR_m1_q51_ingred_BOmusk_UNI":
+    type: Ingredient
+    name: Raw Musk
+    model: "tr/n/tr_ing_musk_01.nif"
+    icon: "tr/n/tr_ing_musk_01.dds"
+    weight: 0.2
+    value: 15
+    effects: []
+  "Ingredient::T_IngFood_CheeseBreton_01":
+    type: Ingredient
+    name: Cheese
+    model: "hr/n/hr_ing_cheese_01.nif"
+    icon: "hr/n/hr_ing_cheese_01.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::T_IngFood_Grape_02":
+    type: Ingredient
+    name: Grapes
+    model: "pc/n/pc_ingred_grape_02.nif"
+    icon: "pc/n/pc_tx_ingred_grape_02.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Glasswort_01":
+    type: Ingredient
+    name: Glasswort Sprig
+    model: "tr/n/tr_ing_glasswort.nif"
+    icon: "tr/n/tr_ing_glasswort.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_AspyrTea_01":
+    type: Ingredient
+    name: Aspyr Tea Leaves
+    model: "sky/n/sky_ingred_asypr_t_01.nif"
+    icon: "sky/n/tx_ingred_aspyr_t_01.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_LichenOrange_01":
+    type: Ingredient
+    name: Orange Lichen
+    model: "tr/n/tr_ing_olichen_01.nif"
+    icon: "tr/n/tr_ing_orangelichen.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_RiverstriderEgg_01":
+    type: Ingredient
+    name: Waterstrider Egg
+    model: "tr/n/tr_ing_riverstrideregg.nif"
+    icon: "tr/n/tr_ing_riverstrideregg.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Blueberry_01":
+    type: Ingredient
+    name: Blueberries
+    model: "pc/n/pc_ing_blueberry.nif"
+    icon: "pc/n/pc_ing_blueberry.dds"
+    weight: 0.05
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_Plum_01":
+    type: Ingredient
+    name: Plum
+    model: "sum/n/sum_n_plum.nif"
+    icon: "sum/n/sum_n_plum.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngCrea_HoomEgg_01":
+    type: Ingredient
+    name: Hoom Egg
+    model: "tr/n/tr_ing_hoom_egg.nif"
+    icon: "tr/n/tr_ing_hoom_egg.dds"
+    weight: 12.0
+    value: 13
+    effects: []
+  "Ingredient::T_IngFlor_DriftPuff_01":
+    type: Ingredient
+    name: Drift Puff Flower
+    model: "pi/n/pi_ing_driftpuff.nif"
+    icon: "pi/n/pi_ing_driftpuff.dds"
+    weight: 0.03
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_SomberWidow_01":
+    type: Ingredient
+    name: Somber Widow Blossom
+    model: "pi/n/pi_ing_tm_flower_01.nif"
+    icon: "pi/n/cq_ing_tm_flower_icn.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::T_IngCrea_Termite_01":
+    type: Ingredient
+    name: Termites
+    model: "hf/n/hf_ingred_termite_01.nif"
+    icon: "hf/n/hf_ingred_termite_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Pitcher_01":
+    type: Ingredient
+    name: Pitcher Sack
+    model: "pc/n/pc_ing_pitcher_01.nif"
+    icon: "pc/n/pc_tx_ingred_pitcher.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Cowbell_01":
+    type: Ingredient
+    name: Cowbell Flower
+    model: "sky/n/sky_ingred_cowbell.nif"
+    icon: "sky/n/tx_ingred_cowbell.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFood_MeatKwama_01":
+    type: Ingredient
+    name: Kwama Meat
+    model: "tr/n/tr_ing_meat_kwama.nif"
+    icon: "tr/n/tr_ing_meat_kwama.dds"
+    weight: 1.5
+    value: 10
+    effects: []
+  "Ingredient::T_IngFood_MeatAlit_01":
+    type: Ingredient
+    name: Alit Meat
+    model: "tr/n/tr_ing_meat_alit.nif"
+    icon: "tr/n/tr_ing_meat_alit.dds"
+    weight: 2.0
+    value: 7
+    effects: []
+  "Ingredient::TR_m2_q_9_Eyestar_uni":
+    type: Ingredient
+    name: "Star's Eye"
+    model: "tr/n/tr_ing_eyestar.nif"
+    icon: "tr/n/tr_ing_eyestar.dds"
+    weight: 0.5
+    value: 200
+    effects: []
+    script: TR_m2_q_9_EyeScript
+  "Ingredient::PC_m1_Anv_DibEstBloodLily":
+    type: Ingredient
+    name: Blood Lily Flower
+    model: "pc/n/pc_ingred_bloodlily2.nif"
+    icon: "pc/n/pc_tx_ingred_blilly2.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+    script: Float
+  "Ingredient::T_IngCrea_VelkNectarSack_01":
+    type: Ingredient
+    name: Velk Nectar Sac
+    model: "tr/n/tr_ing_velk_nectar_sac.nif"
+    icon: "tr/n/tr_ing_velk_nectar_sac.tga"
+    weight: 1.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_BreadNordRye_02": ~
+  "Potion::T_IngFood_BreadNordRye_02":
+    type: Potion
+    name: Bread
+    model: "sky/n/sky_ing_ryebreadhalf.nif"
+    icon: "sky/n/sky_ing_ryebreadhalf.dds"
+    weight: 0.3
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFlor_Deathbell_01":
+    type: Ingredient
+    name: Death Bell
+    model: "sky/n/sky_ingred_deathb.nif"
+    icon: "sky/n/tx_ingred_deathb.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_Persarine_01":
+    type: Ingredient
+    name: Persarine Blossom
+    model: "sky/n/sky_ingred_persa_01.nif"
+    icon: "sky/n/tx_ingred_persa_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_ButterflyWingCyr_03":
+    type: Ingredient
+    name: Ocularis Butterfly Wing
+    model: "pc/n/pc_ing_btrfly_wing_03.nif"
+    icon: "pc/n/pc_ing_btrfly_wing_03.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_Citrine_01":
+    type: Ingredient
+    name: Citrine
+    model: "tr/n/tr_ing_citrine_mm.nif"
+    icon: "tr/n/tr_ing_citrine_mm.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngMine_PearlBlackDae_01":
+    type: Ingredient
+    name: Black Pearl
+    model: "tr/n/tr_ing_pearlblack_mm.nif"
+    icon: "tr/n/tr_ing_pearlblack_mm.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngCrea_AstralJellyfish_01":
+    type: Ingredient
+    name: Astral Jellyfish
+    model: "pi/n/pi_ing_astraljellyfish.nif"
+    icon: "pi/n/pi_ing_astraljellyfish.dds"
+    weight: 1.0
+    value: 4
+    effects: []
+  "Ingredient::TR_m7_AHPicnicBread_02": ~
+  "Potion::TR_m7_AHPicnicBread_02":
+    type: Potion
+    name: Bread
+    model: "tr/n/tr_ingred_bread_01b.nif"
+    icon: "tr/n/tr_ingred_bread_01b.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+    script: TR_m7_AffairsHeartPicnic_sc
+  "Ingredient::T_IngCrea_WelkyndDust_01":
+    type: Ingredient
+    name: Welkynd Dust
+    model: "pc/n/pc_ing_welkynddust.nif"
+    icon: "pc/n/pc_tx_ingred_welkdst.dds"
+    weight: 0.1
+    value: 80
+    effects: []
+  "Ingredient::T_IngMine_Peridot_01":
+    type: Ingredient
+    name: Peridot
+    model: "tr/n/tr_ing_peridot.nif"
+    icon: "tr/n/tr_ing_peridot.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngCrea_BeetleShell_04":
+    type: Ingredient
+    name: Horned Beetle Shell
+    model: "tr/n/tr_ing_beetle_shell_04.nif"
+    icon: "tr/n/tr_ing_beetle_shell_04.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_NgopRoot_01":
+    type: Ingredient
+    name: Ngop Root
+    model: "pi/n/pi_ing_ngoproot.nif"
+    icon: "pi/n/pi_ing_ngoproot.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_Mummyheart_01":
+    type: Ingredient
+    name: Mummy Heart
+    model: "tr/n/tr_ing_mummy_heart_01.nif"
+    icon: "tr/n/tr_ing_mummy_heart_01.dds"
+    weight: 0.5
+    value: 50
+    effects: []
+  "Ingredient::T_IngCrea_TanthaEgg_01":
+    type: Ingredient
+    name: Tantha Egg
+    model: "pc/n/pc_ing_tanthaegg.nif"
+    icon: "pc/n/pc_tx_ing_tanthaegg.dds"
+    weight: 0.2
+    value: 9
+    effects: []
+  "Ingredient::T_IngFood_Cookie_01": ~
+  "Potion::T_IngFood_Cookie_01":
+    type: Potion
+    name: Biscuit
+    model: "tr/n/tr_ing_cookie_01.nif"
+    icon: "tr/n/tr_ing_cookie_01.dds"
+    weight: 0.2
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_Glb_UNI_Skyrim_Ice_01":
+    type: Ingredient
+    name: Skyrim Ice
+    model: "tr/n/tr_ing_skyrim_ice.nif"
+    icon: "tr/n/tr_ing_skyrim_ice.dds"
+    weight: 5.0
+    value: 500
+    effects: []
+  "Ingredient::T_IngFlor_BlackrosePetal_01":
+    type: Ingredient
+    name: Black Rose
+    model: "tr/n/tr_ing_blackrose01.nif"
+    icon: "tr/n/tr_ing_blackrose01.dds"
+    weight: 0.2
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_MeatOrnada_01":
+    type: Ingredient
+    name: Ornada Meat
+    model: "tr/n/tr_ing_ornada_meat.nif"
+    icon: "tr/n/tr_ing_ornada_meat.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::T_IngCrea_LamplightResin_01":
+    type: Ingredient
+    name: Lamplight
+    model: "tr/n/tr_lamplight.nif"
+    icon: "tr/n/tr_tx_ing_lamplight.dds"
+    weight: 0.5
+    value: 15
+    effects: []
+  "Ingredient::T_IngCrea_OysterMeat_02": ~
+  "Potion::T_IngCrea_OysterMeat_02":
+    type: Potion
+    name: Oyster Meat
+    model: "pi/n/tr_ing_oystermeat_02.nif"
+    icon: "pi/n/pi_ing_oystermeat_02.dds"
+    weight: 0.2
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::T_IngFood_Blackberry_01":
+    type: Ingredient
+    name: Blackberries
+    model: "pc/n/pc_ingr_blackberry_01.nif"
+    icon: "pc/n/pc_tx_ingred_bberry.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_Tobacco_01":
+    type: Ingredient
+    name: Tobacco
+    model: "pc/n/pc_ing_tobacco.nif"
+    icon: "pc/n/pc_tx_ingred_tobacco.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_SnowBlossom_01":
+    type: Ingredient
+    name: Snow Blossom
+    model: "hr/n/hr_n_snow blos.nif"
+    icon: "hr/n/hr_n_snow blos.dds"
+    weight: 0.2
+    value: 6
+    effects: []
+  "Ingredient::T_IngSpice_OliveOil_01":
+    type: Ingredient
+    name: Olive Oil
+    model: "pc/n/pc_ing_oliveoil.nif"
+    icon: "pc/n/pc_ing_oliveoil.tga"
+    weight: 1.0
+    value: 12
+    effects: []
+  "Ingredient::T_IngFlor_Fireflower_01":
+    type: Ingredient
+    name: Duskbell
+    model: "tr/n/tr_ing_fireflower.nif"
+    icon: "tr/n/tr_ing_fireflower.dds"
+    weight: 0.1
+    value: 6
+    effects: []
+  "Ingredient::TR_m2_meteor_i2-383-ind":
+    type: Ingredient
+    name: Meteor Fragment
+    model: "sky/n/sky_ingred_iron_01.nif"
+    icon: "sky/n/tx_ingred_iron_ore_01.dds"
+    weight: 2.0
+    value: 150
+    effects: []
+  "Ingredient::T_IngCrea_IcewraithTeeth_01":
+    type: Ingredient
+    name: Ice Wraith Teeth
+    model: "sky/n/sky_ingred_icewteeth.nif"
+    icon: "sky/n/tx_ingred_icewteeth.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::T_IngFood_FishSlaughterDried_03": ~
+  "Potion::T_IngFood_FishSlaughterDried_03":
+    type: Potion
+    name: Dried Slaughterfish
+    model: "pc/n/pc_ing_dryfish_03.nif"
+    icon: "pc/n/pc_tx_ingred_dryfish3.dds"
+    weight: 1.5
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::TR_m7_q_Ns_IC8_gem6":
+    type: Ingredient
+    name: Garnet
+    model: "tr/n/tr_ing_garnet_mm.nif"
+    icon: "tr/n/tr_ing_garnet_mm.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::T_IngFlor_TemarinBugloss_01":
+    type: Ingredient
+    name: Temarin Bugloss Flower
+    model: "pi/n/pi_ing_bugloss.nif"
+    icon: "pi/n/pi_ing_bugloss.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_EggChicken_01":
+    type: Ingredient
+    name: Egg
+    model: "sky/n/sky_ingred_egg_01.nif"
+    icon: "sky/n/tx_ingred_egg_01.dds"
+    weight: 0.05
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_HyacinthNectar_01":
+    type: Ingredient
+    name: Water Hyacinth Nectar Sacks
+    model: "pc/n/pc_ingred_whyac.nif"
+    icon: "pc/n/pc_tx_ingred_hyacinth.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::T_IngFlor_Jarmush_01":
+    type: Ingredient
+    name: Jarmush Leaves
+    model: "sky/n/sky_ingred_jarmush01.nif"
+    icon: "sky/n/sky_ingr_jarmush01.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_Lodestone_01":
+    type: Ingredient
+    name: Lodestone
+    model: "hr/n/mn_lodestone.nif"
+    icon: "hr/n/mn_lodestone.dds"
+    weight: 2.5
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_GrassPod01":
+    type: Ingredient
+    name: Grass Pod
+    model: "sky/n/t_ingflor_grasspod01.nif"
+    icon: "sky/n/sky_ingr_grasspod.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngMine_MoonstoneDae_01":
+    type: Ingredient
+    name: Moonstone
+    model: "tr/n/tr_ing_moonstone_mm.nif"
+    icon: "tr/n/tr_ing_moonstone.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::T_IngMine_Salt_01":
+    type: Ingredient
+    name: Salt
+    model: "pc/n/pc_ing_salt.nif"
+    icon: "pc/n/pc_ingred_salt_01.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::T_IngFlor_TrembleWeedSap_01":
+    type: Ingredient
+    name: Tremble Weed Sap
+    model: "sky/n/sky_ingred_tweed_01.nif"
+    icon: "sky/n/tx_ingred_tweed_01.dds"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::TR_m3_TT_JalorPowder02":
+    type: Ingredient
+    name: Suspicious Powder
+    model: "tr/n/tr_ing_grey_tick.nif"
+    icon: "tr/n/tr_ing_greytick.dds"
+    weight: 0.0
+    value: 0
+    effects: []
+  "Ingredient::T_IngFlor_WtLillyPink_01":
+    type: Ingredient
+    name: Water Lilly
+    model: "tr/n/tr_ing_lily_pink.nif"
+    icon: "tr/n/tr_ing_lily_pink.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_TawnyFunnelCap_01":
+    type: Ingredient
+    name: Tawny Funnel Cap
+    model: "sky/n/sky_ingred_tawnfcap.nif"
+    icon: "sky/n/tx_ingred_tawnyfc.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::T_IngDye_Verdigris_01":
+    type: Ingredient
+    name: Verdigris Dye
+    model: "tr/n/tr_ing_verdigris.nif"
+    icon: "tr/n/tr_ing_verdigris.dds"
+    weight: 0.1
+    value: 30
+    effects: []
+  "Ingredient::T_IngMine_OreCobalt_01":
+    type: Ingredient
+    name: Cobalt Ore
+    model: "pi/n/pi_ing_cobaltore.nif"
+    icon: "pi/n/pi_ing_cobaltore.dds"
+    weight: 3.0
+    value: 50
+    effects: []
+  "Ingredient::TR_m7_NVA8_ingred_guar_hide_01":
+    type: Ingredient
+    name: Guar Hide
+    model: "n/ingred_guar_hide_01.nif"
+    icon: "n/tx_guarhide_01.tga"
+    weight: 1.0
+    value: 5
+    effects: []
+    script: TR_m7_NVA_Stage8_Persist
+  "Ingredient::T_IngMine_OreLead_01":
+    type: Ingredient
+    name: Lead Ore
+    model: "tr/n/tr_ing_lead.nif"
+    icon: "tr/n/tr_ing_lead.dds"
+    weight: 5.0
+    value: 50
+    effects: []
+  "Ingredient::T_IngCrea_BosmerBeeswax_01":
+    type: Ingredient
+    name: Beeswax
+    model: "va/m/va_m_we_beewax.nif"
+    icon: "va/m/va_m_we_beewax.dds"
+    weight: 0.8
+    value: 10
+    effects: []
+  "Ingredient::T_IngFlor_ViperBugloss_01":
+    type: Ingredient
+    name: Viper Bugloss Leaves
+    model: "pc/n/pc_ing_vbugloss.nif"
+    icon: "pc/n/pc_tx_ingred_vbugloss.dds"
+    weight: 0.1
+    value: 3
+    effects: []
+  "Ingredient::T_IngFood_Lyco_01":
+    type: Ingredient
+    name: Lycoae
+    model: "pc/n/pc_ing_lycovine_01.nif"
+    icon: "pc/n/pc_tx_ingred_lyco.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngFood_MeatVenison_01":
+    type: Ingredient
+    name: Venison
+    model: "sky/n/sky_ingred_meat_01.nif"
+    icon: "sky/n/tx_ingred_meat_01.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::T_IngCrea_MothWingSky_04":
+    type: Ingredient
+    name: Clearwing Moth Wing
+    model: "sky/n/sky_ing_mothwing_04.nif"
+    icon: "sky/n/sky_ing_mothwing_04.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngFlor_MandrakeRoot_01":
+    type: Ingredient
+    name: Mandrake Root
+    model: "pc/n/pc_ing_mandrake.nif"
+    icon: "pc/n/pc_tx_ingred_mandrake.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::T_IngMine_LunarCaustic_01":
+    type: Ingredient
+    name: Lunar Caustic
+    model: "tr/n/tr_ing_lunarcaustic.nif"
+    icon: "tr/n/tr_ing_lunarcaustic.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::T_IngMine_KhajiitEye_01":
+    type: Ingredient
+    name: Khajiit-Eye
+    model: "tr/n/tr_ing_khajeye.nif"
+    icon: "tr/n/tr_ing_khaeye.dds"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::T_IngFlor_Weepveil_01":
+    type: Ingredient
+    name: Weeping Veil
+    model: "tr/n/tr_f_weepveil_ing.nif"
+    icon: "tr/n/tr_ing_weepingveil.dds"
+    weight: 0.1
+    value: 8
+    effects: []
+  "Ingredient::T_IngFlor_Lavender_01":
+    type: Ingredient
+    name: Lavender
+    model: "pc/n/pc_ingred_lavander.nif"
+    icon: "pc/n/pc_tx_ingred_lavender.dds"
+    weight: 0.1
+    value: 7
+    effects: []

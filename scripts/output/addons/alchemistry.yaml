@@ -1,0 +1,1063 @@
+---
+__esp_version__: 1.3
+__plugin_type__: 0
+transpiler_version: 0.24.1
+author: ""
+desc: ""
+masters:
+  - name: Morrowind.esm
+    size: 79837557
+  - name: Tribunal.esm
+    size: 4565686
+  - name: Bloodmoon.esm
+    size: 9631798
+records:
+  "GameSetting::fWortChanceValue":
+    type: GameSetting
+    float: 0.0
+  "Ingredient::ingred_bittergreen_petals_01":
+    type: Ingredient
+    name: Bittergreen Petals
+    model: "n/ingred_bittergreen_01.nif"
+    icon: "n/tx_bittergreen_petal_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_void_salts_01":
+    type: Ingredient
+    name: Void Salts
+    model: "n/ingred_void_salts_01.nif"
+    icon: "n/tx_void_salts_01.tga"
+    weight: 0.1
+    value: 100
+    effects: []
+  "Ingredient::ingred_raw_glass_tinos":
+    type: Ingredient
+    name: Raw Glass
+    model: "n/ingred_raw_glass_01.nif"
+    icon: "n/tx_rawglass.tga"
+    weight: 2.0
+    value: 200
+    effects: []
+  "Ingredient::ingred_rat_meat_01":
+    type: Ingredient
+    name: Rat Meat
+    model: "n/ingred_rat_meat_01.nif"
+    icon: "n/tx_rat_meat_01.tga"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_russula_01":
+    type: Ingredient
+    name: Luminous Russula
+    model: "n/ingred_russula_01.nif"
+    icon: "n/tx_russula_01.tga"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::ingred_bread_01": ~
+  "Potion::ingred_bread_01":
+    type: Potion
+    name: Bread
+    model: "n/ingred_bread_01.nif"
+    icon: "m/tx_bread_01.tga"
+    weight: 0.2
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::ingred_guar_hide_girith":
+    type: Ingredient
+    name: "Girith's Guar Hide"
+    model: "n/ingred_guar_hide_01.nif"
+    icon: "n/tx_guarhide_01.tga"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::ingred_kwama_cuttle_01":
+    type: Ingredient
+    name: Kwama Cuttle
+    model: "n/ingred_kwama_cuttle_01.nif"
+    icon: "n/tx_kwama_cuttle.tga"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::ingred_scrib_jelly_02":
+    type: Ingredient
+    name: Meteor Slime
+    model: "n/ingred_scrib_jelly_01.nif"
+    icon: "n/tx_scrib_jelly_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_adamantium_ore_01":
+    type: Ingredient
+    name: Adamantium Ore
+    model: "n/ingred_raw_adam.nif"
+    icon: "n/tx_adamantium.dds"
+    weight: 50.0
+    value: 300
+    effects: []
+  "Ingredient::ingred_scales_01":
+    type: Ingredient
+    name: Scales
+    model: "n/ingred_scales_01.nif"
+    icon: "n/tx_scales_01.tga"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::ingred_6th_corprusmeat_04":
+    type: Ingredient
+    name: Wrapped Corprusmeat Hunk
+    model: "n/ingred_6th_corpusmeat_04.nif"
+    icon: "n/ingred_6th_corpusmeat_04.tga"
+    weight: 0.0
+    value: 0
+    effects: []
+  "Ingredient::ingred_corkbulb_root_01":
+    type: Ingredient
+    name: Corkbulb Root
+    model: "n/ingred_corkbulb_root_01.nif"
+    icon: "n/tx_corkbulb_root_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_ash_yam_01":
+    type: Ingredient
+    name: Ash Yam
+    model: "n/ingred_ash_yam_01.nif"
+    icon: "n/tx_ashyam_01.tga"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::ingred_daedra_skin_01":
+    type: Ingredient
+    name: Daedra Skin
+    model: "n/ingred_daedra_skin_01.nif"
+    icon: "n/tx_daedra_skin_01.tga"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::Ingred_sweetpulp_01":
+    type: Ingredient
+    name: Sweetpulp
+    model: "n/ingred_sweetpulp_01.nif"
+    icon: "n/tx_sweetpulp_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_kresh_fiber_01":
+    type: Ingredient
+    name: Kresh Fiber
+    model: "n/ingred_kresh_fiber_01.nif"
+    icon: "n/tx_kresh_fiber_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::Ingred_golden_sedge_01":
+    type: Ingredient
+    name: Golden Sedge Flowers
+    model: "n/ingred_golden_sedge_01.nif"
+    icon: "n/tx_golden_sedge_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_netch_leather_01":
+    type: Ingredient
+    name: Netch Leather
+    model: "n/ingred_netch_leather_01.nif"
+    icon: "n/tx_netch_leather_01.tga"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_bread_01_UNI2": ~
+  "Potion::ingred_bread_01_UNI2":
+    type: Potion
+    name: Bread
+    model: "n/ingred_bread_01.nif"
+    icon: "m/tx_bread_01.tga"
+    weight: 0.2
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::ingred_Dae_cursed_emerald_01":
+    type: Ingredient
+    name: Emerald
+    model: "n/ingred_emerald_01.nif"
+    icon: "n/tx_emerald.tga"
+    weight: 0.2
+    value: 150
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::ingred_crab_meat_01":
+    type: Ingredient
+    name: Crab Meat
+    model: "n/ingred_crabmeat_01.nif"
+    icon: "n/tx_crabmeat_01.tga"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::ingred_Dae_cursed_pearl_01":
+    type: Ingredient
+    name: Pearl
+    model: "n/ingred_pearl_01.nif"
+    icon: "n/tx_pearl.tga"
+    weight: 0.2
+    value: 100
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::ingred_black_lichen_01":
+    type: Ingredient
+    name: Black Lichen
+    model: "n/ingred_black_lichen_01.nif"
+    icon: "n/tx_black_lichen_01.tga"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::ingred_6th_corprusmeat_07":
+    type: Ingredient
+    name: Small Corprusmeat Hunk
+    model: "n/ingred_6th_corpusmeat_07.nif"
+    icon: "n/ingred_6th_corpusmeat_07.tga"
+    weight: 0.2
+    value: 0
+    effects: []
+  "Ingredient::ingred_comberry_01":
+    type: Ingredient
+    name: Comberry
+    model: "n/ingred_comberry_01.nif"
+    icon: "n/tx_comberry_01.tga"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::ingred_racer_plumes_01":
+    type: Ingredient
+    name: Racer Plumes
+    model: "n/ingred_racer_plumes_01.nif"
+    icon: "n/tx_racer_plumes_01.tga"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::ingred_horker_tusk_01":
+    type: Ingredient
+    name: Horker Tusk
+    model: "m/horkertusk.nif"
+    icon: "m/tx_horkertusk.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_stoneflower_petals_01":
+    type: Ingredient
+    name: Stoneflower Petals
+    model: "n/ingred_stoneflower_01.nif"
+    icon: "n/tx_stoneflower_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_emerald_01":
+    type: Ingredient
+    name: Emerald
+    model: "n/ingred_emerald_01.nif"
+    icon: "n/tx_emerald.tga"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::ingred_durzog_meat_01":
+    type: Ingredient
+    name: Durzog Meat
+    model: "n/ingred_durzog_meat_01.nif"
+    icon: "n/tx_durzog_meat_01.dds"
+    weight: 2.0
+    value: 7
+    effects: []
+  "Ingredient::ingred_chokeweed_01":
+    type: Ingredient
+    name: Chokeweed
+    model: "n/ingred_chokeweed_01.nif"
+    icon: "n/tx_chokeweed_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_holly_01":
+    type: Ingredient
+    name: Holly Berries
+    model: "n/ingred_bm_holly_01.nif"
+    icon: "n/tx_ingred_holly_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::Ingred_horn_lily_bulb_01":
+    type: Ingredient
+    name: Horn Lily Bulb
+    model: "n/ingred_horn_lily_bulb_01.nif"
+    icon: "n/tx_horn_lily_bulb_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_6th_corprusmeat_05":
+    type: Ingredient
+    name: Large Corprusmeat Hunk
+    model: "n/ingred_6th_corpusmeat_05.nif"
+    icon: "n/ingred_6th_corpusmeat_05.tga"
+    weight: 1.0
+    value: 0
+    effects: []
+  "Ingredient::ingred_innocent_heart":
+    type: Ingredient
+    name: Heart of an Innocent
+    model: "n/ingred_daedra_heart_01.nif"
+    icon: "n/tx_daedra_heart_01.tga"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::ingred_bc_ampoule_pod":
+    type: Ingredient
+    name: Ampoule Pod
+    model: "n/ingred_bc_ampoule_pod.nif"
+    icon: "n/ingred_bc_ampoule_pod.tga"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::ingred_belladonna_02":
+    type: Ingredient
+    name: Unripened Belladonna Berries
+    model: "n/ingred_bm_belladonna_01.nif"
+    icon: "n/tx_ingred_belladonna_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_gravetar_01":
+    type: Ingredient
+    name: Gravetar
+    model: "n/ingred_bm_holly_01.nif"
+    icon: "n/tx_ingred_holly_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_bonemeal_01":
+    type: Ingredient
+    name: Bonemeal
+    model: "n/ingred_blonemeal_01.nif"
+    icon: "n/tx_bonemeal_01.tga"
+    weight: 0.2
+    value: 2
+    effects: []
+  "Ingredient::ingred_scrib_jelly_01":
+    type: Ingredient
+    name: Scrib Jelly
+    model: "n/ingred_scrib_jelly_01.nif"
+    icon: "n/tx_scrib_jelly_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_sload_soap_01":
+    type: Ingredient
+    name: Sload Soap
+    model: "n/ingred_sload_soap_01.nif"
+    icon: "n/tx_sload_soap_01.tga"
+    weight: 0.1
+    value: 50
+    effects: []
+  "Ingredient::ingred_raw_Stalhrim_01":
+    type: Ingredient
+    name: Raw Stalhrim
+    model: "n/ingred_bm_stalhrim_01.nif"
+    icon: "n/tx_ingred_stalhrim_01.dds"
+    weight: 5.0
+    value: 300
+    effects: []
+  "Ingredient::Ingred_meadow_rye_01":
+    type: Ingredient
+    name: Meadow Rye
+    model: "n/ingred_meadow_rye_01.nif"
+    icon: "n/tx_meadow_rye_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_marshmerrow_01":
+    type: Ingredient
+    name: Marshmerrow
+    model: "n/ingred_marshmerrow_01.nif"
+    icon: "n/tx_ing_marshmerrow.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_wolfsbane_01":
+    type: Ingredient
+    name: Wolfsbane Petals
+    model: "n/ingred_bm_wolfsbane_01.nif"
+    icon: "n/tx_ingred_wolfsbane_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_treated_bittergreen_uniq":
+    type: Ingredient
+    name: Treated Bittergreen Petals
+    model: "n/ingred_bittergreen_01.nif"
+    icon: "n/tx_bittergreen_petal_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_hackle-lo_leaf_01":
+    type: Ingredient
+    name: Hackle-Lo Leaf
+    model: "n/ingred_hackle-lo_01.nif"
+    icon: "n/tx_hackle-lo_01.tga"
+    weight: 0.1
+    value: 30
+    effects: []
+  "Ingredient::ingred_green_lichen_01":
+    type: Ingredient
+    name: Green Lichen
+    model: "n/ingred_green_lichen_01.nif"
+    icon: "n/tx_greenlichen_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::Ingred_timsa-come-by_01":
+    type: Ingredient
+    name: Timsa-Come-By flowers
+    model: "n/ingred_timsa-come-by_01.nif"
+    icon: "n/tx_timsa-come-by_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_gold_kanet_01":
+    type: Ingredient
+    name: Gold Kanet
+    model: "n/ingred_gold_kanet_01.nif"
+    icon: "n/tx_goldkanet_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_moon_sugar_01":
+    type: Ingredient
+    name: Moon Sugar
+    model: "n/ingred_moon_sugar_01.nif"
+    icon: "n/tx_moon_sugar_01.tga"
+    weight: 0.1
+    value: 50
+    effects: []
+  "Ingredient::ingred_eyeball":
+    type: Ingredient
+    name: Grahl Eyeball
+    model: "m/bm_flamingeyeball.nif"
+    icon: "m/tx_flamingeye.dds"
+    weight: 1.0
+    value: 15
+    effects: []
+  "Ingredient::ingred_red_lichen_01":
+    type: Ingredient
+    name: Red Lichen
+    model: "n/ingred_red_lichen_01.nif"
+    icon: "n/tx_red_lichen_01.tga"
+    weight: 0.1
+    value: 25
+    effects: []
+  "Ingredient::ingred_frost_salts_01":
+    type: Ingredient
+    name: Frost Salts
+    model: "n/ingred_frost_salts_01.nif"
+    icon: "n/tx_frostsalt_01.tga"
+    weight: 0.1
+    value: 75
+    effects: []
+  "Ingredient::ingred_heather_01":
+    type: Ingredient
+    name: Heather
+    model: "n/ingred_heather_01.nif"
+    icon: "n/tx_heather_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_alit_hide_01":
+    type: Ingredient
+    name: Alit Hide
+    model: "n/ingred_alit_hide_01.nif"
+    icon: "n/tx_alit_hide_01.tga"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::ingred_willow_anther_01":
+    type: Ingredient
+    name: Willow Anther
+    model: "n/ingred_willow_anther_01.nif"
+    icon: "n/tx_willow_anther_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_trama_root_01":
+    type: Ingredient
+    name: Trama Root
+    model: "n/ingred_trama_root_01.nif"
+    icon: "n/tx_trama_root_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_heartwood_01":
+    type: Ingredient
+    name: Heartwood
+    model: "m/heartwood.nif"
+    icon: "m/tx_heartwood.dds"
+    weight: 1.0
+    value: 200
+    effects: []
+  "Ingredient::ingred_Dae_cursed_diamond_01":
+    type: Ingredient
+    name: Diamond
+    model: "n/ingred_diamond_01.nif"
+    icon: "n/tx_diamond.tga"
+    weight: 0.2
+    value: 250
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::ingred_eyeball_unique":
+    type: Ingredient
+    name: Flaming Eye of the Lightkeeper
+    model: "m/bm_flamingeyeball.nif"
+    icon: "m/tx_flamingeye.dds"
+    weight: 1.0
+    value: 15
+    effects: []
+  "Ingredient::ingred_gold_kanet_unique":
+    type: Ingredient
+    name: "Roland's Tear"
+    model: "n/ingred_gold_kanet_01.nif"
+    icon: "n/tx_goldkanet_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::Ingred_noble_sedge_01":
+    type: Ingredient
+    name: Noble Sedge Flowers
+    model: "n/ingred_noble_sedge_01.nif"
+    icon: "n/tx_noble_sedge_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_bread_01_UNI3": ~
+  "Potion::ingred_bread_01_UNI3":
+    type: Potion
+    name: Muffin
+    model: "n/ingred_bread_01.nif"
+    icon: "m/tx_bread_01.tga"
+    weight: 0.2
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::poison_goop00":
+    type: Ingredient
+    name: Poison
+    model: "n/ingred_corprus_weeping_01.nif"
+    icon: "n/tx_corprus_weep_01.tga"
+    weight: 0.1
+    value: 0
+    effects: []
+  "Ingredient::ingred_resin_01":
+    type: Ingredient
+    name: Resin
+    model: "n/ingred_resin_01.nif"
+    icon: "n/tx_resin_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_ruby_01":
+    type: Ingredient
+    name: Ruby
+    model: "n/ingred_ruby_01.nif"
+    icon: "n/tx_ruby.tga"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::ingred_guar_hide_01":
+    type: Ingredient
+    name: Guar Hide
+    model: "n/ingred_guar_hide_01.nif"
+    icon: "n/tx_guarhide_01.tga"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::Ingred_nirthfly_stalks_01":
+    type: Ingredient
+    name: Nirthfly Stalks
+    model: "n/ingred_nirthfly_stalks_01.nif"
+    icon: "n/tx_nirthfly_stalks_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_ectoplasm_01":
+    type: Ingredient
+    name: Ectoplasm
+    model: "n/ingred_ectoplasm_01.nif"
+    icon: "n/tx_ectoplasm_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_udyrfrykte_heart":
+    type: Ingredient
+    name: Heart of the Udyrfrykte
+    model: "n/ingred_daedra_heart_01.nif"
+    icon: "n/tx_daedra_heart_01.tga"
+    weight: 5.0
+    value: 300
+    effects: []
+  "Ingredient::ingred_cursed_daedras_heart_01":
+    type: Ingredient
+    name: "Daedra's Heart"
+    model: "n/ingred_daedra_heart_01.nif"
+    icon: "n/tx_daedra_heart_01.tga"
+    weight: 1.0
+    value: 200
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::ingred_human_meat_01":
+    type: Ingredient
+    name: Human Flesh
+    model: "n/ingred_rat_meat_01.nif"
+    icon: "n/tx_rat_meat_01.tga"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_wickwheat_01":
+    type: Ingredient
+    name: Wickwheat
+    model: "n/ingred_whickwheat_01.nif"
+    icon: "n/tx_whickwheat_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::food_kwama_egg_02":
+    type: Ingredient
+    name: Large Kwama Egg
+    model: "f/food_kwama_egg_02.nif"
+    icon: "m/tx_food_kwama_egg_01.tga"
+    weight: 2.0
+    value: 2
+    effects: []
+  "Ingredient::ingred_fire_salts_01":
+    type: Ingredient
+    name: Fire Salts
+    model: "n/ingred_fire_salts_01.nif"
+    icon: "n/tx_firesalt_01.tga"
+    weight: 0.1
+    value: 100
+    effects: []
+  "Ingredient::ingred_kagouti_hide_01":
+    type: Ingredient
+    name: Kagouti Hide
+    model: "n/ingred_kagouti_hide_01.nif"
+    icon: "n/tx_kagouti_hide_01.tga"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::ingred_scrib_jerky_01":
+    type: Ingredient
+    name: Scrib Jerky
+    model: "n/ingred_scrib_jerky_01.nif"
+    icon: "n/tx_scrib_jerky_01.tga"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::ingred_Dae_cursed_ruby_01":
+    type: Ingredient
+    name: Ruby
+    model: "n/ingred_ruby_01.nif"
+    icon: "n/tx_ruby.tga"
+    weight: 0.2
+    value: 200
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::ingred_snowwolf_pelt_unique":
+    type: Ingredient
+    name: Snow Wolf Pelt
+    model: "n/ingred_hide_whtwolf.nif"
+    icon: "n/tx_ingred_hide_whtwolf.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::ingred_bc_coda_flower":
+    type: Ingredient
+    name: Coda Flower
+    model: "n/ingred_bc_coda_flower.nif"
+    icon: "n/ingred_bc_coda_flower.tga"
+    weight: 0.1
+    value: 23
+    effects: []
+  "Ingredient::ingred_scuttle_01":
+    type: Ingredient
+    name: Scuttle
+    model: "n/ingred_scuttle_01.nif"
+    icon: "n/tx_scuttle_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_dreugh_wax_01":
+    type: Ingredient
+    name: Dreugh Wax
+    model: "n/ingred_dreugh_wax_01.nif"
+    icon: "n/tx_dreugh_wax_01.tga"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::ingred_bc_hypha_facia":
+    type: Ingredient
+    name: Hypha Facia
+    model: "n/ingred_bc_hypha_facia.nif"
+    icon: "n/ingred_bc_hypha_facia.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_belladonna_01":
+    type: Ingredient
+    name: Ripened Belladonna Berries
+    model: "n/ingred_bm_belladonna_01.nif"
+    icon: "n/tx_ingred_belladonna_01.dds"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_scathecraw_01":
+    type: Ingredient
+    name: Scathecraw
+    model: "n/ingred_scathecraw_01.nif"
+    icon: "n/tx_scathecraw_01.tga"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::ingred_scrap_metal_01":
+    type: Ingredient
+    name: Scrap Metal
+    model: "n/ingred_scrap_metal_01.nif"
+    icon: "n/tx_scrapmetal_01.tga"
+    weight: 10.0
+    value: 20
+    effects: []
+  "Ingredient::ingred_shalk_resin_01":
+    type: Ingredient
+    name: Shalk Resin
+    model: "n/ingred_shalk_resin_01.nif"
+    icon: "n/tx_shalk_resin_01.tga"
+    weight: 0.1
+    value: 50
+    effects: []
+  "Ingredient::ingred_saltrice_01":
+    type: Ingredient
+    name: Saltrice
+    model: "n/ingred_saltrice_01.nif"
+    icon: "n/tx_saltrice_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_black_anther_01":
+    type: Ingredient
+    name: Black Anther
+    model: "n/ingred_black_anther_01.nif"
+    icon: "n/tx_black_anther_01.tga"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::ingred_diamond_01":
+    type: Ingredient
+    name: Diamond
+    model: "n/ingred_diamond_01.nif"
+    icon: "n/tx_diamond.tga"
+    weight: 0.2
+    value: 250
+    effects: []
+  "Ingredient::ingred_bloat_01":
+    type: Ingredient
+    name: Bloat
+    model: "n/ingred_ash_salts_01.nif"
+    icon: "n/tx_ashsalts_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []
+  "Ingredient::ingred_6th_corprusmeat_01":
+    type: Ingredient
+    name: Large Wrapped Corprusmeat
+    model: "n/ingred_6th_corpusmeat_01.nif"
+    icon: "n/ingred_6th_corpusmeat_01.tga"
+    weight: 1.0
+    value: 0
+    effects: []
+  "Ingredient::ingred_snowbear_pelt_unique":
+    type: Ingredient
+    name: Snow Bear Pelt
+    model: "n/ingred_hide_whtbear.nif"
+    icon: "n/tx_ingred_hide_whtbear.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::ingred_6th_corprusmeat_06":
+    type: Ingredient
+    name: Medium Corprusmeat Hunk
+    model: "n/ingred_6th_corpusmeat_06.nif"
+    icon: "n/ingred_6th_corpusmeat_06.tga"
+    weight: 0.5
+    value: 0
+    effects: []
+  "Ingredient::ingred_wolf_pelt":
+    type: Ingredient
+    name: Wolf Pelt
+    model: "n/ingred_hide_grywolf.nif"
+    icon: "n/tx_ingred_hide_grywolf.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::Ingred_scrib_cabbage_01":
+    type: Ingredient
+    name: Scrib Cabbage
+    model: "n/ingred_scrib_cabbage_01.nif"
+    icon: "n/tx_scrib_cabbage_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_corprus_weepings_01":
+    type: Ingredient
+    name: Corprus weepings
+    model: "n/ingred_corprus_weeping_01.nif"
+    icon: "n/tx_corprus_weep_01.tga"
+    weight: 0.1
+    value: 50
+    effects: []
+  "Ingredient::food_kwama_egg_01": ~
+  "Potion::food_kwama_egg_01":
+    type: Potion
+    name: Small Kwama Egg
+    model: "f/food_kwama_egg_01.nif"
+    icon: "m/tx_food_kwama_egg_01.tga"
+    weight: 0.5
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::ingred_bc_spore_pod":
+    type: Ingredient
+    name: Spore Pod
+    model: "n/ingred_bc_spore_pod.nif"
+    icon: "n/ingred_bc_spore_pod.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_boar_leather":
+    type: Ingredient
+    name: Bristleback Leather
+    model: "m/boarleather.nif"
+    icon: "m/tx_boarleather.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::ingred_Dae_cursed_raw_ebony_01":
+    type: Ingredient
+    name: Raw Ebony
+    model: "n/ingred_rawebony_01.nif"
+    icon: "n/tx_rawebony.tga"
+    weight: 10.0
+    value: 200
+    effects: []
+    script: BILL_MarksDaedraSummon
+  "Ingredient::ingred_6th_corprusmeat_03":
+    type: Ingredient
+    name: Medium Wrapped Corprusmeat
+    model: "n/ingred_6th_corpusmeat_03.nif"
+    icon: "n/ingred_6th_corpusmeat_03.tga"
+    weight: 0.5
+    value: 0
+    effects: []
+  "Ingredient::ingred_guar_hide_marsus":
+    type: Ingredient
+    name: "Marsus' Guar Hide"
+    model: "n/ingred_guar_hide_01.nif"
+    icon: "n/tx_guarhide_01.tga"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::ingred_wolf_heart":
+    type: Ingredient
+    name: Heart of the Wolf
+    model: "n/ingred_daedra_heart_01.nif"
+    icon: "n/tx_daedra_heart_01.tga"
+    weight: 1.0
+    value: 100
+    effects: []
+  "Ingredient::ingred_fire_petal_01":
+    type: Ingredient
+    name: Fire Petal
+    model: "n/ingred_fire_petal_01.nif"
+    icon: "n/tx_firepetal_01.tga"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::ingred_blood_innocent_unique":
+    type: Ingredient
+    name: Blood of an Innocent
+    model: "n/ingred_red_lichen_01.nif"
+    icon: "n/tx_red_lichen_01.tga"
+    weight: 0.1
+    value: 25
+    effects: []
+  "Ingredient::ingred_hound_meat_01":
+    type: Ingredient
+    name: Hound Meat
+    model: "n/ingred_hound_meat_01.nif"
+    icon: "n/tx_houndmeat_01.tga"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::ingred_scamp_skin_01":
+    type: Ingredient
+    name: Scamp Skin
+    model: "n/ingred_scamp_skin_01.nif"
+    icon: "n/tx_scamp_skin_01.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::ingred_ash_salts_01":
+    type: Ingredient
+    name: Ash Salts
+    model: "n/ingred_ash_salts_01.nif"
+    icon: "n/tx_ashsalts_01.tga"
+    weight: 0.1
+    value: 25
+    effects: []
+  "Ingredient::ingred_daedras_heart_01":
+    type: Ingredient
+    name: "Daedra's Heart"
+    model: "n/ingred_daedra_heart_01.nif"
+    icon: "n/tx_daedra_heart_01.tga"
+    weight: 1.0
+    value: 200
+    effects: []
+  "Ingredient::ingred_muck_01":
+    type: Ingredient
+    name: Muck
+    model: "n/ingred_muck_01.nif"
+    icon: "n/tx_muck_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::Ingred_lloramor_spines_01":
+    type: Ingredient
+    name: Lloramor Spines
+    model: "n/ingred_lloramor_spines_01.nif"
+    icon: "n/tx_lloramor_spines_01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::ingred_vampire_dust_01":
+    type: Ingredient
+    name: Vampire Dust
+    model: "n/ingred_vampire_dust_01.nif"
+    icon: "n/tx_vampire_dust_01.tga"
+    weight: 0.1
+    value: 500
+    effects: []
+  "Ingredient::ingred_coprinus_01":
+    type: Ingredient
+    name: Violet Coprinus
+    model: "n/ingred_coprinus_01.nif"
+    icon: "n/tx_coprinus_01.tga"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::ingred_pearl_01":
+    type: Ingredient
+    name: Pearl
+    model: "n/ingred_pearl_01.nif"
+    icon: "n/tx_pearl.tga"
+    weight: 0.2
+    value: 100
+    effects: []
+  "Ingredient::ingred_gravedust_01":
+    type: Ingredient
+    name: Gravedust
+    model: "n/ingred_gravedust_01.nif"
+    icon: "n/tx_gravedust_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_6th_corprusmeat_02":
+    type: Ingredient
+    name: Small Wrapped Corprusmeat
+    model: "n/ingred_6th_corpusmeat_02.nif"
+    icon: "n/ingred_6th_corpusmeat_02.tga"
+    weight: 0.2
+    value: 0
+    effects: []
+  "Ingredient::ingred_bear_pelt":
+    type: Ingredient
+    name: Bear Pelt
+    model: "n/ingred_hide_brnbear.nif"
+    icon: "n/tx_ingred_hide_brnbear.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::ingred_raw_glass_01":
+    type: Ingredient
+    name: Raw Glass
+    model: "n/ingred_raw_glass_01.nif"
+    icon: "n/tx_rawglass.tga"
+    weight: 2.0
+    value: 200
+    effects: []
+  "Ingredient::ingred_raw_ebony_01":
+    type: Ingredient
+    name: Raw Ebony
+    model: "n/ingred_rawebony_01.nif"
+    icon: "n/tx_rawebony.tga"
+    weight: 10.0
+    value: 200
+    effects: []
+  "Ingredient::ingred_emerald_pinetear":
+    type: Ingredient
+    name: Pinetear
+    model: "n/ingred_emerald_01.nif"
+    icon: "n/tx_emerald.tga"
+    weight: 0.2
+    value: 50
+    effects: []
+  "Ingredient::ingred_roobrush_01":
+    type: Ingredient
+    name: Roobrush
+    model: "n/ingred_roobrush_01.nif"
+    icon: "n/tx_roobrush_01.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::ingred_bc_bungler's_bane":
+    type: Ingredient
+    name: "Bungler's Bane"
+    model: "n/ingred_bc_bungler's_bane.nif"
+    icon: "n/ingred_bc_bungler's_bane.tga"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::ingred_ghoul_heart_01":
+    type: Ingredient
+    name: Ghoul Heart
+    model: "n/ingred_ghoul_heart_01.nif"
+    icon: "n/tx_ghoul_heart_01.tga"
+    weight: 0.5
+    value: 150
+    effects: []

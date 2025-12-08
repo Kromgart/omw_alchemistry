@@ -1,0 +1,674 @@
+---
+__esp_version__: 1.3
+__plugin_type__: 0
+transpiler_version: 0.24.1
+author: ""
+desc: ""
+masters:
+  - name: hunterwind.omwaddon
+    size: 337923
+records:
+  "Ingredient::hb_ratblood":
+    type: Ingredient
+    name: Rat Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_mudcrabblood":
+    type: Ingredient
+    name: Mudcrab Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::Hb_netchgland":
+    type: Ingredient
+    name: Netch Gland
+    model: n/ingred_netch_gland.nif
+    icon: n/tx_netch_gland.tga
+    weight: 1.0
+    value: 20
+    effects: []
+  "Ingredient::hb_sprigganbark":
+    type: Ingredient
+    name: Spriggan Bark
+    model: n/ingred_bark_01.nif
+    icon: n/tx_bark01.tga
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::hb_wormmouthblood":
+    type: Ingredient
+    name: Wormmouth Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 30
+    effects: []
+  "Ingredient::hb_alphynfeather":
+    type: Ingredient
+    name: Alphyn Feather
+    model: "pi/n/pi_ing_rocfeather.nif"
+    icon: "pi/n/pi_ing_rocfeather.dds"
+    weight: 0.25
+    value: 10
+    effects: []
+  "Ingredient::hb_yethbugmeat":
+    type: Ingredient
+    name: Yeth-Grub Meat
+    model: "tr/n/tr_ing_ornada_meat.nif"
+    icon: "tr/n/tr_ing_ornada_meat.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::Hb_alitblood":
+    type: Ingredient
+    name: Alit Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 30
+    effects: []
+  "Ingredient::hb_blackbearskin":
+    type: Ingredient
+    name: Black Bear Skin
+    model: n/ingred_fur_blkwolf.nif
+    icon: n/tx_fur_blkwolf.tga
+    weight: 5.0
+    value: 20
+    effects: []
+    script: hb_rescalebbskin
+  "Ingredient::Hb_kagoutiblood":
+    type: Ingredient
+    name: Kagouti Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 50
+    effects: []
+  "Ingredient::hb_spriggansap":
+    type: Ingredient
+    name: Spriggan Sap
+    model: "sky/n/sky_ingred_tweed_01.nif"
+    icon: "sky/n/tx_ingred_tweed_01.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::Hb_plaguebearskin":
+    type: Ingredient
+    name: Bear Hide
+    model: n/ingred_fur_bear01.nif
+    icon: n/tx_fur_bear01.tga
+    weight: 10.0
+    value: 30
+    effects: []
+  "Ingredient::hb_animal_eye_fine":
+    type: Ingredient
+    name: Animal Eye (well-extracted)
+    model: "pc/n/pc_ing_frogeye.nif"
+    icon: "pc/n/pc_tx_ingred_frogeye.dds"
+    weight: 0.2
+    value: 15
+    effects: []
+  "Ingredient::hb_horseblood":
+    type: Ingredient
+    name: Horse Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 30
+    effects: []
+  "Ingredient::hb_ingred_kagouti_hide_improved":
+    type: Ingredient
+    name: Kagouti Hide (Fine)
+    model: "n/ingred_kagouti_hide_01.nif"
+    icon: "n/tx_kagouti_hide_01.tga"
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::hb_horsehide":
+    type: Ingredient
+    name: Horse Hide
+    model: "pc/m/pc_m_we_deer_hide.nif"
+    icon: "pc/m/pc_m_we_deer_hide.dds"
+    weight: 3.0
+    value: 20
+    effects: []
+  "Ingredient::Hb_racerblood":
+    type: Ingredient
+    name: Cliff Racer Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 25
+    effects: []
+  "Ingredient::Hb_snowbearskin":
+    type: Ingredient
+    name: Snow Bear Skin
+    model: n/ingred_fur_bear02.nif
+    icon: n/tx_fur_bear02.tga
+    weight: 10.0
+    value: 50
+    effects: []
+  "Ingredient::HB_frosttrollear":
+    type: Ingredient
+    name: Snow Troll Ear
+    model: "tr/n/tr_ing_cavetroll_ear.nif"
+    icon: "tr/n/tr_ing_cavetroll_ear.dds"
+    weight: 0.5
+    value: 10
+    effects: []
+  "Ingredient::hb_goatmeat":
+    type: Ingredient
+    name: Goat Meat
+    model: "sky/n/sky_ingred_horsemeat.nif"
+    icon: "sky/n/tx_ingred_meat_h.dds"
+    weight: 1.0
+    value: 3
+    effects: []
+  "Ingredient::hb_aspisblood":
+    type: Ingredient
+    name: Aspis Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dd"
+    weight: 0.6
+    value: 15
+    effects: []
+  "Ingredient::hb_wormmouthtongue":
+    type: Ingredient
+    name: Wormmouth Tongue
+    model: n/ingred_guarw_tongue.nif
+    icon: n/tx_guarw_tongue.tga
+    weight: 10.0
+    value: 50
+    effects: []
+    script: hb_rescalewmtongue
+  "Ingredient::Hb_animalfat":
+    type: Ingredient
+    name: Animal Fat
+    model: "tr/n/tr_ing_troll_fat_01.nif"
+    icon: "tr/n/tr_ing_troll_fat_01.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::hb_grahlpelt":
+    type: Ingredient
+    name: Frost Troll Pelt
+    model: "tr/n/tr_ing_frostroll_hide.nif"
+    icon: "tr/n/tr_ing_frostroll_hide.dds"
+    weight: 1.5
+    value: 10
+    effects: []
+  "Ingredient::hb_grahlblood":
+    type: Ingredient
+    name: Grahl Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 50
+    effects: []
+  "Ingredient::Hb_normalbearskin":
+    type: Ingredient
+    name: Bear Skin
+    model: n/ingred_fur_bear03.nif
+    icon: n/tx_fur_bear03.tga
+    weight: 10.0
+    value: 30
+    effects: []
+  "Ingredient::hb_cervidhide":
+    type: Ingredient
+    name: Venison Hide
+    model: "pc/m/pc_m_we_deer_hide.nif"
+    icon: "pc/m/pc_m_we_deer_hide.dds"
+    weight: 3.0
+    value: 20
+    effects: []
+  "Ingredient::hb_aspismeat":
+    type: Ingredient
+    name: Aspis Meat
+    model: "sky/n/sky_ingred_meat_sq_01.nif"
+    icon: "sky/n/sky_ingred_meat_sq01.dds"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::hb_horkerblood":
+    type: Ingredient
+    name: Horker Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_cervidblood":
+    type: Ingredient
+    name: Venison Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 30
+    effects: []
+  "Ingredient::hb_mooncrabblod":
+    type: Ingredient
+    name: Mudcrab Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_animalheart":
+    type: Ingredient
+    name: Animal Heart
+    model: "n/ingred_daedra_heart_01.nif"
+    icon: hunt/n/animalheart.tga
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::hb_boarblood":
+    type: Ingredient
+    name: Boar Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 40
+    effects: []
+  "Ingredient::hb_animalteeth_misc":
+    type: Ingredient
+    name: Animal tooth
+    model: "sky/n/sky_ingred_rakiteeth.nif"
+    icon: "sky/n/tx_ingred_rakiteeth.dds"
+    weight: 0.3
+    value: 2
+    effects: []
+  "Ingredient::hb_crab_eggs_roe":
+    type: Ingredient
+    name: Mudcrab Roe
+    model: "oaab/n/sturgeonroe.nif"
+    icon: "oaab/n/sturgeonroe.tga"
+    weight: 0.3
+    value: 20
+    effects: []
+  "Ingredient::hb_muskratblood":
+    type: Ingredient
+    name: Muskrat Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_venom":
+    type: Ingredient
+    name: Venom
+    model: "oaab/m/inkvial.nif"
+    icon: "oaab/m/misc_inkvial.tga"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_frogmeat":
+    type: Ingredient
+    name: Frog Meat
+    model: "n/ingred_durzog_meat_01.nif"
+    icon: "n/tx_durzog_meat_01.dds"
+    weight: 2.0
+    value: 10
+    effects: []
+  "Ingredient::hb_wolfmeat":
+    type: Ingredient
+    name: Wolf Meat
+    model: "sky/n/sky_ingred_meat_sq_01.nif"
+    icon: "sky/n/sky_ingred_meat_sq01.dds"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::hb_frogblood":
+    type: Ingredient
+    name: Frog Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_goatpelt":
+    type: Ingredient
+    name: Goat Pelt
+    model: "sky/f/sky_furn_orc_ffl_01.nif"
+    icon: hunt/n/goatpelt.png
+    weight: 5.0
+    value: 20
+    effects: []
+  "Ingredient::Hb_plaguewolfskin":
+    type: Ingredient
+    name: Red Wolf Skin
+    model: n/ingred_fur_redwolf.nif
+    icon: n/tx_fur_redwolf.tga
+    weight: 5.0
+    value: 20
+    effects: []
+  "Ingredient::hb_ingred_alit_hide_improved":
+    type: Ingredient
+    name: Alit Hide (Fine)
+    model: "n/ingred_alit_hide_01.nif"
+    icon: "n/tx_alit_hide_01.tga"
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::hb_tanthablood":
+    type: Ingredient
+    name: Gold Tantha Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_insectmeat":
+    type: Ingredient
+    name: Insect Meat
+    model: "tr/n/tr_ing_parastylus_meat.nif"
+    icon: "tr/n/tr_ing_parastylus_meat.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::Hb_kagouti_horn":
+    type: Ingredient
+    name: Kagouti Horn
+    model: "oaab/m/kagoutihorn.nif"
+    icon: "oaab/m/kagoutihorn.tga"
+    weight: 5.0
+    value: 15
+    effects: []
+  "Ingredient::hb_ingred_guar_hide_improved":
+    type: Ingredient
+    name: Guar Hide (Fine)
+    model: "n/ingred_guar_hide_01.nif"
+    icon: "n/tx_guarhide_01.tga"
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::Hb_normalwolfskin":
+    type: Ingredient
+    name: Wolf Skin
+    model: n/ingred_fur_blkwolf.nif
+    icon: n/tx_fur_blkwolf.tga
+    weight: 5.0
+    value: 20
+    effects: []
+  "Ingredient::hb_goatpeltmountain":
+    type: Ingredient
+    name: Mountain Goat Pelt
+    model: "sky/f/sky_furn_mgoatpelt1.nif"
+    icon: hunt/n/mountaingoatpelt.png
+    weight: 5.0
+    value: 20
+    effects: []
+  "Ingredient::hb_alphynmeat":
+    type: Ingredient
+    name: Alphyn Meat
+    model: "tr/n/tr_ing_meat_mutton.nif"
+    icon: "tr/n/tr_ing_meat_mutton.dds"
+    weight: 2.5
+    value: 8
+    effects: []
+  "Ingredient::Hb_netchleatherimproved":
+    type: Ingredient
+    name: Netch Leather (Fine)
+    model: "n/ingred_netch_leather_01.nif"
+    icon: "n/tx_netch_leather_01.tga"
+    weight: 1.0
+    value: 40
+    effects: []
+  "Ingredient::hb_trollpelt":
+    type: Ingredient
+    name: Troll Pelt
+    model: n/ingred_fur_scamp.nif
+    icon: n/tx_fur_scamp.tga
+    weight: 0.75
+    value: 10
+    effects: []
+  "Ingredient::hb_trollblood":
+    type: Ingredient
+    name: Troll Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 30
+    effects: []
+  "Ingredient::Hb_boarfurpelt":
+    type: Ingredient
+    name: Boar Skin
+    model: n/ingred_fur_boar.nif
+    icon: n/tx_fur_boar.tga
+    weight: 20.0
+    value: 75
+    effects: []
+  "Ingredient::Hb_bearblood":
+    type: Ingredient
+    name: Bear Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 50
+    effects: []
+  "Ingredient::Hb_wolfblood":
+    type: Ingredient
+    name: Wolf Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 30
+    effects: []
+  "Ingredient::Hb_snowwolfskin":
+    type: Ingredient
+    name: Snow Wolf Skin
+    model: n/ingred_fur_whtwolf.nif
+    icon: n/tx_fur_whtwolf.tga
+    weight: 5.0
+    value: 40
+    effects: []
+  "Ingredient::Hb_guartongue":
+    type: Ingredient
+    name: Guar Tongue
+    model: n/ingred_guar_tongue.nif
+    icon: n/tx_guar_tongue.tga
+    weight: 3.0
+    value: 10
+    effects: []
+  "Ingredient::HB_netchbettyjelly":
+    type: Ingredient
+    name: Betty Netch jelly
+    model: n/ingred_netch_jelly02.nif
+    icon: n/tx_netch_jelly_02.tga
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::hb_animal_eye_clumsy":
+    type: Ingredient
+    name: Animal eye (clumsily extracted)
+    model: "pc/n/pc_ing_frogeye.nif"
+    icon: "pc/n/pc_tx_ingred_frogeye.dds"
+    weight: 0.2
+    value: 5
+    effects: []
+  "Ingredient::Hb_ratfurpelt":
+    type: Ingredient
+    name: Rat Skin
+    model: n/ingred_fur_rustrat.nif
+    icon: n/tx_fur_rustrat.tga
+    weight: 1.0
+    value: 3
+    effects: []
+  "Ingredient::hb_goatblood":
+    type: Ingredient
+    name: Goat Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::Hb_netchbulljelly":
+    type: Ingredient
+    name: Bull Netch jelly
+    model: n/ingred_netch_jelly01.nif
+    icon: n/tx_netch_jelly_01.tga
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::hb_goathorn":
+    type: Ingredient
+    name: Goat Horn
+    model: "sky/n/sky_ingred_hornmin_01.nif"
+    icon: "sky/n/tx_ingred_hornmin_01.dds"
+    weight: 2.0
+    value: 5
+    effects: []
+  "Ingredient::Hb_nixhoundblood":
+    type: Ingredient
+    name: Nix Hound Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 75
+    effects: []
+  "Ingredient::Hb_tanthameat":
+    type: Ingredient
+    name: Gold Tantha Meat
+    model: "sky/n/sky_ingred_meat_sq_01.nif"
+    icon: "sky/n/sky_ingred_meat_sq01.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::Hb_scribblood":
+    type: Ingredient
+    name: Scrib Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_alphynblood":
+    type: Ingredient
+    name: Alphyn Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 20
+    effects: []
+  "Ingredient::hb_dreughblood":
+    type: Ingredient
+    name: Dreugh Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 50
+    effects: []
+  "Ingredient::hb_fishbaitmeat":
+    type: Ingredient
+    name: Fish Bait
+    model: "pc/n/pc_ing_arenthjerky.nif"
+    icon: "pc/n/pc_ing_arenthjerky.dds"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::hb_stridentmeat":
+    type: Ingredient
+    name: Strident Runner Meat
+    model: "sky/n/sky_ingred_chleg_01.nif"
+    icon: "sky/n/tx_ingred_chleg_01.dds"
+    weight: 0.6
+    value: 5
+    effects: []
+  "Ingredient::hb_bearmeat":
+    type: Ingredient
+    name: Bear Meat
+    model: "oaab/n/n_horse_meat.nif"
+    icon: "oaab/n/n_horse_meat.dds"
+    weight: 1.5
+    value: 10
+    effects: []
+  "Ingredient::hb_STRIDENTblood":
+    type: Ingredient
+    name: Strident Runner Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 25
+    effects: []
+  "Ingredient::Hb_fish_eggs_roe":
+    type: Ingredient
+    name: Fish Roe
+    model: "oaab/n/sturgeonroe.nif"
+    icon: "oaab/n/sturgeonroe.tga"
+    weight: 0.3
+    value: 20
+    effects: []
+  "Ingredient::hb_animal_eye_mediocre":
+    type: Ingredient
+    name: Animal eye (mediocrely extr.)
+    model: "pc/n/pc_ing_frogeye.nif"
+    icon: "pc/n/pc_tx_ingred_frogeye.dds"
+    weight: 0.2
+    value: 10
+    effects: []
+  "Ingredient::Hb_guarblood":
+    type: Ingredient
+    name: Guar Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 30
+    effects: []
+  "Ingredient::Hb_animalblood":
+    type: Ingredient
+    name: Animal Blood
+    model: "hr/n/cr_orcblood.nif"
+    icon: "hr/n/cr_orcblood.dds"
+    weight: 0.6
+    value: 25
+    effects: []
+  "Ingredient::Hb_horkerfurpelt":
+    type: Ingredient
+    name: Horker Skin
+    model: n/ingred_fur_horker.nif
+    icon: n/tx_fur_horker.tga
+    weight: 5.0
+    value: 20
+    effects: []
+  "Ingredient::hb_hemolymph_vial":
+    type: Ingredient
+    name: Insect hemolymph
+    model: "oaab/m/inkvial.nif"
+    icon: "oaab/m/misc_inkvial.tga"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::hb_hemolymph":
+    type: Ingredient
+    model: n/ingred_hemolymph_01.nif
+    icon: n/tx_hemolymph.tga
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::hb_animal_eye_perfect":
+    type: Ingredient
+    name: Animal Eye (perfectly extracted)
+    model: "pc/n/pc_ing_frogeye.nif"
+    icon: "pc/n/pc_tx_ingred_frogeye.dds"
+    weight: 0.2
+    value: 20
+    effects: []
+  "Ingredient::hb_snakemeat":
+    type: Ingredient
+    name: Squirrel Meat
+    model: "sky/n/sky_ingred_meat_sq_01.nif"
+    icon: "sky/n/sky_ingred_meat_sq01.dds"
+    weight: 1.0
+    value: 1
+    effects: []
+  "Ingredient::hb_baitrandom":
+    type: Ingredient
+    name: Dummy Bait - Dont remove
+    model: dummy bait
+    weight: 0.0
+    value: 0
+    effects: []

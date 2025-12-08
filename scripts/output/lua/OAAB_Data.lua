@@ -1,0 +1,363 @@
+return {
+  ["AB_IngCrea_Silkgut"] = {
+    "DetectAnimal",
+    "Telekinesis",
+    "DrainHealth",
+    "WeaknessToFire",
+  },
+  ["AB_IngMine_Peridot_01"] = {
+    "Poison",
+    "ResistParalysis",
+    "CurePoison",
+    "WeaknessToMagicka",
+  },
+  ["AB_IngFood_KwamaEggSpoilLarge"] = {
+    "DrainFatigue",
+  },
+  ["AB_IngFlor_Harrada_01"] = {
+    "DamageHealth",
+    "DamageMagicka",
+    "Silence",
+    "Paralyze",
+  },
+  ["AB_IngMine_GoldPearl_01"] = {
+    "WeaknessToMagicka",
+    "FrostShield",
+    "WeaknessToFrost",
+    "WaterBreathing",
+  },
+  ["AB_IngCrea_SaintsHair"] = {
+    "Reflect",
+    { "FortifyAttribute" , "Personality" },
+    "DrainMagicka",
+    { "FortifyAttribute" , "Luck" },
+  },
+  ["AB_IngMine_Clay01"] = {
+    "Burden",
+    "CurePoison",
+  },
+  ["AB_IngFlor_Fomentarius"] = {
+    "Blind",
+    "DrainFatigue",
+    "CureCommonDisease",
+    "Burden",
+  },
+  ["AB_IngCrea_SpiderVenom"] = {
+    "Poison",
+    "Paralyze",
+  },
+  ["AB_IngMine_Amethyst_01"] = {
+    "Burden",
+    "DamageFatigue",
+    "WeaknessToFire",
+    "SpellAbsorption",
+  },
+  ["AB_IngFood_SaltriceBread"] = {
+    "RestoreHealth",
+  },
+  ["AB_IngCrea_SpiderMilk"] = {
+    "Sanctuary",
+    "Mark",
+  },
+  ["AB_IngFood_WickwheatDumpling"] = {
+    "RestoreHealth",
+    { "FortifyAttribute" , "Willpower" },
+  },
+  ["AB_IngCrea_SturgeonRoe"] = {
+    "RestoreFatigue",
+    "FortifyFatigue",
+    "WaterBreathing",
+  },
+  ["AB_IngFlor_CinderSparkLichen_01"] = {
+    "Light",
+    "Blind",
+    "ShockDamage",
+    "FireDamage",
+  },
+  ["AB_IngFood_Sweetroll"] = {
+    "RestoreFatigue",
+    "RestoreHealth",
+    "DamageMagicka",
+    { "DrainAttribute" , "Speed" },
+  },
+  ["AB_IngCrea_TwilightMembrane"] = {
+    "Chameleon",
+    "Levitate",
+    "DamageHealth",
+    "SlowFall",
+  },
+  ["AB_IngFood_SaltricePorridge"] = {
+    "RestoreHealth",
+  },
+  ["AB_IngMine_BlackPearl_01"] = {
+    "DrainHealth",
+    { "FortifyAttribute" , "Luck" },
+    "Feather",
+    "SwiftSwim",
+  },
+  ["AB_IngFlor_Scypha"] = {
+    "DamageHealth",
+    "WeaknessToPoison",
+    { "DamageAttribute" , "Intelligence" },
+    { "FortifyAttribute" , "Endurance" },
+  },
+  ["AB_IngMine_RedDiamond"] = {
+    { "FortifyAttribute" , "Intelligence" },
+    "FireDamage",
+    "DamageHealth",
+    "Paralyze",
+  },
+  ["AB_IngFlor_Dustcap"] = {
+    "Blind",
+    "Burden",
+    "ResistCommonDisease",
+    "ResistBlightDisease",
+  },
+  ["AB_IngCrea_KwamaPoison"] = {
+    "Poison",
+  },
+  ["AB_IngFlor_BlueKanet_01"] = {
+    { "DrainAttribute" , "Willpower" },
+    { "RestoreAttribute" , "Intelligence" },
+    "Silence",
+    "WeaknessToFire",
+  },
+  ["AB_IngMine_Diopside_01"] = {
+    "ResistMagicka",
+    { "DamageAttribute" , "Luck" },
+    "Burden",
+    "Dispel",
+  },
+  ["AB_IngMine_BlackTourmaline_01"] = {
+    "Invisibility",
+    { "DrainAttribute" , "Agility" },
+    "Blind",
+    "Silence",
+  },
+  ["AB_IngMine_Sapphire_01"] = {
+    "DrainFatigue",
+    "Chameleon",
+    "FrostShield",
+    "DrainMagicka",
+  },
+  ["AB_IngFood_DoughRolled"] = {
+  },
+  ["AB_IngMine_Garnet_01"] = {
+    "WeaknessToFire",
+    "FireDamage",
+    "Sanctuary",
+    "Blind",
+  },
+  ["AB_IngCrea_KwamaEggBlighted"] = {
+    { "DrainAttribute" , "Personality" },
+    "DamageFatigue",
+  },
+  ["AB_IngMine_Sulphur"] = {
+    "Poison",
+    "FireDamage",
+    "ResistFire",
+  },
+  ["AB_IngMine_Obsidian_01"] = {
+    "Burden",
+    "Blind",
+    "Chameleon",
+    "Reflect",
+  },
+  ["AB_IngFood_ComJam"] = {
+    "RestoreHealth",
+  },
+  ["AB_IngFlor_GlMuscaria_01"] = {
+    "ResistPoison",
+    "DrainHealth",
+    "Light",
+    "Blind",
+  },
+  ["AB_IngCrea_HorseMeat01"] = {
+    "RestoreHealth",
+    { "DrainAttribute" , "Speed" },
+    { "DamageAttribute" , "Agility" },
+    "RestoreFatigue",
+  },
+  ["AB_IngFlor_Harrada_02"] = {
+    "ShockDamage",
+    "Reflect",
+    "DrainMagicka",
+    "WeaknessToShock",
+  },
+  ["AB_IngFood_KwamaEggSpoilSmall"] = {
+    "DrainFatigue",
+  },
+  ["AB_IngFood_KwamaEggCentCut"] = {
+    "RestoreFatigue",
+    "FrostShield",
+    "CureCommonDisease",
+    "FortifyMagicka",
+  },
+  ["AB_IngFood_ScuttlePie"] = {
+    "FortifyFatigue",
+    "ResistFire",
+    "Burden",
+    "Sound",
+  },
+  ["AB_IngCrea_GlowbugThoraxBlue"] = {
+    "Light",
+    "WeaknessToFire",
+  },
+  ["AB_IngMine_Amber_01"] = {
+    "DetectAnimal",
+    "ResistShock",
+    "DamageFatigue",
+    "WeaknessToPoison",
+  },
+  ["AB_IngCrea_GlowbugThoraxGreen"] = {
+    "Light",
+    "WeaknessToFire",
+  },
+  ["AB_IngMine_BlueDiamond"] = {
+    "Invisibility",
+    "FrostDamage",
+    "DamageMagicka",
+    "Blind",
+  },
+  ["AB_IngFlor_Bloodgrass_02"] = {
+    "WeaknessToFire",
+    "SpellAbsorption",
+    { "DamageAttribute" , "Intelligence" },
+    "DrainHealth",
+  },
+  ["AB_IngMine_ChalkWhite"] = {
+    { "DrainAttribute" , "Speed" },
+    "Mark",
+  },
+  ["AB_IngCrea_DungCake"] = {
+    "Poison",
+    "WeaknessToFire",
+  },
+  ["AB_IngMine_Tourmaline_01"] = {
+    { "DrainAttribute" , "Strength" },
+    "ResistFire",
+    { "RestoreAttribute" , "Willpower" },
+    "DamageFatigue",
+  },
+  ["AB_IngFlor_Bloodgrass_01"] = {
+    "Chameleon",
+    "ResistParalysis",
+    "Burden",
+    "FortifyHealth",
+  },
+  ["AB_IngCrea_LichDust"] = {
+    "Dispel",
+    { "FortifyAttribute" , "Intelligence" },
+    "Recall",
+    "FortifyMaximumMagicka",
+  },
+  ["AB_IngCrea_SprigganEar"] = {
+    "FortifyMagicka",
+    { "DrainAttribute" , "Agility" },
+    "Sound",
+    "FrostShield",
+  },
+  ["AB_IngCrea_OgrimLard"] = {
+    "Poison",
+    { "FortifySkill" , "Enchant" },
+    "Light",
+    { "DamageAttribute" , "Personality" },
+  },
+  ["AB_IngFlor_Pomegranate02"] = {
+    { "FortifyAttribute" , "Endurance" },
+    "FortifyHealth",
+    { "DrainAttribute" , "Speed" },
+    "ResistBlightDisease",
+  },
+  ["AB_IngFlor_TelvanniResin"] = {
+    "Light",
+    { "RestoreAttribute" , "Willpower" },
+    { "FortifyAttribute" , "Strength" },
+    "ResistCommonDisease",
+  },
+  ["AB_IngCrea_DreughShell_01"] = {
+    { "RestoreAttribute" , "Strength" },
+    "SwiftSwim",
+    { "DamageAttribute" , "Endurance" },
+    "Feather",
+  },
+  ["AB_IngFlor_ViMuscaria_01"] = {
+    "DamageHealth",
+    "DrainFatigue",
+    "WeaknessToPoison",
+    "Shield",
+  },
+  ["AB_IngMine_Topaz_01"] = {
+    { "DamageAttribute" , "Strength" },
+    "DetectEnchantment",
+    "WaterWalking",
+    { "DrainAttribute" , "Endurance" },
+  },
+  ["AB_IngCrea_ClannClaw_01"] = {
+    "FortifyAttack",
+    { "DrainAttribute" , "Intelligence" },
+    "DamageHealth",
+    "CurePoison",
+  },
+  ["AB_IngFlor_Urnula"] = {
+    "DamageHealth",
+    "Chameleon",
+    "Silence",
+    "Feather",
+  },
+  ["AB_IngMine_Firejade_01"] = {
+    "ResistFire",
+    "DamageHealth",
+    "CureParalyzation",
+    "WeaknessToFrost",
+  },
+  ["AB_IngCrea_GuarMeat_01"] = {
+    "RestoreFatigue",
+    "RestoreHealth",
+    { "RestoreAttribute" , "Strength" },
+    "WeaknessToPoison",
+  },
+  ["AB_IngFood_DoughLump"] = {
+  },
+  ["AB_IngFood_KwamaEggCentWrap"] = {
+    "RestoreFatigue",
+    "FrostShield",
+    "CureCommonDisease",
+    "FortifyMagicka",
+  },
+  ["AB_IngCrea_DaeTeeth_01"] = {
+    { "DamageAttribute" , "Agility" },
+    "FortifyAttack",
+    "Poison",
+    { "RestoreAttribute" , "Strength" },
+  },
+  ["AB_IngCrea_SfMeat_01"] = {
+    "DamageFatigue",
+  },
+  ["AB_IngMine_Clay02"] = {
+    "Burden",
+    "CurePoison",
+  },
+  ["AB_IngFlor_Pomegranate01"] = {
+    { "FortifyAttribute" , "Endurance" },
+    "FortifyHealth",
+    { "DrainAttribute" , "Speed" },
+    "ResistBlightDisease",
+  },
+  ["AB_IngMine_Lodestone"] = {
+    { "DrainAttribute" , "Endurance" },
+    "Telekinesis",
+    "Burden",
+    "ResistShock",
+  },
+  ["AB_IngCrea_ScribShell_01"] = {
+    "DrainHealth",
+    "ResistParalysis",
+  },
+  ["AB_IngFlor_BgSlime_01"] = {
+    "Poison",
+    "DamageHealth",
+    "RestoreHealth",
+    "RestoreFatigue",
+  },
+}

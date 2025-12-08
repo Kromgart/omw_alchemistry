@@ -1,0 +1,690 @@
+---
+__esp_version__: 1.3
+__plugin_type__: 0
+transpiler_version: 0.24.1
+author: ""
+desc: ""
+masters:
+  - name: OAAB_Data.esm
+    size: 1696840
+records:
+  "Ingredient::AB_IngCrea_Silkgut":
+    type: Ingredient
+    name: Silkgut
+    model: "oaab/n/silkgut.nif"
+    icon: "oaab/n/silkgut.dds"
+    weight: 0.3
+    value: 8
+    effects: []
+  "Ingredient::AB_IngCrea_SturgeonMeat02": ~
+  "Potion::AB_IngCrea_SturgeonMeat02":
+    type: Potion
+    name: Sturgeon Meat
+    model: "oaab/n/sturgeonmeat02.nif"
+    icon: "oaab/n/sturgeonmeat02.tga"
+    weight: 10.0
+    value: 30
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::AB_IngMine_Peridot_01":
+    type: Ingredient
+    name: Peridot
+    model: "oaab/n/gem_peridot_01.nif"
+    icon: "oaab/n/gem_peridot.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::AB_IngFood_KwamaEggSpoilLarge":
+    type: Ingredient
+    name: Spoiled Kwama Egg
+    model: "f/food_kwama_egg_02.nif"
+    icon: "m/tx_food_kwama_egg_01.tga"
+    weight: 2.0
+    value: 1
+    effects: []
+  "Ingredient::AB_IngFood_KwamaLoafSlice": ~
+  "Potion::AB_IngFood_KwamaLoafSlice":
+    type: Potion
+    name: Goros Slice
+    model: "oaab/n/food_goros_slice.nif"
+    icon: "oaab/n/food_goros_slice.tga"
+    weight: 0.3
+    value: 2
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::AB_IngFood_Bread01a": ~
+  "Potion::AB_IngFood_Bread01a":
+    type: Potion
+    name: Bread
+    model: "oaab/n/ingred_bread_01a.nif"
+    icon: "oaab/n/ingred_bread_01a.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::AB_IngFlor_Harrada_01":
+    type: Ingredient
+    name: Harrada
+    model: "oaab/n/n_harrada_01.nif"
+    icon: "oaab/n/n_harrada_01.dds"
+    weight: 0.2
+    value: 15
+    effects: []
+  "Ingredient::AB_IngFood_Bread02": ~
+  "Potion::AB_IngFood_Bread02":
+    type: Potion
+    name: Bread
+    model: "oaab/n/ingred_bread_02.nif"
+    icon: "oaab/n/ingred_bread_02.dds"
+    weight: 0.4
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::AB_IngMine_GoldPearl_01":
+    type: Ingredient
+    name: Golden Pearl
+    model: "oaab/n/gem_goldpearl_01.nif"
+    icon: "oaab/n/gem_goldpearl_01.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::AB_IngCrea_SaintsHair":
+    type: Ingredient
+    name: "Saint's Hair"
+    model: "oaab/n/saints_hair.nif"
+    icon: "oaab/n/saints_hair.dds"
+    weight: 1.0
+    value: 250
+    effects: []
+  "Ingredient::AB_IngMine_Clay01":
+    type: Ingredient
+    name: Clay
+    model: "oaab/n/potteryclaylump01.nif"
+    icon: "oaab/n/potteryclaylump01.tga"
+    weight: 5.0
+    value: 1
+    effects: []
+  "Ingredient::AB_IngFlor_Fomentarius":
+    type: Ingredient
+    name: Blistering Fomentarius
+    model: "oaab/n/ing_fomentarius01.nif"
+    icon: "oaab/n/n_fomentarius01.dds"
+    weight: 0.5
+    value: 3
+    effects: []
+  "Ingredient::AB_IngCrea_SpiderVenom":
+    type: Ingredient
+    name: Spider Venom
+    model: "oaab/n/spider_milk.nif"
+    icon: "oaab/n/spider_milk.tga"
+    weight: 0.3
+    value: 40
+    effects: []
+  "Ingredient::AB_IngMine_Amethyst_01":
+    type: Ingredient
+    name: Amethyst
+    model: "oaab/n/gem_amethyst_01.nif"
+    icon: "oaab/n/gem_amethyst.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::AB_IngFood_SaltriceBread":
+    type: Ingredient
+    name: Saltrice Bread
+    model: "oaab/n/food_salt_bread_01.nif"
+    icon: "oaab/n/food_salt_bread.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::AB_IngCrea_SpiderMilk":
+    type: Ingredient
+    name: "Spider's Milk"
+    model: "oaab/n/spider_milk.nif"
+    icon: "oaab/n/spider_milk.tga"
+    weight: 0.3
+    value: 40
+    effects: []
+  "Ingredient::AB_IngFood_WickwheatDumpling":
+    type: Ingredient
+    name: Wickwheat Dumpling
+    model: "oaab/n/wickwheatdumpling.nif"
+    icon: "oaab/n/wickwheatdumpling.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::AB_IngCrea_SturgeonRoe":
+    type: Ingredient
+    name: Sturgeon Roe
+    model: "oaab/n/sturgeonroe.nif"
+    icon: "oaab/n/sturgeonroe.tga"
+    weight: 0.3
+    value: 40
+    effects: []
+  "Ingredient::AB_IngFlor_CinderSparkLichen_01":
+    type: Ingredient
+    name: Cinderspark Lichen
+    model: "oaab/n/mv_lichen_n.nif"
+    icon: "oaab/n/tx_mv_lichen.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::AB_IngFood_Sweetroll":
+    type: Ingredient
+    name: Sweetroll
+    model: "oaab/n/food_sweet_roll_01.nif"
+    icon: "oaab/n/food_sweet_roll.dds"
+    weight: 0.3
+    value: 5
+    effects: []
+  "Ingredient::AB_IngCrea_TwilightMembrane":
+    type: Ingredient
+    name: Winged Twilight Membrane
+    model: "oaab/n/twilight_membrane.nif"
+    icon: "oaab/n/twilight_membrane.dds"
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::AB_IngFood_SaltricePorridge":
+    type: Ingredient
+    name: Saltrice Porridge
+    model: "oaab/n/saltrice_porridge.nif"
+    icon: "oaab/n/salt_porridge.dds"
+    weight: 0.5
+    value: 5
+    effects: []
+  "Ingredient::AB_IngMine_BlackPearl_01":
+    type: Ingredient
+    name: Black Pearl
+    model: "oaab/n/gem_blackpearl_01.nif"
+    icon: "oaab/n/gem_blackpearl.dds"
+    weight: 0.2
+    value: 300
+    effects: []
+  "Ingredient::AB_IngFlor_Scypha":
+    type: Ingredient
+    name: Scypha Mycena Caps
+    model: "oaab/n/ingr_scyphacaps.nif"
+    icon: "oaab/n/ingr_scyphacaps.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::AB_IngMine_RedDiamond":
+    type: Ingredient
+    name: Red Diamond
+    model: "oaab/n/gem_diamond_red_01.nif"
+    icon: "oaab/n/gem_diamond_red.dds"
+    weight: 0.2
+    value: 300
+    effects: []
+  "Ingredient::AB_IngFlor_Dustcap":
+    type: Ingredient
+    name: Dustcap
+    model: "oaab/n/flora_dustcap_ing.nif"
+    icon: "oaab/n/rem_dustcap.dds"
+    weight: 0.5
+    value: 3
+    effects: []
+  "Ingredient::AB_IngCrea_KwamaPoison":
+    type: Ingredient
+    name: Kwama Poison
+    model: "oaab/n/acidcystingred.nif"
+    icon: "oaab/n/ingred_acidcyst.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::AB_IngFlor_BlueKanet_01":
+    type: Ingredient
+    name: Blue Kanet
+    model: "oaab/n/ing_bluekanet01.nif"
+    icon: "oaab/n/n_bluekanet01.dds"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::AB_IngMine_Diopside_01":
+    type: Ingredient
+    name: Star Diopside
+    model: "oaab/n/gem_diopside_01.nif"
+    icon: "oaab/n/gem_diopside.dds"
+    weight: 0.2
+    value: 200
+    effects: []
+  "Ingredient::AB_IngMine_BlackTourmaline_01":
+    type: Ingredient
+    name: Black Tourmaline
+    model: "oaab/n/gem_bltourmaline_01.nif"
+    icon: "oaab/n/gem_bltourmaline.dds"
+    weight: 0.2
+    value: 125
+    effects: []
+  "Ingredient::AB_IngMine_Sapphire_01":
+    type: Ingredient
+    name: Sapphire
+    model: "oaab/n/gem_sapphire_01.nif"
+    icon: "oaab/n/gem_sapphire.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::AB_IngFood_DoughRolled":
+    type: Ingredient
+    name: Dough
+    model: "oaab/n/doughrolled.nif"
+    icon: "oaab/n/doughrolled.tga"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::AB_IngMine_Garnet_01":
+    type: Ingredient
+    name: Garnet
+    model: "oaab/n/gem_garnet_01.nif"
+    icon: "oaab/n/gem_garnet.dds"
+    weight: 0.2
+    value: 125
+    effects: []
+  "Ingredient::AB_IngCrea_KwamaEggBlighted":
+    type: Ingredient
+    name: Blighted Kwama Egg
+    model: "oaab/n/egg_blight.nif"
+    icon: "oaab/n/ingred_egg_blighted.tga"
+    weight: 1.0
+    value: 2
+    effects: []
+  "Ingredient::AB_IngMine_Sulphur":
+    type: Ingredient
+    name: Sulphur
+    model: "oaab/n/sulphur.nif"
+    icon: "oaab/n/n_sulphur.tga"
+    weight: 0.1
+    value: 2
+    effects: []
+  "Ingredient::AB_IngMine_Obsidian_01":
+    type: Ingredient
+    name: Obsidian
+    model: "oaab/n/dk_obsidian.nif"
+    icon: "oaab/n/obsidian.dds"
+    weight: 3.0
+    value: 40
+    effects: []
+  "Ingredient::AB_IngFood_ComJam":
+    type: Ingredient
+    name: Comberry Jam
+    model: "oaab/m/food_comjam.nif"
+    icon: "oaab/m/food_comjam.dds"
+    weight: 0.5
+    value: 12
+    effects: []
+  "Ingredient::AB_IngFood_KwamaLoaf": ~
+  "Potion::AB_IngFood_KwamaLoaf":
+    type: Potion
+    name: Goros
+    model: "oaab/n/food_goros.nif"
+    icon: "oaab/n/food_goros.tga"
+    weight: 2.5
+    value: 6
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::AB_IngFlor_GlMuscaria_01":
+    type: Ingredient
+    name: Glowing Chanterelle
+    model: "oaab/n/ing_muscaria01.nif"
+    icon: "oaab/n/n_muscaria01.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::AB_IngCrea_HorseMeat01":
+    type: Ingredient
+    name: Horse Meat
+    model: "oaab/n/n_horse_meat.nif"
+    icon: "oaab/n/n_horse_meat.dds"
+    weight: 2.0
+    value: 30
+    effects: []
+  "Ingredient::AB_IngFlor_Harrada_02":
+    type: Ingredient
+    name: Planeriven Harrada
+    model: "oaab/n/n_harrada_02.nif"
+    icon: "oaab/n/n_harrada_02.dds"
+    weight: 0.2
+    value: 30
+    effects: []
+  "Ingredient::AB_IngFood_KwamaEggSpoilSmall":
+    type: Ingredient
+    name: Spoiled Kwama Egg
+    model: "f/food_kwama_egg_01.nif"
+    icon: "m/tx_food_kwama_egg_01.tga"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::AB_IngFood_KwamaEggCentCut":
+    type: Ingredient
+    name: Century Kwama Egg
+    model: "oaab/n/egg_cent_02.nif"
+    icon: "oaab/n/egg_century_02.tga"
+    weight: 1.0
+    value: 10
+    effects: []
+  "Ingredient::AB_IngFood_ScuttlePie":
+    type: Ingredient
+    name: Scuttle Pie
+    model: "oaab/n/food_scuttle_pie_01.nif"
+    icon: "oaab/n/food_scuttle_pie.dds"
+    weight: 0.5
+    value: 10
+    effects: []
+  "Ingredient::AB_IngCrea_GlowbugThoraxBlue":
+    type: Ingredient
+    name: Glowbug Thorax
+    model: "oaab/n/ingglowbugthorax.nif"
+    icon: "oaab/n/ingred_glowbugthorax.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::AB_IngMine_Amber_01":
+    type: Ingredient
+    name: Amber
+    model: "oaab/n/gem_amber_01.nif"
+    icon: "oaab/n/gem_amber.dds"
+    weight: 0.2
+    value: 75
+    effects: []
+  "Ingredient::AB_IngCrea_SturgeonMeat01": ~
+  "Potion::AB_IngCrea_SturgeonMeat01":
+    type: Potion
+    name: Sturgeon Meat
+    model: "oaab/n/sturgeonmeat01.nif"
+    icon: "oaab/n/sturgeonmeat01.tga"
+    weight: 1.0
+    value: 3
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::AB_IngCrea_GlowbugThoraxGreen":
+    type: Ingredient
+    name: Glowbug Thorax
+    model: "oaab/n/ingglowbugthorax02.nif"
+    icon: "oaab/n/ing_glowbugthorax2.tga"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::AB_IngMine_BlueDiamond":
+    type: Ingredient
+    name: Blue Diamond
+    model: "oaab/n/gem_diamond_blue_01.nif"
+    icon: "oaab/n/gem_diamond_blue.dds"
+    weight: 0.2
+    value: 300
+    effects: []
+  "Ingredient::AB_IngFlor_Bloodgrass_02":
+    type: Ingredient
+    name: Planeriven Bloodgrass
+    model: "oaab/n/n_bloodgrass_02.nif"
+    icon: "oaab/n/n_bloodgrass_02.dds"
+    weight: 0.1
+    value: 20
+    effects: []
+  "Ingredient::AB_IngMine_ChalkWhite":
+    type: Ingredient
+    name: Chalk
+    model: "oaab/n/chalk.nif"
+    icon: "oaab/n/chalk.dds"
+    weight: 0.1
+    value: 1
+    effects: []
+  "Ingredient::AB_IngCrea_DungCake":
+    type: Ingredient
+    name: Dung Cake
+    model: "oaab/n/dungcake.nif"
+    icon: "oaab/n/dungcake.dds"
+    weight: 3.0
+    value: 3
+    effects: []
+  "Ingredient::AB_IngMine_Tourmaline_01":
+    type: Ingredient
+    name: Tourmaline
+    model: "oaab/n/gem_tourmaline_01.nif"
+    icon: "oaab/n/gem_tourmaline_01.dds"
+    weight: 0.2
+    value: 125
+    effects: []
+  "Ingredient::AB_IngFlor_Bloodgrass_01":
+    type: Ingredient
+    name: Bloodgrass
+    model: "oaab/n/n_bloodgrass_01.nif"
+    icon: "oaab/n/n_bloodgrass_01.dds"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::AB_IngCrea_LichDust":
+    type: Ingredient
+    name: Lich Dust
+    model: "oaab/n/lich_dust.nif"
+    icon: "oaab/n/lich_dust.dds"
+    weight: 0.1
+    value: 500
+    effects: []
+  "Ingredient::AB_IngCrea_SprigganEar":
+    type: Ingredient
+    name: "Spriggan's Ear"
+    model: "oaab/n/spriggan_ear.nif"
+    icon: "oaab/n/spriggan_ear.dds"
+    weight: 0.4
+    value: 16
+    effects: []
+  "Ingredient::AB_IngFood_Bread01b": ~
+  "Potion::AB_IngFood_Bread01b":
+    type: Potion
+    name: Bread
+    model: "oaab/n/ingred_bread_01b.nif"
+    icon: "oaab/n/ingred_bread_01b.dds"
+    weight: 0.1
+    value: 1
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::AB_IngCrea_OgrimLard":
+    type: Ingredient
+    name: Grim Lard
+    model: "oaab/n/ogrimlard.nif"
+    icon: "oaab/n/ogrimlard.tga"
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::AB_IngFlor_Pomegranate02":
+    type: Ingredient
+    name: Pomegranate
+    model: "oaab/n/pom2.nif"
+    icon: "oaab/n/pom2.tga"
+    weight: 0.3
+    value: 25
+    effects: []
+  "Ingredient::AB_IngFlor_TelvanniResin":
+    type: Ingredient
+    name: Telvanni Resin
+    model: "oaab/n/telvanni resin.nif"
+    icon: "oaab/n/n_telv_resin.tga"
+    weight: 0.1
+    value: 10
+    effects: []
+  "Ingredient::AB_IngCrea_DreughShell_01":
+    type: Ingredient
+    name: Dreugh Shell
+    model: "oaab/n/rem_dreugh_shell.nif"
+    icon: "oaab/n/rem_dreugh_shell.dds"
+    weight: 1.0
+    value: 35
+    effects: []
+  "Ingredient::AB_IngFlor_ViMuscaria_01":
+    type: Ingredient
+    name: Vicious Chanterelle
+    model: "oaab/n/ing_muscaria02.nif"
+    icon: "oaab/n/n_muscaria02.dds"
+    weight: 0.5
+    value: 2
+    effects: []
+  "Ingredient::AB_IngMine_Topaz_01":
+    type: Ingredient
+    name: Topaz
+    model: "oaab/n/gem_topaz_01.nif"
+    icon: "oaab/n/gem_topaz.dds"
+    weight: 0.2
+    value: 125
+    effects: []
+  "Ingredient::AB_IngCrea_ClannClaw_01":
+    type: Ingredient
+    name: Clannfear Claw
+    model: "oaab/n/rem_clann_claw.nif"
+    icon: "oaab/n/n_clann_claw.dds"
+    weight: 1.0
+    value: 50
+    effects: []
+  "Ingredient::AB_IngFlor_Urnula":
+    type: Ingredient
+    name: Veiled Urnula Cap
+    model: "oaab/n/ing_urnula01.nif"
+    icon: "oaab/n/n_urnula01.dds"
+    weight: 0.3
+    value: 3
+    effects: []
+  "Ingredient::AB_IngMine_Firejade_01":
+    type: Ingredient
+    name: Firejade
+    model: "oaab/n/gem_firejade_01.nif"
+    icon: "oaab/n/gem_firejade.dds"
+    weight: 0.2
+    value: 150
+    effects: []
+  "Ingredient::AB_IngCrea_GuarMeat_01":
+    type: Ingredient
+    name: Guar Meat
+    model: "oaab/n/rem_guar_meat.nif"
+    icon: "oaab/n/rem_guar_meat.dds"
+    weight: 1.0
+    value: 5
+    effects: []
+  "Ingredient::AB_IngFood_DoughLump":
+    type: Ingredient
+    name: Dough
+    model: "oaab/n/doughlump.nif"
+    icon: "oaab/n/doughlump.tga"
+    weight: 0.2
+    value: 1
+    effects: []
+  "Ingredient::AB_IngFood_KwamaEggCentWrap":
+    type: Ingredient
+    name: Wrapped Century Kwama Egg
+    model: "oaab/n/egg_cent_01.nif"
+    icon: "oaab/n/egg_century_01.tga"
+    weight: 2.0
+    value: 20
+    effects: []
+  "Ingredient::AB_IngCrea_DaeTeeth_01":
+    type: Ingredient
+    name: Daedroth Teeth
+    model: "oaab/n/rem_daed_teeth.nif"
+    icon: "oaab/n/n_daed_teeth.dds"
+    weight: 0.5
+    value: 30
+    effects: []
+  "Ingredient::AB_IngCrea_SfMeat_01":
+    type: Ingredient
+    name: Slaughterfish Meat
+    model: "oaab/n/rem_sf_meat.nif"
+    icon: "oaab/n/n_sf_meat_01.dds"
+    weight: 0.5
+    value: 1
+    effects: []
+  "Ingredient::AB_IngMine_Clay02":
+    type: Ingredient
+    name: Clay
+    model: "oaab/n/potteryclaylump02.nif"
+    icon: "oaab/n/potteryclaylump02.tga"
+    weight: 10.0
+    value: 2
+    effects: []
+  "Ingredient::AB_IngFlor_Pomegranate01":
+    type: Ingredient
+    name: Pomegranate
+    model: "oaab/n/pom1.nif"
+    icon: "oaab/n/pom1.tga"
+    weight: 0.3
+    value: 50
+    effects: []
+  "Ingredient::AB_IngCrea_SturgeonMeat03": ~
+  "Potion::AB_IngCrea_SturgeonMeat03":
+    type: Potion
+    name: Sturgeon Meat
+    model: "oaab/n/sturgeonmeat03.nif"
+    icon: "oaab/n/sturgeonmeat03.tga"
+    weight: 2.0
+    value: 6
+    autocalc: false
+    effects:
+      - effect_type: RestoreFatigue
+        range: SelfType
+        area: 0
+        duration: 120
+        min_magnitude: 1
+        max_magnitude: 1
+  "Ingredient::AB_IngMine_Lodestone":
+    type: Ingredient
+    name: Lodestone
+    model: "oaab/n/lodestone.nif"
+    icon: "oaab/n/lodestone.dds"
+    weight: 2.5
+    value: 100
+    effects: []
+  "Ingredient::AB_IngCrea_ScribShell_01":
+    type: Ingredient
+    name: Scrib Shell
+    model: "oaab/n/rem_scrib_shell.nif"
+    icon: "oaab/n/rem_scrib_shell.dds"
+    weight: 1.0
+    value: 3
+    effects: []
+  "Ingredient::AB_IngFlor_BgSlime_01":
+    type: Ingredient
+    name: Bittergreen Slime
+    model: "oaab/n/rem_bg_slime.nif"
+    icon: "oaab/n/rem_bg_slime.dds"
+    weight: 0.1
+    value: 3
+    effects: []
