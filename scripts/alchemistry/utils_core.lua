@@ -99,6 +99,8 @@ module.initIngredients = function(knownEffects, knownExperiments)
         effectKey = effect.id
       end
 
+      local magicEffect = effect.effect
+
       local effectName = namesCache[effectKey]
       if effectName == nil then
         if effect.affectedAttribute ~= nil then
@@ -106,8 +108,9 @@ module.initIngredients = function(knownEffects, knownExperiments)
         elseif effect.affectedSkill ~= nil then
           effectName = makeCompositeEffectName(effect.id, effect.affectedSkill)
         else
-          effectName = effect.effect.name
+          effectName = magicEffect.name
         end
+
         namesCache[effectKey] = effectName
       end
 
@@ -116,27 +119,26 @@ module.initIngredients = function(knownEffects, knownExperiments)
         isKnown = (true == knownIngredientEffects[effectKey])
       end
 
-      table.insert(shortRecord.effects, {
+      shortRecord.effects[j] = {
         id = effect.id,
         key = effectKey,
         name = effectName,
-        icon = effect.effect.icon,
-        hasDuration = effect.effect.hasDuration,
-        hasMagnitude = effect.effect.hasMagnitude,
-        baseCost = effect.effect.baseCost,
-        harmful = effect.effect.harmful,
+        icon = magicEffect.icon,
+        hasDuration = magicEffect.hasDuration,
+        hasMagnitude = magicEffect.hasMagnitude,
+        baseCost = magicEffect.baseCost,
+        harmful = magicEffect.harmful,
         known = isKnown,
         affectedAttribute = effect.affectedAttribute,
         affectedSkill = effect.affectedSkill,
-      })
+      }
     end
 
     result[ingredientRecord.id] = shortRecord
     added = added + 1
   end
 
-  result.tableLength = added
-
+  module.ingredientsCount = added
   module.ingredientsData = result
   module.experimentsTable = knownExperiments
 end

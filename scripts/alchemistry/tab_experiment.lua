@@ -232,7 +232,7 @@ local function removeWellTestedIngredients(ingredients)
   local ingredientsLength = #ingredients
   local removed = 0
 
-  local maxPossibleExperiments = utilsCore.ingredientsData.tableLength - 1 -- all the others minus self
+  local maxPossibleExperiments = utilsCore.ingredientsCount - 1 -- all the others minus self
 
   for i = 1, ingredientsLength do
     local record = ingredients[i].record
@@ -283,7 +283,9 @@ end
 --------------------------------------------------------------------------------------------------------
 
 
-local module = {}
+local module = {
+  needsItems = true,
+}
 
 module.create = function(fnUpdateTooltip, alchemyItems)
   assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")

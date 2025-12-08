@@ -10,13 +10,14 @@ local utilsUI = require('scripts.alchemistry.utils_ui')
 -- local emptyTab = {
 --   create = function() return {} end,
 --   destroy = function() end,
+--   needsItems = false
 -- }
 
 local tabModules = {
-  -- Each must have create() and destroy() functions
+  -- Each must have create() and destroy() functions and maybe boolean needsItems
   require('scripts.alchemistry.tab_brew_vanilla'),
   require('scripts.alchemistry.tab_experiment'),
-  -- emptyTab,
+  require('scripts.alchemistry.tab_ingredients'),
   -- emptyTab,
 }
 
@@ -45,17 +46,21 @@ local function setActiveTabContent(newTabIdx)
   local newTab
 
   if newTabIdx ~= nil then
-    local ingredientsShallowClone = {}
-    for i, v in ipairs(ctx.alchemyItems.ingredients) do
-      if v.count > 0 then
-        table.insert(ingredientsShallowClone, v)
-      end
-    end
+    local tabAlchemyItems = nil
 
-    local tabAlchemyItems = {
-      apparatus = ctx.alchemyItems.apparatus,
-      ingredients = ingredientsShallowClone,
-    }
+    if tabModules[newTabIdx].needsItems then
+      local ingredientsShallowClone = {}
+      for i, v in ipairs(ctx.alchemyItems.ingredients) do
+        if v.count > 0 then
+          table.insert(ingredientsShallowClone, v)
+        end
+      end
+
+      tabAlchemyItems = {
+        apparatus = ctx.alchemyItems.apparatus,
+        ingredients = ingredientsShallowClone,
+      }
+    end
 
     newTab = tabModules[newTabIdx].create(updateTooltip, tabAlchemyItems, ctx.player)
   else
@@ -73,7 +78,6 @@ end
 
 local function onMouseMove(mouseEvent, sender)
   if ctx ~= nil then
-    assert(ctx.tooltip ~= nil)
     ctx.tooltip.layout:update(nil)
   end
 end
@@ -128,7 +132,6 @@ local function newMainWindowLayout(tabHeaders)
 end
 
 local function hideMainWindow()
-  -- ui.showMessage("Alchemy end")
   lastOpenTabIdx = ctx.activeTabIdx
   setActiveTabContent(nil)
   ctx.mainWindow:destroy()
@@ -138,9 +141,7 @@ end
 
 
 local function createMainWindow()
-  -- ui.showMessage("Alchemy start")
-  -- local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment", "Ingredients", "Favourites" }, setActiveTabContent)
-  local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment" }, setActiveTabContent)
+  local tabHeaders = utilsUI.newTabHeaders({ "Make potions", "Experiment", "Ingredients" }, setActiveTabContent)
 
   ctx = {
     tooltip = utilsUI.createTooltipElement(),

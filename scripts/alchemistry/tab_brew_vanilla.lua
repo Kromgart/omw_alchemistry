@@ -750,4 +750,5 @@ end
 return {
   create = createTab,
   destroy = destroyTab,
+  needsItems = true,
 }
