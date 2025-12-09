@@ -35,7 +35,7 @@ There is one slot for the 'main' ingredient, and a list of available ingredients
 
 When you put some ingredient into the 'main' slot, the ingredients list updates to show only unstudied combinations for this main ingredient.
 
-When the main slot is filled, clicking on ingredient in the list will perform the test, consume one item of both ingredients and reveal all common effects.
+When the main slot is filled, clicking on ingredient in the list will perform the test, consume one item of both ingredients, reveal all common effects and train the alchemy skill. The more effects discovered during the test — the bigger skill increase.
 
 If some ingredient has been tested with all other ingredients that you have, it will not be present on this tab at all (until you acquire some new ingredient and a new combinations become available).
 
