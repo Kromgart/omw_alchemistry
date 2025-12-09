@@ -21,6 +21,8 @@ local function makePotionName(potionEffects)
       return 'Magicka'
     elseif effect.id == core.magic.EFFECT_TYPE.FortifyAttribute then
       return core.getGMST('sAttribute' .. effect.affectedAttribute)
+    elseif effect.id == core.magic.EFFECT_TYPE.FortifySkill then
+      return core.getGMST('sSkill' .. effect.affectedSkill)
     else
       return effect.name
     end

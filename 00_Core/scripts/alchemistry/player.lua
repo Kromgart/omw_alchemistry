@@ -23,21 +23,19 @@ local function saveData()
   }
 
   for ingredientId, ingredientRecord in pairs(utilsCore.ingredientsData) do
-    if ingredientId ~= 'tableLength' then
-    -- print(string.format("%s %s", ingredientId, ingredientRecord))
-      local knownIngredientEffects = nil
-      for i, eff in ipairs(ingredientRecord.effects) do
-        if eff.known then
-          if knownIngredientEffects == nil then
-            knownIngredientEffects = {}
-          end
-          knownIngredientEffects[eff.key] = true
+  -- print(string.format("%s %s", ingredientId, ingredientRecord))
+    local knownIngredientEffects = nil
+    for i, eff in ipairs(ingredientRecord.effects) do
+      if eff.known then
+        if knownIngredientEffects == nil then
+          knownIngredientEffects = {}
         end
+        knownIngredientEffects[eff.key] = true
       end
+    end
 
-      if knownIngredientEffects ~= nil then
-        result.knownEffects[ingredientId] = knownIngredientEffects
-      end
+    if knownIngredientEffects ~= nil then
+      result.knownEffects[ingredientId] = knownIngredientEffects
     end
   end
 
@@ -53,10 +51,10 @@ local function loadData(data)
       madeExperiments = {},
     }
   else
-    -- print("loadData")
+    -- print("loadData: not nil")
   end
 
-  utilsCore.initIngredients(data.knownEffects, data.madeExperiments)
+  utilsCore.init(data.knownEffects, data.madeExperiments)
 end
 
 local function initData()

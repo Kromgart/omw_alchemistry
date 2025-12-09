@@ -5,6 +5,12 @@ transpiler_version: 0.24.1
 author: ""
 desc: ""
 masters:
+  - name: Morrowind.esm
+    size: 79837557
+  - name: Tribunal.esm
+    size: 4565686
+  - name: Bloodmoon.esm
+    size: 9631798
   - name: hunterwind.omwaddon
     size: 337923
 records:

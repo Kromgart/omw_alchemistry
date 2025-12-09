@@ -1,0 +1,32 @@
+---
+__esp_version__: 1.3
+__plugin_type__: 0
+transpiler_version: 0.24.1
+author: ""
+desc: ""
+masters:
+  - name: Morrowind.esm
+    size: 79837557
+  - name: Tribunal.esm
+    size: 4565686
+  - name: Bloodmoon.esm
+    size: 9631798
+  - name: OAAB - Shipwrecks.esm
+    size: 1064989
+records:
+  "Ingredient::_cor_ship_squid_ink":
+    type: Ingredient
+    name: Vial of Squid Ink
+    model: "oaab/m/inkvial.nif"
+    icon: "oaab/m/misc_inkvial.tga"
+    weight: 0.3
+    value: 200
+    effects: []
+  "Ingredient::_cor_ship_bile":
+    type: Ingredient
+    name: Poisonous Bile
+    model: "n/ingred_corprus_weeping_01.nif"
+    icon: "n/tx_corprus_weep_01.tga"
+    weight: 0.1
+    value: 0
+    effects: []

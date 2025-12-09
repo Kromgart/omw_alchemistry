@@ -1,0 +1,24 @@
+---
+__esp_version__: 1.3
+__plugin_type__: 0
+transpiler_version: 0.25.2
+author: ""
+desc: ""
+masters:
+  - name: Morrowind.esm
+    size: 79837557
+  - name: Tribunal.esm
+    size: 4565686
+  - name: Bloodmoon.esm
+    size: 9631798
+  - name: "Thief's quests.omwaddon"
+    size: 123480
+records:
+  "Ingredient::mt_adulteratedsugar_01_mt":
+    type: Ingredient
+    name: Adulterated Moon Sugar
+    model: "n/ingred_moon_sugar_01.nif"
+    icon: "n/tx_moon_sugar_01.tga"
+    weight: 0.1
+    value: 5
+    effects: []

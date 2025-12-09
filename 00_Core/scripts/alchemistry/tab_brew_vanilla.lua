@@ -229,7 +229,7 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
 
   for i, ingredient in ipairs(ctx.alchemyItems.ingredients) do
     if ingredient.count < 1 then
-      goto nextIngredient -- continue
+      goto continue
     end
 
     for j, active in ipairs(mutActiveIngredients) do
@@ -238,7 +238,7 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
           -- shorten the list for less checks in the future
           mutActiveIngredients[m] = mutActiveIngredients[m + 1]
         end
-        goto nextIngredient -- continue
+        goto continue
       end
     end
 
@@ -256,7 +256,7 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
       table.insert(result, ingredient)
     end
 
-    ::nextIngredient::
+    ::continue::
   end
 
   return result

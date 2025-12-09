@@ -1,5 +1,6 @@
 local types = require('openmw.types')
 local core = require('openmw.core')
+local vfs = require('openmw.vfs')
 
 
 local function makeCompositeEffectName(effectId, suffixId)
@@ -63,6 +64,58 @@ local function reduceIngredientStack(ingredientItem, removeCount)
 end
 
 
+local function loadLuaEffects()
+  local result = {}
+  local added = 0
+
+  local patchModules = {}
+  for patchFile in vfs.pathsWithPrefix('scripts/alchemistry/patches/') do
+    local moduleName = string.match(patchFile, '^.+/([^/]+)%.lua$')
+    if moduleName == nil then
+      print("skipping ", luaFile)
+    else
+      added = added + 1
+      patchModules[added] = moduleName
+    end
+  end
+  added = 0
+
+  table.sort(patchModules, function(x, y) return x < y end)
+
+  for i, patchModule in ipairs(patchModules) do
+    patchModule = 'scripts.alchemistry.patches.' .. patchModule
+    print("Loading effects from " .. patchModule)
+
+    local effectsTable = require(patchModule)
+    for k, v in pairs(effectsTable) do
+      for i = 1, #v do
+        local eff = v[i]
+        if 'string' == type(eff) then
+          v[i] = string.lower(eff)
+        else
+          for j = 1, #eff do
+            eff[j] = string.lower(eff[j])
+          end
+        end
+      end
+      result[string.lower(k)] = v
+      added = added + 1
+    end
+  end
+
+  print("Loaded ", added, " lua effects")
+
+  local count = 0
+  for k, v in pairs(result) do
+    count = count + 1
+  end
+
+  print("Lua effects count: ", count)
+
+  return result
+end
+
+
 -------------------------------------------------------------------------------
 
 
@@ -71,44 +124,71 @@ local module = {}
 
 
 
-module.initIngredients = function(knownEffects, knownExperiments)
+module.init = function(knownEffects, knownExperiments)
   local result = {}
   local added = 0
   local namesCache = {}
 
+  local luaEffects = loadLuaEffects()
+  local magicEffects = core.magic.effects.records
+
+
   for i, ingredientRecord in ipairs(types.Ingredient.records) do
+    local ingredientRecordId = ingredientRecord.id
+
+    local effects = {}
     local shortRecord = {
-      id = ingredientRecord.id,
+      id = ingredientRecordId,
       name = ingredientRecord.name,
       icon = ingredientRecord.icon,
       value = ingredientRecord.value,
       weight = ingredientRecord.weight,
-      effects = {}
+      effects = effects,
     }
 
-    local knownIngredientEffects = knownEffects[ingredientRecord.id]
 
-    for j, effect in ipairs(ingredientRecord.effects) do
+    local ingredientLuaEffects = luaEffects[ingredientRecordId]
+    if ingredientLuaEffects == nil then
+      error(string.format("%s has no associated lua effects", ingredientRecordId))
+    end
+    
+    local knownIngredientEffects = knownEffects[ingredientRecordId]
 
+    for j, effectEntry in ipairs(ingredientLuaEffects) do
+
+      local isSimpleEffect = 'string' == type(effectEntry)
+      local effectId = nil
       local effectKey = nil
-      if effect.affectedAttribute ~= nil then
-        effectKey = effect.id .. '_' .. effect.affectedAttribute
-      elseif effect.affectedSkill ~= nil then
-        effectKey = effect.id .. '_' .. effect.affectedSkill
+      local affectedAttribute = nil
+      local affectedSkill = nil
+
+      if isSimpleEffect then
+        effectId = effectEntry
+        effectKey = effectId
       else
-        effectKey = effect.id
+        effectId = effectEntry[1]
+
+        if string.match(effectId, 'attribute$') ~= nil then
+          affectedAttribute = effectEntry[2]
+          effectKey = string.format("%s_%s", effectId, affectedAttribute)
+        elseif string.match(effectId, 'skill$') ~= nil then
+          affectedSkill = effectEntry[2]
+          effectKey = string.format("%s_%s", effectId, affectedSkill)
+        else
+          error(string.format('%s: unsupported effect type %s', ingredientRecordId, effectId))
+        end
+
       end
 
-      local magicEffect = effect.effect
+      local magicEffect = magicEffects[effectId]
+      assert(magicEffect ~= nil)
 
       local effectName = namesCache[effectKey]
       if effectName == nil then
-        if effect.affectedAttribute ~= nil then
-          effectName = makeCompositeEffectName(effect.id, effect.affectedAttribute)
-        elseif effect.affectedSkill ~= nil then
-          effectName = makeCompositeEffectName(effect.id, effect.affectedSkill)
-        else
+        if isSimpleEffect then
           effectName = magicEffect.name
+        else
+          effectName = makeCompositeEffectName(effectId, effectEntry[2])
         end
 
         namesCache[effectKey] = effectName
@@ -119,8 +199,8 @@ module.initIngredients = function(knownEffects, knownExperiments)
         isKnown = (true == knownIngredientEffects[effectKey])
       end
 
-      shortRecord.effects[j] = {
-        id = effect.id,
+      effects[j] = {
+        id = effectId,
         key = effectKey,
         name = effectName,
         icon = magicEffect.icon,
@@ -129,12 +209,12 @@ module.initIngredients = function(knownEffects, knownExperiments)
         baseCost = magicEffect.baseCost,
         harmful = magicEffect.harmful,
         known = isKnown,
-        affectedAttribute = effect.affectedAttribute,
-        affectedSkill = effect.affectedSkill,
+        affectedAttribute = affectedAttribute,
+        affectedSkill = affectedSkill,
       }
     end
 
-    result[ingredientRecord.id] = shortRecord
+    result[ingredientRecordId] = shortRecord
     added = added + 1
   end
 
