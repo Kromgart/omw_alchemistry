@@ -31,8 +31,12 @@ In vanilla game you could make potions with any ingredients without knowing anyt
  5) Potions are named automatically according to all their effects.
  6) Creating potions gives less experience (x0.5) than discovering new effects (Experiment tab).
 
+![Main tab](https://github.com/Kromgart/omw_alchemistry/blob/master/screenshots/tabMain.png)
+
 ### Experiment tab
 You discover effects of ingredients on this tab.
+
+![Experiment tab](https://github.com/Kromgart/omw_alchemistry/blob/master/screenshots/tabExperiment.png)
 
 There is one slot for the 'main' ingredient, and a list of available ingredients below.
 
@@ -45,8 +49,12 @@ If some ingredient has been tested with all other ingredients that you have, it 
 ### Ingredients tab
 Allows you to see and look through all known ingredients with their known effects, in case you don't have one available but need that info. The list can be searched for a particular effect or ingredient name (exact match for now).
 
+![Ingredients tab](https://github.com/Kromgart/omw_alchemistry/blob/master/screenshots/tabIngredients.png)
+
 ### Food items
 The game has some ingredients which have just one 'Restore Fatigue' effect (and some mods add a lot of these). Such ingredients have been converted to 'potion' type with a fixed restore fatigue effect (1pt for 120 seconds). They still look the same as before of course.
+
+![bread is not a magical ingredient](https://github.com/Kromgart/omw_alchemistry/blob/master/screenshots/food.png)
 
 Most of these things have already been cooked or baked or otherwise processed, so it doesn't make sense for them to clutter alchemy. Maybe some cooking/survival/needs mod could use them better.
 
