@@ -48,7 +48,7 @@ When the main slot is filled, clicking on ingredient in the list will perform th
 If some ingredient has been tested with all other ingredients that you have, it will not be present on this tab at all (until you acquire some new ingredient and a new combinations become available).
 
 ### Ingredients tab
-Allows you to see and look through all known ingredients with their known effects, in case you don't have one available but need that info. The list can be searched for a particular effect or ingredient name (exact match for now).
+Allows you to see and look through all known ingredients with their known effects, in case you don't have one available but need that info. The list can be searched for a particular effect or ingredient name (exact match for now). Does not show ingredients with attached scripts (usually quest items or 'cursed' versions of normal ingredients).
 
 ![Ingredients tab](https://github.com/Kromgart/omw_alchemistry/blob/master/screenshots/tabIngredients.png)
 
