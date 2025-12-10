@@ -1066,19 +1066,27 @@ module.newAutocomplete = function(width, onMatched, wordsMap)
     }
   }
 
+  local function setWordsMap(newWords)
+    wordsMap = newWords
+  end
+
   local layout = {
     type = ui.TYPE.Container,
     template = newBorderedTemplate(ui.TYPE.Container, borderTexturesThin, true, true, true, true),
-    -- events = { mouseClick = async:callback(mouseClick) },
-    -- props = {},
     content = ui.content {{
       type = ui.TYPE.Container,
       template = module.newPaddingVH(3, 2),
       content = ui.content { textEdit }
-    }}
+    }},
+    setWordsMap = setWordsMap,
   }
 
   local element = ui.create(layout)
+
+  layout.clearTextSilent = function()
+    textEdit.props.text = nil
+    element:update()
+  end
 
   -- for k, v in pairs(wordsMap) do
   --   print(k, " -> ", v)

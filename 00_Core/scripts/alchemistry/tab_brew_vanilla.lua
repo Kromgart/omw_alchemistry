@@ -14,6 +14,9 @@ local fPotionT1DurMult = core.getGMST('fPotionT1DurMult')
 local iAlchemyMod = core.getGMST('iAlchemyMod')
 
 local ctx = nil
+local wordsMapCache = nil
+local lastFilter = nil
+local hadNoCommon = true
 
 local function noop()
 end
@@ -22,6 +25,28 @@ end
 local function redrawTab()
   ctx.tabElement:update()
 end
+
+
+local function clearAutocomplete()
+  ctx.autocompleteElement.layout.clearTextSilent()
+  lastFilter = nil
+end
+
+
+local function updateWordsMap(datasource)
+  local wordsMap = {}
+  for k, item in ipairs(datasource) do
+    for i, effect in ipairs(item.record.effects) do
+      if effect.known then
+        local name = effect.name
+        wordsMap[wordsMapCache[name]] = name
+      end
+    end
+  end
+
+  ctx.autocompleteElement.layout.setWordsMap(wordsMap)
+end
+
 
 local getAlchemy = types.NPC.stats.skills.alchemy
 
@@ -168,7 +193,7 @@ local function calculatePotionEffects()
           table.insert(added, effect)
           if #added == 2 then
             local magnitude, duration = calculateVanillaPotionEffect(effect, mortarMult, alembic, retort, calcinator)
-            print(string.format("Calculated effect %s(%i pts, %i sec)", effect.key, magnitude, duration))
+            -- print(string.format("Calculated effect %s(%i pts, %i sec)", effect.key, magnitude, duration))
             if magnitude > 0 and duration > 0 then
               local visibleFast = added[1].known and added[2].known
               table.insert(potionEffects, {
@@ -231,7 +256,7 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
 
   for i, ingredient in ipairs(ctx.alchemyItems.ingredients) do
     if ingredient.count < 1 then
-      goto continue
+      goto next_ingredient
     end
 
     local rec = ingredient.record
@@ -246,15 +271,17 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
           mutActiveIngredients[m] = mutActiveIngredients[m + 1]
         end
         activesCount = activesCount - 1
-        goto continue
+        goto next_ingredient
       end
     end
 
     local keep = false
     for j, effect in ipairs(rec.effects) do
-      if effect.known and (matchEffects == nil or matchEffects[effect.key]) then
-        keep = true
-        break
+      if effect.known then
+        if (matchEffects == nil or matchEffects[effect.key]) and (lastFilter == nil or lastFilter == effect.name) then
+          keep = true
+          break
+        end
       end
     end
 
@@ -263,7 +290,7 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
       result[added] = ingredient
     end
 
-    ::continue::
+    ::next_ingredient::
   end
 
   return result
@@ -293,6 +320,7 @@ local function filterIngredientsList()
   else -- 1, 2, 3
     local matchEffects = {}
     local cloneIdx = activesCount
+    local haveAtLeastOneCommon = false
 
     for i = 1, activesCount do
       local active = actives[i]
@@ -307,15 +335,47 @@ local function filterIngredientsList()
       end
 
       for j, effect in ipairs(active.effects) do
+        if matchEffects[effect.key] then
+          haveAtLeastOneCommon = true
+          goto actives_processed
+        end
         matchEffects[effect.key] = true
         -- print(string.format("Add match effect %s", effect.key))
       end
     end
-    datasource = newDataSource(actives, matchEffects)
+
+    ::actives_processed::
+
+    if haveAtLeastOneCommon then
+      if hadNoCommon then
+        hadNoCommon = false
+        clearAutocomplete()
+      end
+      datasource = newDataSource(actives)
+    else
+      -- if not a single effect in the potion yet, filter out all
+      -- ingredients that don't match anything in ingredient slots
+      datasource = newDataSource(actives, matchEffects)
+      hadNoCommon = true
+    end
   end
 
   ctx.ingredientsList:setDataSource(datasource)
+  updateWordsMap(datasource)
 end
+
+
+
+local function autocompleteFired(strValue)
+  if strValue == lastFilter then
+    return
+  end
+
+  lastFilter = strValue
+  filterIngredientsList()
+  redrawTab()
+end
+
 
 
 local function brewPotionsClick(amount)
@@ -663,15 +723,6 @@ local function newTabLayout()
 
   ctx.ingredientsList = ingredientsList
 
-  local textbox = {
-    type = ui.TYPE.Widget,
-    template = I.MWUI.templates.borders,
-    props = {
-      size = v2(245, 25),
-    },
-    content = ui.content {} --put textEdit here
-  }
-
   ctx.flexPotionEffects = {
     type = ui.TYPE.Flex,
     props = {
@@ -716,7 +767,7 @@ local function newTabLayout()
               makeHeader("Ingredients:"),
               ingredientSlotsRow,
               makeHeader("Effects filter:"),
-              textbox,
+              ctx.autocompleteElement,
             }
           },
           utilsUI.spacerColumn40,
@@ -729,7 +780,7 @@ local function newTabLayout()
                 type = ui.TYPE.Widget,
                 template = I.MWUI.templates.borders,
                 props = {
-                  size = v2(204, 187),
+                  size = v2(204, 190),
                 },
                 content = ui.content { ctx.flexPotionEffects }
               },
@@ -739,7 +790,6 @@ local function newTabLayout()
       },
       utilsUI.spacerRow20,
       ingredientsList,
-      -- TODO custom potion name?
       ctx.brewButtonsRow,
     }
   }
@@ -749,6 +799,8 @@ end
 local function createTab(fnUpdateTooltip, alchemyItems, player)
   assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")
 
+  hadNoCommon = true
+
   ctx = {
     alchemyItems = alchemyItems,
     player = player,
@@ -756,16 +808,33 @@ local function createTab(fnUpdateTooltip, alchemyItems, player)
     ingredientSlots = {},
   }
 
+  ctx.autocompleteElement = utilsUI.newAutocomplete(240, autocompleteFired, {})
+
+  local datasource = newDataSource({})
+  wordsMapCache = {}
+  for i, item in ipairs(datasource) do
+    for i, effect in ipairs(item.record.effects) do
+      if effect.known then
+        local name = effect.name
+        wordsMapCache[name] = string.lower(name)
+      end
+    end
+  end
+
+  updateWordsMap(datasource)
   ctx.tabElement = ui.create(newTabLayout())
-  ctx.ingredientsList:setDataSource(newDataSource({}))
+  ctx.ingredientsList:setDataSource(datasource)
 
   return ctx.tabElement
 end
 
 local function destroyTab()
   assert(ctx ~= nil, "Attempting to destroy a tab when it doesn't exist")
+  ctx.autocompleteElement:destroy()
   ctx.tabElement:destroy()
   ctx = nil
+  wordsMapCache = nil
+  lastFilter = nil
 end
 
 return {

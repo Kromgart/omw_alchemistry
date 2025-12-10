@@ -164,7 +164,7 @@ module.init = function(knownEffects, knownExperiments)
       -- this item is a clone: same icon, model and effects
       -- All clones should point to the same table with effects (changing the table will affect all the clones)
       -- DEBUG
-      print("Found clone ", ingredientRecord.id, ": ", ingredientHash)
+      print("Found clone ", ingredientRecord.id) --, ": ", ingredientHash)
       return effects, ingredientHash
     end
 
@@ -250,6 +250,7 @@ module.init = function(knownEffects, knownExperiments)
       value = ingredientRecord.value,
       weight = ingredientRecord.weight,
       effects = effects,
+      hasScript = ingredientRecord.mwscript ~= nil,
     }
 
     local cs = clones[ingredientHash]

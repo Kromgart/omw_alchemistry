@@ -6,7 +6,7 @@ local utilsCore = require('scripts.alchemistry.utils_core')
 
 ---------------------------------------
 -- SAFETY: call destroy() on elements
--- Set all to nil in module.destroy(), 
+-- Set all to nil in module.destroy(),
 local tabElement = nil
 local ingredientsList = nil
 local autocompleteElement = nil
@@ -33,7 +33,7 @@ local function filterFired(strValue)
   end
 
   lastFilter = strValue
-  
+
   -- print('Matched ', strValue)
   local newDataSource = nil
 
@@ -81,6 +81,9 @@ local function setupData()
   local added = 0
 
   for k, ingredient in pairs(utilsCore.ingredientsData) do
+    if ingredient.hasScript then
+      goto next_ingredient
+    end
 
     local notAdded = true
     for i, effect in ipairs(ingredient.effects) do
@@ -93,7 +96,7 @@ local function setupData()
 
           local name = ingredient.name
           wordsList[string.lower(name)] = name
-          
+
           added = added + 1
           knownIngredients[added] = {
             icon = ingredient.icon,
@@ -104,6 +107,8 @@ local function setupData()
         end
       end
     end
+
+    ::next_ingredient::
   end
 
   table.sort(knownIngredients, function(x, y) return x.name < y.name end)
@@ -111,7 +116,7 @@ end
 
 
 local function newTabLayout()
-  
+
   ingredientsList = utilsUI.newItemList {
     width = 12,
     height = 7,
