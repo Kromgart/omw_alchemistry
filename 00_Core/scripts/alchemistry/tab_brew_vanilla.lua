@@ -168,7 +168,7 @@ local function calculatePotionEffects()
           table.insert(added, effect)
           if #added == 2 then
             local magnitude, duration = calculateVanillaPotionEffect(effect, mortarMult, alembic, retort, calcinator)
-            -- print(string.format("Calculated effect %s(%i pts, %i sec)", key, magnitude, duration))
+            print(string.format("Calculated effect %s(%i pts, %i sec)", effect.key, magnitude, duration))
             if magnitude > 0 and duration > 0 then
               local visibleFast = added[1].known and added[2].known
               table.insert(potionEffects, {
@@ -226,34 +226,41 @@ end
 
 local newDataSource = function(mutActiveIngredients, matchEffects)
   local result = {}
+  local added = 0
+  local activesCount = #mutActiveIngredients
 
   for i, ingredient in ipairs(ctx.alchemyItems.ingredients) do
     if ingredient.count < 1 then
       goto continue
     end
 
-    for j, active in ipairs(mutActiveIngredients) do
-      if ingredient.record == active then
-        for m = j, #mutActiveIngredients do
-          -- shorten the list for less checks in the future
+    local rec = ingredient.record
+
+    -- any actives or their clones should not be present in output
+    for j = 1, activesCount do
+      local active = mutActiveIngredients[j]
+      if active == rec or (active == rec.id and type(active) == 'string') then
+        -- this one will not be added to output
+        -- shorten the list for less checks in the future
+        for m = j, activesCount do
           mutActiveIngredients[m] = mutActiveIngredients[m + 1]
         end
+        activesCount = activesCount - 1
         goto continue
       end
     end
 
     local keep = false
-    for j, effect in ipairs(ingredient.record.effects) do
-      if effect.known then
-        if matchEffects == nil or matchEffects[effect.key] then
-          keep = true
-          break
-        end
+    for j, effect in ipairs(rec.effects) do
+      if effect.known and (matchEffects == nil or matchEffects[effect.key]) then
+        keep = true
+        break
       end
     end
 
     if keep then
-      table.insert(result, ingredient)
+      added = added + 1
+      result[added] = ingredient
     end
 
     ::continue::
@@ -265,12 +272,13 @@ end
 
 local function filterIngredientsList()
   local actives = {}
-  for i, islot in ipairs(ctx.ingredientSlots) do
+  for i = 1, #ctx.ingredientSlots do
+    local islot = ctx.ingredientSlots[i]
     local itemIcon = islot:getItemIcon()
     if itemIcon == nil then
       break
     end
-    table.insert(actives, itemIcon.itemData.record)
+    actives[i] = itemIcon.itemData.record
   end
 
   local activesCount = #actives
@@ -284,7 +292,20 @@ local function filterIngredientsList()
     datasource = {}
   else -- 1, 2, 3
     local matchEffects = {}
-    for i, active in ipairs(actives) do
+    local cloneIdx = activesCount
+
+    for i = 1, activesCount do
+      local active = actives[i]
+
+      local clones = active.clones
+      if clones ~= nil then
+        -- add cloneIds to actives list (to filter them out)
+        for j, cloneId in ipairs(clones) do
+          cloneIdx = cloneIdx + 1
+          actives[cloneIdx] = cloneId
+        end
+      end
+
       for j, effect in ipairs(active.effects) do
         matchEffects[effect.key] = true
         -- print(string.format("Add match effect %s", effect.key))

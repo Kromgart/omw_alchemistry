@@ -116,6 +116,8 @@ local function loadLuaEffects()
 end
 
 
+
+
 -------------------------------------------------------------------------------
 
 
@@ -125,38 +127,54 @@ local module = {}
 
 
 module.init = function(knownEffects, knownExperiments)
-  local result = {}
-  local added = 0
-  local namesCache = {}
+  local effectsCache = {}
+  local effectNamesCache = {}
 
   local luaEffects = loadLuaEffects()
   local magicEffects = core.magic.effects.records
 
-
-  for i, ingredientRecord in ipairs(types.Ingredient.records) do
-    local ingredientRecordId = ingredientRecord.id
-
-    local effects = {}
-    local shortRecord = {
-      id = ingredientRecordId,
-      name = ingredientRecord.name,
-      icon = ingredientRecord.icon,
-      value = ingredientRecord.value,
-      weight = ingredientRecord.weight,
-      effects = effects,
+  local function getIngredientEffects(ingredientRecord)
+    -- Normalizing paths
+    local ingredientHash = {
+      string.gsub(string.lower(ingredientRecord.icon), '\\', '/'),
+      string.gsub(string.lower(ingredientRecord.model), '\\', '/'),
     }
+    local hashEntries = 2
 
-
-    local ingredientLuaEffects = luaEffects[ingredientRecordId]
+    local ingredientLuaEffects = luaEffects[ingredientRecord.id]
     if ingredientLuaEffects == nil then
-      error(string.format("%s has no associated lua effects", ingredientRecordId))
+      error(string.format("%s has no associated lua effects", ingredientRecord.id))
     end
-    
-    local knownIngredientEffects = knownEffects[ingredientRecordId]
 
-    for j, effectEntry in ipairs(ingredientLuaEffects) do
+    for i, effectEntry in ipairs(ingredientLuaEffects) do
+      if 'string' == type(effectEntry) then
+        hashEntries = hashEntries + 1
+        ingredientHash[hashEntries] = effectEntry
+      else
+        hashEntries = hashEntries + 1
+        ingredientHash[hashEntries] = effectEntry[1]
+        hashEntries = hashEntries + 1
+        ingredientHash[hashEntries] = effectEntry[2]
+      end
+    end
 
+    ingredientHash = table.concat(ingredientHash, '|')
+    local effects = effectsCache[ingredientHash]
+    if effects ~= nil then
+      -- this item is a clone: same icon, model and effects
+      -- All clones should point to the same table with effects (changing the table will affect all the clones)
+      -- DEBUG
+      print("Found clone ", ingredientRecord.id, ": ", ingredientHash)
+      return effects, ingredientHash
+    end
+
+    effects = {}
+
+    local knownIngredientEffects = knownEffects[ingredientRecord.id]
+
+    for i, effectEntry in ipairs(ingredientLuaEffects) do
       local isSimpleEffect = 'string' == type(effectEntry)
+
       local effectId = nil
       local effectKey = nil
       local affectedAttribute = nil
@@ -175,15 +193,14 @@ module.init = function(knownEffects, knownExperiments)
           affectedSkill = effectEntry[2]
           effectKey = string.format("%s_%s", effectId, affectedSkill)
         else
-          error(string.format('%s: unsupported effect type %s', ingredientRecordId, effectId))
+          error(string.format('%s: unsupported effect type %s', ingredientRecord.id, effectId))
         end
-
       end
 
       local magicEffect = magicEffects[effectId]
       assert(magicEffect ~= nil)
 
-      local effectName = namesCache[effectKey]
+      local effectName = effectNamesCache[effectKey]
       if effectName == nil then
         if isSimpleEffect then
           effectName = magicEffect.name
@@ -191,7 +208,7 @@ module.init = function(knownEffects, knownExperiments)
           effectName = makeCompositeEffectName(effectId, effectEntry[2])
         end
 
-        namesCache[effectKey] = effectName
+        effectNamesCache[effectKey] = effectName
       end
 
       local isKnown = false
@@ -199,7 +216,7 @@ module.init = function(knownEffects, knownExperiments)
         isKnown = (true == knownIngredientEffects[effectKey])
       end
 
-      effects[j] = {
+      effects[i] = {
         id = effectId,
         key = effectKey,
         name = effectName,
@@ -214,7 +231,45 @@ module.init = function(knownEffects, knownExperiments)
       }
     end
 
-    result[ingredientRecordId] = shortRecord
+    effectsCache[ingredientHash] = effects
+    return effects, ingredientHash
+  end
+
+
+  local result = {}
+  local added = 0
+
+  local clones = {}
+
+  for i, ingredientRecord in ipairs(types.Ingredient.records) do
+    local effects, ingredientHash = getIngredientEffects(ingredientRecord)
+    local shortRecord = {
+      id = ingredientRecord.id,
+      name = ingredientRecord.name,
+      icon = ingredientRecord.icon,
+      value = ingredientRecord.value,
+      weight = ingredientRecord.weight,
+      effects = effects,
+    }
+
+    local cs = clones[ingredientHash]
+    if cs == nil then
+      -- most common case, just one entry, no clone tracking yet
+      clones[ingredientHash] = ingredientRecord.id
+    elseif 'string' == type(cs) then
+      -- got the first clone, need to keep track of them now
+      local csArray = { cs, ingredientRecord.id }
+      clones[ingredientHash] = csArray
+      -- fix the first entry
+      result[cs].clones = csArray
+      shortRecord.clones = csArray
+    else
+      -- 2+ clones, already an array
+      table.insert(clones, ingredientRecord.id)
+      shortRecord.clones = cs
+    end
+
+    result[ingredientRecord.id] = shortRecord
     added = added + 1
   end
 
@@ -226,8 +281,12 @@ end
 
 
 module.markExperiment = function(recordId1, recordId2)
-  setOneExperiment(module.experimentsTable, recordId1, recordId2)
-  setOneExperiment(module.experimentsTable, recordId2, recordId1)
+  for i, id1 in ipairs(module.ingredientsData[recordId1].clones or { recordId1 }) do
+    for i, id2 in ipairs(module.ingredientsData[recordId2].clones or { recordId2 }) do
+      setOneExperiment(module.experimentsTable, id1, id2)
+      setOneExperiment(module.experimentsTable, id2, id1)
+    end
+  end
 end
 
 
