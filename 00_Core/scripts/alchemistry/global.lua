@@ -144,8 +144,8 @@ return {
   eventHandlers = {
     alchemistryCreatePotions = createPotions,
     alchemistryRemoveItem = function(data)
-      -- HACK: commented out for easier testing
-      -- data.gameObject:remove(data.count)
+      -- HACK: comment out for easier testing
+      data.gameObject:remove(data.count)
     end
   },
   engineHandlers = {

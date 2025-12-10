@@ -694,7 +694,7 @@ local function newTabLayout()
               apparatusSlotsRow,
               makeHeader("Ingredients:"),
               ingredientSlotsRow,
-              makeHeader("Effect filter:"),
+              makeHeader("Effects filter:"),
               textbox,
             }
           },
@@ -703,7 +703,7 @@ local function newTabLayout()
             type = ui.TYPE.Flex,
             props = { horizontal = false },
             content = ui.content {
-              makeHeader("Potion effects:"),
+              makeHeader("Expected effects:"),
               {
                 type = ui.TYPE.Widget,
                 template = I.MWUI.templates.borders,

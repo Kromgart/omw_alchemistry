@@ -96,10 +96,10 @@ local function newMainWindowLayout(tabHeaders)
     template = I.MWUI.templates.boxSolidThick,
     events = { mouseMove = async:callback(onMouseMove) },
     props = {
-      anchor = v2(0, 0.5),
-      relativePosition = v2(0, 0.5),
-      -- anchor = v2(0.5, 0.5),
-      -- relativePosition = v2(0.5, 0.5),
+      -- anchor = v2(0, 0.5),
+      -- relativePosition = v2(0, 0.5),
+      anchor = v2(0.5, 0.5),
+      relativePosition = v2(0.5, 0.5),
     },
     content = ui.content {{
       type = ui.TYPE.Widget,
