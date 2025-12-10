@@ -27,9 +27,10 @@ In vanilla game you could make potions with any ingredients without knowing anyt
  1) you can only make potions from ingredients with compatible 'known' effects. If you don't know anything about an ingredient - it will not even show up in the ingredients list for potion making.
  2) The ingredients list is dynamically updated according to the ingredients that you put into the slots. It will always steer you to have at least one common effect, and will try to prevent you from adding useless ingredients (according to your knowledge of effects).
  3) The expected potion effects are displayed with duration and magnitude (when applicable), according to your stats and apparatus.
- 4) Potions weight is fixed (0.5). Use the ingredients which have the effects you need, don't worry about potion weighting like a brick.
- 5) Potions are named automatically according to all their effects.
- 6) Creating potions gives less experience (x0.5) than discovering new effects (Experiment tab).
+ 4) The mod detects clones (ingredients with the same set of icon, model and magic effects) and handles them accordingly: they share known effects and they can't be mixed together at all
+ 5) Potions weight is fixed (0.5). Use the ingredients which have the effects you need, don't worry about potion weighting like a brick.
+ 6) Potions are named automatically according to all their effects.
+ 7) Creating potions gives less experience (x0.5) than discovering new effects (Experiment tab).
 
 ![Main tab](https://github.com/Kromgart/omw_alchemistry/blob/master/screenshots/tabMain.png)
 
