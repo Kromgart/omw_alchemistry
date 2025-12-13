@@ -10,6 +10,72 @@ local utilsUI = require('scripts.alchemistry.utils_ui')
 local utilsCore = require('scripts.alchemistry.utils_core')
 
 
+local maxPossibleExperiments = nil -- is set on tab creation
+
+-- runtime lazy cache for showing only relevant stuff on this tab
+local untestedCombinations = nil
+
+local function updateUntestedCombinations(ingredients, experiments)
+  local count = #ingredients
+  local firstRun = untestedCombinations == nil
+  if firstRun then
+    untestedCombinations = {}
+  end
+
+  for i = 1, count do
+    local id = ingredients[i].record.id
+
+    local exp = experiments[id]
+    if exp ~= nil and exp.tableLength == maxPossibleExperiments then
+      -- tested with ALL ingredients
+      goto next_ingredient
+    end
+
+    local matches = untestedCombinations[id]
+    if matches ~= nil then
+      -- don't touch cached ones, they will be updated by newcomers
+      goto next_ingredient
+    end
+
+    -- A newcomer in the cache: check for done experiments with ALL CACHED entries
+    matches = {}
+    untestedCombinations[id] = matches
+
+    for m = 1, i - 1 do
+      local idPrevious = ingredients[m].record.id
+      if exp == nil or exp[idPrevious] ~= true then
+        -- INVARIANT untestedCombinations[idPrevious] ~= nil
+        -- it was ensured on previous iteration of the outer for loop
+        untestedCombinations[idPrevious][id] = true
+        matches[idPrevious] = true
+      end
+    end
+
+    if firstRun then
+      -- there is nothing to do for the following ingredients:
+      -- on the first run the untestedCombinations[idFollowing] is always nil
+      goto next_ingredient
+    end
+
+    for m = i + 1, count do
+      local idFollowing = ingredients[m].record.id
+      local followingMatches = untestedCombinations[idFollowing]
+      if followingMatches ~= nil then
+        -- this one will be skipped normally, so we add ourself in it now
+        -- if it IS nil, then it is also a new item for the cache and will be processed as this one
+        if exp == nil or exp[followingId] ~= true then
+          untestedCombinations[idFollowing][id] = true
+          matches[idFollowing] = true
+        end
+      end
+    end
+
+    ::next_ingredient::
+  end
+
+end
+
+
 local ctx = nil
 
 -- local redrawCount = 0
@@ -114,10 +180,12 @@ local function ingredientIconClicked(mouseEvent, sender)
     setResultEffects(nil)
     ctx.mainIngredient = clickedIngredient
     -- print("Main ingredient is " .. clickedIngredient.record.name)
-    ctx:filterListDataSource(ctx.mainIngredient.record)
+    ctx:filterListDataSource(clickedIngredient.record)
   else
+    local mainRecord = ctx.mainIngredient.record
+    local clickedRecord = clickedIngredient.record
     -- print(string.format("Trying %s with %s", ctx.mainIngredient.name, clickedIngredient.name))
-    local common = utilsCore.getCommonEffects(ctx.mainIngredient.record, clickedIngredient.record)
+    local common = utilsCore.getCommonEffects(mainRecord, clickedRecord)
     if common ~= nil then
       ambient.playSound('potion success')
       local discovered = 0
@@ -127,7 +195,7 @@ local function ingredientIconClicked(mouseEvent, sender)
           e.known = true
         end
       end
-      setResultHeader(ctx.mainIngredient.record.name, clickedIngredient.record.name)
+      setResultHeader(mainRecord.name, clickedRecord.name)
       setResultEffects(common)
       I.SkillProgression.skillUsed('alchemy', {
         useType = I.SkillProgression.SKILL_USE_TYPES.Alchemy_CreatePotion,
@@ -140,7 +208,12 @@ local function ingredientIconClicked(mouseEvent, sender)
       ui.showMessage("No reaction")
     end
 
-    utilsCore.markExperiment(ctx.mainIngredient.record.id, clickedIngredient.record.id)
+    local mainId = mainRecord.id
+    local clickedId = clickedRecord.id
+
+    utilsCore.markExperiment(mainId, clickedId)
+    untestedCombinations[mainId][clickedId] = nil
+    untestedCombinations[clickedId][mainId] = nil
 
     clickedIngredient:spend(1)
     ctx.mainIngredient:spend(1)
@@ -227,55 +300,75 @@ local function newTabLayout()
 end
 
 
-local function removeWellTestedIngredients(ingredients)
-  -- Filter out ingredients that are useless for experiments
-  local ingredientsLength = #ingredients
-  local removed = 0
 
-  local maxPossibleExperiments = utilsCore.ingredientsCount - 1 -- all the others minus self
 
-  for i = 1, ingredientsLength do
-    local record = ingredients[i].record
-    local exp = ctx.experiments[record.id]
-    local keep = false
-    if exp == nil or exp.tableLength < ingredientsLength - 1 then
-      -- keep it, because it has less overall test data than the amount of ingredients
-      -- (there are some untested combinations)
-      keep = true
-    elseif exp.tableLength < maxPossibleExperiments then
-      for j = 1, ingredientsLength do
-        if i ~= j then
-          local recordTest = ingredients[j].record
-          if exp[recordTest.id] == nil then
-            -- this combination is untested
-            keep = true
-            break
-          end
-        end
+local newDataSource = function()
+  assert(ctx.mainIngredient == nil) -- otherwise should just filter the existing
+
+  local myIngredients = ctx.alchemyItems.ingredients
+  local ingrCount = #myIngredients
+  local result = {}
+  local indices = {}
+
+  for i = 1, ingrCount do
+    local v = myIngredients[i]
+    if v.count < 1 then
+      result[i] = false
+      goto next_ingredient
+    end
+
+    local id = v.record.id
+
+    local exp = ctx.experiments[id]
+    if exp ~= nil and exp.tableLength == maxPossibleExperiments then
+      -- tested with EVERYTHING
+      result[i] = false
+      goto next_ingredient
+    end
+
+    local needsMe = indices[id]
+    if needsMe ~= nil then
+      for j, index in ipairs(needsMe) do
+        result[index] = myIngredients[index]
+      end
+      result[i] = v
+      indices[id] = true
+    else
+      result[i] = false
+    end
+
+    for key, b in pairs(untestedCombinations[id]) do
+      local bucket = indices[key]
+      if bucket == nil then
+        indices[key] = { i }
+      elseif 'table' == type(bucket) then
+        table.insert(bucket, i)
       end
     end
 
-    ingredients[i - removed] = ingredients[i]
+    ::next_ingredient::
+  end
 
-    if not keep then
-      removed = removed + 1
-      -- print(string.format("Filtered out %s (no useful experiments are possible)", record.name))
+  local holes = 0
+  -- compact
+  for i = 1, ingrCount do
+    local x = result[i]
+    result[i - holes] = x
+    myIngredients[i - holes] = x
+    if x == false then
+      holes = holes + 1
     end
   end
-
-  -- vacuum the potential hole at the end of the array
-  for i = (ingredientsLength - removed + 1), ingredientsLength do
-    ingredients[i] = nil
+  -- vacuum
+  for i = ingrCount - holes + 1, ingrCount do
+    result[i] = nil
+    myIngredients[i] = nil
   end
 
-  -- if removed > 0 then
-  --   print(string.format("removeWellTested: %i - %i = %i", ingredientsLength, removed, #ingredients))
-  -- end
+  assert(#result + holes == ingrCount)
 
-  assert(#ingredients + removed == ingredientsLength)
+  return result
 end
-
-
 
 
 
@@ -290,6 +383,8 @@ local module = {
 module.create = function(fnUpdateTooltip, alchemyItems)
   assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")
 
+  maxPossibleExperiments = utilsCore.ingredientsCount - 1 -- all the others minus self
+
   ctx = {
     updateTooltip = fnUpdateTooltip,
     alchemyItems = alchemyItems,
@@ -298,22 +393,16 @@ module.create = function(fnUpdateTooltip, alchemyItems)
     mainIngredient = nil,
   }
 
-  removeWellTestedIngredients(ctx.alchemyItems.ingredients)
+  updateUntestedCombinations(ctx.alchemyItems.ingredients, ctx.experiments)
+  -- for k, v in pairs(untestedCombinations) do
+  --   print(k,":")
+  --   for j, b in pairs(v) do
+  --     print("  ", j)
+  --   end
+  -- end
+
   table.sort(ctx.alchemyItems.ingredients, function(x, y) return x.record.name < y.record.name end)
 
-  local newDataSource = function()
-    assert(ctx.mainIngredient == nil) -- otherwise should just filter the existing
-
-    local result = {}
-    for i, v in ipairs(ctx.alchemyItems.ingredients) do
-      if v.count > 0 then
-        table.insert(result, v)
-      end
-    end
-
-    -- print("New datasource: " .. tostring(#result))
-    return result
-  end
 
   ctx.resetListDataSource = function(self)
     self.ingredientList:setDataSource(newDataSource())
