@@ -48,7 +48,7 @@ local function filterFired(strValue)
         newDataSource[added] = item
       else
         for j, e in ipairs(item.effects) do
-          if e.name == strValue then
+          if e.known and e.name == strValue then
             added = added + 1
             newDataSource[added] = item
             break
