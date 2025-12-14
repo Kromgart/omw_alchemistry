@@ -116,6 +116,9 @@ local function loadLuaEffects()
 end
 
 
+local function ingredientsCompare(x, y)
+  return x.record.name < y.record.name
+end
 
 
 -------------------------------------------------------------------------------
@@ -293,9 +296,10 @@ end
 
 
 module.getAvailableItems = function(player)
+  local inventory = types.Actor.inventory(player)
   local bestApparatus = {}
 
-  for i, apparatusItem in ipairs(types.Actor.inventory(player):getAll(types.Apparatus)) do
+  for i, apparatusItem in ipairs(inventory:getAll(types.Apparatus)) do
     local apparatusRecord = types.Apparatus.record(apparatusItem.recordId)
     local currentBest = bestApparatus[apparatusRecord.type]
     if currentBest == nil then
@@ -312,21 +316,26 @@ module.getAvailableItems = function(player)
   end
 
   local availableIngredients = {}
+  local added = 0
+  local idata = module.ingredientsData
 
-  for i, v in ipairs(types.Actor.inventory(player):getAll(types.Ingredient)) do
+  for i, v in ipairs(inventory:getAll(types.Ingredient)) do
     local ingredientItem = {
       id = v.recordId,
       count = v.count,
-      record = module.ingredientsData[v.recordId],
-      gameObject = v,
+      record = idata[v.recordId],
       spend = reduceIngredientStack,
+      gameObject = v,
     }
 
     -- HACK: for utilsUI.itemList
     ingredientItem.icon = ingredientItem.record.icon
 
-    table.insert(availableIngredients, ingredientItem)
+    added = added + 1
+    availableIngredients[added] = ingredientItem
   end
+
+  table.sort(availableIngredients, ingredientsCompare)
 
   return {
     apparatus = bestApparatus,

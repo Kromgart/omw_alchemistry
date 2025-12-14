@@ -3,18 +3,18 @@ local core = require('openmw.core')
 local self = require('openmw.self')
 local I = require('openmw.interfaces')
 local ui = require('openmw.ui')
-local v2 = require('openmw.util').vector2
 local utilsCore = require('scripts.alchemistry.utils_core')
 local utilsUI = require('scripts.alchemistry.utils_ui')
+
+local v2 = require('openmw.util').vector2
 
 -- local emptyTab = {
 --   create = function() return {} end,
 --   destroy = function() end,
---   needsItems = false
 -- }
 
 local tabModules = {
-  -- Each must have create() and destroy() functions and maybe boolean needsItems
+  -- Each must have create() and destroy() functions
   require('scripts.alchemistry.tab_brew_vanilla'),
   require('scripts.alchemistry.tab_experiment'),
   require('scripts.alchemistry.tab_ingredients'),
@@ -46,21 +46,10 @@ local function setActiveTabContent(newTabIdx)
   local newTab
 
   if newTabIdx ~= nil then
-    local tabAlchemyItems = nil
-
-    if tabModules[newTabIdx].needsItems then
-      local ingredientsShallowClone = {}
-      for i, v in ipairs(ctx.alchemyItems.ingredients) do
-        if v.count > 0 then
-          table.insert(ingredientsShallowClone, v)
-        end
-      end
-
-      tabAlchemyItems = {
-        apparatus = ctx.alchemyItems.apparatus,
-        ingredients = ingredientsShallowClone,
-      }
-    end
+    local tabAlchemyItems = {
+      apparatus = ctx.alchemyItems.apparatus,
+      ingredients = ctx.alchemyItems.ingredients,
+    }
 
     newTab = tabModules[newTabIdx].create(updateTooltip, tabAlchemyItems, ctx.player)
   else

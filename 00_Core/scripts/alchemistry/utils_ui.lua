@@ -1,11 +1,11 @@
 local I = require('openmw.interfaces')
-local ambient = require('openmw.ambient')
 local async = require('openmw.async')
 local ui = require('openmw.ui')
 local util = require('openmw.util')
 local core = require('openmw.core')
 
 local v2 = util.vector2
+local playSound = require('openmw.ambient').playSound
 
 local stdTextColor = I.MWUI.templates.textNormal.props.textColor
 local stdTextSize = 18
@@ -315,7 +315,7 @@ end
 module.newButton = function(title, onClick, isSilent)
   local mouseClick = function(e, s)
     if not isSilent then
-      ambient.playSound('Menu Click')
+      playSound('Menu Click')
     end
     onClick(e, s)
   end
@@ -867,7 +867,7 @@ module.newTabHeaders = function(titles, onTabChanged)
   end
 
   local tabHeaderClicked = async:callback(function (e, sender)
-    ambient.playSound('Menu Click')
+    playSound('Menu Click')
     setActiveTab(sender)
   end)
 

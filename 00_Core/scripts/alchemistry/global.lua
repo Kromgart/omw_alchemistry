@@ -2,6 +2,7 @@ local core = require('openmw.core')
 local world = require('openmw.world')
 local types = require('openmw.types')
 
+
 local potionVisuals = {
   { 'meshes/m/misc_potion_bargain_01.nif',   'icons/m/tx_potion_bargain_01.tga' },
   { 'meshes/m/misc_potion_cheap_01.nif',     'icons/m/tx_potion_cheap_01.tga' },
@@ -11,28 +12,36 @@ local potionVisuals = {
   { 'meshes/m/misc_potion_standard_01.nif',  'icons/m/tx_potion_standard_01.tga' },
 }
 
-local function makePotionName(potionEffects)
-  local function getEffectName(effect)
-    if effect.id == core.magic.EFFECT_TYPE.RestoreFatigue then
-      return 'Stamina'
-    elseif effect.id == core.magic.EFFECT_TYPE.RestoreHealth then
-      return 'Healing'
-    elseif effect.id == core.magic.EFFECT_TYPE.RestoreMagicka then
-      return 'Magicka'
-    elseif effect.id == core.magic.EFFECT_TYPE.FortifyAttribute then
-      return core.getGMST('sAttribute' .. effect.affectedAttribute)
-    elseif effect.id == core.magic.EFFECT_TYPE.FortifySkill then
-      return core.getGMST('sSkill' .. effect.affectedSkill)
-    else
-      return effect.name
-    end
-  end
 
+local EFFECT_TYPE = core.magic.EFFECT_TYPE
+local getGMST = core.getGMST
+
+
+local function getEffectName(effect)
+  if effect.id == EFFECT_TYPE.RestoreFatigue then
+    return 'Stamina'
+  elseif effect.id == EFFECT_TYPE.RestoreHealth then
+    return 'Healing'
+  elseif effect.id == EFFECT_TYPE.RestoreMagicka then
+    return 'Magicka'
+  elseif effect.id == EFFECT_TYPE.FortifyAttribute then
+    return getGMST('sAttribute' .. effect.affectedAttribute)
+  elseif effect.id == EFFECT_TYPE.FortifySkill then
+    return getGMST('sSkill' .. effect.affectedSkill)
+  else
+    return effect.name
+  end
+end
+
+
+
+local function makePotionName(potionEffects)
   local potionNameBuf = { 'Potion of ', getEffectName(potionEffects[1].effect) }
 
   for i = 2, #potionEffects do
-    potionNameBuf[i * 2 - 1] = ', '
-    potionNameBuf[i * 2] = getEffectName(potionEffects[i].effect)
+    local k = i * 2
+    potionNameBuf[k - 1] = ', '
+    potionNameBuf[k] = getEffectName(potionEffects[i].effect)
   end
 
   return table.concat(potionNameBuf)
@@ -42,25 +51,38 @@ end
 local createdPotionRecords = {}
 
 
-local function getPotionRecord(potionEffects, weight, price)
-  assert(#potionEffects > 0)
 
-  local potionRecordKey = {}
+local function makePotionRecordKey(potionEffects, weight, price)
+  local result = {}
+  local added = 0
   for i, potionEffect in ipairs(potionEffects) do
-    table.insert(potionRecordKey, potionEffect.effect.key)
+    added = added + 1
+    result[added] = potionEffect.effect.key
     if potionEffect.effect.hasMagnitude then
-      table.insert(potionRecordKey, potionEffect.magnitude)
+      added = added + 1
+      result[added] = potionEffect.magnitude
     end
 
     if potionEffect.effect.hasDuration then
-      table.insert(potionRecordKey, potionEffect.duration)
+      added = added + 1
+      result[added] = potionEffect.duration
     end
   end
 
-  table.insert(potionRecordKey, weight)
-  table.insert(potionRecordKey, price)
+  added = added + 1
+  result[added] = weight
+  added = added + 1
+  result[added] = price
 
-  potionRecordKey = table.concat(potionRecordKey, '_')
+  return table.concat(result, '_')
+end
+
+
+
+local function getPotionRecord(potionEffects, weight, price)
+  assert(#potionEffects > 0)
+
+  local potionRecordKey = makePotionRecordKey(potionEffects, weight, price)
   -- print("potionRecordKey: ", potionRecordKey)
 
   local potionRecordId = createdPotionRecords[potionRecordKey]
@@ -93,11 +115,11 @@ local function getPotionRecord(potionEffects, weight, price)
     local recordDraft = types.Potion.createRecordDraft(draftTable)
     local potionRecord = world.createRecord(recordDraft)
     createdPotionRecords[potionRecordKey] = potionRecord.id
-    print("Created potion record, id = ", potionRecord.id)
+    -- print("Created potion record, id = ", potionRecord.id)
     return potionRecord
   else
     local potionRecord = types.Potion.record(potionRecordId)
-    print("Cached potion record, id = ", potionRecord.id)
+    -- print("Cached potion record, id = ", potionRecord.id)
     return potionRecord
   end
 end

@@ -1,22 +1,30 @@
 local I = require('openmw.interfaces')
-local ambient = require('openmw.ambient')
 local ui = require('openmw.ui')
-local v2 = require('openmw.util').vector2
 local types = require('openmw.types')
 local core = require('openmw.core')
-
 local utilsUI = require('scripts.alchemistry.utils_ui')
 local utilsCore = require('scripts.alchemistry.utils_core')
 
-local fPotionStrengthMult = core.getGMST('fPotionStrengthMult')
-local fPotionT1MagMult = core.getGMST('fPotionT1MagMult')
-local fPotionT1DurMult = core.getGMST('fPotionT1DurMult')
-local iAlchemyMod = core.getGMST('iAlchemyMod')
+local playSound = require('openmw.ambient').playSound
+local v2 = require('openmw.util').vector2
+local getGMST = core.getGMST
+
+local getIntelligence = types.Actor.stats.attributes.intelligence
+local getLuck         = types.Actor.stats.attributes.luck
+local getAlchemy      = types.NPC.stats.skills.alchemy
+
+local fPotionStrengthMult = getGMST('fPotionStrengthMult')
+local fPotionT1MagMult    = getGMST('fPotionT1MagMult')
+local fPotionT1DurMult    = getGMST('fPotionT1DurMult')
+local iAlchemyMod         = getGMST('iAlchemyMod')
+
+
 
 local ctx = nil
 local wordsMapCache = nil
 local lastFilter = nil
 local hadNoCommon = true
+
 
 local function noop()
 end
@@ -48,12 +56,10 @@ local function updateWordsMap(datasource)
 end
 
 
-local getAlchemy = types.NPC.stats.skills.alchemy
-
 
 local function getBaseModifier()
-  local playerInt = types.Actor.stats.attributes.intelligence(ctx.player).modified
-  local playerLuck = types.Actor.stats.attributes.luck(ctx.player).modified
+  local playerInt = getIntelligence(ctx.player).modified
+  local playerLuck = getLuck(ctx.player).modified
   local playerAlchemy = getAlchemy(ctx.player).modified
 
   -- print(string.format("Int: %i, Luck: %i, Alchemy: %i", playerInt, playerLuck, playerAlchemy))
@@ -254,7 +260,7 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
   local added = 0
   local activesCount = #mutActiveIngredients
 
-  for i, ingredient in ipairs(ctx.alchemyItems.ingredients) do
+  for i, ingredient in ipairs(ctx.ingredients) do
     if ingredient.count < 1 then
       goto next_ingredient
     end
@@ -288,6 +294,7 @@ local newDataSource = function(mutActiveIngredients, matchEffects)
     if keep then
       added = added + 1
       result[added] = ingredient
+      -- print("Added ", rec.name)
     end
 
     ::next_ingredient::
@@ -418,11 +425,11 @@ local function brewPotionsClick(amount)
       createdCount = createdCount + 1
 
       if potionEntry == nil then
-        local potionPrice = getMortarMult() * iAlchemyMod
         potionEntry = {
           effects = ctx.potionEffects,
           weight = potionWeight,
-          price = potionPrice,
+          -- vanilla price
+          price = getMortarMult() * iAlchemyMod,
           count = 1
         }
         table.insert(created, potionEntry)
@@ -446,9 +453,9 @@ local function brewPotionsClick(amount)
   end
 
   if createdCount > 0 then
-    ambient.playSound('potion success')
+    playSound('potion success')
 
-    local msg = core.getGMST('sPotionSuccess')
+    local msg = getGMST('sPotionSuccess')
     if createdCount > 1 then
       msg = string.format("%s (x%i)", msg, createdCount)
     end
@@ -467,9 +474,9 @@ local function brewPotionsClick(amount)
 
     core.sendGlobalEvent("alchemistryCreatePotions", created)
   else
-    ambient.playSound('potion fail')
+    playSound('potion fail')
 
-    local msg = core.getGMST('sNotifyMessage8')
+    local msg = getGMST('sNotifyMessage8')
     if amount > 1 then
       msg = string.format("%s (x%i)", msg, amount)
     end
@@ -506,7 +513,7 @@ local function ingredientSlotClicked(mouseEvent, slot)
     return
   end
 
-  ambient.playSound('Item Ingredient Down')
+  playSound('Item Ingredient Down')
   local shifting = false
   for i, islot in ipairs(ctx.ingredientSlots) do
     if shifting then
@@ -527,7 +534,7 @@ end
 local function ingredientClicked(mouseEvent, sender)
   if not ctx.slotMortar.enabled then
     -- can't do alchemy without mortar-and-pestle
-    ui.showMessage(string.format('%s %s', core.getGMST('sNotifyMessage45'), core.getGMST('sSkillAlchemy')))
+    ui.showMessage(string.format('%s %s', getGMST('sNotifyMessage45'), getGMST('sSkillAlchemy')))
     return
   end
 
@@ -545,7 +552,7 @@ local function ingredientClicked(mouseEvent, sender)
 
   assert(freeSlot ~= nil, "No free ingredient slots, ingredient list must have been empty")
 
-  ambient.playSound('Item Ingredient Down')
+  playSound('Item Ingredient Down')
   freeSlot:setItemIcon(sender)
   filterIngredientsList()
   calculatePotionEffects()
@@ -609,7 +616,7 @@ local function apparatusSlotMouseMoved(mouseEvent, slot, itemIcon)
             {
               type = ui.TYPE.Text,
               template = I.MWUI.templates.textNormal,
-              props = { text = string.format("%s: %.1f", core.getGMST('sQuality'), slot.apparatusData.quality) },
+              props = { text = string.format("%s: %.1f", getGMST('sQuality'), slot.apparatusData.quality) },
             }
           }
         }
@@ -628,7 +635,7 @@ local function apparatusSlotClicked(mouseEvent, slot)
     return
   end
 
-  ambient.playSound('Item Ingredient Down')
+  playSound('Item Ingredient Down')
   if slot.enabled then
     slot.enabled = false
     slot:setItemIcon(nil)
@@ -645,7 +652,7 @@ end
 local function makeApparatusSlot(id, type)
   local slot = nil
 
-  local apparatusItem = ctx.alchemyItems.apparatus[type]
+  local apparatusItem = ctx.apparatus[type]
   if apparatusItem ~= nil then
     slot = utilsUI.newItemSlot(id, apparatusSlotClicked, apparatusSlotMouseMoved)
     slot.apparatusData = apparatusItem
@@ -796,13 +803,35 @@ local function newTabLayout()
 end
 
 
+local function getNormalizedIngredients(inputIngredients)
+  local result = {}
+  local added = 0
+
+  for i, v in ipairs(inputIngredients) do
+    if v.count > 0 then
+      for j, e in ipairs(v.record.effects) do
+        if e.known then
+          added = added + 1
+          result[added] = v
+          break
+        end
+      end
+    end
+  end
+
+  return result
+end
+
+
 local function createTab(fnUpdateTooltip, alchemyItems, player)
   assert(ctx == nil, "Attempting to create a tab when its context still exists, this should never happen")
 
   hadNoCommon = true
 
   ctx = {
-    alchemyItems = alchemyItems,
+    apparatus = alchemyItems.apparatus,
+    -- we need our own copy to mutate
+    ingredients = getNormalizedIngredients(alchemyItems.ingredients),
     player = player,
     updateTooltip = fnUpdateTooltip,
     ingredientSlots = {},
@@ -810,9 +839,11 @@ local function createTab(fnUpdateTooltip, alchemyItems, player)
 
   ctx.autocompleteElement = utilsUI.newAutocomplete(240, autocompleteFired, {})
 
-  local datasource = newDataSource({})
+  local datasource = {}
   wordsMapCache = {}
-  for i, item in ipairs(datasource) do
+
+  for i, item in ipairs(ctx.ingredients) do
+    datasource[i] = item
     for i, effect in ipairs(item.record.effects) do
       if effect.known then
         local name = effect.name
@@ -840,5 +871,4 @@ end
 return {
   create = createTab,
   destroy = destroyTab,
-  needsItems = true,
 }
