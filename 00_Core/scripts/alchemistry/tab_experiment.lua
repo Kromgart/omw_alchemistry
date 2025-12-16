@@ -470,20 +470,27 @@ local function testCaches(msg)
   local isError = false
   for k1, v in pairs(untestedCombinations) do
     local exp1 = experiments[k1]
-    for k2, b in pairs(v) do
-      local exp2 = experiments[k2]
-      if exp1[k2] == true then
-        print(string.format("%s: %s untested (%s) AND experimented(%s)", msg, k1, k2, k2))
-        isError = true
-      end
-      if exp2[k1] ~= exp1[k2] then
-        print(string.format("%s: Experiments don't match: %s+%s=%s, %s+%s=%s", msg, k1, k2, exp1[k2], k2, k1, exp2[k1]))
-        isError = true
-      end
+    if exp1 ~= nil then
+      for k2, b in pairs(v) do
+        local k1k2 = exp1[k2]
+        if k1k2 == true then
+          print(string.format("%s: %s untested (%s) AND experimented(%s)", msg, k1, k2, k2))
+          isError = true
+        end
 
-      if untestedCombinations[k2][k1] == nil then
-        print(string.format("%s: untested mismatch, %s<-%s is missing", msg, k1, k2))
-        isError = true
+        local exp2 = experiments[k2]
+        if exp2 ~= nil then
+          local k2k1 = exp2[k1]
+          if k2k1 ~= k1k2 then
+            print(string.format("%s: Experiments don't match: %s+%s=%s, %s+%s=%s", msg, k1, k2, k1k2, k2, k1, k2k1))
+            isError = true
+          end
+        end
+
+        if untestedCombinations[k2][k1] == nil then
+          print(string.format("%s: untested mismatch, %s<-%s is missing", msg, k1, k2))
+          isError = true
+        end
       end
     end
   end
@@ -519,7 +526,7 @@ module.create = function(fnUpdateTooltip, alchemyItems)
   experiments = utilsCore.experimentsTable
 
   updateTooltip = fnUpdateTooltip
-  hasMortar = alchemyItems.apparatus[types.Apparatus.TYPE.MortarPestle] == nil
+  hasMortar = alchemyItems.apparatus[types.Apparatus.TYPE.MortarPestle] ~= nil
 
   -- we need our own copy to mutate
   ingredients = {}
