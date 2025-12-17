@@ -84,6 +84,18 @@ local function updateUntestedCombinations()
 end
 
 
+local function removeFromUntestedCache(id1, id2)
+  local c = untestedCombinations[id1]
+  if c ~= nil then
+    c[id2] = nil
+  end
+
+  c = untestedCombinations[id2]
+  if c ~= nil then
+    c[id1] = nil
+  end
+end
+
 
 local function redraw()
   tabElement:update()
@@ -354,17 +366,6 @@ local function ingredientIconClicked(mouseEvent, sender)
     local clickedId = clickedRecord.id
 
     utilsCore.markExperiment(mainId, clickedId)
-
-    ------------------------------------------------------
-    --                    DEBUG
-
-    assert(untestedCombinations[mainId][clickedId] ~= nil)
-    assert(untestedCombinations[clickedId][mainId] ~= nil)
-    ------------------------------------------------------
-
-    untestedCombinations[mainId][clickedId] = nil
-    untestedCombinations[clickedId][mainId] = nil
-
     clickedIngredient:spend(1)
     mainIngredient:spend(1)
 
@@ -462,7 +463,7 @@ end
 --                                             DEBUG
 
 
-local function testCaches(msg)
+local function DEBUG_testCaches(msg)
   if untestedCombinations == nil then
     return
   end
@@ -499,7 +500,7 @@ local function testCaches(msg)
 end
 
 
-local function testInclusion()
+local function DEBUG_testInclusion()
   local isError = false
   for i, item in ipairs(ingredients) do
     local id = item.record.id
@@ -540,10 +541,14 @@ module.create = function(fnUpdateTooltip, alchemyItems)
 
   tabElement = ui.create(newTabLayout())
 
-  testCaches('pre')
+  DEBUG_testCaches('pre')
+
   updateUntestedCombinations()
-  testInclusion()
-  testCaches('post')
+
+  DEBUG_testInclusion()
+  DEBUG_testCaches('post')
+
+  utilsCore.onExperimentAdded = removeFromUntestedCache
 
   ingredientList = utilsUI.newItemList {
     width = 12,

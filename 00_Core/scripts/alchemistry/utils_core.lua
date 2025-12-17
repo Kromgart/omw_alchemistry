@@ -291,6 +291,10 @@ module.markExperiment = function(recordId1, recordId2)
       setOneExperiment(module.experimentsTable, id2, id1)
     end
   end
+
+  if module.onExperimentAdded ~= nil then
+    module.onExperimentAdded(recordId1, recordId2)
+  end
 end
 
 
