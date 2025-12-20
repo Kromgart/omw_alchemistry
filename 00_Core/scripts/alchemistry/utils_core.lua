@@ -103,14 +103,17 @@ local function loadLuaEffects()
     end
   end
 
-  print("Loaded ", added, " lua effects")
+  print("Loaded lua effects for ", added, " ingredients")
 
-  local count = 0
-  for k, v in pairs(result) do
-    count = count + 1
-  end
+  ----------------------------------------
+  --               DEBUG
+  -- local count = 0
+  -- for k, v in pairs(result) do
+  --   count = count + 1
+  -- end
 
-  print("Lua effects count: ", count)
+  -- print("Lua effects table size: ", count)
+  ---------------------------------------
 
   return result
 end

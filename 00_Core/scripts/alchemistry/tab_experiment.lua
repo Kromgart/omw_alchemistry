@@ -247,31 +247,31 @@ local function filterListDataSource(mainRecord)
   ------------------------------------------------
   --                  DEBUG
 
-  if ingredientList:getItemsCount() == 0 then
-    print("ERROR: Filtered for zero results")
-    for i, v in ipairs(ingredients) do
-      local rec = v.record
-      print(rec.name, " experiments:")
-      local exp = experiments[rec.id]
-      if exp == nil then
-        print("  nil")
-      else
-        for e, b in pairs(exp) do
-          print("  ", e)
-        end
-      end
-      print(rec.name, " unknowns:")
-      local unk = untestedCombinations[rec.id]
-      if unk == nil then
-        print("  nil")
-      else
-        for e, b in pairs(unk) do
-          print("  ", e)
-        end
-      end
-    end
-    error("halt")
-  end
+  -- if ingredientList:getItemsCount() == 0 then
+  --   print("ERROR: Filtered for zero results")
+  --   for i, v in ipairs(ingredients) do
+  --     local rec = v.record
+  --     print(rec.name, " experiments:")
+  --     local exp = experiments[rec.id]
+  --     if exp == nil then
+  --       print("  nil")
+  --     else
+  --       for e, b in pairs(exp) do
+  --         print("  ", e)
+  --       end
+  --     end
+  --     print(rec.name, " unknowns:")
+  --     local unk = untestedCombinations[rec.id]
+  --     if unk == nil then
+  --       print("  nil")
+  --     else
+  --       for e, b in pairs(unk) do
+  --         print("  ", e)
+  --       end
+  --     end
+  --   end
+  --   error("halt")
+  -- end
   ------------------------------------------------
 end
 
@@ -463,55 +463,55 @@ end
 --                                             DEBUG
 
 
-local function DEBUG_testCaches(msg)
-  if untestedCombinations == nil then
-    return
-  end
+-- local function DEBUG_testCaches(msg)
+--   if untestedCombinations == nil then
+--     return
+--   end
 
-  local isError = false
-  for k1, v in pairs(untestedCombinations) do
-    local exp1 = experiments[k1]
-    if exp1 ~= nil then
-      for k2, b in pairs(v) do
-        local k1k2 = exp1[k2]
-        if k1k2 == true then
-          print(string.format("%s: %s untested (%s) AND experimented(%s)", msg, k1, k2, k2))
-          isError = true
-        end
+--   local isError = false
+--   for k1, v in pairs(untestedCombinations) do
+--     local exp1 = experiments[k1]
+--     if exp1 ~= nil then
+--       for k2, b in pairs(v) do
+--         local k1k2 = exp1[k2]
+--         if k1k2 == true then
+--           print(string.format("%s: %s untested (%s) AND experimented(%s)", msg, k1, k2, k2))
+--           isError = true
+--         end
 
-        local exp2 = experiments[k2]
-        if exp2 ~= nil then
-          local k2k1 = exp2[k1]
-          if k2k1 ~= k1k2 then
-            print(string.format("%s: Experiments don't match: %s+%s=%s, %s+%s=%s", msg, k1, k2, k1k2, k2, k1, k2k1))
-            isError = true
-          end
-        end
+--         local exp2 = experiments[k2]
+--         if exp2 ~= nil then
+--           local k2k1 = exp2[k1]
+--           if k2k1 ~= k1k2 then
+--             print(string.format("%s: Experiments don't match: %s+%s=%s, %s+%s=%s", msg, k1, k2, k1k2, k2, k1, k2k1))
+--             isError = true
+--           end
+--         end
 
-        if untestedCombinations[k2][k1] == nil then
-          print(string.format("%s: untested mismatch, %s<-%s is missing", msg, k1, k2))
-          isError = true
-        end
-      end
-    end
-  end
+--         if untestedCombinations[k2][k1] == nil then
+--           print(string.format("%s: untested mismatch, %s<-%s is missing", msg, k1, k2))
+--           isError = true
+--         end
+--       end
+--     end
+--   end
 
-  assert(not isError)
-end
+--   assert(not isError)
+-- end
 
 
-local function DEBUG_testInclusion()
-  local isError = false
-  for i, item in ipairs(ingredients) do
-    local id = item.record.id
-    local unknowns = untestedCombinations[id]
-    if unknowns == nil then
-      print(id .. " is missing from untestedCombinations cache")
-      isError = true
-    end
-  end
-  assert(not isError)
-end
+-- local function DEBUG_testInclusion()
+--   local isError = false
+--   for i, item in ipairs(ingredients) do
+--     local id = item.record.id
+--     local unknowns = untestedCombinations[id]
+--     if unknowns == nil then
+--       print(id .. " is missing from untestedCombinations cache")
+--       isError = true
+--     end
+--   end
+--   assert(not isError)
+-- end
 
 
 
@@ -541,12 +541,12 @@ module.create = function(fnUpdateTooltip, alchemyItems)
 
   tabElement = ui.create(newTabLayout())
 
-  DEBUG_testCaches('pre')
+  -- DEBUG_testCaches('pre')
 
   updateUntestedCombinations()
 
-  DEBUG_testInclusion()
-  DEBUG_testCaches('post')
+  -- DEBUG_testInclusion()
+  -- DEBUG_testCaches('post')
 
   utilsCore.onExperimentAdded = removeFromUntestedCache
 

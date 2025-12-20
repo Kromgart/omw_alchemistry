@@ -19,6 +19,75 @@ local fPotionT1DurMult    = getGMST('fPotionT1DurMult')
 local iAlchemyMod         = getGMST('iAlchemyMod')
 
 
+local effect_modifiers = require('scripts.alchemistry.vanilla_effect_modifiers')
+do
+  local count = 0
+  local errors = 0
+  -- ensure default values
+  for id, v in pairs(effect_modifiers) do
+    count = count + 1
+
+    if v.magnitude ~= nil then
+      local x = v.magnitude.p
+      if x == nil then
+        v.magnitude.p = 1
+      elseif not ('number' == type(x) and x > 0 and x <= 1) then
+        print(string.format("Effect modifiers (%s): invalid magnitude.p (%s)", id, x))
+        errors = errors + 1
+      end
+
+      x = v.magnitude.k
+      if x == nil then
+        v.magnitude.k = 1
+      elseif not ('number' == type(x) and x > 0) then
+        print(string.format("Effect modifiers (%s): invalid magnitude.k (%s)", id, x))
+        errors = errors + 1
+      end
+
+      x = v.magnitude.b
+      if x == nil then
+        v.magnitude.b = 0
+      elseif not ('number' == type(x)) then
+        print(string.format("Effect modifiers (%s): invalid magnitude.b (%s)", id, x))
+        errors = errors + 1
+      end
+    end
+
+    if v.duration ~= nil then
+      local x = v.duration.p
+      if x == nil then
+        v.duration.p = 1
+      elseif not ('number' == type(x) and x > 0 and x <= 1) then
+        print(string.format("Effect modifiers (%s): invalid duration.p (%s)", id, x))
+        errors = errors + 1
+      end
+
+      x = v.duration.k
+      if x == nil then
+        v.duration.k = 1
+      elseif not ('number' == type(x) and x > 0) then
+        print(string.format("Effect modifiers (%s): invalid duration.k (%s)", id, x))
+        errors = errors + 1
+      end
+
+      x = v.duration.b
+      if x == nil then
+        v.duration.b = 0
+      elseif not ('number' == type(x)) then
+        print(string.format("Effect modifiers (%s): invalid duration.b (%s)", id, x))
+        errors = errors + 1
+      end
+    end
+  end
+
+  if errors > 0 then
+    error(string.format("Encountered %i errors while loading effect modifiers", errors))
+  end
+
+  print("Loaded modifiers for ", count, " effects")
+end
+
+
 
 local ctx = nil
 local wordsMapCache = nil
@@ -73,6 +142,24 @@ local function getMortarMult()
   return getBaseModifier() * mortar * fPotionStrengthMult
 end
 
+
+
+local function applyEffectModifiers(effect_id, magnitude, duration)
+  local modifier = effect_modifiers[effect_id]
+  if modifier ~= nil then
+    local mg = modifier.magnitude
+    if mg ~= nil then
+      magnitude = math.max(0, math.floor((magnitude ^ mg.p) * mg.k + mg.b))
+    end
+
+    local dur = modifier.duration
+    if dur ~= nil then
+      duration = math.max(0, math.floor((duration ^ dur.p) * dur.k + dur.b))
+    end
+  end
+
+  return magnitude, duration
+end
 
 
 --
@@ -165,7 +252,7 @@ local function calculateVanillaPotionEffect(effect, mortarMult, alembic, retort,
   magnitude = math.floor(magnitude + 0.5)
   duration = math.floor(duration + 0.5)
 
-  return magnitude, duration
+  return applyEffectModifiers(effect.id, magnitude, duration)
 end
 
 
